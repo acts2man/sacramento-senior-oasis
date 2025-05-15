@@ -1,4 +1,3 @@
-
 export interface LocationType {
   id: string;
   name: string;
@@ -145,7 +144,7 @@ export const locations: LocationType[] = [
     ],
     images: [
       "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600566753190-61b07816b324?auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?auto=format&fit=crop&q=80"
     ],
     coordinates: {
@@ -961,9 +960,11 @@ export const locations: LocationType[] = [
       "Activity center"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c8a54eb?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600595147990-e865cb1f681a?auto=format&fit=crop&q=80"
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Living room
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Secondary living area
+      "/lovable-uploads/efdfe73a-f649-4361-aeb2-b0f085579a8c.png", // Bedroom with twin beds
+      "/lovable-uploads/e7df5213-21f9-4158-b6fd-2b2880f8f0bc.png", // Bedroom with twin beds 2
     ],
     coordinates: {
       lat: 38.5356,
@@ -1004,9 +1005,11 @@ export const locations: LocationType[] = [
       "Common living areas"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1545030028-28fefd71c1a9?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80"
+      "/lovable-uploads/d26da6bc-c979-45d2-9e1f-46c6b716e967.png", // Bedroom with blue bedding
+      "/lovable-uploads/b30d7fda-accd-4024-916d-15b9f02d29c3.png", // Bedroom with twin pink beds
+      "/lovable-uploads/62a84882-d05e-43ef-b915-22a89abc4c36.png", // Modern bathroom
+      "/lovable-uploads/63abe475-d170-4636-90d0-144a46f7ee7c.png", // Bathroom with shower
+      "/lovable-uploads/91549c68-429a-4a65-8962-c72ef1e28820.png", // Built-in closet space
     ],
     coordinates: {
       lat: 38.5140,
@@ -1047,9 +1050,11 @@ export const locations: LocationType[] = [
       "Enclosed courtyard"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600607687120-9e4bae19287a?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c8a54eb?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80"
+      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png", // Luxury bedroom with jacuzzi
+      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png", // Room with jacuzzi view 2
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Common living area
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Community space
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior view
     ],
     coordinates: {
       lat: 38.5113,
