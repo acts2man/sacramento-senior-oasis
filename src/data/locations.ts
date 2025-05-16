@@ -1,4 +1,3 @@
-
 export interface LocationType {
   id: string;
   name: string;
@@ -1025,14 +1024,11 @@ export const locations: LocationType[] = [
       "Common living areas"
     ],
     images: [
-      "/lovable-uploads/a14ea14a-0379-4494-b1dc-d1f07347455f.png", // Exterior house view with garage
-      "/lovable-uploads/aec09c3d-637d-4ae9-b16d-ffc64c75a228.png", // Single bedroom with dresser and TV
-      "/lovable-uploads/8aa9f8b7-92bd-4aee-babb-4192d7b59d70.png", // Twin bedroom with black bedding
-      "/lovable-uploads/df4187bf-819d-45dd-b582-5ee2695fef84.png", // Twin bedroom with blue patterned bedding
-      "/lovable-uploads/bcde4ef3-3d5e-43f9-ba11-29d2f7c54ba1.png", // Living room with brown leather sofa and kitchen view
-      "/lovable-uploads/16c216a3-add0-4f0d-ab64-10d9e3925856.png", // Modern kitchen with white cabinets
-      "/lovable-uploads/cb16de29-8039-4a48-9ddd-b18f390d15ca.png", // Dining and living area with red dining table
-      "/lovable-uploads/c385d171-f4dd-4dfd-a8b9-b8d27f614e79.png", // Single bedroom with chandelier
+      "/lovable-uploads/d26da6bc-c979-45d2-9e1f-46c6b716e967.png", // Bedroom with blue bedding
+      "/lovable-uploads/b30d7fda-accd-4024-916d-15b9f02d29c3.png", // Bedroom with twin pink beds
+      "/lovable-uploads/62a84882-d05e-43ef-b915-22a89abc4c36.png", // Modern bathroom
+      "/lovable-uploads/63abe475-d170-4636-90d0-144a46f7ee7c.png", // Bathroom with shower
+      "/lovable-uploads/91549c68-429a-4a65-8962-c72ef1e28820.png", // Built-in closet space
     ],
     coordinates: {
       lat: 38.5140,
