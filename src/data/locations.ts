@@ -1,3 +1,4 @@
+
 export interface LocationType {
   id: string;
   name: string;
@@ -693,9 +694,14 @@ export const locations: LocationType[] = [
       "Outdoor gardens"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600494448637-4e5e7a5f8475?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600573472601-75c73dba264c?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?auto=format&fit=crop&q=80"
+      "/lovable-uploads/bc80fb7a-8748-4f20-bfde-8f7d5e874f61.png", // Exterior view of house
+      "/lovable-uploads/ba95c800-30fa-44db-9666-77eb557cb5b6.png", // Backyard/garden area
+      "/lovable-uploads/b1313780-5535-420c-9898-186b199b50fe.png", // Bedroom with blue striped bedding
+      "/lovable-uploads/3c5f4256-e888-4246-bd5e-fe93861e21a1.png", // Twin bedroom with floral bedding
+      "/lovable-uploads/afc98756-1c70-47ae-b595-87c593a204c1.png", // Living room with entertainment center
+      "/lovable-uploads/931fcefc-e4da-4901-9754-ecc898916214.png", // Dining room with mirror
+      "/lovable-uploads/4743e7a8-667e-4a56-908c-55a007d068c0.png", // Kitchen with wooden cabinets
+      "/lovable-uploads/ebce79a2-48ca-4cb3-99d4-ffe4c402985a.png", // Bathroom with red walls
     ],
     coordinates: {
       lat: 38.4796,
