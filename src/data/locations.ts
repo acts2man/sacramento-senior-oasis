@@ -393,6 +393,49 @@ export const locations: LocationType[] = [
     featured: false,
     rating: 4.8,
   },
+  {
+    id: "vita-bella-3",
+    name: "Vita Bella Elderly Care 3",
+    address: "4230 Eastern Avenue",
+    city: "Sacramento",
+    zip: "95864",
+    phone: "(916) 555-4321",
+    email: "info@vitabella3.com",
+    website: "www.vitabella3.com",
+    description: "Vita Bella Elderly Care 3 offers a luxurious and comfortable living environment for seniors who need assistance with daily activities. Our beautiful facility features spacious rooms, elegant common areas, and meticulously maintained gardens. Our professional staff is dedicated to providing personalized care that enhances the quality of life for all residents. We focus on creating a warm, home-like atmosphere where seniors can enjoy their golden years with dignity and comfort.",
+    shortDescription: "Luxury senior living with personalized care plans and elegant surroundings in East Sacramento.",
+    pricing: {
+      starting: 4600,
+      average: 5300,
+    },
+    services: [
+      "24/7 caregiving staff",
+      "Medication management",
+      "Personalized care plans",
+      "Wellness programs",
+      "Transportation services",
+      "Memory care support"
+    ],
+    amenities: [
+      "Private suites",
+      "Gourmet dining",
+      "Garden courtyard",
+      "Library and reading room",
+      "Activity center",
+      "Beauty salon"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1517022812141-23620dba5c23?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.5665,
+      lng: -121.4132,
+    },
+    featured: true,
+    rating: 4.9,
+  },
 ];
 
 export const getCareTypes = () => {
