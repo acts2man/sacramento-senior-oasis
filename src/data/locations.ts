@@ -1,4 +1,3 @@
-
 export interface LocationType {
   id: string;
   name: string;
@@ -385,7 +384,7 @@ export const locations: LocationType[] = [
     images: [
       "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80"
     ],
     coordinates: {
       lat: 38.5574,
@@ -957,9 +956,17 @@ export const locations: LocationType[] = [
       "Beauty salon and spa"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?auto=format&fit=crop&q=80"
+      "/lovable-uploads/e29ee5b0-8a0e-4b83-b79d-5792f1294f33.png", // Twin bedroom with blue and white bedding
+      "/lovable-uploads/a45c791c-5916-4891-87b7-8723fe76baa3.png", // Single bedroom with blue recliner
+      "/lovable-uploads/b13751e7-6155-4bec-9e4b-78ab38a63083.png", // Twin bedroom with red and white bedding
+      "/lovable-uploads/a8072319-9350-4b35-be2f-761db7e194b0.png", // Living room with piano
+      "/lovable-uploads/ba5cd2ba-813e-4585-8cc1-881a6a3935c1.png", // Bedroom with antique wardrobe
+      "/lovable-uploads/55f3d34a-e353-4d9b-843d-6f0e9a9f61bf.png", // Backyard patio and garden
+      "/lovable-uploads/8f9a0e32-5572-4665-a085-541b3e34a778.png", // Living room with leather couches
+      "/lovable-uploads/edda2914-a347-4d50-b82e-d17f5474f027.png", // Kitchen with island
+      "/lovable-uploads/628bace6-0de3-486a-85f3-e462b650abe7.png", // Bedroom with patterned bedding
+      "/lovable-uploads/f6aeb693-96a4-4189-9331-37574eb146bd.png", // Outdoor patio with fountain
+      "/lovable-uploads/62c160f2-9772-4b15-b058-4e66a7aaef26.png", // Single bedroom with stained glass lamp
     ],
     coordinates: {
       lat: 38.6483,
