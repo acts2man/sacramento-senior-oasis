@@ -425,9 +425,14 @@ export const locations: LocationType[] = [
       "Comfort care suites"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600607687120-9e4bae19287a?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607688583-ea6a71588ede?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80"
+      "/lovable-uploads/09a49d18-77fe-4059-8f5f-71e525c0821f.png", // Front exterior with garage and landscaping
+      "/lovable-uploads/9649bce7-e56d-4d40-8527-ab3f4d3f19c3.png", // Living room with dining area
+      "/lovable-uploads/4ff800e4-d48b-40d5-afde-b9b608e0ff64.png", // Formal dining room with table and chairs
+      "/lovable-uploads/96683bda-6e70-4212-9106-8a532e7d736c.png", // Living area with china cabinet
+      "/lovable-uploads/2ce3d4af-0ff4-4184-9edf-6542bcbf632f.png", // Reception area with red chairs
+      "/lovable-uploads/df1a9b3b-db28-4eee-bb0c-fbcb3031c965.png", // Bedroom with floral bedding and brown chair
+      "/lovable-uploads/8eed304a-3b15-43ff-a24f-6b67f22043c5.png", // Single bedroom with light floral bedding
+      "/lovable-uploads/fb10f888-0b90-4054-a857-d65f6d51956a.png", // Bedroom with sliding door access to yard
     ],
     coordinates: {
       lat: 38.6184,
