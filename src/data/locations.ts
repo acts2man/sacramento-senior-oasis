@@ -1,3 +1,4 @@
+
 export interface LocationType {
   id: string;
   name: string;
@@ -473,9 +474,12 @@ export const locations: LocationType[] = [
       "Riverside walking paths"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80"
+      "/lovable-uploads/d6757e91-85c0-42d0-8cd3-d689ab4cdad5.png", // Exterior house view with garage
+      "/lovable-uploads/dc078bf0-601b-4769-8cab-196ab5a1e9b3.png", // Living room with gray couch and sliding door
+      "/lovable-uploads/89a0b14d-7858-4856-b048-e0a70d4e98e3.png", // Patio with pergola and chairs
+      "/lovable-uploads/96e730cb-fb88-41c4-a526-71d6e8ba8e4c.png", // Bedroom with Marilyn Monroe artwork
+      "/lovable-uploads/996ef2f5-2be5-4f96-9b2f-3c41fc0e3376.png", // Bathroom with double sink and bathtub
+      "/lovable-uploads/5921188d-0450-46a4-b484-c75078f04cbb.png", // Second bathroom with shower curtain
     ],
     coordinates: {
       lat: 38.4792,
