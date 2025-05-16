@@ -1,4 +1,3 @@
-
 export interface LocationType {
   id: string;
   name: string;
@@ -156,9 +155,15 @@ export const locations: LocationType[] = [
       "Worship space"
     ],
     images: [
-      "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566753190-61b07816b324?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?auto=format&fit=crop&q=80"
+      "/lovable-uploads/faa9592c-ceff-4f35-82ca-b3ffabdedeab.png", // Exterior view
+      "/lovable-uploads/022f45e2-aab9-417b-a5dc-e262a64732bf.png", // Living room with fireplace
+      "/lovable-uploads/1ce3f3d6-bac8-42f1-88a7-b05058974747.png", // Dining area and kitchen view
+      "/lovable-uploads/4be45100-6037-4173-a593-e610873b5c06.png", // Dining room closeup
+      "/lovable-uploads/df9862b7-ad5d-4d84-8779-a49ef62fe835.png", // Kitchen
+      "/lovable-uploads/97e697fa-13b9-409a-b6cd-7b6b9eaba22c.png", // Bedroom with blue pattern bedding
+      "/lovable-uploads/82239084-a71e-4fc2-8429-3daf602cddb3.png", // Another bedroom view
+      "/lovable-uploads/62b9b61e-e503-4bb7-9ce5-92ed015cd946.png", // Twin beds room
+      "/lovable-uploads/2e75b146-58c4-41b3-a651-549ba187a423.png", // Outdoor patio area
     ],
     coordinates: {
       lat: 38.4835,
