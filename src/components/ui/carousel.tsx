@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -17,6 +18,8 @@ type CarouselProps = {
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
+  autoPlay?: boolean
+  autoPlayInterval?: number
 }
 
 type CarouselContextProps = {
@@ -26,6 +29,8 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
+  autoPlay?: boolean
+  autoPlayInterval?: number
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -52,6 +57,8 @@ const Carousel = React.forwardRef<
       plugins,
       className,
       children,
+      autoPlay = false,
+      autoPlayInterval = 5000,
       ...props
     },
     ref
@@ -117,6 +124,25 @@ const Carousel = React.forwardRef<
         api?.off("select", onSelect)
       }
     }, [api, onSelect])
+    
+    // Auto-play functionality
+    React.useEffect(() => {
+      if (!api || !autoPlay) {
+        return
+      }
+      
+      const intervalId = setInterval(() => {
+        if (!api.canScrollNext()) {
+          api.scrollTo(0) // Loop back to the first slide
+        } else {
+          api.scrollNext()
+        }
+      }, autoPlayInterval)
+      
+      return () => {
+        clearInterval(intervalId)
+      }
+    }, [api, autoPlay, autoPlayInterval])
 
     return (
       <CarouselContext.Provider
@@ -130,6 +156,8 @@ const Carousel = React.forwardRef<
           scrollNext,
           canScrollPrev,
           canScrollNext,
+          autoPlay,
+          autoPlayInterval,
         }}
       >
         <div

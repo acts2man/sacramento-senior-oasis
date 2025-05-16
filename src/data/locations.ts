@@ -506,9 +506,14 @@ export const locations: LocationType[] = [
       "Beauty salon"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1558979159-2b18a4070a87?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80"
+      "/lovable-uploads/bc8cf363-65b9-413c-b11b-d0c9ad0daff5.png", // Exterior view of house with garage and trees
+      "/lovable-uploads/ec6dce33-9f77-4acd-913e-5cfc0b328fde.png", // Single bedroom with wooden floors and flower art
+      "/lovable-uploads/67cf301c-8286-4c5c-b32d-4b4b0e84a49c.png", // Twin bedroom with black bedding and wooden floors
+      "/lovable-uploads/8a511d8b-8af3-4ff5-bb3b-0c124ec1be11.png", // Large bedroom with twin beds and patterned bedding
+      "/lovable-uploads/87d9b1dd-242b-4f9e-b777-d5f10e9de76a.png", // Living room with leather couch and open kitchen
+      "/lovable-uploads/d562ee63-991d-4634-9277-9f107a074e85.png", // Modern kitchen with black countertops and white cabinets
+      "/lovable-uploads/b88ded2c-fa43-4f7e-b92d-5ba3fad787d4.png", // Dining and living area with red tablecloth
+      "/lovable-uploads/fab2b4ad-4ee7-412e-a5b9-59a1053a99c5.png", // Bedroom with chandelier and patterned bedding
     ],
     coordinates: {
       lat: 38.6184,
@@ -893,9 +898,9 @@ export const locations: LocationType[] = [
       "Family meeting space"
     ],
     images: [
-      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600210490486-724d90a38b59?auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1600607687120-9e4bae19287a?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607688583-ea6a71588ede?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80"
     ],
     coordinates: {
       lat: 38.5151,
