@@ -1,3 +1,4 @@
+
 export interface LocationType {
   id: string;
   name: string;
@@ -204,9 +205,8 @@ export const locations: LocationType[] = [
       "Tranquility room"
     ],
     images: [
-      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80"
+      "/lovable-uploads/59380478-fc98-4263-9293-d269cbd287a4.png", // Front view of facility with palm trees and driveway
+      "/lovable-uploads/478d7794-77d8-4ac1-9fb1-d81152ab4226.png", // Landscaped backyard with stone walls and green lawn
     ],
     coordinates: {
       lat: 38.5152,

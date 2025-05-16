@@ -414,23 +414,23 @@ const LocationDetail = () => {
                     Visit {location.name} to see if it's the right fit for you or your loved one.
                   </p>
                   <Button 
-                    className="w-full mb-3" 
+                    className="w-full mb-3 flex items-center justify-center gap-2" 
                     variant="default"
                     asChild
                   >
                     <a href={`tel:${location.phone}`}>
                       <Phone size={16} />
-                      Call for Tour
+                      <span>Call for Tour</span>
                     </a>
                   </Button>
                   <Button 
-                    className="w-full" 
+                    className="w-full flex items-center justify-center gap-2" 
                     variant="outline"
                     asChild
                   >
                     <a href={`mailto:${location.email}`}>
                       <Mail size={16} />
-                      Email Community
+                      <span>Email Community</span>
                     </a>
                   </Button>
                 </div>
