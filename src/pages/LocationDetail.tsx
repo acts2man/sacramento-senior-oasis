@@ -22,6 +22,7 @@ import {
   ArrowLeft,
   ChevronRight
 } from 'lucide-react';
+import { Button } from '../components/ui/button';
 
 const LocationDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -109,13 +110,15 @@ const LocationDetail = () => {
                   <Star size={18} className="text-amber-500 fill-amber-500 mr-1" />
                   <span className="font-bold">{location.rating}</span>
                 </div>
-                <a 
-                  href={`tel:${location.phone}`}
+                <Button 
                   className="btn-primary flex items-center"
+                  asChild
                 >
-                  <Phone size={16} className="mr-2" />
-                  Call Community
-                </a>
+                  <a href={`tel:${location.phone}`}>
+                    <Phone size={16} />
+                    <span>Call Community</span>
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
@@ -410,17 +413,26 @@ const LocationDetail = () => {
                   <p className="text-gray-600 mb-4">
                     Visit {location.name} to see if it's the right fit for you or your loved one.
                   </p>
-                  <a 
-                    href={`tel:${location.phone}`}
-                    className="btn-primary w-full justify-center mb-3"
+                  <Button 
+                    className="w-full mb-3" 
+                    variant="default"
+                    asChild
                   >
-                    <Phone size={16} className="mr-2" />
-                    Call for Tour
-                  </a>
-                  <button className="btn-outline w-full justify-center">
-                    <Mail size={16} className="mr-2" />
-                    Email Community
-                  </button>
+                    <a href={`tel:${location.phone}`}>
+                      <Phone size={16} />
+                      Call for Tour
+                    </a>
+                  </Button>
+                  <Button 
+                    className="w-full" 
+                    variant="outline"
+                    asChild
+                  >
+                    <a href={`mailto:${location.email}`}>
+                      <Mail size={16} />
+                      Email Community
+                    </a>
+                  </Button>
                 </div>
                 
                 {/* Get More Info */}
