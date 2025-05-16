@@ -1,4 +1,3 @@
-
 export interface LocationType {
   id: string;
   name: string;
@@ -247,9 +246,9 @@ export const locations: LocationType[] = [
       "Community garden"
     ],
     images: [
-      "https://images.unsplash.com/photo-1503174971373-b1f69c758a83?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80"
+      "/lovable-uploads/c6d8c9db-1c2a-493a-92f1-5a41e7917cbe.png", // Exterior view of white house with porch
+      "/lovable-uploads/e48923de-b6cc-4f33-b03b-7d69b537dbd6.png", // Modern dining area with glass table and wall decor
+      "/lovable-uploads/749cc486-ae95-4a0c-8a54-cebfe856570b.png", // Red dining table with chairs and decorative vase
     ],
     coordinates: {
       lat: 38.5399,
@@ -262,8 +261,8 @@ export const locations: LocationType[] = [
     id: "abounding-peace-iii",
     name: "Abounding Peace III Elderly Care",
     address: "10339 Sagres Way",
-    city: "Elk Grove",
-    zip: "95757",
+    city: "Sacramento",
+    zip: "95828",
     phone: "(916) 555-6789",
     email: "care@aboundingpeace3.com",
     website: "www.aboundingpeace3.com",
@@ -290,16 +289,18 @@ export const locations: LocationType[] = [
       "Therapy room"
     ],
     images: [
-      "https://images.unsplash.com/photo-1558442086-8876f53cb9b5?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80"
+      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png", // Luxury bedroom with jacuzzi
+      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png", // Room with jacuzzi view 2
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Common living area
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Community space
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior view
     ],
     coordinates: {
-      lat: 38.4077,
-      lng: -121.4450,
+      lat: 38.5113,
+      lng: -121.4220,
     },
     featured: false,
-    rating: 4.7,
+    rating: 4.8,
   },
   {
     id: "golden-legacy",
