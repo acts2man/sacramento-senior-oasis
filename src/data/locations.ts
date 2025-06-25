@@ -27,7 +27,14 @@ export interface LocationType {
   type: string;
 }
 
-const locations: LocationType[] = [
+export interface CareType {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export const locations: LocationType[] = [
   {
     id: "vita-bella-ii",
     slug: "vita-bella-elderly-care-ii",
@@ -415,4 +422,33 @@ export const searchLocations = (query: string): LocationType[] => {
     location.shortDescription.toLowerCase().includes(searchTerm) ||
     location.description.toLowerCase().includes(searchTerm)
   );
+};
+
+export const getCareTypes = (): CareType[] => {
+  return [
+    {
+      id: 'assisted-living',
+      title: 'Assisted Living',
+      description: 'Personalized care and support for daily activities while maintaining independence.',
+      icon: 'users'
+    },
+    {
+      id: 'memory-care',
+      title: 'Memory Care',
+      description: 'Specialized care for individuals with Alzheimer\'s and dementia in a secure environment.',
+      icon: 'brain'
+    },
+    {
+      id: 'independent-living',
+      title: 'Independent Living',
+      description: 'Active lifestyle communities with optional support services and amenities.',
+      icon: 'home'
+    },
+    {
+      id: 'skilled-nursing',
+      title: 'Skilled Nursing',
+      description: '24/7 medical care and supervision for those requiring comprehensive healthcare.',
+      icon: 'stethoscope'
+    }
+  ];
 };
