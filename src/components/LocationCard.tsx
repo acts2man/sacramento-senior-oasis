@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Star, Heart, DollarSign, Users } from 'lucide-react';
@@ -28,7 +27,7 @@ const LocationCard = ({ location, featured = false }: LocationCardProps) => {
 
   return (
     <div className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow ${featured ? 'border-l-4 border-senior-teal' : ''}`}>
-      <Link to={`/location/${location.id}`} className="block">
+      <Link to={`/${location.id}`} className="block">
         <div className="relative">
           <img 
             src={location.images[0]} 
