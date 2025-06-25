@@ -136,14 +136,14 @@ const MemoryCare = () => {
             <div className="max-w-3xl text-white animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 Compassionate Memory Care
-                <span className="block text-white/90">in Sacramento, CA</span>
+                <span className="block text-white/90 animate-slide-up delay-300">in Sacramento, CA</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
+              <p className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed animate-fade-in delay-500">
                 Discover trusted memory care communities that support dignity, safety, and peace of mind.
               </p>
               <Link 
                 to="/locations?filter=memory-care"
-                className="btn-primary inline-flex items-center group transform hover:scale-105 transition-all duration-300"
+                className="btn-primary inline-flex items-center group transform hover:scale-105 transition-all duration-300 animate-scale-in delay-700"
               >
                 Browse Memory Care Homes
                 <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -156,7 +156,7 @@ const MemoryCare = () => {
         <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="animate-fade-in">
+              <div className="animate-slide-up">
                 <img 
                   src="/lovable-uploads/ac19db84-a20b-46a9-ba9c-41a01d7c2485.png"
                   alt="Memory care support and compassion"
@@ -195,7 +195,7 @@ const MemoryCare = () => {
               {features.map((feature, index) => (
                 <div 
                   key={feature.title}
-                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in group"
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-slide-up group"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="bg-senior-blue/10 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-senior-blue group-hover:text-white transition-all duration-300">
@@ -226,7 +226,7 @@ const MemoryCare = () => {
                 {memoryCareCommunities.map((location, index) => (
                   <div 
                     key={location.id}
-                    className="animate-fade-in hover-scale"
+                    className="animate-scale-in hover-scale"
                     style={{ animationDelay: `${index * 150}ms` }}
                   >
                     <LocationCard location={location} featured={true} />
@@ -237,7 +237,7 @@ const MemoryCare = () => {
               <div className="text-center mt-12">
                 <Link 
                   to="/locations?filter=memory-care"
-                  className="btn-outline inline-flex items-center group"
+                  className="btn-outline inline-flex items-center group animate-fade-in delay-700"
                 >
                   View All Memory Care Communities
                   <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -259,7 +259,7 @@ const MemoryCare = () => {
                   Making the right choice requires careful consideration. Here's what to look for when evaluating memory care options.
                 </p>
               </div>
-              <div className="animate-fade-in delay-300">
+              <div className="animate-slide-up delay-300">
                 <img 
                   src="/lovable-uploads/972fbbc1-e176-437f-8cac-bf56d99926b7.png"
                   alt="Compassionate memory care interaction"
@@ -272,7 +272,7 @@ const MemoryCare = () => {
               {choosingTips.map((tip, index) => (
                 <div 
                   key={tip.title}
-                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in"
+                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="flex items-start space-x-4">
@@ -293,13 +293,13 @@ const MemoryCare = () => {
         {/* Testimonials Section */}
         <section className="py-16 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 animate-fade-in">
               <h2 className="text-4xl font-bold text-senior-slate mb-4">What Families Say</h2>
               <p className="text-xl text-gray-600">Real experiences from Sacramento families</p>
             </div>
             
             <div className="max-w-4xl mx-auto">
-              <div className="bg-senior-light rounded-2xl p-8 md:p-12 text-center animate-fade-in">
+              <div className="bg-senior-light rounded-2xl p-8 md:p-12 text-center animate-scale-in delay-300">
                 <div className="mb-6">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={24} className="inline-block text-amber-400 fill-amber-400 mx-1" />
@@ -341,7 +341,7 @@ const MemoryCare = () => {
               </p>
               <Link 
                 to="/locations?filter=memory-care"
-                className="bg-white text-senior-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg inline-flex items-center group"
+                className="bg-white text-senior-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg inline-flex items-center group animate-scale-in delay-300"
               >
                 Search Sacramento Memory Care Listings
                 <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
