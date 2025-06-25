@@ -22,13 +22,13 @@ const CareImageShowcase = () => {
   ];
 
   return (
-    <section className="py-16 bg-senior-light">
+    <section className="py-16 bg-senior-blue">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-senior-slate mb-4">
+          <h2 className="text-3xl font-bold text-white mb-4">
             Experience Quality Senior Living
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-white/90 max-w-3xl mx-auto">
             Discover what makes our communities special - from compassionate care to vibrant social activities, 
             we create environments where seniors thrive.
           </p>
