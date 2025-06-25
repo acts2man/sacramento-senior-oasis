@@ -127,7 +127,7 @@ const MemoryCare = () => {
         <section 
           className="relative h-[70vh] bg-cover bg-center bg-no-repeat overflow-hidden"
           style={{
-            backgroundImage: `url('/lovable-uploads/6d4216d1-143f-4717-88a9-8d4297366ca8.png')`
+            backgroundImage: `url('/lovable-uploads/483f4e3d-f678-44d5-83a1-75f43eec305f.png')`
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-senior-blue/80 via-senior-blue/70 to-purple-900/60"></div>
@@ -158,7 +158,7 @@ const MemoryCare = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="animate-fade-in">
                 <img 
-                  src="/lovable-uploads/6d4216d1-143f-4717-88a9-8d4297366ca8.png"
+                  src="/lovable-uploads/ac19db84-a20b-46a9-ba9c-41a01d7c2485.png"
                   alt="Memory care support and compassion"
                   className="rounded-2xl shadow-lg w-full h-80 object-cover"
                 />
@@ -250,13 +250,22 @@ const MemoryCare = () => {
         {/* How to Choose Section */}
         <section className="py-16 bg-senior-light">
           <div className="container-custom">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-4xl font-bold text-senior-slate mb-4">
-                How to Choose the Right Memory Care Facility
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Making the right choice requires careful consideration. Here's what to look for when evaluating memory care options.
-              </p>
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+              <div className="animate-fade-in">
+                <h2 className="text-4xl font-bold text-senior-slate mb-4">
+                  How to Choose the Right Memory Care Facility
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Making the right choice requires careful consideration. Here's what to look for when evaluating memory care options.
+                </p>
+              </div>
+              <div className="animate-fade-in delay-300">
+                <img 
+                  src="/lovable-uploads/972fbbc1-e176-437f-8cac-bf56d99926b7.png"
+                  alt="Compassionate memory care interaction"
+                  className="rounded-2xl shadow-lg w-full h-80 object-cover"
+                />
+              </div>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
