@@ -27,7 +27,7 @@ const LocationCard = ({ location, featured = false }: LocationCardProps) => {
   };
 
   return (
-    <div className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group ${featured ? 'border-l-4 border-senior-orange' : ''}`}>
+    <div className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group ${featured ? 'border-l-4 border-senior-blue' : ''}`}>
       <Link to={`/${location.id}`} className="block">
         <div className="relative overflow-hidden">
           <img 
@@ -44,12 +44,12 @@ const LocationCard = ({ location, featured = false }: LocationCardProps) => {
           >
             <Heart 
               size={18} 
-              className={isFavorited ? "fill-senior-orange text-senior-orange" : "text-gray-400"} 
+              className={isFavorited ? "fill-senior-blue text-senior-blue" : "text-gray-400"} 
             />
           </button>
           
           {featured && (
-            <div className="absolute top-4 left-4 bg-gradient-to-r from-senior-orange to-senior-blue text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg">
+            <div className="absolute top-4 left-4 bg-senior-blue text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg">
               Featured
             </div>
           )}

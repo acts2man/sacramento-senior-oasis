@@ -65,8 +65,6 @@ export default {
 				},
 				senior: {
 					blue: '#2A6F97',
-					orange: '#D2691E',
-					sand: '#D5A26A',
 					slate: '#4A5568',
 					light: '#F7F9FA'
 				}

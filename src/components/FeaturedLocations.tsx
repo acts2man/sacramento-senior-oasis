@@ -10,7 +10,7 @@ const FeaturedLocations = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-senior-light to-white relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-senior-orange/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-senior-blue/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-senior-blue/5 rounded-full blur-3xl"></div>
       
       <div className="container-custom relative z-10">
@@ -20,12 +20,12 @@ const FeaturedLocations = () => {
               Featured 
               <span className="block text-senior-blue">Communities</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-senior-blue to-senior-orange rounded-full mb-4"></div>
+            <div className="w-24 h-1 bg-senior-blue rounded-full mb-4"></div>
             <p className="text-xl text-gray-600">Top-rated senior living options in Sacramento</p>
           </div>
           <Link 
             to="/locations" 
-            className="flex items-center font-medium text-senior-blue hover:text-senior-orange transition-all duration-300 mt-4 sm:mt-0 group px-6 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            className="flex items-center font-medium text-senior-blue hover:text-senior-blue/80 transition-all duration-300 mt-4 sm:mt-0 group px-6 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1"
           >
             View All Communities
             <ChevronRight size={18} className="ml-1 transform group-hover:translate-x-1 transition-transform duration-300" />
