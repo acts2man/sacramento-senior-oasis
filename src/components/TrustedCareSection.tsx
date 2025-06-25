@@ -4,7 +4,7 @@ const TrustedCareSection = () => {
     <section className="py-16 bg-gradient-to-br from-white to-senior-light relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-senior-blue/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-senior-teal/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-senior-orange/5 rounded-full blur-3xl"></div>
       
       <div className="container-custom relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -13,14 +13,14 @@ const TrustedCareSection = () => {
               Trusted Senior Care 
               <span className="block text-senior-blue">in Sacramento</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-senior-blue to-senior-teal rounded-full"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-senior-blue to-senior-orange rounded-full"></div>
             <p className="text-lg text-gray-600 leading-relaxed">
               Sacramento Senior Care helps families find the right senior living community across the greater Sacramento area. 
               Whether you're looking for assisted living, memory care, or independent living options, we provide comprehensive 
               information to help you make informed decisions about your loved one's care.
             </p>
             <div className="pt-4">
-              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-senior-blue to-senior-teal text-white rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-senior-blue to-senior-orange text-white rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer">
                 <span className="font-medium">Explore Communities</span>
                 <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -29,7 +29,7 @@ const TrustedCareSection = () => {
             </div>
           </div>
           <div className="relative animate-fade-in delay-300">
-            <div className="absolute inset-0 bg-gradient-to-br from-senior-blue/20 to-senior-teal/20 rounded-2xl transform rotate-3"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-senior-blue/20 to-senior-orange/20 rounded-2xl transform rotate-3"></div>
             <img
               src="/lovable-uploads/0648345f-b2f0-420b-a162-b1e333ad4349.png"
               alt="Sacramento cityscape with modern architecture"
