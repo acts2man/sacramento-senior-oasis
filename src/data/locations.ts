@@ -1,4 +1,3 @@
-
 export interface LocationType {
   id: string;
   name: string;
@@ -673,6 +672,258 @@ export const locations: LocationType[] = [
     },
     featured: false,
     rating: 4.8,
+  },
+  {
+    id: "sunrise-gardens",
+    name: "Sunrise Gardens Senior Living",
+    address: "2340 Forest Ridge Dr",
+    city: "Sacramento",
+    zip: "95825",
+    phone: "(916) 555-1111",
+    email: "info@sunrisegardens.com",
+    website: "www.sunrisegardens.com",
+    description: "Sunrise Gardens Senior Living offers a peaceful retreat in a beautifully landscaped setting. Our community provides assisted living services with a focus on maintaining residents' independence and dignity. We feature spacious apartments, gourmet dining, and a variety of wellness programs designed to enhance quality of life. Our dedicated staff provides 24-hour support while encouraging residents to remain active and engaged in community life.",
+    shortDescription: "Peaceful senior living community with beautiful gardens and comprehensive wellness programs.",
+    pricing: {
+      starting: 4400,
+      average: 5200,
+    },
+    services: [
+      "24-hour assistance",
+      "Medication management",
+      "Wellness programs",
+      "Personal care services",
+      "Transportation",
+      "Emergency response"
+    ],
+    amenities: [
+      "Beautiful gardens",
+      "Fitness center",
+      "Library",
+      "Arts and crafts room",
+      "Outdoor walking paths",
+      "Community dining"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.5721,
+      lng: -121.3874,
+    },
+    featured: false,
+    rating: 4.5,
+  },
+  {
+    id: "harmony-heights",
+    name: "Harmony Heights Assisted Living",
+    address: "1850 Oak Valley Ln",
+    city: "Carmichael",
+    zip: "95608",
+    phone: "(916) 555-2222",
+    email: "care@harmonyheights.com",
+    website: "www.harmonyheights.com",
+    description: "Harmony Heights Assisted Living is nestled in the heart of Carmichael, offering a warm and welcoming environment for seniors. Our community emphasizes personalized care while fostering independence and social connections. We provide a range of services from light assistance to more comprehensive care, allowing residents to age in place comfortably. Our beautiful facility features modern amenities and thoughtfully designed common areas.",
+    shortDescription: "Warm Carmichael community emphasizing personalized care and social connections.",
+    pricing: {
+      starting: 4600,
+      average: 5400,
+    },
+    services: [
+      "Personalized care plans",
+      "Medication assistance",
+      "Physical therapy",
+      "Social activities",
+      "Transportation services",
+      "24-hour support"
+    ],
+    amenities: [
+      "Modern apartments",
+      "Restaurant-style dining",
+      "Theater room",
+      "Fitness center",
+      "Beauty salon",
+      "Outdoor terraces"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.6161,
+      lng: -121.3269,
+    },
+    featured: false,
+    rating: 4.7,
+  },
+  {
+    id: "serenity-manor",
+    name: "Serenity Manor Memory Care",
+    address: "3950 Heritage Oaks Dr",
+    city: "Sacramento",
+    zip: "95834",
+    phone: "(916) 555-3333",
+    email: "info@serenitymanor.com",
+    website: "www.serenitymanor.com",
+    description: "Serenity Manor Memory Care provides specialized care for residents with Alzheimer's disease and dementia in a secure, homelike environment. Our specially trained staff understands the unique challenges of memory impairment and provides compassionate, patient care. The facility is designed with safety and comfort in mind, featuring secure outdoor gardens and memory-enhancing activities.",
+    shortDescription: "Specialized memory care in a secure, homelike environment with trained staff.",
+    pricing: {
+      starting: 5500,
+      average: 6300,
+    },
+    services: [
+      "Memory care programs",
+      "Secure environment",
+      "Behavioral support",
+      "Family education",
+      "Specialized activities",
+      "24/7 supervision"
+    ],
+    amenities: [
+      "Secure outdoor gardens",
+      "Memory care suites",
+      "Sensory rooms",
+      "Family areas",
+      "Therapeutic activities",
+      "Calm environments"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.6550,
+      lng: -121.5100,
+    },
+    featured: false,
+    rating: 4.9,
+  },
+  {
+    id: "meadowbrook-commons",
+    name: "Meadowbrook Commons Senior Living",
+    address: "4200 Meadowbrook Ave",
+    city: "Elk Grove",
+    zip: "95757",
+    phone: "(916) 555-4444",
+    email: "hello@meadowbrookcommons.com",
+    website: "www.meadowbrookcommons.com",
+    description: "Meadowbrook Commons Senior Living offers a vibrant community lifestyle in Elk Grove. Our modern facility provides independent and assisted living options with resort-style amenities. Residents enjoy an active lifestyle with numerous recreational activities, fitness programs, and social events. Our caring staff is available 24/7 to provide assistance as needed while respecting each resident's independence.",
+    shortDescription: "Vibrant Elk Grove community with resort-style amenities and active lifestyle programs.",
+    pricing: {
+      starting: 4300,
+      average: 5100,
+    },
+    services: [
+      "Independent living",
+      "Assisted living",
+      "Wellness programs",
+      "Social activities",
+      "Transportation",
+      "Housekeeping"
+    ],
+    amenities: [
+      "Resort-style pool",
+      "Golf simulator",
+      "Multiple dining venues",
+      "Fitness center",
+      "Arts studio",
+      "Walking trails"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.4265,
+      lng: -121.3744,
+    },
+    featured: true,
+    rating: 4.6,
+  },
+  {
+    id: "riverside-terrace",
+    name: "Riverside Terrace Assisted Living",
+    address: "5670 Riverside Blvd",
+    city: "Sacramento",
+    zip: "95831",
+    phone: "(916) 555-5555",
+    email: "care@riversideterrace.com",
+    website: "www.riversideterrace.com",
+    description: "Riverside Terrace Assisted Living offers beautiful riverside views and a peaceful environment for seniors. Our community provides personalized care services in an elegant setting with modern amenities. We focus on creating a home-like atmosphere where residents can enjoy their golden years with dignity and comfort. Our professional staff is committed to enhancing the quality of life for each resident.",
+    shortDescription: "Elegant riverside assisted living with beautiful views and personalized care services.",
+    pricing: {
+      starting: 4800,
+      average: 5600,
+    },
+    services: [
+      "Personalized care",
+      "Medication management",
+      "Physical therapy",
+      "Social programs",
+      "Transportation",
+      "Emergency response"
+    ],
+    amenities: [
+      "Riverside views",
+      "Elegant dining room",
+      "Library",
+      "Fitness center",
+      "Gardens",
+      "Community spaces"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.4850,
+      lng: -121.5200,
+    },
+    featured: false,
+    rating: 4.8,
+  },
+  {
+    id: "golden-years-manor",
+    name: "Golden Years Manor",
+    address: "1750 Garden Valley Rd",
+    city: "Sacramento",
+    zip: "95822",
+    phone: "(916) 555-6666",
+    email: "info@goldenyearsmanor.com",
+    website: "www.goldenyearsmanor.com",
+    description: "Golden Years Manor provides comprehensive assisted living services in a warm, family-oriented environment. Our community is designed to feel like home while providing the support and care that seniors need. We offer a range of activities and services to keep residents engaged and healthy. Our experienced staff is dedicated to providing compassionate care while maintaining each resident's dignity and independence.",
+    shortDescription: "Family-oriented assisted living with comprehensive services and compassionate care.",
+    pricing: {
+      starting: 3900,
+      average: 4700,
+    },
+    services: [
+      "Comprehensive care",
+      "Medication assistance",
+      "Health monitoring",
+      "Social activities",
+      "Transportation",
+      "Meal services"
+    ],
+    amenities: [
+      "Family-style dining",
+      "Activity rooms",
+      "Outdoor patio",
+      "Library",
+      "Game room",
+      "Gardens"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.4520,
+      lng: -121.4180,
+    },
+    featured: false,
+    rating: 4.4,
   }
 ];
 
