@@ -10,6 +10,7 @@ import Locations from "./pages/Locations";
 import LocationDetail from "./pages/LocationDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import MemoryCare from "./pages/MemoryCare";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/locations" element={<Locations />} />
+            <Route path="/memory-care" element={<MemoryCare />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/:id" element={<LocationDetail />} />

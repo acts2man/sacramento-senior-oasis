@@ -31,6 +31,9 @@ const Header = () => {
             <Link to="/locations" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Communities
             </Link>
+            <Link to="/memory-care" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
+              Memory Care
+            </Link>
             <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               About
             </Link>
@@ -61,6 +64,9 @@ const Header = () => {
               </Link>
               <Link to="/locations" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Communities
+              </Link>
+              <Link to="/memory-care" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
+                Memory Care
               </Link>
               <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 About
