@@ -23,16 +23,16 @@ const Hero = () => {
       
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-senior-teal/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-senior-sand/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-senior-blue/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-senior-blue/10 rounded-full blur-xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="container-custom relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
               Find Quality Senior Living 
-              <span className="block bg-gradient-to-r from-senior-teal to-senior-sand bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-senior-blue to-white bg-clip-text text-transparent">
                 in Sacramento
               </span>
             </h1>
