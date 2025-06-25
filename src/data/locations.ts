@@ -1145,6 +1145,10 @@ export const getCareTypes = () => {
   ];
 };
 
+export const getAllLocations = (): LocationType[] => {
+  return locations;
+};
+
 export const getLocationById = (id: string): LocationType | undefined => {
   return locations.find(location => location.id === id);
 };
