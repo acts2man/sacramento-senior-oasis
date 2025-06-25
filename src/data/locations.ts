@@ -1,4 +1,3 @@
-
 export interface LocationType {
   id: string;
   name: string;
@@ -489,447 +488,7 @@ export const locations: LocationType[] = [
     rating: 4.9,
   },
   {
-    id: "bella-villa",
-    name: "Bella Villa Elderly Care II Assisted Living",
-    address: "3612 Eastern Ave",
-    city: "Sacramento",
-    zip: "95821",
-    phone: "(916) 555-2468",
-    email: "info@bellavilla.com",
-    website: "www.bellavilla.com",
-    description: "Bella Villa Elderly Care II provides a European-inspired living experience for seniors seeking assisted living services. Our beautiful facility features Mediterranean architecture, lush gardens, and elegant common areas. We believe in a holistic approach to senior care that addresses physical, emotional, and social wellbeing. Our professional staff is trained to provide personalized care while encouraging residents to pursue their interests and maintain connections with family and friends.",
-    shortDescription: "European-inspired assisted living with elegant surroundings and a holistic approach to care.",
-    pricing: {
-      starting: 4300,
-      average: 5100,
-    },
-    services: [
-      "Personalized care plans",
-      "Medication management",
-      "Bathing and dressing assistance",
-      "Mobility support",
-      "Transportation to appointments",
-      "Activity coordination"
-    ],
-    amenities: [
-      "Private suites",
-      "Mediterranean courtyard",
-      "Gourmet dining",
-      "Library and reading room",
-      "Art studio",
-      "Beauty salon"
-    ],
-    images: [
-      "/lovable-uploads/bc8cf363-65b9-413c-b11b-d0c9ad0daff5.png", // Exterior view of house with garage and trees
-      "/lovable-uploads/ec6dce33-9f77-4acd-913e-5cfc0b328fde.png", // Single bedroom with wooden floors and flower art
-      "/lovable-uploads/67cf301c-8286-4c5c-b32d-4b4b0e84a49c.png", // Twin bedroom with black bedding and wooden floors
-      "/lovable-uploads/8a511d8b-8af3-4ff5-bb3b-0c124ec1be11.png", // Large bedroom with twin beds and patterned bedding
-      "/lovable-uploads/87d9b1dd-242b-4f9e-b777-d5f10e9de76a.png", // Living room with leather couch and open kitchen
-      "/lovable-uploads/d562ee63-991d-4634-9277-9f107a074e85.png", // Modern kitchen with black countertops and white cabinets
-      "/lovable-uploads/b88ded2c-fa43-4f7e-b92d-5ba3fad787d4.png", // Dining and living area with red tablecloth
-      "/lovable-uploads/fab2b4ad-4ee7-412e-a5b9-59a1053a99c5.png", // Bedroom with chandelier and patterned bedding
-    ],
-    coordinates: {
-      lat: 38.6184,
-      lng: -121.4271,
-    },
-    featured: false,
-    rating: 4.7,
-  },
-  {
-    id: "love-and-comfort",
-    name: "Love and Comfort - Assisted Living Care Home",
-    address: "6532 Rancho Grande Way",
-    city: "Sacramento",
-    zip: "95828",
-    phone: "(916) 555-1357",
-    email: "care@loveandcomfort.com",
-    website: "www.loveandcomfort.com",
-    description: "Love and Comfort offers a family-oriented approach to assisted living in a residential setting. Our cozy home environment provides a comfortable alternative to larger facilities while still offering professional care services. We maintain a small resident population to ensure personalized attention and a strong sense of community. Our compassionate caregivers become like extended family to our residents, providing assistance while respecting their dignity and independence.",
-    shortDescription: "Family-oriented assisted living in a residential setting with personalized attention.",
-    pricing: {
-      starting: 3900,
-      average: 4700,
-    },
-    services: [
-      "Personal care assistance",
-      "Medication reminders",
-      "Meal preparation",
-      "Laundry services",
-      "Housekeeping",
-      "Transportation arrangements"
-    ],
-    amenities: [
-      "Private and shared rooms",
-      "Home-cooked meals",
-      "Family-style dining",
-      "Cozy common areas",
-      "Garden",
-      "Entertainment center"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c8a54eb?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.5125,
-      lng: -121.4119,
-    },
-    featured: false,
-    rating: 4.6,
-  },
-  {
-    id: "love-and-comfort-ii",
-    name: "Love and Comfort II - Assisted Living Elderly Care Home",
-    address: "320 Bowman Ave",
-    city: "Sacramento",
-    zip: "95833",
-    phone: "(916) 555-2468",
-    email: "info@loveandcomfort2.com",
-    website: "www.loveandcomfort2.com",
-    description: "Love and Comfort II continues our tradition of exceptional residential care in a convenient Sacramento location. Our home-like environment offers comfort and security while our professional staff provides personalized care services. We focus on creating a nurturing atmosphere where residents feel valued and respected. Daily activities promote social interaction and mental engagement, while our care services ensure physical well-being. Family involvement is encouraged to maintain important connections.",
-    shortDescription: "Residential care home offering personalized services in a nurturing, home-like environment.",
-    pricing: {
-      starting: 4000,
-      average: 4800,
-    },
-    services: [
-      "24-hour supervision",
-      "Medication management",
-      "Personal hygiene assistance",
-      "Incontinence care",
-      "Meal preparation",
-      "Mobility assistance"
-    ],
-    amenities: [
-      "Comfortable private rooms",
-      "Spacious common areas",
-      "Accessible bathroom facilities",
-      "Outdoor patio",
-      "Cable TV and internet",
-      "Transportation coordination"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.6136,
-      lng: -121.5066,
-    },
-    featured: false,
-    rating: 4.5,
-  },
-  {
-    id: "love-and-serenity-ii",
-    name: "Love And Serenity II - Assisted Living For The Elderly",
-    address: "5942 Park Village St",
-    city: "Sacramento",
-    zip: "95822",
-    phone: "(916) 555-3692",
-    email: "care@loveandserenity2.com",
-    website: "www.loveandserenity2.com",
-    description: "Love And Serenity II provides a peaceful living environment focused on comfort and tranquility. Our facility is designed to minimize stress and create a serene atmosphere conducive to well-being. We offer specialized programs for residents dealing with anxiety and depression, with an emphasis on mental health alongside physical care. Our staff is trained in gentle approaches to caregiving, and we incorporate relaxation techniques and mindfulness practices into daily activities.",
-    shortDescription: "Peaceful assisted living focused on mental well-being, comfort, and tranquility.",
-    pricing: {
-      starting: 4200,
-      average: 5000,
-    },
-    services: [
-      "Anxiety and depression support",
-      "Gentle care approaches",
-      "Medication management",
-      "Personal care assistance",
-      "Mindfulness program",
-      "Relaxation therapy"
-    ],
-    amenities: [
-      "Quiet private rooms",
-      "Meditation garden",
-      "Soothing common areas",
-      "Aromatherapy",
-      "Music therapy room",
-      "Seasonal menu"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1542928658-22251e208ac1?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600573472569-78f9e5271dd6?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.5098,
-      lng: -121.5190,
-    },
-    featured: false,
-    rating: 4.8,
-  },
-  {
-    id: "love-and-serenity-iii",
-    name: "Love and Serenity III - Greenhaven Assisted Living Community",
-    address: "573 Shaw River Way",
-    city: "Sacramento",
-    zip: "95831",
-    phone: "(916) 555-8642",
-    email: "info@loveandserenity3.com",
-    website: "www.loveandserenity3.com",
-    description: "Love and Serenity III is our premier location in the desirable Greenhaven neighborhood. This upscale facility offers assisted living services in an elegant environment with a focus on active lifestyles. Our spacious campus features beautiful outdoor spaces, walking paths, and comfortable indoor amenities. We encourage residents to remain engaged and independent through our extensive activity program, while providing discreet assistance as needed. Our culinary program features chef-prepared meals that delight the senses.",
-    shortDescription: "Upscale assisted living in Greenhaven focusing on active lifestyles and elegant surroundings.",
-    pricing: {
-      starting: 4800,
-      average: 5600,
-    },
-    services: [
-      "Personalized assistance",
-      "Wellness program",
-      "Medication management",
-      "Scheduled transportation",
-      "Housekeeping",
-      "Social coordination"
-    ],
-    amenities: [
-      "Spacious apartments",
-      "Gourmet dining",
-      "Fitness center",
-      "Library",
-      "Game room",
-      "Outdoor gardens"
-    ],
-    images: [
-      "/lovable-uploads/bc80fb7a-8748-4f20-bfde-8f7d5e874f61.png", // Exterior view of house
-      "/lovable-uploads/ba95c800-30fa-44db-9666-77eb557cb5b6.png", // Backyard/garden area
-      "/lovable-uploads/b1313780-5535-420c-9898-186b199b50fe.png", // Bedroom with blue striped bedding
-      "/lovable-uploads/3c5f4256-e888-4246-bd5e-fe93861e21a1.png", // Twin bedroom with floral bedding
-      "/lovable-uploads/afc98756-1c70-47ae-b595-87c593a204c1.png", // Living room with entertainment center
-      "/lovable-uploads/931fcefc-e4da-4901-9754-ecc898916214.png", // Dining room with mirror
-      "/lovable-uploads/4743e7a8-667e-4a56-908c-55a007d068c0.png", // Kitchen with wooden cabinets
-      "/lovable-uploads/ebce79a2-48ca-4cb3-99d4-ffe4c402985a.png", // Bathroom with red walls
-    ],
-    coordinates: {
-      lat: 38.4796,
-      lng: -121.5189,
-    },
-    featured: true,
-    rating: 4.9,
-  },
-  {
-    id: "love-and-serenity-elk-grove-iii",
-    name: "Love and Serenity of Elk Grove III",
-    address: "9442 Mazatlan Way",
-    city: "Elk Grove",
-    zip: "95624",
-    phone: "(916) 555-7531",
-    email: "care@loveandserenity-eg3.com",
-    website: "www.loveandserenity-elkgrove3.com",
-    description: "Love and Serenity of Elk Grove III provides a nurturing environment for seniors in a convenient Elk Grove location. Our facility is designed to balance independence with appropriate levels of care, allowing residents to enjoy life on their own terms. We take a person-centered approach to caregiving, recognizing each resident's unique needs and preferences. Our dedicated staff builds meaningful relationships with residents, creating a true sense of community. Regular family events strengthen connections between residents and their loved ones.",
-    shortDescription: "Person-centered care in Elk Grove balancing independence with appropriate support services.",
-    pricing: {
-      starting: 4100,
-      average: 4900,
-    },
-    services: [
-      "Customized care plans",
-      "Medication supervision",
-      "Personal care assistance",
-      "Health monitoring",
-      "Transportation services",
-      "Activity planning"
-    ],
-    amenities: [
-      "Private and shared suites",
-      "Home-style meals",
-      "Community living areas",
-      "Secured outdoor space",
-      "Entertainment options",
-      "Visiting areas"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600607687164-234c1bfed94f?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600573472568-bc0f132060a1?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.4099,
-      lng: -121.3846,
-    },
-    featured: false,
-    rating: 4.6,
-  },
-  {
-    id: "love-and-serenity-elk-grove-ii",
-    name: "Love and Serenity of Elk Grove II - Senior Care",
-    address: "9279 Orange Crest Ct",
-    city: "Elk Grove",
-    zip: "95624",
-    phone: "(916) 555-9753",
-    email: "info@loveandserenity-eg2.com",
-    website: "www.loveandserenity-elkgrove2.com",
-    description: "Love and Serenity of Elk Grove II offers specialized care for seniors with early to mid-stage memory concerns. Our secure environment is designed specifically to support those with cognitive challenges while maintaining dignity and quality of life. Our staff is trained in best practices for dementia care, using gentle redirection and positive engagement techniques. We provide structured daily routines that offer comfort and security while including activities that stimulate cognition and encourage social interaction.",
-    shortDescription: "Specialized care for early to mid-stage memory concerns in a secure, supportive environment.",
-    pricing: {
-      starting: 4600,
-      average: 5400,
-    },
-    services: [
-      "Memory-focused care",
-      "Safety monitoring",
-      "Cognitive stimulation",
-      "Structured routines",
-      "Personal care assistance",
-      "Family support services"
-    ],
-    amenities: [
-      "Secure living areas",
-      "Memory boxes",
-      "Orientation cues",
-      "Sensory room",
-      "Enclosed courtyard",
-      "Specialized dining"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.4091,
-      lng: -121.3839,
-    },
-    featured: false,
-    rating: 4.7,
-  },
-  {
-    id: "love-and-serenity-vintage-park",
-    name: "Love and Serenity of Vintage Park - Senior Care Home",
-    address: "8901 Sonoma Valley Way",
-    city: "Sacramento",
-    zip: "95829",
-    phone: "(916) 555-1597",
-    email: "care@loveandserenity-vp.com",
-    website: "www.loveandserenity-vintagepark.com",
-    description: "Love and Serenity of Vintage Park provides assisted living services in the beautiful Vintage Park neighborhood. Our residential care home offers a comfortable alternative to larger facilities with the same professional care standards. We maintain a low resident-to-caregiver ratio to ensure personalized attention and responsive service. Our experienced staff develops close relationships with residents and their families, creating a supportive environment that feels like home. We emphasize both physical care and emotional well-being in our approach.",
-    shortDescription: "Residential care home in Vintage Park offering personalized attention and a homelike environment.",
-    pricing: {
-      starting: 4000,
-      average: 4800,
-    },
-    services: [
-      "Personalized care plans",
-      "Medication monitoring",
-      "Bathing and grooming assistance",
-      "Incontinence care",
-      "Mobility assistance",
-      "Meal preparation"
-    ],
-    amenities: [
-      "Private and semi-private rooms",
-      "Home-cooked meals",
-      "Accessible bathrooms",
-      "Common living areas",
-      "Cable TV",
-      "Outdoor seating"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607687164-234c1bfed94f?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.4845,
-      lng: -121.3297,
-    },
-    featured: false,
-    rating: 4.6,
-  },
-  {
-    id: "sacramento-senior-living",
-    name: "Sacramento Senior Living",
-    address: "6825 Bender Ct",
-    city: "Sacramento",
-    zip: "95820",
-    phone: "(916) 555-2583",
-    email: "info@sacramentoseniorliving.com",
-    website: "www.sacramentoseniorliving.com",
-    description: "Sacramento Senior Living offers affordable assisted living options without compromising on quality care. Our community focuses on creating a supportive environment where residents receive the assistance they need while maintaining as much independence as possible. We take a holistic approach to senior care, addressing physical, emotional, and social needs through our comprehensive services and engaging activity program. Our central location provides convenient access to medical facilities, shopping, and entertainment.",
-    shortDescription: "Affordable assisted living with quality care services and a holistic approach to senior wellness.",
-    pricing: {
-      starting: 3700,
-      average: 4500,
-    },
-    services: [
-      "Assistance with daily activities",
-      "Medication management",
-      "Health monitoring",
-      "Housekeeping",
-      "Transportation services",
-      "Social programs"
-    ],
-    amenities: [
-      "Private and shared accommodations",
-      "Community dining",
-      "Activity room",
-      "TV lounge",
-      "Outdoor patio",
-      "Visiting areas"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.5349,
-      lng: -121.4338,
-    },
-    featured: false,
-    rating: 4.5,
-  },
-  {
-    id: "sacramento-senior-living-ii",
-    name: "Sacramento Senior Living II",
-    address: "34 Loma Mar Ct",
-    city: "Sacramento",
-    zip: "95828",
-    phone: "(916) 555-2583",
-    email: "info@sacramentoseniorliving2.com",
-    website: "www.sacramentoseniorliving2.com",
-    description: "Sacramento Senior Living II provides enhanced assisted living services for seniors requiring more comprehensive care. Our facility is designed to accommodate residents with greater physical limitations or cognitive challenges while promoting dignity and quality of life. We maintain a higher staff-to-resident ratio to ensure prompt attention to all needs. Our team includes trained caregivers who specialize in managing complex care requirements with compassion and professionalism. Family involvement is encouraged through regular care conferences and open communication.",
-    shortDescription: "Enhanced assisted living with comprehensive care services for seniors with greater care needs.",
-    pricing: {
-      starting: 4500,
-      average: 5300,
-    },
-    services: [
-      "Enhanced personal care",
-      "Intensive medication management",
-      "Specialized diets",
-      "Transfer assistance",
-      "Wound care",
-      "Oxygen management"
-    ],
-    amenities: [
-      "Accessible accommodations",
-      "Adaptive equipment",
-      "Care stations",
-      "Specialized dining",
-      "Therapy room",
-      "Family meeting space"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600607687120-9e4bae19287a?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607688583-ea6a71588ede?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.5151,
-      lng: -121.4055,
-    },
-    featured: false,
-    rating: 4.7,
-  },
-  {
-    id: "villa-natomas",
+    id: "villa-natomas-elderly-care",
     name: "Villa Natomas Elderly Care",
     address: "540 Alcantar Circle",
     city: "Sacramento",
@@ -960,17 +519,17 @@ export const locations: LocationType[] = [
       "Beauty salon and spa"
     ],
     images: [
-      "/lovable-uploads/e29ee5b0-8a0e-4b83-b79d-5792f1294f33.png", // Twin bedroom with blue and white bedding
-      "/lovable-uploads/a45c791c-5916-4891-87b7-8723fe76baa3.png", // Single bedroom with blue recliner
-      "/lovable-uploads/b13751e7-6155-4bec-9e4b-78ab38a63083.png", // Twin bedroom with red and white bedding
-      "/lovable-uploads/a8072319-9350-4b35-be2f-761db7e194b0.png", // Living room with piano
-      "/lovable-uploads/ba5cd2ba-813e-4585-8cc1-881a6a3935c1.png", // Bedroom with antique wardrobe
-      "/lovable-uploads/55f3d34a-e353-4d9b-843d-6f0e9a9f61bf.png", // Backyard patio and garden
-      "/lovable-uploads/8f9a0e32-5572-4665-a085-541b3e34a778.png", // Living room with leather couches
-      "/lovable-uploads/edda2914-a347-4d50-b82e-d17f5474f027.png", // Kitchen with island
-      "/lovable-uploads/628bace6-0de3-486a-85f3-e462b650abe7.png", // Bedroom with patterned bedding
-      "/lovable-uploads/f6aeb693-96a4-4189-9331-37574eb146bd.png", // Outdoor patio with fountain
-      "/lovable-uploads/62c160f2-9772-4b15-b058-4e66a7aaef26.png", // Single bedroom with stained glass lamp
+      "/lovable-uploads/e29ee5b0-8a0e-4b83-b79d-5792f1294f33.png",
+      "/lovable-uploads/a45c791c-5916-4891-87b7-8723fe76baa3.png",
+      "/lovable-uploads/b13751e7-6155-4bec-9e4b-78ab38a63083.png",
+      "/lovable-uploads/a8072319-9350-4b35-be2f-761db7e194b0.png",
+      "/lovable-uploads/ba5cd2ba-813e-4585-8cc1-881a6a3935c1.png",
+      "/lovable-uploads/55f3d34a-e353-4d9b-843d-6f0e9a9f61bf.png",
+      "/lovable-uploads/8f9a0e32-5572-4665-a085-541b3e34a778.png",
+      "/lovable-uploads/edda2914-a347-4d50-b82e-d17f5474f027.png",
+      "/lovable-uploads/628bace6-0de3-486a-85f3-e462b650abe7.png",
+      "/lovable-uploads/f6aeb693-96a4-4189-9331-37574eb146bd.png",
+      "/lovable-uploads/62c160f2-9772-4b15-b058-4e66a7aaef26.png"
     ],
     coordinates: {
       lat: 38.6483,
@@ -980,7 +539,7 @@ export const locations: LocationType[] = [
     rating: 4.8,
   },
   {
-    id: "vita-bella",
+    id: "vita-bella-elderly-care",
     name: "Vita Bella Elderly Care - Assisted Living Facility",
     address: "4082 73rd St",
     city: "Sacramento",
@@ -1011,11 +570,11 @@ export const locations: LocationType[] = [
       "Activity center"
     ],
     images: [
-      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior
-      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Living room
-      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Secondary living area
-      "/lovable-uploads/efdfe73a-f649-4361-aeb2-b0f085579a8c.png", // Bedroom with twin beds
-      "/lovable-uploads/e7df5213-21f9-4158-b6fd-2b2880f8f0bc.png", // Bedroom with twin beds 2
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png",
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png",
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png",
+      "/lovable-uploads/efdfe73a-f649-4361-aeb2-b0f085579a8c.png",
+      "/lovable-uploads/e7df5213-21f9-4158-b6fd-2b2880f8f0bc.png"
     ],
     coordinates: {
       lat: 38.5356,
@@ -1025,7 +584,7 @@ export const locations: LocationType[] = [
     rating: 4.6,
   },
   {
-    id: "vita-bella-ii",
+    id: "vita-bella-elderly-care-ii",
     name: "Vita Bella Elderly Care II Assisted Living Senior Home",
     address: "8362 New Point Dr",
     city: "Sacramento",
@@ -1056,11 +615,11 @@ export const locations: LocationType[] = [
       "Common living areas"
     ],
     images: [
-      "/lovable-uploads/d26da6bc-c979-45d2-9e1f-46c6b716e967.png", // Bedroom with blue bedding
-      "/lovable-uploads/b30d7fda-accd-4024-916d-15b9f02d29c3.png", // Bedroom with twin pink beds
-      "/lovable-uploads/62a84882-d05e-43ef-b915-22a89abc4c36.png", // Modern bathroom
-      "/lovable-uploads/63abe475-d170-4636-90d0-144a46f7ee7c.png", // Bathroom with shower
-      "/lovable-uploads/91549c68-429a-4a65-8962-c72ef1e28820.png", // Built-in closet space
+      "/lovable-uploads/d26da6bc-c979-45d2-9e1f-46c6b716e967.png",
+      "/lovable-uploads/b30d7fda-accd-4024-916d-15b9f02d29c3.png",
+      "/lovable-uploads/62a84882-d05e-43ef-b915-22a89abc4c36.png",
+      "/lovable-uploads/63abe475-d170-4636-90d0-144a46f7ee7c.png",
+      "/lovable-uploads/91549c68-429a-4a65-8962-c72ef1e28820.png"
     ],
     coordinates: {
       lat: 38.5140,
