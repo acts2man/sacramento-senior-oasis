@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Clock, Heart, Users, Home, CheckCircle, ArrowRight, Star, MapPin } from 'lucide-react';
@@ -228,14 +227,14 @@ const AssistedLiving = () => {
                 </p>
               </div>
               
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="space-y-8">
                 {assistedLivingCommunities.map((location, index) => (
                   <div 
                     key={location.id}
                     className="animate-scale-in hover-scale"
                     style={{ animationDelay: `${index * 150}ms` }}
                   >
-                    <LocationCard location={location} featured={true} />
+                    <LocationCard location={location} featured={true} layout="list" />
                   </div>
                 ))}
               </div>
