@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -6,7 +5,7 @@ import Footer from '../components/Footer';
 import Map from '../components/Map';
 import ContactForm from '../components/ContactForm';
 import LocationCard from '../components/LocationCard';
-import { getLocationById, getFeaturedLocations, LocationType } from '../data/locations';
+import { getLocationBySlug, getFeaturedLocations, LocationType } from '../data/locations';
 import { 
   MapPin, 
   Phone, 
@@ -25,19 +24,19 @@ import {
 import { Button } from '../components/ui/button';
 
 const LocationDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const [location, setLocation] = useState<LocationType | null>(null);
   const [similarLocations, setSimilarLocations] = useState<LocationType[]>([]);
   const [activeTab, setActiveTab] = useState('overview');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   
   useEffect(() => {
-    if (id) {
-      const locationData = getLocationById(id);
+    if (slug) {
+      const locationData = getLocationBySlug(slug);
       if (locationData) {
         setLocation(locationData);
         // Get some featured locations as similar ones
-        const featured = getFeaturedLocations().filter(l => l.id !== id);
+        const featured = getFeaturedLocations().filter(l => l.slug !== slug);
         setSimilarLocations(featured.slice(0, 3));
       }
     }
@@ -48,7 +47,7 @@ const LocationDetail = () => {
     
     // Scroll to top when location changes
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [slug]);
   
   if (!location) {
     return (

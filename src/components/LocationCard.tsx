@@ -27,7 +27,7 @@ const LocationCard = ({ location, featured = false }: LocationCardProps) => {
 
   return (
     <div className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow ${featured ? 'border-l-4 border-senior-teal' : ''}`}>
-      <Link to={`/${location.id}`} className="block">
+      <Link to={`/${location.slug}`} className="block">
         <div className="relative">
           <img 
             src={location.images[0]} 
