@@ -127,7 +127,7 @@ const MemoryCare = () => {
         <section 
           className="relative h-[70vh] bg-cover bg-center bg-no-repeat overflow-hidden"
           style={{
-            backgroundImage: `url('/lovable-uploads/483f4e3d-f678-44d5-83a1-75f43eec305f.png')`
+            backgroundImage: `url('/lovable-uploads/972fbbc1-e176-437f-8cac-bf56d99926b7.png')`
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-senior-blue/80 via-senior-blue/70 to-purple-900/60"></div>
