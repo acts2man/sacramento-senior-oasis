@@ -4,23 +4,6 @@ const SEOContent = () => {
     <section className="py-12 bg-white">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
-          {/* Main SEO Content */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-senior-slate mb-6">
-              Trusted Senior Care in Sacramento
-            </h2>
-            <p className="text-lg text-gray-600 mb-6">
-              Sacramento Senior Care helps families find the right senior living community across the greater Sacramento area. 
-              Whether you're looking for assisted living, memory care, or independent living options, we provide comprehensive 
-              information to help you make informed decisions about your loved one's care.
-            </p>
-            <p className="text-lg text-gray-600 mb-8">
-              Our directory features communities throughout Sacramento County, from downtown locations to suburban neighborhoods 
-              like Carmichael, Elk Grove, and Natomas. Each listing includes detailed information about services, amenities, 
-              and pricing to help you compare your options.
-            </p>
-          </div>
-
           {/* Location-Specific Content */}
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-senior-slate mb-6">

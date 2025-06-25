@@ -7,6 +7,8 @@ import SEOContent from '../components/SEOContent';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import TrustedCareSection from '../components/TrustedCareSection';
+import CareImageShowcase from '../components/CareImageShowcase';
 import { generatePageSEO } from '../utils/seoUtils';
 
 const Index = () => {
@@ -24,6 +26,8 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
+        <TrustedCareSection />
+        <CareImageShowcase />
         <FeaturedLocations />
         <CareTypes />
         <LocationAreas />
