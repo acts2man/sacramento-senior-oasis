@@ -5,7 +5,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LocationCard from '../components/LocationCard';
 import SearchBar from '../components/SearchBar';
+import SEO from '../components/SEO';
 import { locations, searchLocations, LocationType } from '../data/locations';
+import { generatePageSEO } from '../utils/seoUtils';
 import { Filter, MapPin, SlidersHorizontal, X } from 'lucide-react';
 
 const Locations = () => {
@@ -39,8 +41,20 @@ const Locations = () => {
     navigate('/locations');
   };
 
+  const seoData = generatePageSEO('locations');
+  const dynamicDescription = searchQuery 
+    ? `${filteredLocations.length} senior living communities found for "${searchQuery}" in Sacramento, CA. Compare pricing, amenities, and care services.`
+    : seoData.description;
+
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO 
+        title={searchQuery ? `${searchQuery} Senior Living Communities in Sacramento` : seoData.title}
+        description={dynamicDescription}
+        keywords={seoData.keywords}
+        canonical="https://sacramentoseniorcare.com/locations"
+      />
+      
       <Header />
       
       <main className="flex-grow bg-gray-50">

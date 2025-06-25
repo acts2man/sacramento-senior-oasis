@@ -6,7 +6,9 @@ import Footer from '../components/Footer';
 import Map from '../components/Map';
 import ContactForm from '../components/ContactForm';
 import LocationCard from '../components/LocationCard';
+import SEO from '../components/SEO';
 import { getLocationById, getFeaturedLocations, LocationType } from '../data/locations';
+import { generateLocationSEO } from '../utils/seoUtils';
 import { 
   MapPin, 
   Phone, 
@@ -53,6 +55,10 @@ const LocationDetail = () => {
   if (!location) {
     return (
       <div className="flex flex-col min-h-screen">
+        <SEO 
+          title="Location not found"
+          description="The requested senior living community could not be found. Browse our directory of Sacramento area senior living communities."
+        />
         <Header />
         <main className="flex-grow bg-gray-50 py-12">
           <div className="container-custom text-center">
@@ -66,6 +72,8 @@ const LocationDetail = () => {
       </div>
     );
   }
+
+  const seoData = generateLocationSEO(location);
   
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -77,6 +85,16 @@ const LocationDetail = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        ogImage={location.images[0]}
+        ogType="place"
+        canonical={`https://sacramentoseniorcare.com/${location.id}`}
+        jsonLd={seoData.jsonLd}
+      />
+      
       <Header />
       
       <main className="flex-grow bg-gray-50">
