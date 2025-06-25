@@ -44,8 +44,8 @@ const Index = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-senior-slate">How It Works</h2>
               <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-                Finding the right senior living community is easy with our simple process. Whether you need 
-                assisted living Sacramento cost information or memory care Sacramento options, we guide you every step.
+                Finding the right senior living community is simple with our guided process. 
+                We help you compare options and connect with communities that meet your needs.
               </p>
             </div>
             
@@ -56,8 +56,8 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Search Communities</h3>
                 <p className="text-gray-600">
-                  Browse our directory of assisted living communities in Sacramento, including specialized 
-                  memory care Sacramento CA facilities and retirement homes.
+                  Browse our directory of senior living communities across Sacramento. Filter by location, 
+                  care type, and amenities to find options that match your preferences.
                 </p>
               </div>
               
@@ -67,8 +67,8 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Schedule Tours</h3>
                 <p className="text-gray-600">
-                  Contact communities directly or let us arrange tours for you. Compare senior living in Sacramento 
-                  options including board and care homes Sacramento facilities.
+                  Contact communities directly or let us help arrange visits. Tour multiple locations 
+                  to get a feel for the environment and meet the staff.
                 </p>
               </div>
               
@@ -78,8 +78,8 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Make an Informed Decision</h3>
                 <p className="text-gray-600">
-                  Choose the perfect community based on your needs and preferences. Find the best 
-                  retirement communities in Sacramento with transparent pricing and reviews.
+                  Choose the community that best fits your loved one's needs and preferences. 
+                  We provide transparent pricing and detailed information to support your decision.
                 </p>
               </div>
             </div>
@@ -89,7 +89,7 @@ const Index = () => {
                 onClick={handleGetStarted}
                 className="btn-primary text-lg px-6 py-3"
               >
-                Find Senior Living Options Today
+                Start Your Search Today
               </button>
             </div>
           </div>
@@ -101,8 +101,8 @@ const Index = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-senior-slate">Why Choose Sacramento Senior Care</h2>
               <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-                We're dedicated to helping seniors find the perfect community to call home. From assisted living 
-                Sacramento facilities to specialized nursing homes in Sacramento, we provide comprehensive support.
+                We're dedicated to helping families find the perfect senior living community. 
+                Our comprehensive directory and expert guidance make the search process easier and more informed.
               </p>
             </div>
             
@@ -111,8 +111,8 @@ const Index = () => {
                 <Award className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Quality Communities</h3>
                 <p className="text-gray-600">
-                  We only list communities that meet our high standards of care and comfort, including 
-                  top-rated assisted living facilities Sacramento has to offer.
+                  We carefully vet each community in our directory to ensure they meet high standards 
+                  of care, safety, and resident satisfaction.
                 </p>
               </div>
               
@@ -120,8 +120,8 @@ const Index = () => {
                 <Phone className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Expert Guidance</h3>
                 <p className="text-gray-600">
-                  Our team provides personalized assistance throughout your search for senior housing Sacramento 
-                  options, from memory care to independent living.
+                  Our knowledgeable team provides personalized assistance throughout your search, 
+                  helping you understand options and navigate the selection process.
                 </p>
               </div>
               
@@ -129,8 +129,8 @@ const Index = () => {
                 <Heart className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Compassionate Service</h3>
                 <p className="text-gray-600">
-                  We understand the emotional journey of finding long term care facilities Sacramento 
-                  families trust and provide caring support throughout the process.
+                  We understand this is an emotional journey. Our team provides caring support and 
+                  guidance every step of the way.
                 </p>
               </div>
               
@@ -138,8 +138,8 @@ const Index = () => {
                 <Users className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Local Expertise</h3>
                 <p className="text-gray-600">
-                  Our deep knowledge of Sacramento communities ensures the right match, whether you need 
-                  senior living in Elk Grove or assisted living in Carmichael.
+                  Our deep knowledge of Sacramento communities ensures we can help you find 
+                  the right match for your loved one's specific needs and preferences.
                 </p>
               </div>
             </div>
@@ -152,12 +152,12 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-senior-slate mb-4">
-                  Need Help Finding Senior Living Options in Sacramento?
+                  Need Help Finding the Right Community?
                 </h2>
                 <p className="text-gray-600 mb-6">
-                  Our experts are ready to assist you in finding the perfect community for your loved one. Whether you have 
-                  questions about assisted living Sacramento cost, memory care Sacramento facilities, or nursing homes in Sacramento, 
-                  we're here to help you navigate your options.
+                  Our experts are ready to assist you in finding the perfect community for your loved one. 
+                  Whether you have questions about care options, costs, or community features, we're here 
+                  to help you navigate your choices with confidence.
                 </p>
                 <div className="bg-senior-light p-4 rounded-lg mb-6">
                   <div className="flex items-start">
@@ -172,8 +172,8 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-gray-600">
-                  Finding the right senior living community is an important decision. Our free service helps you navigate 
-                  options from 55 and over communities in Natomas to specialized board and care homes Sacramento offers.
+                  Finding the right senior living community is an important decision. Our free service 
+                  helps you explore options and connect with communities that best serve your family's needs.
                 </p>
               </div>
               

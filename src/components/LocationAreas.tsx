@@ -6,25 +6,25 @@ const LocationAreas = () => {
   const areas = [
     {
       name: 'Carmichael',
-      description: 'Discover assisted living in Carmichael with our comprehensive directory of senior care options.',
+      description: 'Explore senior living options in this established, family-friendly community with excellent medical facilities nearby.',
       searchQuery: 'carmichael',
       highlights: ['Family-friendly community', 'Close to medical facilities', 'Established neighborhoods']
     },
     {
       name: 'Elk Grove',
-      description: 'Explore Elk Grove senior living communities offering exceptional care and amenities.',
+      description: 'Discover modern senior communities in one of Sacramento\'s fastest-growing areas.',
       searchQuery: 'elk grove',
       highlights: ['Modern facilities', 'Active senior community', 'Great dining options']
     },
     {
       name: 'Midtown Sacramento',
-      description: 'Find top-rated assisted living in Midtown Sacramento with urban convenience and charm.',
+      description: 'Find urban senior living with walkable access to cultural attractions and city amenities.',
       searchQuery: 'midtown',
       highlights: ['Urban lifestyle', 'Cultural attractions', 'Public transportation']
     },
     {
       name: 'Natomas',
-      description: 'Browse 55+ communities in Natomas featuring resort-style living and comprehensive care.',
+      description: 'Browse newer senior communities featuring resort-style amenities and modern care facilities.',
       searchQuery: 'natomas',
       highlights: ['Resort-style amenities', 'New developments', 'Family-oriented area']
     }
@@ -35,11 +35,11 @@ const LocationAreas = () => {
       <div className="container-custom">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-senior-slate mb-4">
-            Senior Living Communities by Sacramento Area
+            Popular Sacramento Areas for Senior Living
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore assisted living Sacramento options across popular neighborhoods. 
-            From memory care Sacramento CA to retirement communities, find the perfect location for your needs.
+            Explore senior communities across Sacramento's most sought-after neighborhoods. 
+            Each area offers unique advantages for seniors and their families.
           </p>
         </div>
 
@@ -78,12 +78,12 @@ const LocationAreas = () => {
         <div className="mt-12 text-center">
           <div className="bg-white rounded-lg shadow-md p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-senior-slate mb-4">
-              Looking for Memory Care Sacramento?
+              Looking for Memory Care?
             </h3>
             <p className="text-gray-600 mb-6">
-              Specialized memory care facilities in Sacramento provide expert care for residents with Alzheimer's 
-              and dementia. Our directory includes board and care homes Sacramento and long-term care facilities 
-              with memory support programs.
+              Memory care communities provide specialized support for residents with Alzheimer's and dementia. 
+              These facilities offer secure environments with trained staff and programs designed specifically 
+              for memory support needs.
             </p>
             <Link 
               to="/locations?search=memory+care"

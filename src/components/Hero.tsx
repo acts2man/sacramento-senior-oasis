@@ -18,14 +18,15 @@ const Hero = () => {
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Sacramento Senior Care – Find the Best Assisted Living & Senior Living Options Near You
+            Find Quality Senior Living in Sacramento
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-white/90">
-            Your trusted guide to top-rated assisted living Sacramento has to offer. Compare senior living communities, memory care facilities, and retirement homes across Sacramento, CA.
+            Your trusted guide to discovering the right assisted living community for your loved one. 
+            Compare options across Sacramento, from memory care to independent living.
           </p>
           <SearchBar onSearch={handleSearch} />
           <div className="mt-6 text-white/80 text-sm">
-            Popular searches: Assisted Living Sacramento, Memory Care Sacramento, Senior Living Carmichael, Elk Grove Senior Living
+            Popular searches: Assisted Living, Memory Care, Carmichael, Elk Grove, Natomas
           </div>
         </div>
       </div>

@@ -47,17 +47,17 @@ const Locations = () => {
         <div className="bg-senior-blue text-white py-8">
           <div className="container-custom">
             <h1 className="text-3xl font-bold mb-4">
-              Assisted Living Sacramento - Senior Living Communities Directory
+              Sacramento Senior Living Directory
             </h1>
             <p className="text-xl text-white/90 mb-6">
-              Explore our comprehensive directory of {locations.length} senior living communities across Sacramento, CA. 
-              Find assisted living facilities Sacramento, memory care Sacramento options, and retirement communities near you.
+              Explore our comprehensive directory of {locations.length} senior living communities across Sacramento. 
+              Find assisted living, memory care, and independent living options that meet your needs.
             </p>
             
             <div className="relative mb-6">
               <SearchBar 
                 onSearch={handleSearch} 
-                placeholder="Search assisted living Sacramento, memory care, or by location..." 
+                placeholder="Search by community name, location, or care type..." 
               />
               {searchQuery && (
                 <div className="mt-4 flex items-center text-white/90">
@@ -77,11 +77,9 @@ const Locations = () => {
             {/* SEO Content for Directory Page */}
             <div className="bg-white/10 rounded-lg p-6 mb-4">
               <p className="text-white/90 text-sm leading-relaxed">
-                <strong>Find the best assisted living Sacramento</strong> has to offer in our comprehensive directory. 
-                Whether you're searching for <strong>memory care Sacramento CA</strong>, <strong>senior living in Elk Grove</strong>, 
-                or <strong>assisted living in Carmichael</strong>, we help you compare costs, amenities, and care options. 
-                Explore <strong>board and care homes Sacramento</strong>, <strong>nursing homes in Sacramento</strong>, 
-                and <strong>55+ communities in Natomas</strong> - all with transparent pricing and reviews.
+                Our directory features senior living communities throughout the Sacramento area, from downtown locations 
+                to suburban neighborhoods like Carmichael, Elk Grove, and Natomas. Compare amenities, care services, 
+                and pricing to find the right fit for your loved one's needs and preferences.
               </p>
             </div>
           </div>
@@ -91,10 +89,10 @@ const Locations = () => {
           <div className="flex flex-wrap items-center justify-between mb-6">
             <div className="mb-4 md:mb-0">
               <h2 className="text-xl font-bold text-senior-slate">
-                {filteredLocations.length} Senior Living Communities Available
+                {filteredLocations.length} Communities Available
               </h2>
               <p className="text-gray-600 text-sm mt-1">
-                Compare assisted living Sacramento cost, memory care options, and retirement communities
+                Compare costs, amenities, and care options across Sacramento
               </p>
             </div>
             
@@ -128,7 +126,7 @@ const Locations = () => {
           {showFilters && (
             <div className="bg-white rounded-lg shadow-md p-6 mb-6 animate-fade-in">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-bold text-senior-slate">Filter Sacramento Senior Living Options</h3>
+                <h3 className="text-lg font-bold text-senior-slate">Filter Communities</h3>
                 <button 
                   onClick={() => setShowFilters(false)}
                   className="text-gray-500 hover:text-gray-700"
@@ -143,11 +141,11 @@ const Locations = () => {
                   <div className="space-y-2">
                     <label className="flex items-center">
                       <input type="checkbox" className="rounded text-senior-blue mr-2" />
-                      Assisted Living Sacramento
+                      Assisted Living
                     </label>
                     <label className="flex items-center">
                       <input type="checkbox" className="rounded text-senior-blue mr-2" />
-                      Memory Care Sacramento
+                      Memory Care
                     </label>
                     <label className="flex items-center">
                       <input type="checkbox" className="rounded text-senior-blue mr-2" />
@@ -161,7 +159,7 @@ const Locations = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-medium mb-2">Sacramento Area</h4>
+                  <h4 className="font-medium mb-2">Area</h4>
                   <div className="space-y-2">
                     <label className="flex items-center">
                       <input type="checkbox" className="rounded text-senior-blue mr-2" />
@@ -229,8 +227,8 @@ const Locations = () => {
               </div>
               <h3 className="text-xl font-bold text-senior-slate mb-2">No Communities Found</h3>
               <p className="text-gray-600 max-w-md mx-auto">
-                We couldn't find any assisted living Sacramento communities matching your search criteria. 
-                Try searching for memory care Sacramento, senior living in Elk Grove, or adjust your filters.
+                We couldn't find any communities matching your search criteria. 
+                Try adjusting your search terms or filters to see more options.
               </p>
               <button 
                 onClick={clearSearch}
@@ -244,25 +242,25 @@ const Locations = () => {
           {/* Additional SEO Content at Bottom */}
           <div className="mt-12 bg-white rounded-lg shadow-md p-8">
             <h2 className="text-2xl font-bold text-senior-slate mb-4">
-              Sacramento Senior Living - Your Complete Guide
+              Your Guide to Sacramento Senior Living
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-bold text-senior-slate mb-3">Popular Sacramento Areas</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Assisted living in Carmichael</strong> - Family-friendly with great medical access</li>
-                  <li>• <strong>Elk Grove senior living</strong> - Modern communities with resort amenities</li>
-                  <li>• <strong>55+ communities in Natomas</strong> - Active lifestyle and new developments</li>
-                  <li>• <strong>Midtown Sacramento</strong> - Urban convenience with cultural attractions</li>
+                  <li>• <strong>Carmichael</strong> - Established community with excellent medical access</li>
+                  <li>• <strong>Elk Grove</strong> - Modern communities with resort-style amenities</li>
+                  <li>• <strong>Natomas</strong> - Newer developments with active lifestyle options</li>
+                  <li>• <strong>Midtown</strong> - Urban convenience with cultural attractions nearby</li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-senior-slate mb-3">Care Types Available</h3>
+                <h3 className="text-lg font-bold text-senior-slate mb-3">Types of Care Available</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Memory care Sacramento CA</strong> - Specialized Alzheimer's and dementia care</li>
-                  <li>• <strong>Board and care homes Sacramento</strong> - Intimate, personalized care settings</li>
-                  <li>• <strong>Nursing homes in Sacramento</strong> - 24/7 skilled nursing care</li>
-                  <li>• <strong>Long term care facilities Sacramento</strong> - Comprehensive care options</li>
+                  <li>• <strong>Memory Care</strong> - Specialized support for Alzheimer's and dementia</li>
+                  <li>• <strong>Assisted Living</strong> - Help with daily activities while maintaining independence</li>
+                  <li>• <strong>Skilled Nursing</strong> - 24/7 medical care and supervision</li>
+                  <li>• <strong>Independent Living</strong> - Active lifestyle with optional support services</li>
                 </ul>
               </div>
             </div>
