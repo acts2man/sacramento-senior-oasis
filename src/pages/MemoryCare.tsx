@@ -135,8 +135,7 @@ const MemoryCare = () => {
           <div className="container-custom relative z-10 h-full flex items-center">
             <div className="max-w-3xl text-white animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Compassionate Memory Care
-                <span className="block text-white/90 animate-slide-up delay-300">in Sacramento, CA</span>
+                Specialized Memory Care in Sacramento, CA
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed animate-fade-in delay-500">
                 Discover trusted memory care communities that support dignity, safety, and peace of mind.
