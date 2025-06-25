@@ -1,3 +1,4 @@
+
 export interface LocationType {
   id: string;
   name: string;
@@ -57,16 +58,16 @@ export const locations: LocationType[] = [
       "Garden and walking paths"
     ],
     images: [
-      "/lovable-uploads/d6afd72b-569f-4f7e-ae06-1c17e30b4390.png", // Exterior view
-      "/lovable-uploads/a5a44a2c-1c37-4bda-92f7-33f2346976e2.png", // Living room with brick wall
-      "/lovable-uploads/de5de461-4639-4b84-9849-e2b8f55431e0.png", // Kitchen
-      "/lovable-uploads/e6f139ff-3378-4667-ad05-ca1431ad94c2.png", // Second living room view
-      "/lovable-uploads/32b3ebd5-820c-477a-b81c-cf9acac27af9.png", // Bedroom
-      "/lovable-uploads/37f420c0-f252-483e-a319-c7631853284e.png", // Dining room
-      "/lovable-uploads/5ce5de82-fcca-4fff-9c15-d2f9b2ca18ee.png", // Second bedroom
-      "/lovable-uploads/09be1fb9-8eba-4580-9869-d9079b186b42.png", // Patio/outdoor area
-      "/lovable-uploads/27f891fb-fb72-42b5-ba46-9eae9da29002.png", // Living room with couch
-      "/lovable-uploads/d41f8d21-b02a-4c62-958e-9f94fa94e3ee.png" // Sitting area
+      "/lovable-uploads/d6afd72b-569f-4f7e-ae06-1c17e30b4390.png",
+      "/lovable-uploads/a5a44a2c-1c37-4bda-92f7-33f2346976e2.png",
+      "/lovable-uploads/de5de461-4639-4b84-9849-e2b8f55431e0.png",
+      "/lovable-uploads/e6f139ff-3378-4667-ad05-ca1431ad94c2.png",
+      "/lovable-uploads/32b3ebd5-820c-477a-b81c-cf9acac27af9.png",
+      "/lovable-uploads/37f420c0-f252-483e-a319-c7631853284e.png",
+      "/lovable-uploads/5ce5de82-fcca-4fff-9c15-d2f9b2ca18ee.png",
+      "/lovable-uploads/09be1fb9-8eba-4580-9869-d9079b186b42.png",
+      "/lovable-uploads/27f891fb-fb72-42b5-ba46-9eae9da29002.png",
+      "/lovable-uploads/d41f8d21-b02a-4c62-958e-9f94fa94e3ee.png"
     ],
     coordinates: {
       lat: 38.481,
@@ -107,14 +108,14 @@ export const locations: LocationType[] = [
       "Landscaped gardens with walking paths"
     ],
     images: [
-      "/lovable-uploads/4a6944c4-f741-40f7-af61-72005cfa78e6.png", // Exterior of house
-      "/lovable-uploads/33b8df9e-e3ad-4e8f-a8dd-328769da1733.png", // Dining room
-      "/lovable-uploads/de710014-22c9-4d6d-bc9c-457355325b5b.png", // Living room with sectional
-      "/lovable-uploads/e3021f26-223d-4860-84ea-38d93413d190.png", // Bedroom with black and white bedding
-      "/lovable-uploads/fde4d088-2359-4af3-a9b6-d0636dd3cdb7.png", // Single bedroom with recliner
-      "/lovable-uploads/6d016c8d-0d65-45be-a79e-8a95e9916a54.png", // Kitchen with island
-      "/lovable-uploads/2aa7fe16-ed79-4883-a9bc-c7d2e16e255c.png", // Bathroom
-      "/lovable-uploads/93ebc135-71b8-47bf-8660-2b6fd28f7466.png", // Backyard/garden
+      "/lovable-uploads/4a6944c4-f741-40f7-af61-72005cfa78e6.png",
+      "/lovable-uploads/33b8df9e-e3ad-4e8f-a8dd-328769da1733.png",
+      "/lovable-uploads/de710014-22c9-4d6d-bc9c-457355325b5b.png",
+      "/lovable-uploads/e3021f26-223d-4860-84ea-38d93413d190.png",
+      "/lovable-uploads/fde4d088-2359-4af3-a9b6-d0636dd3cdb7.png",
+      "/lovable-uploads/6d016c8d-0d65-45be-a79e-8a95e9916a54.png",
+      "/lovable-uploads/2aa7fe16-ed79-4883-a9bc-c7d2e16e255c.png",
+      "/lovable-uploads/93ebc135-71b8-47bf-8660-2b6fd28f7466.png",
     ],
     coordinates: {
       lat: 38.4088,
@@ -155,15 +156,15 @@ export const locations: LocationType[] = [
       "Worship space"
     ],
     images: [
-      "/lovable-uploads/faa9592c-ceff-4f35-82ca-b3ffabdedeab.png", // Exterior view
-      "/lovable-uploads/022f45e2-aab9-417b-a5dc-e262a64732bf.png", // Living room with fireplace
-      "/lovable-uploads/1ce3f3d6-bac8-42f1-88a7-b05058974747.png", // Dining area and kitchen view
-      "/lovable-uploads/4be45100-6037-4173-a593-e610873b5c06.png", // Dining room closeup
-      "/lovable-uploads/df9862b7-ad5d-4d84-8779-a49ef62fe835.png", // Kitchen
-      "/lovable-uploads/97e697fa-13b9-409a-b6cd-7b6b9eaba22c.png", // Bedroom with blue pattern bedding
-      "/lovable-uploads/82239084-a71e-4fc2-8429-3daf602cddb3.png", // Another bedroom view
-      "/lovable-uploads/62b9b61e-e503-4bb7-9ce5-92ed015cd946.png", // Twin beds room
-      "/lovable-uploads/2e75b146-58c4-41b3-a651-549ba187a423.png", // Outdoor patio area
+      "/lovable-uploads/faa9592c-ceff-4f35-82ca-b3ffabdedeab.png",
+      "/lovable-uploads/022f45e2-aab9-417b-a5dc-e262a64732bf.png",
+      "/lovable-uploads/1ce3f3d6-bac8-42f1-88a7-b05058974747.png",
+      "/lovable-uploads/4be45100-6037-4173-a593-e610873b5c06.png",
+      "/lovable-uploads/df9862b7-ad5d-4d84-8779-a49ef62fe835.png",
+      "/lovable-uploads/97e697fa-13b9-409a-b6cd-7b6b9eaba22c.png",
+      "/lovable-uploads/82239084-a71e-4fc2-8429-3daf602cddb3.png",
+      "/lovable-uploads/62b9b61e-e503-4bb7-9ce5-92ed015cd946.png",
+      "/lovable-uploads/2e75b146-58c4-41b3-a651-549ba187a423.png",
     ],
     coordinates: {
       lat: 38.4835,
@@ -204,8 +205,8 @@ export const locations: LocationType[] = [
       "Tranquility room"
     ],
     images: [
-      "/lovable-uploads/59380478-fc98-4263-9293-d269cbd287a4.png", // Front view of facility with palm trees and driveway
-      "/lovable-uploads/478d7794-77d8-4ac1-9fb1-d81152ab4226.png", // Landscaped backyard with stone walls and green lawn
+      "/lovable-uploads/59380478-fc98-4263-9293-d269cbd287a4.png",
+      "/lovable-uploads/478d7794-77d8-4ac1-9fb1-d81152ab4226.png",
     ],
     coordinates: {
       lat: 38.5152,
@@ -246,9 +247,9 @@ export const locations: LocationType[] = [
       "Community garden"
     ],
     images: [
-      "/lovable-uploads/c6d8c9db-1c2a-493a-92f1-5a41e7917cbe.png", // Exterior view of white house with porch
-      "/lovable-uploads/e48923de-b6cc-4f33-b03b-7d69b537dbd6.png", // Modern dining area with glass table and wall decor
-      "/lovable-uploads/749cc486-ae95-4a0c-8a54-cebfe856570b.png", // Red dining table with chairs and decorative vase
+      "/lovable-uploads/c6d8c9db-1c2a-493a-92f1-5a41e7917cbe.png",
+      "/lovable-uploads/e48923de-b6cc-4f33-b03b-7d69b537dbd6.png",
+      "/lovable-uploads/749cc486-ae95-4a0c-8a54-cebfe856570b.png",
     ],
     coordinates: {
       lat: 38.5399,
@@ -289,11 +290,11 @@ export const locations: LocationType[] = [
       "Therapy room"
     ],
     images: [
-      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png", // Luxury bedroom with jacuzzi
-      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png", // Room with jacuzzi view 2
-      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Common living area
-      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Community space
-      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior view
+      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png",
+      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png",
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png",
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png",
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png",
     ],
     coordinates: {
       lat: 38.5113,
@@ -334,14 +335,14 @@ export const locations: LocationType[] = [
       "Therapeutic kitchen"
     ],
     images: [
-      "/lovable-uploads/f2bf5dae-5e05-494b-ae5c-02d8a39f40c8.png", // Exterior view of house with pink flowers
-      "/lovable-uploads/9574bcc1-29e8-4ce4-a547-cd50f72f75a9.png", // Hallway with artwork
-      "/lovable-uploads/87d55c9c-9d7c-4f02-848c-308d1f247bc4.png", // Bedroom with blue floral bedding
-      "/lovable-uploads/cab14450-f826-4e9c-a5ad-6d479598edb3.png", // Living room with fireplace and TV
-      "/lovable-uploads/d3df9465-018e-4016-abb4-aa8d50324b8b.png", // Room with twin beds and blue curtains
-      "/lovable-uploads/44df1279-5968-4ddf-b139-24854240a933.png", // Kitchen with wooden cabinets
-      "/lovable-uploads/8039f371-26f8-4bcf-8ef3-55d72f7fc517.png", // Another exterior view
-      "/lovable-uploads/afcb3e15-9f58-4536-8e3d-892e030a743b.png"  // Living room with sectional sofa
+      "/lovable-uploads/f2bf5dae-5e05-494b-ae5c-02d8a39f40c8.png",
+      "/lovable-uploads/9574bcc1-29e8-4ce4-a547-cd50f72f75a9.png",
+      "/lovable-uploads/87d55c9c-9d7c-4f02-848c-308d1f247bc4.png",
+      "/lovable-uploads/cab14450-f826-4e9c-a5ad-6d479598edb3.png",
+      "/lovable-uploads/d3df9465-018e-4016-abb4-aa8d50324b8b.png",
+      "/lovable-uploads/44df1279-5968-4ddf-b139-24854240a933.png",
+      "/lovable-uploads/8039f371-26f8-4bcf-8ef3-55d72f7fc517.png",
+      "/lovable-uploads/afcb3e15-9f58-4536-8e3d-892e030a743b.png"
     ],
     coordinates: {
       lat: 38.4800,
@@ -425,14 +426,14 @@ export const locations: LocationType[] = [
       "Comfort care suites"
     ],
     images: [
-      "/lovable-uploads/09a49d18-77fe-4059-8f5f-71e525c0821f.png", // Front exterior with garage and landscaping
-      "/lovable-uploads/9649bce7-e56d-4d40-8527-ab3f4d3f19c3.png", // Living room with dining area
-      "/lovable-uploads/4ff800e4-d48b-40d5-afde-b9b608e0ff64.png", // Formal dining room with table and chairs
-      "/lovable-uploads/96683bda-6e70-4212-9106-8a532e7d736c.png", // Living area with china cabinet
-      "/lovable-uploads/2ce3d4af-0ff4-4184-9edf-6542bcbf632f.png", // Reception area with red chairs
-      "/lovable-uploads/df1a9b3b-db28-4eee-bb0c-fbcb3031c965.png", // Bedroom with floral bedding and brown chair
-      "/lovable-uploads/8eed304a-3b15-43ff-a24f-6b67f22043c5.png", // Single bedroom with light floral bedding
-      "/lovable-uploads/fb10f888-0b90-4054-a857-d65f6d51956a.png", // Bedroom with sliding door access to yard
+      "/lovable-uploads/09a49d18-77fe-4059-8f5f-71e525c0821f.png",
+      "/lovable-uploads/9649bce7-e56d-4d40-8527-ab3f4d3f19c3.png",
+      "/lovable-uploads/4ff800e4-d48b-40d5-afde-b9b608e0ff64.png",
+      "/lovable-uploads/96683bda-6e70-4212-9106-8a532e7d736c.png",
+      "/lovable-uploads/2ce3d4af-0ff4-4184-9edf-6542bcbf632f.png",
+      "/lovable-uploads/df1a9b3b-db28-4eee-bb0c-fbcb3031c965.png",
+      "/lovable-uploads/8eed304a-3b15-43ff-a24f-6b67f22043c5.png",
+      "/lovable-uploads/fb10f888-0b90-4054-a857-d65f6d51956a.png",
     ],
     coordinates: {
       lat: 38.6184,
@@ -473,12 +474,12 @@ export const locations: LocationType[] = [
       "Riverside walking paths"
     ],
     images: [
-      "/lovable-uploads/d6757e91-85c0-42d0-8cd3-d689ab4cdad5.png", // Exterior house view with garage
-      "/lovable-uploads/dc078bf0-601b-4769-8cab-196ab5a1e9b3.png", // Living room with gray couch and sliding door
-      "/lovable-uploads/89a0b14d-7858-4856-b048-e0a70d4e98e3.png", // Patio with pergola and chairs
-      "/lovable-uploads/96e730cb-fb88-41c4-a526-71d6e8ba8e4c.png", // Bedroom with Marilyn Monroe artwork
-      "/lovable-uploads/996ef2f5-2be5-4f96-9b2f-3c41fc0e3376.png", // Bathroom with double sink and bathtub
-      "/lovable-uploads/5921188d-0450-46a4-b484-c75078f04cbb.png", // Second bathroom with shower curtain
+      "/lovable-uploads/d6757e91-85c0-42d0-8cd3-d689ab4cdad5.png",
+      "/lovable-uploads/dc078bf0-601b-4769-8cab-196ab5a1e9b3.png",
+      "/lovable-uploads/89a0b14d-7858-4856-b048-e0a70d4e98e3.png",
+      "/lovable-uploads/96e730cb-fb88-41c4-a526-71d6e8ba8e4c.png",
+      "/lovable-uploads/996ef2f5-2be5-4f96-9b2f-3c41fc0e3376.png",
+      "/lovable-uploads/5921188d-0450-46a4-b484-c75078f04cbb.png",
     ],
     coordinates: {
       lat: 38.4792,
@@ -660,11 +661,11 @@ export const locations: LocationType[] = [
       "Enclosed courtyard"
     ],
     images: [
-      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png", // Luxury bedroom with jacuzzi
-      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png", // Room with jacuzzi view 2
-      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Common living area
-      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Community space
-      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior view
+      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png",
+      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png",
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png",
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png",
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png",
     ],
     coordinates: {
       lat: 38.5113,
