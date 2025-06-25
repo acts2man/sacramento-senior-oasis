@@ -7,6 +7,8 @@ import Hero from '../components/Hero';
 import FeaturedLocations from '../components/FeaturedLocations';
 import CareTypes from '../components/CareTypes';
 import ContactForm from '../components/ContactForm';
+import SEOContent from '../components/SEOContent';
+import LocationAreas from '../components/LocationAreas';
 import { Phone, Award, Heart, Users } from 'lucide-react';
 
 const Index = () => {
@@ -24,6 +26,12 @@ const Index = () => {
         {/* Hero Section */}
         <Hero />
         
+        {/* SEO Content Section */}
+        <SEOContent />
+        
+        {/* Location Areas */}
+        <LocationAreas />
+        
         {/* Featured Communities */}
         <FeaturedLocations />
         
@@ -36,7 +44,8 @@ const Index = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-senior-slate">How It Works</h2>
               <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-                Finding the right senior living community is easy with our simple process.
+                Finding the right senior living community is easy with our simple process. Whether you need 
+                assisted living Sacramento cost information or memory care Sacramento options, we guide you every step.
               </p>
             </div>
             
@@ -47,7 +56,8 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Search Communities</h3>
                 <p className="text-gray-600">
-                  Browse our directory of assisted living communities in Sacramento.
+                  Browse our directory of assisted living communities in Sacramento, including specialized 
+                  memory care Sacramento CA facilities and retirement homes.
                 </p>
               </div>
               
@@ -57,7 +67,8 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Schedule Tours</h3>
                 <p className="text-gray-600">
-                  Contact communities directly or let us arrange tours for you.
+                  Contact communities directly or let us arrange tours for you. Compare senior living in Sacramento 
+                  options including board and care homes Sacramento facilities.
                 </p>
               </div>
               
@@ -67,7 +78,8 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Make an Informed Decision</h3>
                 <p className="text-gray-600">
-                  Choose the perfect community based on your needs and preferences.
+                  Choose the perfect community based on your needs and preferences. Find the best 
+                  retirement communities in Sacramento with transparent pricing and reviews.
                 </p>
               </div>
             </div>
@@ -77,7 +89,7 @@ const Index = () => {
                 onClick={handleGetStarted}
                 className="btn-primary text-lg px-6 py-3"
               >
-                Get Started Today
+                Find Senior Living Options Today
               </button>
             </div>
           </div>
@@ -87,9 +99,10 @@ const Index = () => {
         <section className="py-12 bg-senior-light">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-senior-slate">Why Choose Us</h2>
+              <h2 className="text-3xl font-bold text-senior-slate">Why Choose Sacramento Senior Care</h2>
               <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-                We're dedicated to helping seniors find the perfect community to call home.
+                We're dedicated to helping seniors find the perfect community to call home. From assisted living 
+                Sacramento facilities to specialized nursing homes in Sacramento, we provide comprehensive support.
               </p>
             </div>
             
@@ -98,7 +111,8 @@ const Index = () => {
                 <Award className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Quality Communities</h3>
                 <p className="text-gray-600">
-                  We only list communities that meet our high standards of care and comfort.
+                  We only list communities that meet our high standards of care and comfort, including 
+                  top-rated assisted living facilities Sacramento has to offer.
                 </p>
               </div>
               
@@ -106,7 +120,8 @@ const Index = () => {
                 <Phone className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Expert Guidance</h3>
                 <p className="text-gray-600">
-                  Our team provides personalized assistance throughout your search.
+                  Our team provides personalized assistance throughout your search for senior housing Sacramento 
+                  options, from memory care to independent living.
                 </p>
               </div>
               
@@ -114,7 +129,8 @@ const Index = () => {
                 <Heart className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Compassionate Service</h3>
                 <p className="text-gray-600">
-                  We understand the emotional journey and provide caring support.
+                  We understand the emotional journey of finding long term care facilities Sacramento 
+                  families trust and provide caring support throughout the process.
                 </p>
               </div>
               
@@ -122,7 +138,8 @@ const Index = () => {
                 <Users className="h-12 w-12 text-senior-teal mb-4" />
                 <h3 className="text-xl font-bold text-senior-slate mb-2">Local Expertise</h3>
                 <p className="text-gray-600">
-                  Our deep knowledge of Sacramento communities ensures the right match.
+                  Our deep knowledge of Sacramento communities ensures the right match, whether you need 
+                  senior living in Elk Grove or assisted living in Carmichael.
                 </p>
               </div>
             </div>
@@ -135,10 +152,12 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-senior-slate mb-4">
-                  Need Help Finding Senior Living Options?
+                  Need Help Finding Senior Living Options in Sacramento?
                 </h2>
                 <p className="text-gray-600 mb-6">
-                  Our experts are ready to assist you in finding the perfect community for your loved one. Whether you have questions about care types, pricing, or availability, we're here to help.
+                  Our experts are ready to assist you in finding the perfect community for your loved one. Whether you have 
+                  questions about assisted living Sacramento cost, memory care Sacramento facilities, or nursing homes in Sacramento, 
+                  we're here to help you navigate your options.
                 </p>
                 <div className="bg-senior-light p-4 rounded-lg mb-6">
                   <div className="flex items-start">
@@ -153,7 +172,8 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-gray-600">
-                  Finding the right senior living community is an important decision. Our free service helps you navigate your options and make confident choices.
+                  Finding the right senior living community is an important decision. Our free service helps you navigate 
+                  options from 55 and over communities in Natomas to specialized board and care homes Sacramento offers.
                 </p>
               </div>
               
