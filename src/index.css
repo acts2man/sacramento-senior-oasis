@@ -81,22 +81,130 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-senior-blue hover:bg-senior-blue/90 text-white font-medium py-2 px-4 rounded transition-colors;
+    @apply bg-gradient-to-r from-senior-blue to-senior-teal hover:from-senior-blue/90 hover:to-senior-teal/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
   }
   
   .btn-secondary {
-    @apply bg-senior-teal hover:bg-senior-teal/90 text-white font-medium py-2 px-4 rounded transition-colors;
+    @apply bg-gradient-to-r from-senior-teal to-senior-sand hover:from-senior-teal/90 hover:to-senior-sand/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
   }
   
   .btn-outline {
-    @apply border border-senior-blue text-senior-blue hover:bg-senior-blue/10 font-medium py-2 px-4 rounded transition-colors;
+    @apply border-2 border-senior-blue text-senior-blue hover:bg-senior-blue hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
   }
   
   .container-custom {
     @apply px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl;
   }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-senior-blue to-senior-teal bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-senior-blue/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-senior-blue;
 }
