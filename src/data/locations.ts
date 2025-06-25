@@ -1,3 +1,4 @@
+
 export interface LocationType {
   id: string;
   name: string;
@@ -57,16 +58,16 @@ export const locations: LocationType[] = [
       "Garden and walking paths"
     ],
     images: [
-      "/lovable-uploads/d6afd72b-569f-4f7e-ae06-1c17e30b4390.png",
-      "/lovable-uploads/a5a44a2c-1c37-4bda-92f7-33f2346976e2.png",
-      "/lovable-uploads/de5de461-4639-4b84-9849-e2b8f55431e0.png",
-      "/lovable-uploads/e6f139ff-3378-4667-ad05-ca1431ad94c2.png",
-      "/lovable-uploads/32b3ebd5-820c-477a-b81c-cf9acac27af9.png",
-      "/lovable-uploads/37f420c0-f252-483e-a319-c7631853284e.png",
-      "/lovable-uploads/5ce5de82-fcca-4fff-9c15-d2f9b2ca18ee.png",
-      "/lovable-uploads/09be1fb9-8eba-4580-9869-d9079b186b42.png",
-      "/lovable-uploads/27f891fb-fb72-42b5-ba46-9eae9da29002.png",
-      "/lovable-uploads/d41f8d21-b02a-4c62-958e-9f94fa94e3ee.png"
+      "/lovable-uploads/d6afd72b-569f-4f7e-ae06-1c17e30b4390.png", // Exterior view
+      "/lovable-uploads/a5a44a2c-1c37-4bda-92f7-33f2346976e2.png", // Living room with brick wall
+      "/lovable-uploads/de5de461-4639-4b84-9849-e2b8f55431e0.png", // Kitchen
+      "/lovable-uploads/e6f139ff-3378-4667-ad05-ca1431ad94c2.png", // Second living room view
+      "/lovable-uploads/32b3ebd5-820c-477a-b81c-cf9acac27af9.png", // Bedroom
+      "/lovable-uploads/37f420c0-f252-483e-a319-c7631853284e.png", // Dining room
+      "/lovable-uploads/5ce5de82-fcca-4fff-9c15-d2f9b2ca18ee.png", // Second bedroom
+      "/lovable-uploads/09be1fb9-8eba-4580-9869-d9079b186b42.png", // Patio/outdoor area
+      "/lovable-uploads/27f891fb-fb72-42b5-ba46-9eae9da29002.png", // Living room with couch
+      "/lovable-uploads/d41f8d21-b02a-4c62-958e-9f94fa94e3ee.png" // Sitting area
     ],
     coordinates: {
       lat: 38.481,
@@ -107,14 +108,14 @@ export const locations: LocationType[] = [
       "Landscaped gardens with walking paths"
     ],
     images: [
-      "/lovable-uploads/4a6944c4-f741-40f7-af61-72005cfa78e6.png",
-      "/lovable-uploads/33b8df9e-e3ad-4e8f-a8dd-328769da1733.png",
-      "/lovable-uploads/de710014-22c9-4d6d-bc9c-457355325b5b.png",
-      "/lovable-uploads/e3021f26-223d-4860-84ea-38d93413d190.png",
-      "/lovable-uploads/fde4d088-2359-4af3-a9b6-d0636dd3cdb7.png",
-      "/lovable-uploads/6d016c8d-0d65-45be-a79e-8a95e9916a54.png",
-      "/lovable-uploads/2aa7fe16-ed79-4883-a9bc-c7d2e16e255c.png",
-      "/lovable-uploads/93ebc135-71b8-47bf-8660-2b6fd28f7466.png",
+      "/lovable-uploads/4a6944c4-f741-40f7-af61-72005cfa78e6.png", // Exterior of house
+      "/lovable-uploads/33b8df9e-e3ad-4e8f-a8dd-328769da1733.png", // Dining room
+      "/lovable-uploads/de710014-22c9-4d6d-bc9c-457355325b5b.png", // Living room with sectional
+      "/lovable-uploads/e3021f26-223d-4860-84ea-38d93413d190.png", // Bedroom with black and white bedding
+      "/lovable-uploads/fde4d088-2359-4af3-a9b6-d0636dd3cdb7.png", // Single bedroom with recliner
+      "/lovable-uploads/6d016c8d-0d65-45be-a79e-8a95e9916a54.png", // Kitchen with island
+      "/lovable-uploads/2aa7fe16-ed79-4883-a9bc-c7d2e16e255c.png", // Bathroom
+      "/lovable-uploads/93ebc135-71b8-47bf-8660-2b6fd28f7466.png", // Backyard/garden
     ],
     coordinates: {
       lat: 38.4088,
@@ -155,15 +156,15 @@ export const locations: LocationType[] = [
       "Worship space"
     ],
     images: [
-      "/lovable-uploads/faa9592c-ceff-4f35-82ca-b3ffabdedeab.png",
-      "/lovable-uploads/022f45e2-aab9-417b-a5dc-e262a64732bf.png",
-      "/lovable-uploads/1ce3f3d6-bac8-42f1-88a7-b05058974747.png",
-      "/lovable-uploads/4be45100-6037-4173-a593-e610873b5c06.png",
-      "/lovable-uploads/df9862b7-ad5d-4d84-8779-a49ef62fe835.png",
-      "/lovable-uploads/97e697fa-13b9-409a-b6cd-7b6b9eaba22c.png",
-      "/lovable-uploads/82239084-a71e-4fc2-8429-3daf602cddb3.png",
-      "/lovable-uploads/62b9b61e-e503-4bb7-9ce5-92ed015cd946.png",
-      "/lovable-uploads/2e75b146-58c4-41b3-a651-549ba187a423.png",
+      "/lovable-uploads/faa9592c-ceff-4f35-82ca-b3ffabdedeab.png", // Exterior view
+      "/lovable-uploads/022f45e2-aab9-417b-a5dc-e262a64732bf.png", // Living room with fireplace
+      "/lovable-uploads/1ce3f3d6-bac8-42f1-88a7-b05058974747.png", // Dining area and kitchen view
+      "/lovable-uploads/4be45100-6037-4173-a593-e610873b5c06.png", // Dining room closeup
+      "/lovable-uploads/df9862b7-ad5d-4d84-8779-a49ef62fe835.png", // Kitchen
+      "/lovable-uploads/97e697fa-13b9-409a-b6cd-7b6b9eaba22c.png", // Bedroom with blue pattern bedding
+      "/lovable-uploads/82239084-a71e-4fc2-8429-3daf602cddb3.png", // Another bedroom view
+      "/lovable-uploads/62b9b61e-e503-4bb7-9ce5-92ed015cd946.png", // Twin beds room
+      "/lovable-uploads/2e75b146-58c4-41b3-a651-549ba187a423.png", // Outdoor patio area
     ],
     coordinates: {
       lat: 38.4835,
@@ -204,8 +205,8 @@ export const locations: LocationType[] = [
       "Tranquility room"
     ],
     images: [
-      "/lovable-uploads/59380478-fc98-4263-9293-d269cbd287a4.png",
-      "/lovable-uploads/478d7794-77d8-4ac1-9fb1-d81152ab4226.png",
+      "/lovable-uploads/59380478-fc98-4263-9293-d269cbd287a4.png", // Front view of facility with palm trees and driveway
+      "/lovable-uploads/478d7794-77d8-4ac1-9fb1-d81152ab4226.png", // Landscaped backyard with stone walls and green lawn
     ],
     coordinates: {
       lat: 38.5152,
@@ -246,9 +247,9 @@ export const locations: LocationType[] = [
       "Community garden"
     ],
     images: [
-      "/lovable-uploads/c6d8c9db-1c2a-493a-92f1-5a41e7917cbe.png",
-      "/lovable-uploads/e48923de-b6cc-4f33-b03b-7d69b537dbd6.png",
-      "/lovable-uploads/749cc486-ae95-4a0c-8a54-cebfe856570b.png",
+      "/lovable-uploads/c6d8c9db-1c2a-493a-92f1-5a41e7917cbe.png", // Exterior view of white house with porch
+      "/lovable-uploads/e48923de-b6cc-4f33-b03b-7d69b537dbd6.png", // Modern dining area with glass table and wall decor
+      "/lovable-uploads/749cc486-ae95-4a0c-8a54-cebfe856570b.png", // Red dining table with chairs and decorative vase
     ],
     coordinates: {
       lat: 38.5399,
@@ -289,11 +290,11 @@ export const locations: LocationType[] = [
       "Therapy room"
     ],
     images: [
-      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png",
-      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png",
-      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png",
-      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png",
-      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png",
+      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png", // Luxury bedroom with jacuzzi
+      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png", // Room with jacuzzi view 2
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Common living area
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Community space
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior view
     ],
     coordinates: {
       lat: 38.5113,
@@ -334,14 +335,14 @@ export const locations: LocationType[] = [
       "Therapeutic kitchen"
     ],
     images: [
-      "/lovable-uploads/f2bf5dae-5e05-494b-ae5c-02d8a39f40c8.png",
-      "/lovable-uploads/9574bcc1-29e8-4ce4-a547-cd50f72f75a9.png",
-      "/lovable-uploads/87d55c9c-9d7c-4f02-848c-308d1f247bc4.png",
-      "/lovable-uploads/cab14450-f826-4e9c-a5ad-6d479598edb3.png",
-      "/lovable-uploads/d3df9465-018e-4016-abb4-aa8d50324b8b.png",
-      "/lovable-uploads/44df1279-5968-4ddf-b139-24854240a933.png",
-      "/lovable-uploads/8039f371-26f8-4bcf-8ef3-55d72f7fc517.png",
-      "/lovable-uploads/afcb3e15-9f58-4536-8e3d-892e030a743b.png"
+      "/lovable-uploads/f2bf5dae-5e05-494b-ae5c-02d8a39f40c8.png", // Exterior view of house with pink flowers
+      "/lovable-uploads/9574bcc1-29e8-4ce4-a547-cd50f72f75a9.png", // Hallway with artwork
+      "/lovable-uploads/87d55c9c-9d7c-4f02-848c-308d1f247bc4.png", // Bedroom with blue floral bedding
+      "/lovable-uploads/cab14450-f826-4e9c-a5ad-6d479598edb3.png", // Living room with fireplace and TV
+      "/lovable-uploads/d3df9465-018e-4016-abb4-aa8d50324b8b.png", // Room with twin beds and blue curtains
+      "/lovable-uploads/44df1279-5968-4ddf-b139-24854240a933.png", // Kitchen with wooden cabinets
+      "/lovable-uploads/8039f371-26f8-4bcf-8ef3-55d72f7fc517.png", // Another exterior view
+      "/lovable-uploads/afcb3e15-9f58-4536-8e3d-892e030a743b.png"  // Living room with sectional sofa
     ],
     coordinates: {
       lat: 38.4800,
@@ -425,14 +426,14 @@ export const locations: LocationType[] = [
       "Comfort care suites"
     ],
     images: [
-      "/lovable-uploads/09a49d18-77fe-4059-8f5f-71e525c0821f.png",
-      "/lovable-uploads/9649bce7-e56d-4d40-8527-ab3f4d3f19c3.png",
-      "/lovable-uploads/4ff800e4-d48b-40d5-afde-b9b608e0ff64.png",
-      "/lovable-uploads/96683bda-6e70-4212-9106-8a532e7d736c.png",
-      "/lovable-uploads/2ce3d4af-0ff4-4184-9edf-6542bcbf632f.png",
-      "/lovable-uploads/df1a9b3b-db28-4eee-bb0c-fbcb3031c965.png",
-      "/lovable-uploads/8eed304a-3b15-43ff-a24f-6b67f22043c5.png",
-      "/lovable-uploads/fb10f888-0b90-4054-a857-d65f6d51956a.png",
+      "/lovable-uploads/09a49d18-77fe-4059-8f5f-71e525c0821f.png", // Front exterior with garage and landscaping
+      "/lovable-uploads/9649bce7-e56d-4d40-8527-ab3f4d3f19c3.png", // Living room with dining area
+      "/lovable-uploads/4ff800e4-d48b-40d5-afde-b9b608e0ff64.png", // Formal dining room with table and chairs
+      "/lovable-uploads/96683bda-6e70-4212-9106-8a532e7d736c.png", // Living area with china cabinet
+      "/lovable-uploads/2ce3d4af-0ff4-4184-9edf-6542bcbf632f.png", // Reception area with red chairs
+      "/lovable-uploads/df1a9b3b-db28-4eee-bb0c-fbcb3031c965.png", // Bedroom with floral bedding and brown chair
+      "/lovable-uploads/8eed304a-3b15-43ff-a24f-6b67f22043c5.png", // Single bedroom with light floral bedding
+      "/lovable-uploads/fb10f888-0b90-4054-a857-d65f6d51956a.png", // Bedroom with sliding door access to yard
     ],
     coordinates: {
       lat: 38.6184,
@@ -473,12 +474,12 @@ export const locations: LocationType[] = [
       "Riverside walking paths"
     ],
     images: [
-      "/lovable-uploads/d6757e91-85c0-42d0-8cd3-d689ab4cdad5.png",
-      "/lovable-uploads/dc078bf0-601b-4769-8cab-196ab5a1e9b3.png",
-      "/lovable-uploads/89a0b14d-7858-4856-b048-e0a70d4e98e3.png",
-      "/lovable-uploads/96e730cb-fb88-41c4-a526-71d6e8ba8e4c.png",
-      "/lovable-uploads/996ef2f5-2be5-4f96-9b2f-3c41fc0e3376.png",
-      "/lovable-uploads/5921188d-0450-46a4-b484-c75078f04cbb.png",
+      "/lovable-uploads/d6757e91-85c0-42d0-8cd3-d689ab4cdad5.png", // Exterior house view with garage
+      "/lovable-uploads/dc078bf0-601b-4769-8cab-196ab5a1e9b3.png", // Living room with gray couch and sliding door
+      "/lovable-uploads/89a0b14d-7858-4856-b048-e0a70d4e98e3.png", // Patio with pergola and chairs
+      "/lovable-uploads/96e730cb-fb88-41c4-a526-71d6e8ba8e4c.png", // Bedroom with Marilyn Monroe artwork
+      "/lovable-uploads/996ef2f5-2be5-4f96-9b2f-3c41fc0e3376.png", // Bathroom with double sink and bathtub
+      "/lovable-uploads/5921188d-0450-46a4-b484-c75078f04cbb.png", // Second bathroom with shower curtain
     ],
     coordinates: {
       lat: 38.4792,
@@ -488,7 +489,447 @@ export const locations: LocationType[] = [
     rating: 4.9,
   },
   {
-    id: "villa-natomas-elderly-care",
+    id: "bella-villa",
+    name: "Bella Villa Elderly Care II Assisted Living",
+    address: "3612 Eastern Ave",
+    city: "Sacramento",
+    zip: "95821",
+    phone: "(916) 555-2468",
+    email: "info@bellavilla.com",
+    website: "www.bellavilla.com",
+    description: "Bella Villa Elderly Care II provides a European-inspired living experience for seniors seeking assisted living services. Our beautiful facility features Mediterranean architecture, lush gardens, and elegant common areas. We believe in a holistic approach to senior care that addresses physical, emotional, and social wellbeing. Our professional staff is trained to provide personalized care while encouraging residents to pursue their interests and maintain connections with family and friends.",
+    shortDescription: "European-inspired assisted living with elegant surroundings and a holistic approach to care.",
+    pricing: {
+      starting: 4300,
+      average: 5100,
+    },
+    services: [
+      "Personalized care plans",
+      "Medication management",
+      "Bathing and dressing assistance",
+      "Mobility support",
+      "Transportation to appointments",
+      "Activity coordination"
+    ],
+    amenities: [
+      "Private suites",
+      "Mediterranean courtyard",
+      "Gourmet dining",
+      "Library and reading room",
+      "Art studio",
+      "Beauty salon"
+    ],
+    images: [
+      "/lovable-uploads/bc8cf363-65b9-413c-b11b-d0c9ad0daff5.png", // Exterior view of house with garage and trees
+      "/lovable-uploads/ec6dce33-9f77-4acd-913e-5cfc0b328fde.png", // Single bedroom with wooden floors and flower art
+      "/lovable-uploads/67cf301c-8286-4c5c-b32d-4b4b0e84a49c.png", // Twin bedroom with black bedding and wooden floors
+      "/lovable-uploads/8a511d8b-8af3-4ff5-bb3b-0c124ec1be11.png", // Large bedroom with twin beds and patterned bedding
+      "/lovable-uploads/87d9b1dd-242b-4f9e-b777-d5f10e9de76a.png", // Living room with leather couch and open kitchen
+      "/lovable-uploads/d562ee63-991d-4634-9277-9f107a074e85.png", // Modern kitchen with black countertops and white cabinets
+      "/lovable-uploads/b88ded2c-fa43-4f7e-b92d-5ba3fad787d4.png", // Dining and living area with red tablecloth
+      "/lovable-uploads/fab2b4ad-4ee7-412e-a5b9-59a1053a99c5.png", // Bedroom with chandelier and patterned bedding
+    ],
+    coordinates: {
+      lat: 38.6184,
+      lng: -121.4271,
+    },
+    featured: false,
+    rating: 4.7,
+  },
+  {
+    id: "love-and-comfort",
+    name: "Love and Comfort - Assisted Living Care Home",
+    address: "6532 Rancho Grande Way",
+    city: "Sacramento",
+    zip: "95828",
+    phone: "(916) 555-1357",
+    email: "care@loveandcomfort.com",
+    website: "www.loveandcomfort.com",
+    description: "Love and Comfort offers a family-oriented approach to assisted living in a residential setting. Our cozy home environment provides a comfortable alternative to larger facilities while still offering professional care services. We maintain a small resident population to ensure personalized attention and a strong sense of community. Our compassionate caregivers become like extended family to our residents, providing assistance while respecting their dignity and independence.",
+    shortDescription: "Family-oriented assisted living in a residential setting with personalized attention.",
+    pricing: {
+      starting: 3900,
+      average: 4700,
+    },
+    services: [
+      "Personal care assistance",
+      "Medication reminders",
+      "Meal preparation",
+      "Laundry services",
+      "Housekeeping",
+      "Transportation arrangements"
+    ],
+    amenities: [
+      "Private and shared rooms",
+      "Home-cooked meals",
+      "Family-style dining",
+      "Cozy common areas",
+      "Garden",
+      "Entertainment center"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c8a54eb?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.5125,
+      lng: -121.4119,
+    },
+    featured: false,
+    rating: 4.6,
+  },
+  {
+    id: "love-and-comfort-ii",
+    name: "Love and Comfort II - Assisted Living Elderly Care Home",
+    address: "320 Bowman Ave",
+    city: "Sacramento",
+    zip: "95833",
+    phone: "(916) 555-2468",
+    email: "info@loveandcomfort2.com",
+    website: "www.loveandcomfort2.com",
+    description: "Love and Comfort II continues our tradition of exceptional residential care in a convenient Sacramento location. Our home-like environment offers comfort and security while our professional staff provides personalized care services. We focus on creating a nurturing atmosphere where residents feel valued and respected. Daily activities promote social interaction and mental engagement, while our care services ensure physical well-being. Family involvement is encouraged to maintain important connections.",
+    shortDescription: "Residential care home offering personalized services in a nurturing, home-like environment.",
+    pricing: {
+      starting: 4000,
+      average: 4800,
+    },
+    services: [
+      "24-hour supervision",
+      "Medication management",
+      "Personal hygiene assistance",
+      "Incontinence care",
+      "Meal preparation",
+      "Mobility assistance"
+    ],
+    amenities: [
+      "Comfortable private rooms",
+      "Spacious common areas",
+      "Accessible bathroom facilities",
+      "Outdoor patio",
+      "Cable TV and internet",
+      "Transportation coordination"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.6136,
+      lng: -121.5066,
+    },
+    featured: false,
+    rating: 4.5,
+  },
+  {
+    id: "love-and-serenity-ii",
+    name: "Love And Serenity II - Assisted Living For The Elderly",
+    address: "5942 Park Village St",
+    city: "Sacramento",
+    zip: "95822",
+    phone: "(916) 555-3692",
+    email: "care@loveandserenity2.com",
+    website: "www.loveandserenity2.com",
+    description: "Love And Serenity II provides a peaceful living environment focused on comfort and tranquility. Our facility is designed to minimize stress and create a serene atmosphere conducive to well-being. We offer specialized programs for residents dealing with anxiety and depression, with an emphasis on mental health alongside physical care. Our staff is trained in gentle approaches to caregiving, and we incorporate relaxation techniques and mindfulness practices into daily activities.",
+    shortDescription: "Peaceful assisted living focused on mental well-being, comfort, and tranquility.",
+    pricing: {
+      starting: 4200,
+      average: 5000,
+    },
+    services: [
+      "Anxiety and depression support",
+      "Gentle care approaches",
+      "Medication management",
+      "Personal care assistance",
+      "Mindfulness program",
+      "Relaxation therapy"
+    ],
+    amenities: [
+      "Quiet private rooms",
+      "Meditation garden",
+      "Soothing common areas",
+      "Aromatherapy",
+      "Music therapy room",
+      "Seasonal menu"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1542928658-22251e208ac1?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600573472569-78f9e5271dd6?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.5098,
+      lng: -121.5190,
+    },
+    featured: false,
+    rating: 4.8,
+  },
+  {
+    id: "love-and-serenity-iii",
+    name: "Love and Serenity III - Greenhaven Assisted Living Community",
+    address: "573 Shaw River Way",
+    city: "Sacramento",
+    zip: "95831",
+    phone: "(916) 555-8642",
+    email: "info@loveandserenity3.com",
+    website: "www.loveandserenity3.com",
+    description: "Love and Serenity III is our premier location in the desirable Greenhaven neighborhood. This upscale facility offers assisted living services in an elegant environment with a focus on active lifestyles. Our spacious campus features beautiful outdoor spaces, walking paths, and comfortable indoor amenities. We encourage residents to remain engaged and independent through our extensive activity program, while providing discreet assistance as needed. Our culinary program features chef-prepared meals that delight the senses.",
+    shortDescription: "Upscale assisted living in Greenhaven focusing on active lifestyles and elegant surroundings.",
+    pricing: {
+      starting: 4800,
+      average: 5600,
+    },
+    services: [
+      "Personalized assistance",
+      "Wellness program",
+      "Medication management",
+      "Scheduled transportation",
+      "Housekeeping",
+      "Social coordination"
+    ],
+    amenities: [
+      "Spacious apartments",
+      "Gourmet dining",
+      "Fitness center",
+      "Library",
+      "Game room",
+      "Outdoor gardens"
+    ],
+    images: [
+      "/lovable-uploads/bc80fb7a-8748-4f20-bfde-8f7d5e874f61.png", // Exterior view of house
+      "/lovable-uploads/ba95c800-30fa-44db-9666-77eb557cb5b6.png", // Backyard/garden area
+      "/lovable-uploads/b1313780-5535-420c-9898-186b199b50fe.png", // Bedroom with blue striped bedding
+      "/lovable-uploads/3c5f4256-e888-4246-bd5e-fe93861e21a1.png", // Twin bedroom with floral bedding
+      "/lovable-uploads/afc98756-1c70-47ae-b595-87c593a204c1.png", // Living room with entertainment center
+      "/lovable-uploads/931fcefc-e4da-4901-9754-ecc898916214.png", // Dining room with mirror
+      "/lovable-uploads/4743e7a8-667e-4a56-908c-55a007d068c0.png", // Kitchen with wooden cabinets
+      "/lovable-uploads/ebce79a2-48ca-4cb3-99d4-ffe4c402985a.png", // Bathroom with red walls
+    ],
+    coordinates: {
+      lat: 38.4796,
+      lng: -121.5189,
+    },
+    featured: true,
+    rating: 4.9,
+  },
+  {
+    id: "love-and-serenity-elk-grove-iii",
+    name: "Love and Serenity of Elk Grove III",
+    address: "9442 Mazatlan Way",
+    city: "Elk Grove",
+    zip: "95624",
+    phone: "(916) 555-7531",
+    email: "care@loveandserenity-eg3.com",
+    website: "www.loveandserenity-elkgrove3.com",
+    description: "Love and Serenity of Elk Grove III provides a nurturing environment for seniors in a convenient Elk Grove location. Our facility is designed to balance independence with appropriate levels of care, allowing residents to enjoy life on their own terms. We take a person-centered approach to caregiving, recognizing each resident's unique needs and preferences. Our dedicated staff builds meaningful relationships with residents, creating a true sense of community. Regular family events strengthen connections between residents and their loved ones.",
+    shortDescription: "Person-centered care in Elk Grove balancing independence with appropriate support services.",
+    pricing: {
+      starting: 4100,
+      average: 4900,
+    },
+    services: [
+      "Customized care plans",
+      "Medication supervision",
+      "Personal care assistance",
+      "Health monitoring",
+      "Transportation services",
+      "Activity planning"
+    ],
+    amenities: [
+      "Private and shared suites",
+      "Home-style meals",
+      "Community living areas",
+      "Secured outdoor space",
+      "Entertainment options",
+      "Visiting areas"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600607687164-234c1bfed94f?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600573472568-bc0f132060a1?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.4099,
+      lng: -121.3846,
+    },
+    featured: false,
+    rating: 4.6,
+  },
+  {
+    id: "love-and-serenity-elk-grove-ii",
+    name: "Love and Serenity of Elk Grove II - Senior Care",
+    address: "9279 Orange Crest Ct",
+    city: "Elk Grove",
+    zip: "95624",
+    phone: "(916) 555-9753",
+    email: "info@loveandserenity-eg2.com",
+    website: "www.loveandserenity-elkgrove2.com",
+    description: "Love and Serenity of Elk Grove II offers specialized care for seniors with early to mid-stage memory concerns. Our secure environment is designed specifically to support those with cognitive challenges while maintaining dignity and quality of life. Our staff is trained in best practices for dementia care, using gentle redirection and positive engagement techniques. We provide structured daily routines that offer comfort and security while including activities that stimulate cognition and encourage social interaction.",
+    shortDescription: "Specialized care for early to mid-stage memory concerns in a secure, supportive environment.",
+    pricing: {
+      starting: 4600,
+      average: 5400,
+    },
+    services: [
+      "Memory-focused care",
+      "Safety monitoring",
+      "Cognitive stimulation",
+      "Structured routines",
+      "Personal care assistance",
+      "Family support services"
+    ],
+    amenities: [
+      "Secure living areas",
+      "Memory boxes",
+      "Orientation cues",
+      "Sensory room",
+      "Enclosed courtyard",
+      "Specialized dining"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.4091,
+      lng: -121.3839,
+    },
+    featured: false,
+    rating: 4.7,
+  },
+  {
+    id: "love-and-serenity-vintage-park",
+    name: "Love and Serenity of Vintage Park - Senior Care Home",
+    address: "8901 Sonoma Valley Way",
+    city: "Sacramento",
+    zip: "95829",
+    phone: "(916) 555-1597",
+    email: "care@loveandserenity-vp.com",
+    website: "www.loveandserenity-vintagepark.com",
+    description: "Love and Serenity of Vintage Park provides assisted living services in the beautiful Vintage Park neighborhood. Our residential care home offers a comfortable alternative to larger facilities with the same professional care standards. We maintain a low resident-to-caregiver ratio to ensure personalized attention and responsive service. Our experienced staff develops close relationships with residents and their families, creating a supportive environment that feels like home. We emphasize both physical care and emotional well-being in our approach.",
+    shortDescription: "Residential care home in Vintage Park offering personalized attention and a homelike environment.",
+    pricing: {
+      starting: 4000,
+      average: 4800,
+    },
+    services: [
+      "Personalized care plans",
+      "Medication monitoring",
+      "Bathing and grooming assistance",
+      "Incontinence care",
+      "Mobility assistance",
+      "Meal preparation"
+    ],
+    amenities: [
+      "Private and semi-private rooms",
+      "Home-cooked meals",
+      "Accessible bathrooms",
+      "Common living areas",
+      "Cable TV",
+      "Outdoor seating"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607687164-234c1bfed94f?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.4845,
+      lng: -121.3297,
+    },
+    featured: false,
+    rating: 4.6,
+  },
+  {
+    id: "sacramento-senior-living",
+    name: "Sacramento Senior Living",
+    address: "6825 Bender Ct",
+    city: "Sacramento",
+    zip: "95820",
+    phone: "(916) 555-2583",
+    email: "info@sacramentoseniorliving.com",
+    website: "www.sacramentoseniorliving.com",
+    description: "Sacramento Senior Living offers affordable assisted living options without compromising on quality care. Our community focuses on creating a supportive environment where residents receive the assistance they need while maintaining as much independence as possible. We take a holistic approach to senior care, addressing physical, emotional, and social needs through our comprehensive services and engaging activity program. Our central location provides convenient access to medical facilities, shopping, and entertainment.",
+    shortDescription: "Affordable assisted living with quality care services and a holistic approach to senior wellness.",
+    pricing: {
+      starting: 3700,
+      average: 4500,
+    },
+    services: [
+      "Assistance with daily activities",
+      "Medication management",
+      "Health monitoring",
+      "Housekeeping",
+      "Transportation services",
+      "Social programs"
+    ],
+    amenities: [
+      "Private and shared accommodations",
+      "Community dining",
+      "Activity room",
+      "TV lounge",
+      "Outdoor patio",
+      "Visiting areas"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.5349,
+      lng: -121.4338,
+    },
+    featured: false,
+    rating: 4.5,
+  },
+  {
+    id: "sacramento-senior-living-ii",
+    name: "Sacramento Senior Living II",
+    address: "34 Loma Mar Ct",
+    city: "Sacramento",
+    zip: "95828",
+    phone: "(916) 555-2583",
+    email: "info@sacramentoseniorliving2.com",
+    website: "www.sacramentoseniorliving2.com",
+    description: "Sacramento Senior Living II provides enhanced assisted living services for seniors requiring more comprehensive care. Our facility is designed to accommodate residents with greater physical limitations or cognitive challenges while promoting dignity and quality of life. We maintain a higher staff-to-resident ratio to ensure prompt attention to all needs. Our team includes trained caregivers who specialize in managing complex care requirements with compassion and professionalism. Family involvement is encouraged through regular care conferences and open communication.",
+    shortDescription: "Enhanced assisted living with comprehensive care services for seniors with greater care needs.",
+    pricing: {
+      starting: 4500,
+      average: 5300,
+    },
+    services: [
+      "Enhanced personal care",
+      "Intensive medication management",
+      "Specialized diets",
+      "Transfer assistance",
+      "Wound care",
+      "Oxygen management"
+    ],
+    amenities: [
+      "Accessible accommodations",
+      "Adaptive equipment",
+      "Care stations",
+      "Specialized dining",
+      "Therapy room",
+      "Family meeting space"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600607687120-9e4bae19287a?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607688583-ea6a71588ede?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80"
+    ],
+    coordinates: {
+      lat: 38.5151,
+      lng: -121.4055,
+    },
+    featured: false,
+    rating: 4.7,
+  },
+  {
+    id: "villa-natomas",
     name: "Villa Natomas Elderly Care",
     address: "540 Alcantar Circle",
     city: "Sacramento",
@@ -519,17 +960,17 @@ export const locations: LocationType[] = [
       "Beauty salon and spa"
     ],
     images: [
-      "/lovable-uploads/e29ee5b0-8a0e-4b83-b79d-5792f1294f33.png",
-      "/lovable-uploads/a45c791c-5916-4891-87b7-8723fe76baa3.png",
-      "/lovable-uploads/b13751e7-6155-4bec-9e4b-78ab38a63083.png",
-      "/lovable-uploads/a8072319-9350-4b35-be2f-761db7e194b0.png",
-      "/lovable-uploads/ba5cd2ba-813e-4585-8cc1-881a6a3935c1.png",
-      "/lovable-uploads/55f3d34a-e353-4d9b-843d-6f0e9a9f61bf.png",
-      "/lovable-uploads/8f9a0e32-5572-4665-a085-541b3e34a778.png",
-      "/lovable-uploads/edda2914-a347-4d50-b82e-d17f5474f027.png",
-      "/lovable-uploads/628bace6-0de3-486a-85f3-e462b650abe7.png",
-      "/lovable-uploads/f6aeb693-96a4-4189-9331-37574eb146bd.png",
-      "/lovable-uploads/62c160f2-9772-4b15-b058-4e66a7aaef26.png"
+      "/lovable-uploads/e29ee5b0-8a0e-4b83-b79d-5792f1294f33.png", // Twin bedroom with blue and white bedding
+      "/lovable-uploads/a45c791c-5916-4891-87b7-8723fe76baa3.png", // Single bedroom with blue recliner
+      "/lovable-uploads/b13751e7-6155-4bec-9e4b-78ab38a63083.png", // Twin bedroom with red and white bedding
+      "/lovable-uploads/a8072319-9350-4b35-be2f-761db7e194b0.png", // Living room with piano
+      "/lovable-uploads/ba5cd2ba-813e-4585-8cc1-881a6a3935c1.png", // Bedroom with antique wardrobe
+      "/lovable-uploads/55f3d34a-e353-4d9b-843d-6f0e9a9f61bf.png", // Backyard patio and garden
+      "/lovable-uploads/8f9a0e32-5572-4665-a085-541b3e34a778.png", // Living room with leather couches
+      "/lovable-uploads/edda2914-a347-4d50-b82e-d17f5474f027.png", // Kitchen with island
+      "/lovable-uploads/628bace6-0de3-486a-85f3-e462b650abe7.png", // Bedroom with patterned bedding
+      "/lovable-uploads/f6aeb693-96a4-4189-9331-37574eb146bd.png", // Outdoor patio with fountain
+      "/lovable-uploads/62c160f2-9772-4b15-b058-4e66a7aaef26.png", // Single bedroom with stained glass lamp
     ],
     coordinates: {
       lat: 38.6483,
@@ -539,7 +980,7 @@ export const locations: LocationType[] = [
     rating: 4.8,
   },
   {
-    id: "vita-bella-elderly-care",
+    id: "vita-bella",
     name: "Vita Bella Elderly Care - Assisted Living Facility",
     address: "4082 73rd St",
     city: "Sacramento",
@@ -570,11 +1011,11 @@ export const locations: LocationType[] = [
       "Activity center"
     ],
     images: [
-      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png",
-      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png",
-      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png",
-      "/lovable-uploads/efdfe73a-f649-4361-aeb2-b0f085579a8c.png",
-      "/lovable-uploads/e7df5213-21f9-4158-b6fd-2b2880f8f0bc.png"
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Living room
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Secondary living area
+      "/lovable-uploads/efdfe73a-f649-4361-aeb2-b0f085579a8c.png", // Bedroom with twin beds
+      "/lovable-uploads/e7df5213-21f9-4158-b6fd-2b2880f8f0bc.png", // Bedroom with twin beds 2
     ],
     coordinates: {
       lat: 38.5356,
@@ -584,7 +1025,7 @@ export const locations: LocationType[] = [
     rating: 4.6,
   },
   {
-    id: "vita-bella-elderly-care-ii",
+    id: "vita-bella-ii",
     name: "Vita Bella Elderly Care II Assisted Living Senior Home",
     address: "8362 New Point Dr",
     city: "Sacramento",
@@ -615,11 +1056,11 @@ export const locations: LocationType[] = [
       "Common living areas"
     ],
     images: [
-      "/lovable-uploads/d26da6bc-c979-45d2-9e1f-46c6b716e967.png",
-      "/lovable-uploads/b30d7fda-accd-4024-916d-15b9f02d29c3.png",
-      "/lovable-uploads/62a84882-d05e-43ef-b915-22a89abc4c36.png",
-      "/lovable-uploads/63abe475-d170-4636-90d0-144a46f7ee7c.png",
-      "/lovable-uploads/91549c68-429a-4a65-8962-c72ef1e28820.png"
+      "/lovable-uploads/d26da6bc-c979-45d2-9e1f-46c6b716e967.png", // Bedroom with blue bedding
+      "/lovable-uploads/b30d7fda-accd-4024-916d-15b9f02d29c3.png", // Bedroom with twin pink beds
+      "/lovable-uploads/62a84882-d05e-43ef-b915-22a89abc4c36.png", // Modern bathroom
+      "/lovable-uploads/63abe475-d170-4636-90d0-144a46f7ee7c.png", // Bathroom with shower
+      "/lovable-uploads/91549c68-429a-4a65-8962-c72ef1e28820.png", // Built-in closet space
     ],
     coordinates: {
       lat: 38.5140,
@@ -660,11 +1101,11 @@ export const locations: LocationType[] = [
       "Enclosed courtyard"
     ],
     images: [
-      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png",
-      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png",
-      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png",
-      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png",
-      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png",
+      "/lovable-uploads/2b263e1e-0019-4d81-9062-0b30a2549d40.png", // Luxury bedroom with jacuzzi
+      "/lovable-uploads/3c9f34a4-ffc5-44b7-a131-d219f3e04f72.png", // Room with jacuzzi view 2
+      "/lovable-uploads/8f0c75af-1290-4991-b8cc-730da5196a23.png", // Common living area
+      "/lovable-uploads/353d2d0d-8659-4178-bbe6-6cc5d25f00a0.png", // Community space
+      "/lovable-uploads/b5ca2441-44ef-4f9d-84eb-6047fc9f993e.png", // Exterior view
     ],
     coordinates: {
       lat: 38.5113,
@@ -672,258 +1113,6 @@ export const locations: LocationType[] = [
     },
     featured: false,
     rating: 4.8,
-  },
-  {
-    id: "sunrise-gardens",
-    name: "Sunrise Gardens Senior Living",
-    address: "2340 Forest Ridge Dr",
-    city: "Sacramento",
-    zip: "95825",
-    phone: "(916) 555-1111",
-    email: "info@sunrisegardens.com",
-    website: "www.sunrisegardens.com",
-    description: "Sunrise Gardens Senior Living offers a peaceful retreat in a beautifully landscaped setting. Our community provides assisted living services with a focus on maintaining residents' independence and dignity. We feature spacious apartments, gourmet dining, and a variety of wellness programs designed to enhance quality of life. Our dedicated staff provides 24-hour support while encouraging residents to remain active and engaged in community life.",
-    shortDescription: "Peaceful senior living community with beautiful gardens and comprehensive wellness programs.",
-    pricing: {
-      starting: 4400,
-      average: 5200,
-    },
-    services: [
-      "24-hour assistance",
-      "Medication management",
-      "Wellness programs",
-      "Personal care services",
-      "Transportation",
-      "Emergency response"
-    ],
-    amenities: [
-      "Beautiful gardens",
-      "Fitness center",
-      "Library",
-      "Arts and crafts room",
-      "Outdoor walking paths",
-      "Community dining"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.5721,
-      lng: -121.3874,
-    },
-    featured: false,
-    rating: 4.5,
-  },
-  {
-    id: "harmony-heights",
-    name: "Harmony Heights Assisted Living",
-    address: "1850 Oak Valley Ln",
-    city: "Carmichael",
-    zip: "95608",
-    phone: "(916) 555-2222",
-    email: "care@harmonyheights.com",
-    website: "www.harmonyheights.com",
-    description: "Harmony Heights Assisted Living is nestled in the heart of Carmichael, offering a warm and welcoming environment for seniors. Our community emphasizes personalized care while fostering independence and social connections. We provide a range of services from light assistance to more comprehensive care, allowing residents to age in place comfortably. Our beautiful facility features modern amenities and thoughtfully designed common areas.",
-    shortDescription: "Warm Carmichael community emphasizing personalized care and social connections.",
-    pricing: {
-      starting: 4600,
-      average: 5400,
-    },
-    services: [
-      "Personalized care plans",
-      "Medication assistance",
-      "Physical therapy",
-      "Social activities",
-      "Transportation services",
-      "24-hour support"
-    ],
-    amenities: [
-      "Modern apartments",
-      "Restaurant-style dining",
-      "Theater room",
-      "Fitness center",
-      "Beauty salon",
-      "Outdoor terraces"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.6161,
-      lng: -121.3269,
-    },
-    featured: false,
-    rating: 4.7,
-  },
-  {
-    id: "serenity-manor",
-    name: "Serenity Manor Memory Care",
-    address: "3950 Heritage Oaks Dr",
-    city: "Sacramento",
-    zip: "95834",
-    phone: "(916) 555-3333",
-    email: "info@serenitymanor.com",
-    website: "www.serenitymanor.com",
-    description: "Serenity Manor Memory Care provides specialized care for residents with Alzheimer's disease and dementia in a secure, homelike environment. Our specially trained staff understands the unique challenges of memory impairment and provides compassionate, patient care. The facility is designed with safety and comfort in mind, featuring secure outdoor gardens and memory-enhancing activities.",
-    shortDescription: "Specialized memory care in a secure, homelike environment with trained staff.",
-    pricing: {
-      starting: 5500,
-      average: 6300,
-    },
-    services: [
-      "Memory care programs",
-      "Secure environment",
-      "Behavioral support",
-      "Family education",
-      "Specialized activities",
-      "24/7 supervision"
-    ],
-    amenities: [
-      "Secure outdoor gardens",
-      "Memory care suites",
-      "Sensory rooms",
-      "Family areas",
-      "Therapeutic activities",
-      "Calm environments"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.6550,
-      lng: -121.5100,
-    },
-    featured: false,
-    rating: 4.9,
-  },
-  {
-    id: "meadowbrook-commons",
-    name: "Meadowbrook Commons Senior Living",
-    address: "4200 Meadowbrook Ave",
-    city: "Elk Grove",
-    zip: "95757",
-    phone: "(916) 555-4444",
-    email: "hello@meadowbrookcommons.com",
-    website: "www.meadowbrookcommons.com",
-    description: "Meadowbrook Commons Senior Living offers a vibrant community lifestyle in Elk Grove. Our modern facility provides independent and assisted living options with resort-style amenities. Residents enjoy an active lifestyle with numerous recreational activities, fitness programs, and social events. Our caring staff is available 24/7 to provide assistance as needed while respecting each resident's independence.",
-    shortDescription: "Vibrant Elk Grove community with resort-style amenities and active lifestyle programs.",
-    pricing: {
-      starting: 4300,
-      average: 5100,
-    },
-    services: [
-      "Independent living",
-      "Assisted living",
-      "Wellness programs",
-      "Social activities",
-      "Transportation",
-      "Housekeeping"
-    ],
-    amenities: [
-      "Resort-style pool",
-      "Golf simulator",
-      "Multiple dining venues",
-      "Fitness center",
-      "Arts studio",
-      "Walking trails"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.4265,
-      lng: -121.3744,
-    },
-    featured: true,
-    rating: 4.6,
-  },
-  {
-    id: "riverside-terrace",
-    name: "Riverside Terrace Assisted Living",
-    address: "5670 Riverside Blvd",
-    city: "Sacramento",
-    zip: "95831",
-    phone: "(916) 555-5555",
-    email: "care@riversideterrace.com",
-    website: "www.riversideterrace.com",
-    description: "Riverside Terrace Assisted Living offers beautiful riverside views and a peaceful environment for seniors. Our community provides personalized care services in an elegant setting with modern amenities. We focus on creating a home-like atmosphere where residents can enjoy their golden years with dignity and comfort. Our professional staff is committed to enhancing the quality of life for each resident.",
-    shortDescription: "Elegant riverside assisted living with beautiful views and personalized care services.",
-    pricing: {
-      starting: 4800,
-      average: 5600,
-    },
-    services: [
-      "Personalized care",
-      "Medication management",
-      "Physical therapy",
-      "Social programs",
-      "Transportation",
-      "Emergency response"
-    ],
-    amenities: [
-      "Riverside views",
-      "Elegant dining room",
-      "Library",
-      "Fitness center",
-      "Gardens",
-      "Community spaces"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600585153725-d29c8f545d22?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.4850,
-      lng: -121.5200,
-    },
-    featured: false,
-    rating: 4.8,
-  },
-  {
-    id: "golden-years-manor",
-    name: "Golden Years Manor",
-    address: "1750 Garden Valley Rd",
-    city: "Sacramento",
-    zip: "95822",
-    phone: "(916) 555-6666",
-    email: "info@goldenyearsmanor.com",
-    website: "www.goldenyearsmanor.com",
-    description: "Golden Years Manor provides comprehensive assisted living services in a warm, family-oriented environment. Our community is designed to feel like home while providing the support and care that seniors need. We offer a range of activities and services to keep residents engaged and healthy. Our experienced staff is dedicated to providing compassionate care while maintaining each resident's dignity and independence.",
-    shortDescription: "Family-oriented assisted living with comprehensive services and compassionate care.",
-    pricing: {
-      starting: 3900,
-      average: 4700,
-    },
-    services: [
-      "Comprehensive care",
-      "Medication assistance",
-      "Health monitoring",
-      "Social activities",
-      "Transportation",
-      "Meal services"
-    ],
-    amenities: [
-      "Family-style dining",
-      "Activity rooms",
-      "Outdoor patio",
-      "Library",
-      "Game room",
-      "Gardens"
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600566752734-2a0e4f557873?auto=format&fit=crop&q=80"
-    ],
-    coordinates: {
-      lat: 38.4520,
-      lng: -121.4180,
-    },
-    featured: false,
-    rating: 4.4,
   }
 ];
 
