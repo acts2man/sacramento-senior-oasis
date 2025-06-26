@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Phone, User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
@@ -293,15 +292,15 @@ const ContactSection = () => {
                       <span className="text-sm font-medium opacity-90">Call us directly at:</span>
                     </div>
                     <a 
-                      href="tel:+19165551234" 
+                      href="tel:+19165389563" 
                       className="text-2xl font-bold hover:text-white/90 transition-colors duration-300 block"
                     >
-                      (916) 555-1234
+                      (916) 538-9563
                     </a>
                   </div>
 
                   <a
-                    href="tel:+19165551234"
+                    href="tel:+19165389563"
                     className="btn-secondary w-full py-4 px-6 bg-white text-senior-blue font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center justify-center group/btn mb-6"
                   >
                     <Phone size={20} className="mr-2 group-hover/btn:animate-pulse" />

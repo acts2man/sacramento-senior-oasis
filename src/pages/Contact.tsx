@@ -1,3 +1,4 @@
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
@@ -57,7 +58,7 @@ const Contact = () => {
                   <h3 className="text-lg font-bold text-senior-slate mb-2">Phone</h3>
                   <div className="flex items-center text-gray-600">
                     <Phone size={20} className="mr-2 text-senior-blue" />
-                    <a href="tel:+19165551212" className="hover:text-senior-blue">(916) 555-1212</a>
+                    <a href="tel:+19165389563" className="hover:text-senior-blue">(916) 538-9563</a>
                   </div>
                 </div>
                 

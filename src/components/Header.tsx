@@ -43,8 +43,8 @@ const Header = () => {
             <Link to="/contact" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Contact
             </Link>
-            <a href="tel:916-555-9000" className="btn-primary flex items-center">
-              <Phone size={16} className="mr-2" /> (916) 555-9000
+            <a href="tel:916-538-9563" className="btn-primary flex items-center">
+              <Phone size={16} className="mr-2" /> (916) 538-9563
             </a>
           </nav>
 
@@ -80,8 +80,8 @@ const Header = () => {
               <Link to="/contact" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Contact
               </Link>
-              <a href="tel:916-555-9000" className="flex items-center text-senior-blue font-medium px-2 py-1" onClick={toggleMenu}>
-                <Phone size={16} className="mr-2" /> (916) 555-9000
+              <a href="tel:916-538-9563" className="flex items-center text-senior-blue font-medium px-2 py-1" onClick={toggleMenu}>
+                <Phone size={16} className="mr-2" /> (916) 538-9563
               </a>
             </div>
           </nav>
