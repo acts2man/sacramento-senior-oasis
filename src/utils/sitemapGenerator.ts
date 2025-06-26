@@ -2,7 +2,7 @@
 import { getAllLocations } from '../data/locations';
 
 export const generateSitemap = () => {
-  const baseUrl = 'https://sacramentoseniorcare.lovable.app';
+  const baseUrl = 'https://sacramentoelderlycare.com';
   const currentDate = new Date().toISOString().split('T')[0];
   
   // Static pages with their priorities and change frequencies
