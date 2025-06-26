@@ -8,15 +8,15 @@ const CareTypes = () => {
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'users':
-        return <Heart size={40} className="text-senior-blue" />;
+        return <Heart size={40} className="text-senior-blue group-hover:text-white transition-colors duration-500" />;
       case 'brain':
-        return <Brain size={40} className="text-senior-blue" />;
+        return <Brain size={40} className="text-senior-blue group-hover:text-white transition-colors duration-500" />;
       case 'home':
-        return <Home size={40} className="text-senior-blue" />;
+        return <Home size={40} className="text-senior-blue group-hover:text-white transition-colors duration-500" />;
       case 'stethoscope':
-        return <Stethoscope size={40} className="text-senior-blue" />;
+        return <Stethoscope size={40} className="text-senior-blue group-hover:text-white transition-colors duration-500" />;
       default:
-        return <Heart size={40} className="text-senior-blue" />;
+        return <Heart size={40} className="text-senior-blue group-hover:text-white transition-colors duration-500" />;
     }
   };
 
@@ -51,9 +51,7 @@ const CareTypes = () => {
               <div className="relative z-10">
                 <div className="mb-6 flex justify-center transform group-hover:scale-110 transition-transform duration-500">
                   <div className="bg-senior-light group-hover:bg-senior-blue rounded-full p-4 transition-all duration-500">
-                    <div className="group-hover:text-white transition-colors duration-500">
-                      {getIcon(type.icon)}
-                    </div>
+                    {getIcon(type.icon)}
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-senior-slate mb-4 group-hover:text-senior-blue transition-colors duration-300 text-center">
