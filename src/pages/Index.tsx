@@ -4,6 +4,7 @@ import FeaturedLocations from '../components/FeaturedLocations';
 import CareTypes from '../components/CareTypes';
 import LocationAreas from '../components/LocationAreas';
 import SEOContent from '../components/SEOContent';
+import ContactSection from '../components/ContactSection';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -32,6 +33,7 @@ const Index = () => {
         <CareTypes />
         <LocationAreas />
         <SEOContent />
+        <ContactSection />
       </main>
       <Footer />
     </div>
