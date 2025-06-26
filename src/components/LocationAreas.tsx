@@ -1,6 +1,5 @@
-
 import { Link } from 'react-router-dom';
-import { MapPin, ChevronRight, Star } from 'lucide-react';
+import { MapPin, ChevronRight, Star, Brain } from 'lucide-react';
 
 const LocationAreas = () => {
   const areas = [
