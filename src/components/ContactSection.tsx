@@ -267,8 +267,17 @@ const ContactSection = () => {
               
               <div className="relative z-10">
                 <div className="text-center mb-8">
-                  <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 group-hover:bg-white/30 transition-all duration-500 group-hover:scale-110">
-                    <Phone size={28} className="text-white" />
+                  <div className="flex items-center justify-center gap-3 mb-6">
+                    <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center group-hover:bg-white/30 transition-all duration-500 group-hover:scale-110">
+                      <Phone size={28} className="text-white" />
+                    </div>
+                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/40 transition-all duration-500 group-hover:scale-110">
+                      <img 
+                        src="/lovable-uploads/00cc8f6a-17a4-4af5-a9f9-2493f47a2c44.png" 
+                        alt="Care advisor" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
                   <h3 className="text-2xl font-bold mb-4">
                     Speak to a Senior Care
