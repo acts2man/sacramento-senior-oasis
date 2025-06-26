@@ -1,4 +1,3 @@
-
 const SEOContent = () => {
   return (
     <section className="py-12 bg-white">
@@ -9,15 +8,39 @@ const SEOContent = () => {
             <h2 className="text-3xl font-bold text-senior-slate mb-6">
               Senior Living Communities Across Sacramento
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
-              From urban settings in Midtown to family-friendly neighborhoods in Elk Grove, Sacramento offers diverse 
-              senior living options. Our platform helps you explore communities that match your preferences for location, 
-              care level, and lifestyle amenities.
-            </p>
-            <p className="text-lg text-gray-600 mb-8">
-              Whether you're considering communities in established areas like Carmichael or newer developments in Natomas, 
-              we provide transparent information about costs and services to help you plan with confidence.
-            </p>
+            
+            <div className="grid md:grid-cols-2 gap-8 items-center mb-6">
+              <div>
+                <p className="text-lg text-gray-600 mb-4">
+                  From urban settings in Midtown to family-friendly neighborhoods in Elk Grove, Sacramento offers diverse 
+                  senior living options. Our platform helps you explore communities that match your preferences for location, 
+                  care level, and lifestyle amenities.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <img 
+                  src="/lovable-uploads/b28a71c0-2565-452f-80d2-878420b86d78.png" 
+                  alt="Happy family spending quality time together" 
+                  className="w-48 h-48 rounded-full object-cover shadow-lg"
+                />
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="flex justify-center md:order-first">
+                <img 
+                  src="/lovable-uploads/51175d6d-e88c-4566-bd9c-58edb8bd9318.png" 
+                  alt="Multi-generational family enjoying time together" 
+                  className="w-48 h-48 rounded-full object-cover shadow-lg"
+                />
+              </div>
+              <div>
+                <p className="text-lg text-gray-600 mb-8">
+                  Whether you're considering communities in established areas like Carmichael or newer developments in Natomas, 
+                  we provide transparent information about costs and services to help you plan with confidence.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Specialized Care Content */}
