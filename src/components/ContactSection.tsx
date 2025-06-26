@@ -273,7 +273,7 @@ const ContactSection = () => {
                     </div>
                     <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/40 transition-all duration-500 group-hover:scale-110">
                       <img 
-                        src="/lovable-uploads/00cc8f6a-17a4-4af5-a9f9-2493f47a2c44.png" 
+                        src="/lovable-uploads/d77f6f3a-0329-497f-b3bf-3e26e931e65d.png" 
                         alt="Care advisor" 
                         className="w-full h-full object-cover"
                       />
