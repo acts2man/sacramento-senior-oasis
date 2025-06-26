@@ -16,33 +16,6 @@ const TrustedCareSection = () => {
             <div className="w-24 h-1 bg-senior-blue rounded-full"></div>
             <p className="text-lg text-gray-600 leading-relaxed">Sacramento Senior Care helps families find the right Assisted living community across the greater Sacramento area. Whether you're looking for assisted living, memory care, or independent living options, we provide comprehensive information to help you make informed decisions about your loved one's care.</p>
             
-            {/* Family moments showcase */}
-            <div className="grid grid-cols-2 gap-4 py-6">
-              <div className="relative group">
-                <div className="absolute inset-0 bg-senior-blue/10 rounded-xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300"></div>
-                <div className="relative bg-white p-3 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <img 
-                    src="/lovable-uploads/b28a71c0-2565-452f-80d2-878420b86d78.png" 
-                    alt="Grandmother sharing precious moments with grandchildren"
-                    className="w-full h-24 object-cover rounded-lg"
-                  />
-                  <p className="text-xs text-gray-600 mt-2 text-center font-medium">Precious Family Moments</p>
-                </div>
-              </div>
-              
-              <div className="relative group">
-                <div className="absolute inset-0 bg-senior-blue/10 rounded-xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-300"></div>
-                <div className="relative bg-white p-3 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <img 
-                    src="/lovable-uploads/51175d6d-e88c-4566-bd9c-58edb8bd9318.png" 
-                    alt="Happy seniors enjoying life together"
-                    className="w-full h-24 object-cover rounded-lg"
-                  />
-                  <p className="text-xs text-gray-600 mt-2 text-center font-medium">Joyful Community Life</p>
-                </div>
-              </div>
-            </div>
-            
             <div className="pt-4">
               <div className="inline-flex items-center px-6 py-3 bg-senior-blue text-white rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer hover:bg-senior-blue/90">
                 <span className="font-medium">Explore Communities</span>

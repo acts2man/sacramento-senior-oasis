@@ -38,6 +38,37 @@ const CareTypes = () => {
           </p>
         </div>
 
+        {/* Family moments showcase */}
+        <div className="flex justify-center mb-12 space-x-8 animate-fade-in delay-300">
+          <div className="relative group">
+            <div className="absolute inset-0 bg-senior-blue/10 rounded-full transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl group-hover:shadow-2xl transition-all duration-300">
+              <img 
+                src="/lovable-uploads/b28a71c0-2565-452f-80d2-878420b86d78.png" 
+                alt="Grandmother sharing precious moments with grandchildren"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1 rounded-full shadow-md">
+              <p className="text-xs text-gray-600 font-medium whitespace-nowrap">Family Bonds</p>
+            </div>
+          </div>
+          
+          <div className="relative group">
+            <div className="absolute inset-0 bg-senior-blue/10 rounded-full transform -rotate-3 group-hover:-rotate-6 transition-transform duration-300"></div>
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl group-hover:shadow-2xl transition-all duration-300">
+              <img 
+                src="/lovable-uploads/51175d6d-e88c-4566-bd9c-58edb8bd9318.png" 
+                alt="Happy seniors enjoying life together"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1 rounded-full shadow-md">
+              <p className="text-xs text-gray-600 font-medium whitespace-nowrap">Joyful Living</p>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {careTypes.map((type, index) => (
             <div 

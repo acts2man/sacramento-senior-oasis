@@ -27,24 +27,6 @@ const Hero = () => {
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-senior-blue/10 rounded-full blur-xl animate-pulse delay-1000"></div>
       </div>
 
-      {/* Floating family photos */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-8 w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm animate-pulse opacity-30 hover:opacity-50 transition-opacity duration-500">
-          <img 
-            src="/lovable-uploads/b28a71c0-2565-452f-80d2-878420b86d78.png" 
-            alt="Grandmother with grandchildren"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="absolute bottom-1/4 right-8 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm animate-pulse opacity-30 hover:opacity-50 transition-opacity duration-500" style={{ animationDelay: '2s' }}>
-          <img 
-            src="/lovable-uploads/51175d6d-e88c-4566-bd9c-58edb8bd9318.png" 
-            alt="Happy seniors together"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
       <div className="container-custom relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           <div className="animate-fade-in">
