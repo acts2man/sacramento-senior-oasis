@@ -28,6 +28,9 @@ const Header = () => {
             <Link to="/" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Home
             </Link>
+            <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
+              About
+            </Link>
             <Link to="/locations" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Communities
             </Link>
@@ -36,9 +39,6 @@ const Header = () => {
             </Link>
             <Link to="/memory-care" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Memory Care
-            </Link>
-            <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
-              About
             </Link>
             <Link to="/contact" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Contact
@@ -65,6 +65,9 @@ const Header = () => {
               <Link to="/" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Home
               </Link>
+              <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
+                About
+              </Link>
               <Link to="/locations" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Communities
               </Link>
@@ -73,9 +76,6 @@ const Header = () => {
               </Link>
               <Link to="/memory-care" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Memory Care
-              </Link>
-              <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
-                About
               </Link>
               <Link to="/contact" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Contact
