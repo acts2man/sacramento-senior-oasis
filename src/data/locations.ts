@@ -928,57 +928,6 @@ export const locations: LocationType[] = [
     rating: 4.7,
   },
   {
-    id: "villa-natomas",
-    name: "Villa Natomas Elderly Care",
-    address: "540 Alcantar Circle",
-    city: "Sacramento",
-    zip: "95834",
-    phone: "(916) 555-7139",
-    email: "care@villanatomas.com",
-    website: "www.villanatomas.com",
-    description: "Villa Natomas Elderly Care offers a luxurious assisted living experience in the desirable Natomas area. Our elegant facility combines upscale amenities with comprehensive care services to create an exceptional senior living environment. We focus on providing a socially active community with numerous opportunities for engagement and connection. Our professional staff delivers personalized care with a hospitality-oriented approach, ensuring residents feel both well-cared for and respected. The convenient location offers easy access to shopping, dining, and entertainment.",
-    shortDescription: "Luxurious assisted living in Natomas with upscale amenities and hospitality-oriented care.",
-    pricing: {
-      starting: 4900,
-      average: 5700,
-    },
-    services: [
-      "Personalized care plans",
-      "Concierge services",
-      "Medication management",
-      "Health and wellness program",
-      "Transportation services",
-      "Social engagement coordination"
-    ],
-    amenities: [
-      "Elegant private suites",
-      "Fine dining experience",
-      "Theater room",
-      "Fitness center",
-      "Library and computer center",
-      "Beauty salon and spa"
-    ],
-    images: [
-      "/lovable-uploads/e29ee5b0-8a0e-4b83-b79d-5792f1294f33.png", // Twin bedroom with blue and white bedding
-      "/lovable-uploads/a45c791c-5916-4891-87b7-8723fe76baa3.png", // Single bedroom with blue recliner
-      "/lovable-uploads/b13751e7-6155-4bec-9e4b-78ab38a63083.png", // Twin bedroom with red and white bedding
-      "/lovable-uploads/a8072319-9350-4b35-be2f-761db7e194b0.png", // Living room with piano
-      "/lovable-uploads/ba5cd2ba-813e-4585-8cc1-881a6a3935c1.png", // Bedroom with antique wardrobe
-      "/lovable-uploads/55f3d34a-e353-4d9b-843d-6f0e9a9f61bf.png", // Backyard patio and garden
-      "/lovable-uploads/8f9a0e32-5572-4665-a085-541b3e34a778.png", // Living room with leather couches
-      "/lovable-uploads/edda2914-a347-4d50-b82e-d17f5474f027.png", // Kitchen with island
-      "/lovable-uploads/628bace6-0de3-486a-85f3-e462b650abe7.png", // Bedroom with patterned bedding
-      "/lovable-uploads/f6aeb693-96a4-4189-9331-37574eb146bd.png", // Outdoor patio with fountain
-      "/lovable-uploads/62c160f2-9772-4b15-b058-4e66a7aaef26.png", // Single bedroom with stained glass lamp
-    ],
-    coordinates: {
-      lat: 38.6483,
-      lng: -121.5066,
-    },
-    featured: true,
-    rating: 4.8,
-  },
-  {
     id: "vita-bella",
     name: "Vita Bella Elderly Care - Assisted Living Facility",
     address: "4082 73rd St",
@@ -1115,7 +1064,7 @@ export const locations: LocationType[] = [
   },
   {
     id: "villa-natomas-elderly-care",
-    name: "Villa Natomas Senior Living",
+    name: "Villa Natomas Elderly Care",
     address: "3300 Arena Blvd",
     city: "Sacramento",
     zip: "95834",
@@ -1126,7 +1075,7 @@ export const locations: LocationType[] = [
       lat: 38.6483,
       lng: -121.5066
     },
-    description: "Villa Natomas Senior Living offers a luxurious assisted living experience in the desirable Natomas area. Our elegant facility combines upscale amenities with comprehensive care services to create an exceptional senior living environment. We focus on providing a socially active community with numerous opportunities for engagement and connection. Our professional staff delivers personalized care with a hospitality-oriented approach, ensuring residents feel both well-cared for and respected. The convenient location offers easy access to shopping, dining, and entertainment.",
+    description: "Villa Natomas Elderly Care offers a luxurious assisted living experience in the desirable Natomas area. Our elegant facility combines upscale amenities with comprehensive care services to create an exceptional senior living environment. We focus on providing a socially active community with numerous opportunities for engagement and connection. Our professional staff delivers personalized care with a hospitality-oriented approach, ensuring residents feel both well-cared for and respected. The convenient location offers easy access to shopping, dining, and entertainment.",
     shortDescription: "Luxurious assisted living in Natomas with upscale amenities and hospitality-oriented care.",
     pricing: {
       starting: 4900,
