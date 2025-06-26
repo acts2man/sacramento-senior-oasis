@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -6,6 +5,7 @@ import Footer from '../components/Footer';
 import Map from '../components/Map';
 import ContactForm from '../components/ContactForm';
 import LocationCard from '../components/LocationCard';
+import CareRecommendationsSection from '../components/CareRecommendationsSection';
 import SEO from '../components/SEO';
 import { getLocationById, getFeaturedLocations, LocationType } from '../data/locations';
 import { generateLocationSEO } from '../utils/seoUtils';
@@ -465,6 +465,9 @@ const LocationDetail = () => {
             </div>
           </div>
         </div>
+        
+        {/* Care Recommendations Section */}
+        <CareRecommendationsSection />
       </main>
       
       <Footer />
