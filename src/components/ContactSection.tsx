@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Phone, User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -22,13 +23,34 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Contact form submitted:', formData);
+    try {
+      // EmailJS configuration - you'll need to replace these with your actual values
+      const serviceId = 'YOUR_SERVICE_ID';
+      const templateId = 'YOUR_TEMPLATE_ID';
+      const publicKey = 'YOUR_PUBLIC_KEY';
+
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        location: formData.location || 'Not specified',
+        care_type: formData.careType || 'Not specified',
+        urgency: formData.urgency || 'Not specified',
+        budget: formData.budget || 'Not specified',
+        additional_info: formData.additionalInfo || 'None provided',
+        to_email: 'your-email@example.com' // Replace with your email
+      };
+
+      console.log('Sending email with data:', templateParams);
+
+      // Send email via EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
       toast({
         title: "Information Submitted!",
         description: "Thank you! A senior care advisor will contact you within 24 hours.",
@@ -46,8 +68,16 @@ const ContactSection = () => {
         additionalInfo: ''
       });
       
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        title: "Submission Error",
+        description: "There was an error submitting your information. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
