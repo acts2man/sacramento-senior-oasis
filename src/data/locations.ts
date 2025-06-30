@@ -1065,7 +1065,7 @@ export const locations: LocationType[] = [
   {
     id: "villa-natomas-elderly-care",
     name: "Villa Natomas Elderly Care",
-    address: "3300 Arena Blvd",
+    address: "540 Alcantar Circle",
     city: "Sacramento",
     zip: "95834",
     phone: "(916) 285-9000",
