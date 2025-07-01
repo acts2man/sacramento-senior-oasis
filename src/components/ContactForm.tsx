@@ -1,5 +1,8 @@
+
 import { useState } from 'react';
 import { useToast } from '../hooks/use-toast';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import { Label } from './ui/label';
 import emailjs from '@emailjs/browser';
 
 const ContactForm = () => {
@@ -9,7 +12,7 @@ const ContactForm = () => {
     email: '',
     phone: '',
     message: '',
-    preferredContact: 'email'
+    inquiryFor: 'for-me'
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,6 +20,10 @@ const ContactForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleRadioChange = (value: string) => {
+    setFormData(prev => ({ ...prev, inquiryFor: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,7 +45,7 @@ const ContactForm = () => {
         contact_phone: formData.phone,
         
         // Communication preferences
-        preferred_contact_method: formData.preferredContact,
+        inquiry_for: formData.inquiryFor,
         
         // Message content
         contact_message: formData.message || 'No specific message provided',
@@ -63,7 +70,7 @@ const ContactForm = () => {
       
       toast({
         title: "Message Sent Successfully!",
-        description: "Thank you for contacting us. We'll get back to you soon based on your preferred contact method.",
+        description: "Thank you for contacting us. We'll get back to you soon.",
       });
       
       // Reset form after successful submission
@@ -72,7 +79,7 @@ const ContactForm = () => {
         email: '',
         phone: '',
         message: '',
-        preferredContact: 'email'
+        inquiryFor: 'for-me'
       });
       
     } catch (error) {
@@ -143,19 +150,23 @@ const ContactForm = () => {
         </div>
         
         <div>
-          <label htmlFor="preferredContact" className="block text-sm font-medium text-gray-700 mb-1">
-            Preferred Contact Method
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Is this for you or someone else?
           </label>
-          <select
-            id="preferredContact"
-            name="preferredContact"
-            value={formData.preferredContact}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
-          >
-            <option value="email">Email</option>
-            <option value="phone">Phone</option>
-          </select>
+          <RadioGroup value={formData.inquiryFor} onValueChange={handleRadioChange}>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="for-me" id="for-me" />
+              <Label htmlFor="for-me">For me</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="someone-else" id="someone-else" />
+              <Label htmlFor="someone-else">Someone else</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="other" id="other" />
+              <Label htmlFor="other">Other</Label>
+            </div>
+          </RadioGroup>
         </div>
         
         <div>
