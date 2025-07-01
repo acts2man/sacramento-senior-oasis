@@ -5,7 +5,11 @@ import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Label } from './ui/label';
 import emailjs from '@emailjs/browser';
 
-const ContactForm = () => {
+interface ContactFormProps {
+  locationName?: string;
+}
+
+const ContactForm = ({ locationName }: ContactFormProps) => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -46,6 +50,9 @@ const ContactForm = () => {
         
         // Communication preferences
         inquiry_for: formData.inquiryFor,
+        
+        // Location information
+        location_name: locationName || 'General Contact Page',
         
         // Message content
         contact_message: formData.message || 'No specific message provided',

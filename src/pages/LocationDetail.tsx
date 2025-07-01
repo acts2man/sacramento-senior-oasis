@@ -459,7 +459,7 @@ const LocationDetail = () => {
                   <p className="text-gray-600 mb-4">
                     Have questions about {location.name}? Fill out the form below and we'll be in touch.
                   </p>
-                  <ContactForm />
+                  <ContactForm locationName={location.name} />
                 </div>
               </div>
             </div>
