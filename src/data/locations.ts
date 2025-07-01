@@ -341,4 +341,4 @@ export const getCareTypes = () => {
   ];
 };
 
-export { LocationType } from '../types';
+export type { LocationType } from '../types';
