@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { useToast } from '../hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -19,19 +20,54 @@ const ContactForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
+    try {
+      // EmailJS configuration with your actual credentials
+      const serviceId = 'service_qklbs5m';
+      const templateId = 'template_3f1h5fw';
+      const publicKey = 'VHqdZf6et7WQV3YAA';
+
+      // Template parameters mapped to form fields
+      // Use these variable names in your EmailJS template:
+      const templateParams = {
+        // Basic contact information
+        contact_name: formData.name,
+        contact_email: formData.email,
+        contact_phone: formData.phone,
+        
+        // Communication preferences
+        preferred_contact_method: formData.preferredContact,
+        
+        // Message content
+        contact_message: formData.message || 'No specific message provided',
+        
+        // Form type identifier
+        form_type: 'General Contact Form',
+        
+        // Metadata
+        submission_date: new Date().toLocaleDateString(),
+        submission_time: new Date().toLocaleTimeString(),
+        
+        // Your business email (where you want to receive inquiries)
+        to_email: 'your-business-email@example.com' // Replace with your email
+      };
+
+      console.log('Sending contact form with EmailJS:', templateParams);
+
+      // Send email via EmailJS
+      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      console.log('EmailJS response:', response);
+      
       toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you soon.",
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you soon based on your preferred contact method.",
       });
       
-      // Reset form
+      // Reset form after successful submission
       setFormData({
         name: '',
         email: '',
@@ -40,8 +76,16 @@ const ContactForm = () => {
         preferredContact: 'email'
       });
       
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        title: "Message Sending Failed",
+        description: "We couldn't send your message right now. Please try again or call us directly at (916) 538-9563.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -135,7 +179,7 @@ const ContactForm = () => {
           disabled={isSubmitting}
           className={`w-full py-3 px-4 bg-senior-blue text-white font-medium rounded-md hover:bg-senior-blue/90 transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          {isSubmitting ? 'Sending Message...' : 'Send Message'}
         </button>
         
         <p className="text-xs text-gray-500 mt-3">
