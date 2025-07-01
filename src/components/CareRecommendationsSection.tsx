@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Phone, User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
@@ -29,13 +28,10 @@ const CareRecommendationsSection = () => {
     setIsSubmitting(true);
     
     try {
-      // EmailJS configuration - Replace these with your actual EmailJS values
-      // 1. Get your Service ID from EmailJS dashboard
-      // 2. Create an email template and get the Template ID
-      // 3. Get your Public Key from EmailJS dashboard
-      const serviceId = 'service_your_id';        // Replace with your EmailJS Service ID
-      const templateId = 'template_your_id';      // Replace with your EmailJS Template ID
-      const publicKey = 'your_public_key';       // Replace with your EmailJS Public Key
+      // EmailJS configuration with your actual credentials
+      const serviceId = 'service_qklbs5m';
+      const templateId = 'template_3f1h5fw';
+      const publicKey = 'VHqdZf6et7WQV3YAA';
 
       // Template parameters mapped to form fields
       // Use these variable names in your EmailJS template:
