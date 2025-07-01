@@ -15,6 +15,7 @@ export const locations: LocationType[] = [
       lng: -121.476127
     },
     description: "Abounding Love is a family-owned assisted living community in the heart of Sacramento. We provide personalized care in a warm, inviting environment.",
+    shortDescription: "Family-owned assisted living community providing personalized care in Sacramento.",
     services: ["Assistance with daily living", "Medication management", "Meals and snacks", "Housekeeping", "Transportation"],
     amenities: ["Private rooms", "Common areas", "Outdoor garden", "Activities and events", "24-hour staff"],
     images: [
@@ -43,6 +44,7 @@ export const locations: LocationType[] = [
       lng: -121.421789
     },
     description: "Golden Years Manor offers compassionate care and a vibrant community for seniors. Our dedicated staff ensures residents feel at home.",
+    shortDescription: "Compassionate care and vibrant community for seniors in Sacramento.",
     services: ["Assistance with bathing and dressing", "Memory care", "Respite care", "Physical therapy", "Occupational therapy"],
     amenities: ["Secured environment", "Social activities", "Pet-friendly", "Beauty salon", "Library"],
     images: [
@@ -71,6 +73,7 @@ export const locations: LocationType[] = [
       lng: -121.345678
     },
     description: "Sunrise Gardens is a premier senior living community in Elk Grove, offering a range of care options and a beautiful, serene setting.",
+    shortDescription: "Premier senior living community offering comprehensive care options in Elk Grove.",
     services: ["Independent living", "Assisted living", "Memory care", "Skilled nursing", "Rehabilitation"],
     amenities: ["Restaurant-style dining", "Fitness center", "Swimming pool", "Walking trails", "Arts and crafts studio"],
     images: [
@@ -99,6 +102,7 @@ export const locations: LocationType[] = [
       lng: -121.123456
     },
     description: "Serenity Springs offers a peaceful and supportive environment for seniors in Folsom. Our caring staff provides personalized attention to each resident.",
+    shortDescription: "Peaceful and supportive senior living environment in Folsom.",
     services: ["Assisted living", "Memory care", "Hospice care", "Medication management", "Personal care"],
     amenities: ["Courtyard", "Chapel", "Transportation services", "Emergency call system", "Visiting physicians"],
     images: [
@@ -127,6 +131,7 @@ export const locations: LocationType[] = [
       lng: -121.234567
     },
     description: "Harmony Heights is a vibrant senior living community in Roseville, offering a variety of activities and amenities to promote an active lifestyle.",
+    shortDescription: "Vibrant senior living community promoting active lifestyle in Roseville.",
     services: ["Independent living", "Assisted living", "Rehabilitation services", "Skilled nursing", "Long-term care"],
     amenities: ["Clubhouse", "Billiards room", "Movie theater", "Gardening club", "Computer lab"],
     images: [
@@ -155,6 +160,7 @@ export const locations: LocationType[] = [
       lng: -121.765432
     },
     description: "Peaceful Pines offers a tranquil and supportive environment for seniors in Davis. Our dedicated staff provides personalized care and attention.",
+    shortDescription: "Tranquil and supportive senior living environment in Davis.",
     services: ["Assisted living", "Memory care", "Respite care", "Adult day care", "Home care"],
     amenities: ["Walking paths", "Outdoor seating", "Arts and crafts", "Music therapy", "Pet therapy"],
     images: [
@@ -183,6 +189,7 @@ export const locations: LocationType[] = [
       lng: -121.532098
     },
     description: "Tranquil Terrace is a welcoming senior living community in West Sacramento, offering a range of services and amenities to enhance residents' lives.",
+    shortDescription: "Welcoming senior living community enhancing residents' lives in West Sacramento.",
     services: ["Independent living", "Assisted living", "Memory care", "Skilled nursing", "Rehabilitation"],
     amenities: ["Dining room", "Activity center", "Library", "Transportation", "Housekeeping"],
     images: [
@@ -211,6 +218,7 @@ export const locations: LocationType[] = [
       lng: -121.298765
     },
     description: "Graceful Gardens provides a comfortable and supportive environment for seniors in Citrus Heights. Our caring staff is dedicated to meeting residents' needs.",
+    shortDescription: "Comfortable and supportive senior living environment in Citrus Heights.",
     services: ["Assisted living", "Memory care", "Hospice care", "Medication management", "Personal care"],
     amenities: ["Gardens", "Patio", "Social activities", "Religious services", "Beauty salon"],
     images: [
@@ -239,6 +247,7 @@ export const locations: LocationType[] = [
       lng: -121.243210
     },
     description: "Blissful Haven offers a warm and inviting atmosphere for seniors in Fair Oaks. Our compassionate staff provides personalized care and support.",
+    shortDescription: "Warm and inviting senior living atmosphere in Fair Oaks.",
     services: ["Independent living", "Assisted living", "Memory care", "Skilled nursing", "Rehabilitation"],
     amenities: ["Community center", "Fitness room", "Game room", "Library", "Transportation"],
     images: [
@@ -267,6 +276,7 @@ export const locations: LocationType[] = [
       lng: -121.334455
     },
     description: "Golden Sunset is a vibrant senior living community in Rancho Cordova, offering a range of activities and amenities to promote an active lifestyle.",
+    shortDescription: "Vibrant senior living community promoting active lifestyle in Rancho Cordova.",
     services: ["Assisted living", "Memory care", "Respite care", "Adult day care", "Home care"],
     amenities: ["Walking trails", "Gardening", "Arts and crafts", "Music", "Social events"],
     images: [
@@ -290,3 +300,45 @@ export const getLocationById = (id: string) => {
 export const getFeaturedLocations = () => {
   return locations.filter(location => location.featured);
 };
+
+export const getAllLocations = () => {
+  return locations;
+};
+
+export const searchLocations = (query: string) => {
+  if (!query.trim()) return locations;
+  
+  const searchTerm = query.toLowerCase();
+  return locations.filter(location => 
+    location.name.toLowerCase().includes(searchTerm) ||
+    location.city.toLowerCase().includes(searchTerm) ||
+    location.description.toLowerCase().includes(searchTerm) ||
+    location.services.some(service => service.toLowerCase().includes(searchTerm)) ||
+    location.amenities.some(amenity => amenity.toLowerCase().includes(searchTerm))
+  );
+};
+
+export const getCareTypes = () => {
+  return [
+    {
+      id: "assisted-living",
+      title: "Assisted Living",
+      description: "Perfect balance of independence and support for daily activities like bathing, dressing, and medication management.",
+      icon: "users"
+    },
+    {
+      id: "memory-care",
+      title: "Memory Care",
+      description: "Specialized care for those with Alzheimer's, dementia, and other memory-related conditions in a secure environment.",
+      icon: "brain"
+    },
+    {
+      id: "independent-living",
+      title: "Independent Living",
+      description: "Active lifestyle communities for seniors who want social engagement and amenities without daily care assistance.",
+      icon: "home"
+    }
+  ];
+};
+
+export { LocationType } from '../types';
