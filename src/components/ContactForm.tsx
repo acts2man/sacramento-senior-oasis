@@ -27,7 +27,7 @@ const ContactForm = () => {
     try {
       // EmailJS configuration with your actual credentials
       const serviceId = 'service_qklbs5m';
-      const templateId = 'template_3f1h5fw';
+      const templateId = 'template_pgkwqc3';
       const publicKey = 'VHqdZf6et7WQV3YAA';
 
       // Template parameters mapped to form fields
