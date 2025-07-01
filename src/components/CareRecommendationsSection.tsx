@@ -29,35 +29,52 @@ const CareRecommendationsSection = () => {
     setIsSubmitting(true);
     
     try {
-      // EmailJS configuration - you'll need to replace these with your actual values
-      const serviceId = 'YOUR_SERVICE_ID';
-      const templateId = 'YOUR_TEMPLATE_ID';
-      const publicKey = 'YOUR_PUBLIC_KEY';
+      // EmailJS configuration - Replace these with your actual EmailJS values
+      // 1. Get your Service ID from EmailJS dashboard
+      // 2. Create an email template and get the Template ID
+      // 3. Get your Public Key from EmailJS dashboard
+      const serviceId = 'service_your_id';        // Replace with your EmailJS Service ID
+      const templateId = 'template_your_id';      // Replace with your EmailJS Template ID
+      const publicKey = 'your_public_key';       // Replace with your EmailJS Public Key
 
-      // Prepare template parameters for EmailJS
+      // Template parameters mapped to form fields
+      // Use these variable names in your EmailJS template:
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        location: formData.location || 'Not specified',
+        // Basic contact information
+        client_name: formData.name,
+        client_email: formData.email,
+        client_phone: formData.phone,
+        
+        // Care requirements
+        preferred_location: formData.location || 'Not specified',
         care_type: formData.careType || 'Not specified',
-        urgency: formData.urgency || 'Not specified',
-        budget: formData.budget || 'Not specified',
-        additional_info: formData.additionalInfo || 'None provided',
-        to_email: 'your-email@example.com' // Replace with your email
+        timeline: formData.urgency || 'Not specified',
+        budget_range: formData.budget || 'Not specified',
+        
+        // Additional details
+        additional_notes: formData.additionalInfo || 'No additional information provided',
+        
+        // Metadata
+        submission_date: new Date().toLocaleDateString(),
+        submission_time: new Date().toLocaleTimeString(),
+        
+        // Your business email (where you want to receive inquiries)
+        to_email: 'your-business-email@example.com' // Replace with your email
       };
 
-      console.log('Sending email with data:', templateParams);
+      console.log('Sending care inquiry with EmailJS:', templateParams);
 
       // Send email via EmailJS
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      console.log('EmailJS response:', response);
       
       toast({
-        title: "Information Submitted!",
-        description: "Thank you! A senior care advisor will contact you within 24 hours.",
+        title: "Care Inquiry Submitted Successfully!",
+        description: "Thank you for your interest! A senior care advisor will contact you within 24 hours to discuss your needs.",
       });
       
-      // Reset form
+      // Reset form after successful submission
       setFormData({
         name: '',
         email: '',
@@ -73,7 +90,7 @@ const CareRecommendationsSection = () => {
       console.error('EmailJS Error:', error);
       toast({
         title: "Submission Error",
-        description: "There was an error submitting your information. Please try again or call us directly.",
+        description: "We couldn't submit your information right now. Please try again or call us directly at (916) 538-9563.",
         variant: "destructive",
       });
     } finally {
@@ -271,7 +288,7 @@ const CareRecommendationsSection = () => {
                     className={`w-full py-4 px-6 bg-senior-blue text-white font-semibold rounded-lg hover:bg-senior-blue/90 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center group ${isSubmitting ? '' : 'hover:scale-105'}`}
                   >
                     {isSubmitting ? (
-                      'Submitting...'
+                      'Submitting Your Care Inquiry...'
                     ) : (
                       <>
                         Get My Personalized Recommendations
