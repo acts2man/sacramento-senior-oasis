@@ -713,7 +713,7 @@ export const locations: LocationType[] = [
     rating: 4.9,
   },
   {
-    id: "love-and-serenity-elk-grove-iii",
+    id: "love-and-serenity-iii-of-elk-grove",
     name: "Love and Serenity of Elk Grove III",
     address: "9442 Mazatlan Way",
     city: "Elk Grove",
