@@ -756,7 +756,7 @@ export const locations: LocationType[] = [
     rating: 4.6,
   },
   {
-    id: "serenity-of-elk-grove-ii",
+    id: "love-and-serenity-of-elk-grove-ii",
     name: "Love and Serenity of Elk Grove II - Senior Care",
     address: "9279 Orange Crest Ct",
     city: "Elk Grove",
