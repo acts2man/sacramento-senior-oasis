@@ -15,7 +15,7 @@ const Contact = () => {
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
-        canonical="https://sacramentoseniorcare.com/contact-us"
+        canonical="https://sacramentoseniorcare.com/contact"
       />
       
       <Header />
