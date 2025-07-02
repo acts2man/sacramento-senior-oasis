@@ -31,7 +31,18 @@ const Contact = () => {
           </div>
         </div>
         
-        <div className="container-custom py-12">
+        {/* Hero Image Section */}
+        <div className="container-custom py-8">
+          <div className="rounded-lg overflow-hidden shadow-lg mb-8">
+            <img 
+              src="/lovable-uploads/6cf1acc2-8db0-43ce-9da9-3c12fec8389a.png" 
+              alt="Compassionate senior care - caregiver assisting elderly gentleman in wheelchair in a beautiful garden setting"
+              className="w-full h-64 md:h-80 object-cover"
+            />
+          </div>
+        </div>
+        
+        <div className="container-custom pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Contact Form */}
             <div>
@@ -50,7 +61,7 @@ const Contact = () => {
                   <h3 className="text-lg font-bold text-senior-slate mb-2">Address</h3>
                   <div className="flex items-center text-gray-600">
                     <MapPin size={20} className="mr-2 text-senior-blue" />
-                    <span>123 Senior Care Lane, Sacramento, CA 95814</span>
+                    <span>1234 Senior Care Lane, Sacramento, CA 95814</span>
                   </div>
                 </div>
                 
