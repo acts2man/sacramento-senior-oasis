@@ -37,7 +37,8 @@ const Contact = () => {
             <img 
               src="/lovable-uploads/6cf1acc2-8db0-43ce-9da9-3c12fec8389a.png" 
               alt="Compassionate senior care - caregiver assisting elderly gentleman in wheelchair in a beautiful garden setting"
-              className="w-full h-64 md:h-80 object-cover"
+              className="w-full h-64 md:h-80 object-cover object-center"
+              style={{ objectPosition: "center 20%" }}
             />
           </div>
         </div>
