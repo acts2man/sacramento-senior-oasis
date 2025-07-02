@@ -26,7 +26,7 @@ export interface LocationType {
 
 export const locations: LocationType[] = [
   {
-    id: "abounding-love",
+    id: "abounding-love-home-care",
     name: "Abounding Love - Assisted Living Care Home",
     address: "27 Tristan Cir",
     city: "Sacramento",
@@ -173,7 +173,7 @@ export const locations: LocationType[] = [
     rating: 4.6,
   },
   {
-    id: "abounding-peace",
+    id: "abounding-peace-elder-care",
     name: "Abounding Peace Elderly Care - Assisted Living",
     address: "7124 Hayward Drive",
     city: "Sacramento",
@@ -536,7 +536,7 @@ export const locations: LocationType[] = [
     rating: 4.7,
   },
   {
-    id: "love-and-comfort",
+    id: "love-and-comfort-elderly-care",
     name: "Love and Comfort - Assisted Living Care Home",
     address: "6532 Rancho Grande Way",
     city: "Sacramento",
@@ -756,7 +756,7 @@ export const locations: LocationType[] = [
     rating: 4.6,
   },
   {
-    id: "love-and-serenity-elk-grove-ii",
+    id: "love-and-serenity-of-elk-grove-ii",
     name: "Love and Serenity of Elk Grove II - Senior Care",
     address: "9279 Orange Crest Ct",
     city: "Elk Grove",
@@ -799,7 +799,7 @@ export const locations: LocationType[] = [
     rating: 4.7,
   },
   {
-    id: "love-and-serenity-vintage-park",
+    id: "love-and-serenity-of-vintage-park",
     name: "Love and Serenity of Vintage Park - Senior Care Home",
     address: "8901 Sonoma Valley Way",
     city: "Sacramento",
@@ -928,7 +928,7 @@ export const locations: LocationType[] = [
     rating: 4.7,
   },
   {
-    id: "vita-bella",
+    id: "vita-bella-elderly-care",
     name: "Vita Bella Elderly Care - Assisted Living Facility",
     address: "4082 73rd St",
     city: "Sacramento",
@@ -973,7 +973,7 @@ export const locations: LocationType[] = [
     rating: 4.6,
   },
   {
-    id: "vita-bella-ii",
+    id: "vita-bella-elderly-care-ii",
     name: "Vita Bella Elderly Care II Assisted Living Senior Home",
     address: "8362 New Point Dr",
     city: "Sacramento",
