@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Phone, User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
+import { User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import emailjs from '@emailjs/browser';
 
