@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Phone, User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
+import { User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import emailjs from '@emailjs/browser';
 
@@ -37,11 +37,11 @@ const ContactSection = () => {
                 
                 <div className="space-y-6">
                   <div className="flex items-center p-4 bg-senior-light rounded-lg group-hover:bg-senior-blue/10 transition-all duration-500">
-                    <Phone className="text-senior-blue mr-4" size={24} />
+                    <Mail className="text-senior-blue mr-4" size={24} />
                     <div>
-                      <h4 className="font-semibold text-senior-slate">Call Us</h4>
-                      <a href="tel:+19165389563" className="text-gray-600 hover:text-senior-blue transition-colors">
-                        ‪(916) 538-9563‬
+                      <h4 className="font-semibold text-senior-slate">Contact Us</h4>
+                      <a href="/contact" className="text-gray-600 hover:text-senior-blue transition-colors">
+                        Send a message via our contact form
                       </a>
                     </div>
                   </div>
@@ -105,8 +105,8 @@ const ContactSection = () => {
                     <span className="text-sm">Local Sacramento expertise</span>
                   </div>
                   <div className="flex items-center">
-                    <Phone size={16} className="mr-3 text-white/80" />
-                    <span className="text-sm">Free consultation & support</span>
+                    <Mail size={16} className="mr-3 text-white/80" />
+                    <span className="text-sm">Contact via form submission</span>
                   </div>
                   <div className="flex items-center">
                     <Clock size={16} className="mr-3 text-white/80" />
@@ -115,11 +115,11 @@ const ContactSection = () => {
                 </div>
 
                 <a
-                  href="tel:+19165389563"
+                  href="/contact"
                   className="w-full py-4 px-6 bg-white text-senior-blue font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center justify-center group/btn mb-6"
                 >
-                  <Phone size={20} className="mr-2 group-hover/btn:animate-pulse" />
-                  Call Now - Free Consultation
+                  <Mail size={20} className="mr-2 group-hover/btn:animate-pulse" />
+                  Contact Us - Free Consultation
                 </a>
 
                 <div className="bg-white/10 rounded-xl p-6 group-hover:bg-white/20 transition-all duration-500">

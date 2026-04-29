@@ -132,9 +132,9 @@ const LocationDetail = () => {
                   className="btn-primary flex items-center"
                   asChild
                 >
-                  <a href={`tel:${location.phone}`}>
-                    <Phone size={16} />
-                    <span>Call Community</span>
+                  <a href="/contact">
+                    <Mail size={16} />
+                    <span>Contact Us</span>
                   </a>
                 </Button>
               </div>
@@ -261,12 +261,6 @@ const LocationDetail = () => {
                       <div className="border-t pt-6">
                         <h3 className="font-bold text-senior-slate mb-3">Contact Information</h3>
                         <ul className="space-y-2">
-                          <li className="flex items-center text-gray-600">
-                            <Phone size={18} className="mr-2 text-senior-blue" />
-                            <a href={`tel:${location.phone}`} className="hover:text-senior-blue">
-                              {location.phone}
-                            </a>
-                          </li>
                           <li className="flex items-center text-gray-600">
                             <Mail size={18} className="mr-2 text-senior-blue" />
                             <a href={`mailto:${location.email}`} className="hover:text-senior-blue">
@@ -436,9 +430,9 @@ const LocationDetail = () => {
                     variant="default"
                     asChild
                   >
-                    <a href={`tel:${location.phone}`}>
-                      <Phone size={16} />
-                      <span>Call for Tour</span>
+                    <a href="/contact">
+                      <Mail size={16} />
+                      <span>Request a Tour</span>
                     </a>
                   </Button>
                   <Button 

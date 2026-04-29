@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
 import { generatePageSEO } from '../utils/seoUtils';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Mail, MapPin, Clock } from 'lucide-react';
 
 const Contact = () => {
   const seoData = generatePageSEO('contact');
@@ -63,14 +63,6 @@ const Contact = () => {
                   <div className="flex items-center text-gray-600">
                     <MapPin size={20} className="mr-2 text-senior-blue" />
                     <span>1234 Senior Care Lane, Sacramento, CA 95814</span>
-                  </div>
-                </div>
-                
-                <div className="mb-6">
-                  <h3 className="text-lg font-bold text-senior-slate mb-2">Phone</h3>
-                  <div className="flex items-center text-gray-600">
-                    <Phone size={20} className="mr-2 text-senior-blue" />
-                    <a href="tel:+19165389563" className="hover:text-senior-blue">(916) 538-9563</a>
                   </div>
                 </div>
                 

@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Heart } from 'lucide-react';
+import { Mail, MapPin, Facebook, Twitter, Instagram, Heart } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -73,10 +73,6 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin size={20} className="mr-2 flex-shrink-0 mt-1" />
                 <span className="text-white/80">1234 Capitol Avenue, Sacramento, CA 95814</span>
-              </li>
-              <li className="flex items-center">
-                <Phone size={20} className="mr-2 flex-shrink-0" />
-                <a href="tel:916-538-9563" className="text-white/80 hover:text-white transition-colors">(916) 538-9563</a>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-2 flex-shrink-0" />

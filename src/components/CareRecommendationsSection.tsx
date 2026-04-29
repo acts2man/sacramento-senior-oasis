@@ -86,7 +86,7 @@ const CareRecommendationsSection = () => {
       console.error('EmailJS Error:', error);
       toast({
         title: "Submission Error",
-        description: "We couldn't submit your information right now. Please try again or call us directly at (916) 538-9563.",
+        description: "We couldn't submit your information right now. Please try again in a few moments.",
         variant: "destructive",
       });
     } finally {
@@ -182,7 +182,7 @@ const CareRecommendationsSection = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
-                        placeholder="‪(916) 538-9563‬"
+                        placeholder="(555) 555-5555"
                       />
                     </div>
                     
@@ -312,7 +312,7 @@ const CareRecommendationsSection = () => {
                 <div className="text-center mb-8">
                   <div className="flex items-center justify-center gap-3 mb-6">
                     <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center group-hover:bg-white/30 transition-all duration-500 group-hover:scale-110">
-                      <Phone size={28} className="text-white" />
+                      <Mail size={28} className="text-white" />
                     </div>
                     <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/40 transition-all duration-500 group-hover:scale-110">
                       <img 
@@ -323,7 +323,7 @@ const CareRecommendationsSection = () => {
                     </div>
                   </div>
                   <h3 className="text-2xl font-bold mb-4">
-                    Speak to a Senior Care
+                    Connect With a Senior Care
                     <span className="block">Advisor Today</span>
                   </h3>
                   <div className="w-16 h-1 bg-white/30 rounded-full mx-auto mb-6"></div>
@@ -332,23 +332,20 @@ const CareRecommendationsSection = () => {
                 <div className="text-center mb-8">
                   <div className="bg-white/10 rounded-xl p-6 mb-6 group-hover:bg-white/20 transition-all duration-500">
                     <div className="flex items-center justify-center mb-3">
-                      <Phone size={20} className="mr-2" />
-                      <span className="text-sm font-medium opacity-90">Call us directly at:</span>
+                      <Mail size={20} className="mr-2" />
+                      <span className="text-sm font-medium opacity-90">Reach us through our contact form</span>
                     </div>
-                    <a 
-                      href="tel:+19165389563" 
-                      className="text-2xl font-bold hover:text-white/90 transition-colors duration-300 block"
-                    >
-                      ‪(916) 538-9563‬
-                    </a>
+                    <p className="text-base font-medium opacity-90">
+                      Fill out the form and a care advisor will respond promptly.
+                    </p>
                   </div>
 
                   <a
-                    href="tel:+19165389563"
+                    href="/contact"
                     className="btn-secondary w-full py-4 px-6 bg-white text-senior-blue font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center justify-center group/btn mb-6"
                   >
-                    <Phone size={20} className="mr-2 group-hover/btn:animate-pulse" />
-                    Call Now - Free Consultation
+                    <Mail size={20} className="mr-2 group-hover/btn:animate-pulse" />
+                    Contact Us - Free Consultation
                   </a>
                 </div>
 

@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Mail } from 'lucide-react';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,9 +44,9 @@ const Header = () => {
             <Link to="/contact" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Contact
             </Link>
-            <a href="tel:916-538-9563" className="btn-primary flex items-center">
-              <Phone size={16} className="mr-2" /> (916) 538-9563
-            </a>
+            <Link to="/contact" className="btn-primary flex items-center">
+              <Mail size={16} className="mr-2" /> Contact Us
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -80,9 +81,9 @@ const Header = () => {
               <Link to="/contact" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Contact
               </Link>
-              <a href="tel:916-538-9563" className="flex items-center text-senior-blue font-medium px-2 py-1" onClick={toggleMenu}>
-                <Phone size={16} className="mr-2" /> (916) 538-9563
-              </a>
+              <Link to="/contact" className="flex items-center text-senior-blue font-medium px-2 py-1" onClick={toggleMenu}>
+                <Mail size={16} className="mr-2" /> Contact Us
+              </Link>
             </div>
           </nav>
         )}

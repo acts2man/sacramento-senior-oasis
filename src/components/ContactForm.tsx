@@ -93,7 +93,7 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
       console.error('EmailJS Error:', error);
       toast({
         title: "Message Sending Failed",
-        description: "We couldn't send your message right now. Please try again or call us directly at (916) 538-9563.",
+        description: "We couldn't send your message right now. Please try again in a few moments.",
         variant: "destructive",
       });
     } finally {
