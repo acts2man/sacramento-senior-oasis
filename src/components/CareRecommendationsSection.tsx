@@ -86,7 +86,7 @@ const CareRecommendationsSection = () => {
       console.error('EmailJS Error:', error);
       toast({
         title: "Submission Error",
-        description: "We couldn't submit your information right now. Please try again or call us directly at (916) 538-9563.",
+        description: "We couldn't submit your information right now. Please try again in a few moments.",
         variant: "destructive",
       });
     } finally {
@@ -182,7 +182,7 @@ const CareRecommendationsSection = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
-                        placeholder="‪(916) 538-9563‬"
+                        placeholder="(555) 555-5555"
                       />
                     </div>
                     
