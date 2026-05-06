@@ -20,7 +20,9 @@ const SEO = ({
   canonical,
   jsonLd 
 }: SEOProps) => {
-  const fullTitle = title.includes('Sacramento Senior Care') ? title : `${title} | Sacramento Senior Care`;
+  const fullTitle = title.includes('Sacramento Senior Living Directory')
+    ? title
+    : `${title} | Sacramento Senior Living Directory`;
   
   return (
     <Helmet>

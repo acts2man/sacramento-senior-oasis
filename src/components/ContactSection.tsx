@@ -50,8 +50,8 @@ const ContactSection = () => {
                     <Mail className="text-senior-blue mr-4" size={24} />
                     <div>
                       <h4 className="font-semibold text-senior-slate">Email Us</h4>
-                      <a href="mailto:info@sacramentoseniorcare.com" className="text-gray-600 hover:text-senior-blue transition-colors">
-                        info@sacramentoseniorcare.com
+                      <a href="mailto:care@sacramentoelderlycare.com" className="text-gray-600 hover:text-senior-blue transition-colors">
+                        care@sacramentoelderlycare.com
                       </a>
                     </div>
                   </div>
