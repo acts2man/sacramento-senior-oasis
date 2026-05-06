@@ -6,8 +6,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import LocationCard from '../components/LocationCard';
-import { getAllLocations, LocationType } from '../data/locations';
+import { getAllLocations, locations, LocationType } from '../data/locations';
 import { SITE_URL } from '../lib/constants';
+import JsonLd from '../components/JsonLd';
+import { buildBreadcrumbSchema, buildItemListSchema } from '../lib/schema';
 
 const MemoryCare = () => {
   const [memoryCareCommunities, setMemoryCareCommunities] = useState<LocationType[]>([]);
@@ -119,6 +121,15 @@ const MemoryCare = () => {
         description="Compare memory care communities in the Sacramento metro for dementia and Alzheimer's residents. Browse secure facilities, services, and pricing in one place."
         keywords="memory care sacramento, dementia care sacramento, alzheimer's care, memory care facilities, sacramento senior care"
         canonical={`${SITE_URL}/memory-care`}
+      />
+      {/* No structured care_types field on facilities yet, so we list every
+          directory entry. Narrow this once locations.ts gains care_types. */}
+      <JsonLd data={buildItemListSchema(locations, '/memory-care')} />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Memory Care', url: '/memory-care' },
+        ])}
       />
       
       <Header />

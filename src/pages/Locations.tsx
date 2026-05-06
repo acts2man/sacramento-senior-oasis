@@ -10,6 +10,8 @@ import { locations, searchLocations, LocationType } from '../data/locations';
 import { generatePageSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
 import { Filter, MapPin, SlidersHorizontal, X } from 'lucide-react';
+import JsonLd from '../components/JsonLd';
+import { buildBreadcrumbSchema, buildItemListSchema } from '../lib/schema';
 
 const Locations = () => {
   const location = useLocation();
@@ -49,13 +51,22 @@ const Locations = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         title={searchQuery ? `${searchQuery} Senior Living Communities in Sacramento` : seoData.title}
         description={dynamicDescription}
         keywords={seoData.keywords}
         canonical={`${SITE_URL}/locations`}
       />
-      
+      {/* ItemList reflects the full directory, not the filtered view, so
+          search-result variants don't ship a different schema to crawlers. */}
+      <JsonLd data={buildItemListSchema(locations, '/locations')} />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Communities', url: '/locations' },
+        ])}
+      />
+
       <Header />
       
       <main className="flex-grow bg-gray-50">

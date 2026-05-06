@@ -6,19 +6,33 @@ import SEO from '../components/SEO';
 import { generatePageSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
 import { Mail, MapPin, Clock } from 'lucide-react';
+import JsonLd from '../components/JsonLd';
+import {
+  buildBreadcrumbSchema,
+  buildOrganizationWithContactSchema,
+} from '../lib/schema';
 
 const Contact = () => {
   const seoData = generatePageSEO('contact');
-  
+
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
         canonical={`${SITE_URL}/contact`}
       />
-      
+      <JsonLd
+        data={buildOrganizationWithContactSchema('care@sacramentoelderlycare.com')}
+      />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Contact', url: '/contact' },
+        ])}
+      />
+
       <Header />
       
       <main className="flex-grow bg-gray-50">
