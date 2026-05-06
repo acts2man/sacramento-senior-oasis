@@ -6,25 +6,19 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import LocationCard from '../components/LocationCard';
-import { getAllLocations, locations, LocationType } from '../data/locations';
+import { locations } from '../data/locations';
+import type { Facility } from '../types/facility';
 import { SITE_URL } from '../lib/constants';
 import JsonLd from '../components/JsonLd';
 import { buildBreadcrumbSchema, buildItemListSchema } from '../lib/schema';
 
+const memoryCareFacilities = locations.filter(f => f.care_types.includes('memory_care'));
+
 const MemoryCare = () => {
-  const [memoryCareCommunities, setMemoryCareCommunities] = useState<LocationType[]>([]);
+  const [memoryCareCommunities, setMemoryCareCommunities] = useState<Facility[]>([]);
 
   useEffect(() => {
-    const allLocations = getAllLocations();
-    // Filter for memory care services
-    const memoryCareLocations = allLocations.filter(location => 
-      location.services.some(service => 
-        service.toLowerCase().includes('memory') || 
-        service.toLowerCase().includes('dementia') || 
-        service.toLowerCase().includes('alzheimer')
-      )
-    );
-    setMemoryCareCommunities(memoryCareLocations.slice(0, 6)); // Show first 6
+    setMemoryCareCommunities(memoryCareFacilities.slice(0, 6));
   }, []);
 
   const features = [
@@ -122,9 +116,7 @@ const MemoryCare = () => {
         keywords="memory care sacramento, dementia care sacramento, alzheimer's care, memory care facilities, sacramento senior care"
         canonical={`${SITE_URL}/memory-care`}
       />
-      {/* No structured care_types field on facilities yet, so we list every
-          directory entry. Narrow this once locations.ts gains care_types. */}
-      <JsonLd data={buildItemListSchema(locations, '/memory-care')} />
+      <JsonLd data={buildItemListSchema(memoryCareFacilities, '/memory-care')} />
       <JsonLd
         data={buildBreadcrumbSchema([
           { name: 'Home', url: '/' },

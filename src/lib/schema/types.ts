@@ -74,7 +74,10 @@ export interface LocalBusinessSchema extends SchemaThing {
   description?: string;
   image?: string[];
   address?: PostalAddress;
-  telephone?: string;
+  // INTENTIONALLY no `telephone`. Facility phones are never advertised
+  // on this site; all inquiries route to the directory master line, which
+  // appears on Organization.contactPoint instead. See
+  // src/types/facility.ts for the full rationale.
   geo?: GeoCoordinates;
   priceRange?: string;
 }
