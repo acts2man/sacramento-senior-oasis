@@ -71,7 +71,7 @@ const Contact = () => {
                   <h3 className="text-lg font-bold text-senior-slate mb-2">Email</h3>
                   <div className="flex items-center text-gray-600">
                     <Mail size={20} className="mr-2 text-senior-blue" />
-                    <a href="mailto:info@sacramentoseniorcare.com" className="hover:text-senior-blue">info@sacramentoseniorcare.com</a>
+                    <a href="mailto:care@sacramentoelderlycare.com" className="hover:text-senior-blue">care@sacramentoelderlycare.com</a>
                   </div>
                 </div>
                 
