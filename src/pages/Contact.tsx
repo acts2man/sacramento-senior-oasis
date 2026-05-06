@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
 import { generatePageSEO } from '../utils/seoUtils';
+import { SITE_URL } from '../lib/constants';
 import { Mail, MapPin, Clock } from 'lucide-react';
 
 const Contact = () => {
@@ -15,7 +16,7 @@ const Contact = () => {
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
-        canonical="https://sacramentoseniorcare.com/contact"
+        canonical={`${SITE_URL}/contact`}
       />
       
       <Header />

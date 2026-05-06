@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { generatePageSEO } from '../utils/seoUtils';
+import { SITE_URL } from '../lib/constants';
 import { Heart, Users, Star, Shield } from 'lucide-react';
 
 const About = () => {
@@ -13,7 +14,7 @@ const About = () => {
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
-        canonical="https://sacramentoseniorcare.com/about"
+        canonical={`${SITE_URL}/about`}
       />
       
       <Header />

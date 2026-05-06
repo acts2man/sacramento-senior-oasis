@@ -11,6 +11,7 @@ import SEO from '../components/SEO';
 import TrustedCareSection from '../components/TrustedCareSection';
 import CareImageShowcase from '../components/CareImageShowcase';
 import { generatePageSEO } from '../utils/seoUtils';
+import { SITE_URL } from '../lib/constants';
 
 const Index = () => {
   const seoData = generatePageSEO('home');
@@ -21,7 +22,7 @@ const Index = () => {
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
-        canonical="https://sacramentoseniorcare.com"
+        canonical={SITE_URL}
       />
       
       <Header />

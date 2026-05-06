@@ -3,11 +3,17 @@ import { useState } from 'react';
 import { useToast } from '../hooks/use-toast';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Label } from './ui/label';
-import emailjs from '@emailjs/browser';
 
 interface ContactFormProps {
   locationName?: string;
 }
+
+const NETLIFY_FORM_NAME = 'contact';
+
+const encodeFormData = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&');
 
 const ContactForm = ({ locationName }: ContactFormProps) => {
   const { toast } = useToast();
@@ -18,7 +24,7 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
     message: '',
     inquiryFor: 'for-me'
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -33,54 +39,31 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      // EmailJS configuration with your actual credentials
-      const serviceId = 'service_qklbs5m';
-      const templateId = 'template_pgkwqc3';
-      const publicKey = 'VHqdZf6et7WQV3YAA';
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData({
+          'form-name': NETLIFY_FORM_NAME,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          'inquiry-for': formData.inquiryFor,
+          'location-name': locationName || 'General Contact Page',
+          message: formData.message,
+        }),
+      });
 
-      // Template parameters mapped to form fields
-      // Use these variable names in your EmailJS template:
-      const templateParams = {
-        // Basic contact information
-        contact_name: formData.name,
-        contact_email: formData.email,
-        contact_phone: formData.phone,
-        
-        // Communication preferences
-        inquiry_for: formData.inquiryFor,
-        
-        // Location information
-        location_name: locationName || 'General Contact Page',
-        
-        // Message content
-        contact_message: formData.message || 'No specific message provided',
-        
-        // Form type identifier
-        form_type: 'General Contact Form',
-        
-        // Metadata
-        submission_date: new Date().toLocaleDateString(),
-        submission_time: new Date().toLocaleTimeString(),
-        
-        // Your business email (where you want to receive inquiries)
-        to_email: 'your-business-email@example.com' // Replace with your email
-      };
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}`);
+      }
 
-      console.log('Sending contact form with EmailJS:', templateParams);
-
-      // Send email via EmailJS
-      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      
-      console.log('EmailJS response:', response);
-      
       toast({
         title: "Message Sent Successfully!",
         description: "Thank you for contacting us. We'll get back to you soon.",
       });
-      
-      // Reset form after successful submission
+
       setFormData({
         name: '',
         email: '',
@@ -88,9 +71,9 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
         message: '',
         inquiryFor: 'for-me'
       });
-      
+
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Contact form submission error:', error);
       toast({
         title: "Message Sending Failed",
         description: "We couldn't send your message right now. Please try again in a few moments.",
@@ -102,12 +85,26 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white rounded-lg shadow-md p-6"
+      name={NETLIFY_FORM_NAME}
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+      <p className="hidden">
+        <label>
+          Don't fill this out if you're human: <input name="bot-field" />
+        </label>
+      </p>
+
       <div className="mb-6">
         <h3 className="text-2xl font-bold text-senior-slate mb-2">Contact Us</h3>
         <p className="text-gray-600">We're here to help you find the perfect senior living community.</p>
       </div>
-      
+
       <div className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">

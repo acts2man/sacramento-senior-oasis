@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar';
 import SEO from '../components/SEO';
 import { locations, searchLocations, LocationType } from '../data/locations';
 import { generatePageSEO } from '../utils/seoUtils';
+import { SITE_URL } from '../lib/constants';
 import { Filter, MapPin, SlidersHorizontal, X } from 'lucide-react';
 
 const Locations = () => {
@@ -52,7 +53,7 @@ const Locations = () => {
         title={searchQuery ? `${searchQuery} Senior Living Communities in Sacramento` : seoData.title}
         description={dynamicDescription}
         keywords={seoData.keywords}
-        canonical="https://sacramentoseniorcare.com/locations"
+        canonical={`${SITE_URL}/locations`}
       />
       
       <Header />
