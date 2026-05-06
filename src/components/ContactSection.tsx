@@ -1,13 +1,7 @@
 
-import { useState } from 'react';
-import { User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
-import { useToast } from '../hooks/use-toast';
-import emailjs from '@emailjs/browser';
+import { Mail, MapPin, Heart, Clock } from 'lucide-react';
 
 const ContactSection = () => {
-  // This component is now simplified and only contains contact information
-  // The form has been moved to CareRecommendationsSection component
-  
   return (
     <section className="py-20 bg-gradient-to-br from-senior-blue/5 via-white to-senior-light/30 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -50,8 +44,8 @@ const ContactSection = () => {
                     <Mail className="text-senior-blue mr-4" size={24} />
                     <div>
                       <h4 className="font-semibold text-senior-slate">Email Us</h4>
-                      <a href="mailto:info@sacramentoseniorcare.com" className="text-gray-600 hover:text-senior-blue transition-colors">
-                        info@sacramentoseniorcare.com
+                      <a href="mailto:care@sacramentoelderlycare.com" className="text-gray-600 hover:text-senior-blue transition-colors">
+                        care@sacramentoelderlycare.com
                       </a>
                     </div>
                   </div>

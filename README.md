@@ -1,73 +1,49 @@
-# Welcome to your Lovable project
+# Sacramento Senior Living Directory
 
-## Project info
+A free directory helping families find assisted living, memory care, board and care homes (RCFEs), and other senior housing in the Sacramento metro area.
 
-**URL**: https://lovable.dev/projects/15b8b3da-84c3-47fe-9d4d-5fcac301f862
+Production domain: [sacramentoelderlycare.com](https://sacramentoelderlycare.com)
 
-## How can I edit this code?
+## Tech stack
 
-There are several ways of editing your application.
+- **Framework:** Vite 5 + React 18 + TypeScript
+- **Styling:** Tailwind CSS + shadcn-ui (Radix primitives)
+- **Routing:** React Router 6
+- **Head tags:** `react-helmet-async`
+- **Forms:** [Netlify Forms](https://docs.netlify.com/forms/setup/) (no third-party form/email SDK)
+- **Hosting:** Netlify (auto-deploys from `main`)
 
-**Use Lovable**
+## Local development
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/15b8b3da-84c3-47fe-9d4d-5fcac301f862) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires Node.js 18+ and npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev      # dev server on http://localhost:8080
+npm run build    # production build (also regenerates public/sitemap.xml)
+npm run preview  # preview the production build locally
+npm run lint     # ESLint
 ```
 
-**Edit a file directly in GitHub**
+The sitemap is generated from `src/data/locations.ts` at build time via a Vite plugin in `vite.config.ts` — never edit `public/sitemap.xml` by hand.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project conventions
 
-**Use GitHub Codespaces**
+Read [CLAUDE.md](./CLAUDE.md) before contributing — it covers branding rules, content voice, SEO requirements, and the things to avoid. [PROJECT.md](./PROJECT.md) has the deeper strategic brief: site architecture, page templates, schema standards, and the phased build plan.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Forms
 
-## What technologies are used for this project?
+The site uses Netlify Forms exclusively. Each form has a hidden static mirror in [`index.html`](./index.html) so Netlify's build-time scanner can register the fields, and the React component POSTs URL-encoded data to `/` with a matching `form-name`.
 
-This project is built with:
+Current forms:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+| `form-name` | Component | Purpose |
+|---|---|---|
+| `contact` | `src/components/ContactForm.tsx` | General contact / lead capture (used on `/contact` and on each facility detail page) |
+| `care-recommendations` | `src/components/CareRecommendationsSection.tsx` | Personalized care recommendation request (longer form: care type, timeline, budget) |
 
-## How can I deploy this project?
+**Notification routing is configured per-form in the Netlify dashboard**, not in this repo — Netlify → Site → Forms → *form-name* → Settings & usage → Form notifications.
 
-Simply open [Lovable](https://lovable.dev/projects/15b8b3da-84c3-47fe-9d4d-5fcac301f862) and click on Share -> Publish.
+## Branding
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+The directory is **Sacramento Senior Living Directory**. Do **not** use "Sacramento Senior Care" as the brand anywhere — that is a separate business owned by a partner. Listings of facilities owned by Sacramento Senior Care are fine; the directory itself is a separate brand.

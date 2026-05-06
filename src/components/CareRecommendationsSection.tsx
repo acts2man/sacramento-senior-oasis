@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import { Phone, User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
+import { Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
-import emailjs from '@emailjs/browser';
+
+const NETLIFY_FORM_NAME = 'care-recommendations';
+
+const encodeFormData = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&');
 
 const CareRecommendationsSection = () => {
   const { toast } = useToast();
@@ -15,7 +21,7 @@ const CareRecommendationsSection = () => {
     budget: '',
     additionalInfo: ''
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -26,51 +32,33 @@ const CareRecommendationsSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      // EmailJS configuration with your actual credentials
-      const serviceId = 'service_qklbs5m';
-      const templateId = 'template_3f1h5fw';
-      const publicKey = 'VHqdZf6et7WQV3YAA';
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData({
+          'form-name': NETLIFY_FORM_NAME,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          'care-type': formData.careType,
+          urgency: formData.urgency,
+          budget: formData.budget,
+          'additional-info': formData.additionalInfo,
+        }),
+      });
 
-      // Template parameters mapped to form fields
-      // Use these variable names in your EmailJS template:
-      const templateParams = {
-        // Basic contact information
-        client_name: formData.name,
-        client_email: formData.email,
-        client_phone: formData.phone,
-        
-        // Care requirements
-        preferred_location: formData.location || 'Not specified',
-        care_type: formData.careType || 'Not specified',
-        timeline: formData.urgency || 'Not specified',
-        budget_range: formData.budget || 'Not specified',
-        
-        // Additional details
-        additional_notes: formData.additionalInfo || 'No additional information provided',
-        
-        // Metadata
-        submission_date: new Date().toLocaleDateString(),
-        submission_time: new Date().toLocaleTimeString(),
-        
-        // Your business email (where you want to receive inquiries)
-        to_email: 'your-business-email@example.com' // Replace with your email
-      };
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}`);
+      }
 
-      console.log('Sending care inquiry with EmailJS:', templateParams);
-
-      // Send email via EmailJS
-      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      
-      console.log('EmailJS response:', response);
-      
       toast({
         title: "Care Inquiry Submitted Successfully!",
         description: "Thank you for your interest! A senior care advisor will contact you within 24 hours to discuss your needs.",
       });
-      
-      // Reset form after successful submission
+
       setFormData({
         name: '',
         email: '',
@@ -81,9 +69,9 @@ const CareRecommendationsSection = () => {
         budget: '',
         additionalInfo: ''
       });
-      
+
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Care recommendations form submission error:', error);
       toast({
         title: "Submission Error",
         description: "We couldn't submit your information right now. Please try again in a few moments.",
@@ -134,7 +122,20 @@ const CareRecommendationsSection = () => {
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                  name={NETLIFY_FORM_NAME}
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                >
+                  <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+                  <p className="hidden">
+                    <label>
+                      Don't fill this out if you're human: <input name="bot-field" />
+                    </label>
+                  </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="group/input">
                       <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
