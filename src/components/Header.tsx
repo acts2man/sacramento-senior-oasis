@@ -19,7 +19,7 @@ const Header = () => {
           <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/d8125fe9-ea3c-411a-b5bf-7bfca8e32259.png" 
-              alt="Sacramento Senior Care" 
+              alt="Sacramento Senior Living Directory"
               className="h-12 md:h-16 w-auto"
             />
           </Link>

@@ -174,7 +174,7 @@ const AssistedLiving = () => {
                   Finding the Right Assisted Living in Sacramento
                 </h2>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  At Sacramento Senior Care, we help you explore the most trusted <strong>assisted living Sacramento</strong> has 
+                  At Sacramento Senior Living Directory, we help you explore the most trusted <strong>assisted living Sacramento</strong> has
                   to offer. Whether you're looking for support with daily tasks or a comfortable new place to call home, 
                   our listings make it easy to compare the top <strong>assisted living facilities in Sacramento, CA</strong>.
                 </p>
