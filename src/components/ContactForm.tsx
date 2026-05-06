@@ -5,7 +5,7 @@ import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Label } from './ui/label';
 
 interface ContactFormProps {
-  locationName?: string;
+  facilityName?: string;
 }
 
 const NETLIFY_FORM_NAME = 'contact';
@@ -15,7 +15,7 @@ const encodeFormData = (data: Record<string, string>) =>
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     .join('&');
 
-const ContactForm = ({ locationName }: ContactFormProps) => {
+const ContactForm = ({ facilityName }: ContactFormProps) => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -50,7 +50,7 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
           email: formData.email,
           phone: formData.phone,
           'inquiry-for': formData.inquiryFor,
-          'location-name': locationName || 'General Contact Page',
+          facility_of_interest: facilityName || '',
           message: formData.message,
         }),
       });
@@ -94,6 +94,7 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
       data-netlify-honeypot="bot-field"
     >
       <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+      <input type="hidden" name="facility_of_interest" value={facilityName || ''} />
       <p className="hidden">
         <label>
           Don't fill this out if you're human: <input name="bot-field" />
@@ -103,6 +104,11 @@ const ContactForm = ({ locationName }: ContactFormProps) => {
       <div className="mb-6">
         <h3 className="text-2xl font-bold text-senior-slate mb-2">Contact Us</h3>
         <p className="text-gray-600">We're here to help you find the perfect senior living community.</p>
+        {facilityName && (
+          <p className="mt-3 text-sm text-senior-blue bg-senior-light px-3 py-2 rounded-md inline-block">
+            Inquiring about: <strong>{facilityName}</strong>
+          </p>
+        )}
       </div>
 
       <div className="space-y-4">

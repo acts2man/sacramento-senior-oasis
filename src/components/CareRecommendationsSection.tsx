@@ -3,7 +3,11 @@ import { Phone, User, Mail, MapPin, Heart, Clock, ChevronRight } from 'lucide-re
 import { useToast } from '../hooks/use-toast';
 import emailjs from '@emailjs/browser';
 
-const CareRecommendationsSection = () => {
+interface CareRecommendationsSectionProps {
+  facilityName?: string;
+}
+
+const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSectionProps = {}) => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -47,6 +51,9 @@ const CareRecommendationsSection = () => {
         timeline: formData.urgency || 'Not specified',
         budget_range: formData.budget || 'Not specified',
         
+        // Facility pre-fill (when launched from a specific facility page)
+        facility_of_interest: facilityName || '',
+
         // Additional details
         additional_notes: formData.additionalInfo || 'No additional information provided',
         
@@ -134,7 +141,14 @@ const CareRecommendationsSection = () => {
                   </div>
                 </div>
 
+                {facilityName && (
+                  <p className="mb-6 text-sm text-senior-blue bg-senior-light px-3 py-2 rounded-md inline-block">
+                    Inquiring about: <strong>{facilityName}</strong>
+                  </p>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <input type="hidden" name="facility_of_interest" value={facilityName || ''} />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="group/input">
                       <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">

@@ -5,25 +5,19 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import LocationCard from '../components/LocationCard';
-import { getAllLocations, locations, LocationType } from '../data/locations';
+import { locations } from '../data/locations';
+import type { Facility } from '../types/facility';
 import { SITE_URL } from '../lib/constants';
 import JsonLd from '../components/JsonLd';
 import { buildBreadcrumbSchema, buildItemListSchema } from '../lib/schema';
 
+const assistedLivingFacilities = locations.filter(f => f.care_types.includes('assisted_living'));
+
 const AssistedLiving = () => {
-  const [assistedLivingCommunities, setAssistedLivingCommunities] = useState<LocationType[]>([]);
+  const [assistedLivingCommunities, setAssistedLivingCommunities] = useState<Facility[]>([]);
 
   useEffect(() => {
-    const allLocations = getAllLocations();
-    // Filter for assisted living services
-    const assistedLivingLocations = allLocations.filter(location => 
-      location.services.some(service => 
-        service.toLowerCase().includes('assisted living') || 
-        service.toLowerCase().includes('personal care') ||
-        service.toLowerCase().includes('daily living')
-      )
-    );
-    setAssistedLivingCommunities(assistedLivingLocations.slice(0, 6)); // Show first 6
+    setAssistedLivingCommunities(assistedLivingFacilities.slice(0, 6));
   }, []);
 
   const assistedLivingFeatures = [
@@ -128,9 +122,7 @@ const AssistedLiving = () => {
         keywords="assisted living sacramento, senior care sacramento, assisted living facilities, sacramento senior living, personal care assistance"
         canonical={`${SITE_URL}/assisted-living`}
       />
-      {/* No structured care_types field on facilities yet, so we list every
-          directory entry. Narrow this once locations.ts gains care_types. */}
-      <JsonLd data={buildItemListSchema(locations, '/assisted-living')} />
+      <JsonLd data={buildItemListSchema(assistedLivingFacilities, '/assisted-living')} />
       <JsonLd
         data={buildBreadcrumbSchema([
           { name: 'Home', url: '/' },

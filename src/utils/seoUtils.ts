@@ -1,5 +1,6 @@
 
-import { LocationType } from '../data/locations';
+import type { Facility } from '../types/facility';
+import { careTypeLabel } from '../lib/careTypes';
 
 const BRAND_SUFFIX = 'Sacramento Senior Living Directory';
 
@@ -105,11 +106,17 @@ const customLocationSEO: Record<string, { title: string; description: string }> 
   }
 };
 
-export const generateLocationSEO = (location: LocationType) => {
+export const generateLocationSEO = (location: Facility) => {
   const customSEO = customLocationSEO[location.id];
 
-  const title = customSEO?.title || `${location.name} - Senior Living in ${location.city}, CA | ${BRAND_SUFFIX}`;
-  const description = customSEO?.description || `${location.name} in ${location.city}, CA offers ${location.services.join(', ')}. Starting at $${location.pricing.starting.toLocaleString()}/month. Tour this ${location.rating}-star senior community today.`;
+  const fallbackTitle = `${location.name} - Senior Living in ${location.city}, CA | ${BRAND_SUFFIX}`;
+  const priceFragment = Number.isFinite(location.price_range_low)
+    ? ` Starting around $${location.price_range_low!.toLocaleString()}/month.`
+    : '';
+  const fallbackDescription = `${location.name} in ${location.city}, CA — compare amenities, services, and pricing.${priceFragment} Tour this senior community today.`;
+
+  const title = customSEO?.title || fallbackTitle;
+  const description = customSEO?.description || fallbackDescription;
 
   const keywords = [
     location.name.toLowerCase(),
@@ -117,8 +124,8 @@ export const generateLocationSEO = (location: LocationType) => {
     `assisted living ${location.city.toLowerCase()}`,
     'memory care sacramento',
     'senior communities california',
-    ...location.services.map(service => service.toLowerCase()),
-    location.zip
+    ...location.care_types.map(careTypeLabel).map(s => s.toLowerCase()),
+    location.zip,
   ].join(', ');
 
   return { title, description, keywords };

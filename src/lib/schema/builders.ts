@@ -1,5 +1,5 @@
 import { SITE_URL } from '../constants';
-import type { LocationType } from '../../data/locations';
+import type { Facility } from '../../types/facility';
 import type {
   ArticleInput,
   ArticleSchema,
@@ -19,9 +19,8 @@ const ORG_DESCRIPTION =
 // Placeholder until a real brand logo asset exists.
 const ORG_LOGO = `${SITE_URL}/og/default.png`;
 
-const PLACEHOLDER_PHONE_PATTERN = /^\(916\) 555-/;
 const PLACEHOLDER_ADDRESS_PATTERNS = [/capitol avenue/i];
-// Stock-photo CDNs that show up in locations.ts data — these are not real
+// Stock-photo CDNs that show up in seed photo data — these are not real
 // facility photos, so they should not be advertised as such in schema.
 const STOCK_IMAGE_HOSTS = ['images.unsplash.com'];
 
@@ -29,9 +28,6 @@ const absoluteUrl = (path: string) => `${SITE_URL}${path.startsWith('/') ? path 
 
 const isReal = (value: string | undefined | null): value is string =>
   typeof value === 'string' && value.trim().length > 0;
-
-const isRealPhone = (phone: string | undefined): phone is string =>
-  isReal(phone) && !PLACEHOLDER_PHONE_PATTERN.test(phone);
 
 const isRealAddress = (address: string | undefined): address is string => {
   if (!isReal(address)) return false;
@@ -66,14 +62,30 @@ export const buildOrganizationSchema = (): OrganizationSchema => ({
   sameAs: [],
 });
 
-export const buildOrganizationWithContactSchema = (email: string): OrganizationSchema => ({
-  ...buildOrganizationSchema(),
-  contactPoint: {
+export interface ContactPointInput {
+  email?: string;
+  telephone?: string;
+}
+
+export const buildOrganizationWithContactSchema = (
+  contact: ContactPointInput | string,
+): OrganizationSchema => {
+  // Backwards-compat: callers used to pass a bare email string.
+  const normalized: ContactPointInput =
+    typeof contact === 'string' ? { email: contact } : contact;
+
+  const contactPoint: OrganizationSchema['contactPoint'] = {
     '@type': 'ContactPoint',
-    email,
     contactType: 'customer service',
-  },
-});
+  };
+  if (normalized.email) contactPoint.email = normalized.email;
+  if (normalized.telephone) contactPoint.telephone = normalized.telephone;
+
+  return {
+    ...buildOrganizationSchema(),
+    contactPoint,
+  };
+};
 
 export const buildWebsiteSchema = (): WebSiteSchema => ({
   '@context': 'https://schema.org',
@@ -87,7 +99,7 @@ export const buildWebsiteSchema = (): WebSiteSchema => ({
   },
 });
 
-export const buildLocalBusinessSchema = (facility: LocationType): LocalBusinessSchema => {
+export const buildLocalBusinessSchema = (facility: Facility): LocalBusinessSchema => {
   const url = facilityUrl(facility.id);
 
   const schema: LocalBusinessSchema = {
@@ -103,17 +115,18 @@ export const buildLocalBusinessSchema = (facility: LocationType): LocalBusinessS
     schema.description = facility.description;
   }
 
-  const realImages = (facility.images || []).filter(isRealImage).map(toAbsoluteImageUrl);
+  const photoUrls = (facility.photos || []).map(p => p.url);
+  const realImages = photoUrls.filter(isRealImage).map(toAbsoluteImageUrl);
   if (realImages.length > 0) {
     // Schema.org allows image to be a single URL or an array; we always
     // emit an array so consumers don't have to handle both shapes.
     schema.image = realImages;
   }
 
-  if (isRealAddress(facility.address) && isReal(facility.city) && isReal(facility.zip)) {
+  if (isRealAddress(facility.street_address) && isReal(facility.city) && isReal(facility.zip)) {
     const address: PostalAddress = {
       '@type': 'PostalAddress',
-      streetAddress: facility.address,
+      streetAddress: facility.street_address,
       addressLocality: facility.city,
       addressRegion: 'CA',
       postalCode: facility.zip,
@@ -122,35 +135,30 @@ export const buildLocalBusinessSchema = (facility: LocationType): LocalBusinessS
     schema.address = address;
   }
 
-  if (isRealPhone(facility.phone)) {
-    schema.telephone = facility.phone;
-  }
+  // Telephone intentionally never emitted on facility schema; the
+  // directory's master line is on the Organization schema. See
+  // src/types/facility.ts for the full rationale.
 
-  if (
-    facility.coordinates &&
-    Number.isFinite(facility.coordinates.lat) &&
-    Number.isFinite(facility.coordinates.lng)
-  ) {
+  if (Number.isFinite(facility.lat) && Number.isFinite(facility.lng)) {
     schema.geo = {
       '@type': 'GeoCoordinates',
-      latitude: facility.coordinates.lat,
-      longitude: facility.coordinates.lng,
+      latitude: facility.lat,
+      longitude: facility.lng,
     };
   }
 
   if (
-    facility.pricing &&
-    Number.isFinite(facility.pricing.starting) &&
-    Number.isFinite(facility.pricing.average)
+    Number.isFinite(facility.price_range_low) &&
+    Number.isFinite(facility.price_range_high)
   ) {
-    schema.priceRange = `$${facility.pricing.starting} - $${facility.pricing.average}`;
+    schema.priceRange = `$${facility.price_range_low} - $${facility.price_range_high}`;
   }
 
   return schema;
 };
 
 export const buildItemListSchema = (
-  facilities: LocationType[],
+  facilities: Facility[],
   pageUrl: string,
 ): ItemListSchema => {
   const itemListElement: ListItem[] = facilities.map((facility, index) => ({

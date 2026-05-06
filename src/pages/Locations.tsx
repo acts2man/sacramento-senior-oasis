@@ -6,7 +6,8 @@ import Footer from '../components/Footer';
 import LocationCard from '../components/LocationCard';
 import SearchBar from '../components/SearchBar';
 import SEO from '../components/SEO';
-import { locations, searchLocations, LocationType } from '../data/locations';
+import { locations, searchLocations } from '../data/locations';
+import type { Facility } from '../types/facility';
 import { generatePageSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
 import { Filter, MapPin, SlidersHorizontal, X } from 'lucide-react';
@@ -16,7 +17,7 @@ import { buildBreadcrumbSchema, buildItemListSchema } from '../lib/schema';
 const Locations = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [filteredLocations, setFilteredLocations] = useState<LocationType[]>(locations);
+  const [filteredLocations, setFilteredLocations] = useState<Facility[]>(locations);
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   
