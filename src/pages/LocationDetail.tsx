@@ -9,6 +9,7 @@ import CareRecommendationsSection from '../components/CareRecommendationsSection
 import SEO from '../components/SEO';
 import { getLocationById, getFeaturedLocations, LocationType } from '../data/locations';
 import { generateLocationSEO } from '../utils/seoUtils';
+import { SITE_URL } from '../lib/constants';
 import { 
   MapPin, 
   Phone, 
@@ -91,7 +92,7 @@ const LocationDetail = () => {
         keywords={seoData.keywords}
         ogImage={location.images[0]}
         ogType="place"
-        canonical={`https://sacramentoseniorcare.com/${location.id}`}
+        canonical={`${SITE_URL}/${location.id}`}
         jsonLd={seoData.jsonLd}
       />
       

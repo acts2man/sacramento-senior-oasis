@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import LocationCard from '../components/LocationCard';
 import { getAllLocations, LocationType } from '../data/locations';
+import { SITE_URL } from '../lib/constants';
 
 const AssistedLiving = () => {
   const [assistedLivingCommunities, setAssistedLivingCommunities] = useState<LocationType[]>([]);
@@ -119,11 +120,11 @@ const AssistedLiving = () => {
 
   return (
     <>
-      <SEO 
-        title="Assisted Living in Sacramento | Trusted Senior Care Options"
-        description="Discover the best assisted living communities in Sacramento, CA. Compare care homes, explore services, and connect with trusted providers near you."
+      <SEO
+        title="Assisted Living in Sacramento — Senior Living Communities & Costs"
+        description="Browse assisted living communities across the Sacramento metro. Compare amenities, services, and pricing to find the right fit for your loved one."
         keywords="assisted living sacramento, senior care sacramento, assisted living facilities, sacramento senior living, personal care assistance"
-        canonical="/assisted-living"
+        canonical={`${SITE_URL}/assisted-living`}
       />
       
       <Header />

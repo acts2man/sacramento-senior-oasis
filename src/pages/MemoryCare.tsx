@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import LocationCard from '../components/LocationCard';
 import { getAllLocations, LocationType } from '../data/locations';
+import { SITE_URL } from '../lib/constants';
 
 const MemoryCare = () => {
   const [memoryCareCommunities, setMemoryCareCommunities] = useState<LocationType[]>([]);
@@ -113,11 +114,11 @@ const MemoryCare = () => {
 
   return (
     <>
-      <SEO 
-        title="Memory Care in Sacramento | Dementia & Alzheimer's Care Homes"
-        description="Discover trusted memory care facilities in Sacramento, CA. Find specialized Alzheimer's and dementia care homes with 24/7 supervision and expert staff."
+      <SEO
+        title="Memory Care in Sacramento — Dementia & Alzheimer's Care Communities"
+        description="Compare memory care communities in the Sacramento metro for dementia and Alzheimer's residents. Browse secure facilities, services, and pricing in one place."
         keywords="memory care sacramento, dementia care sacramento, alzheimer's care, memory care facilities, sacramento senior care"
-        canonical="/memory-care"
+        canonical={`${SITE_URL}/memory-care`}
       />
       
       <Header />
