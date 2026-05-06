@@ -4,19 +4,41 @@ import SEO from '../components/SEO';
 import { generatePageSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
 import { Heart, Users, Star, Shield } from 'lucide-react';
+import JsonLd from '../components/JsonLd';
+import { buildArticleSchema, buildBreadcrumbSchema } from '../lib/schema';
+
+// Static page; treat the publish date as the time the About copy was last
+// touched. Update both fields when the About copy is rewritten.
+const ABOUT_PUBLISHED = '2026-05-06';
+const ABOUT_MODIFIED = '2026-05-06';
 
 const About = () => {
   const seoData = generatePageSEO('about');
-  
+
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
         canonical={`${SITE_URL}/about`}
       />
-      
+      <JsonLd
+        data={buildArticleSchema({
+          headline: seoData.title,
+          description: seoData.description,
+          url: '/about',
+          datePublished: ABOUT_PUBLISHED,
+          dateModified: ABOUT_MODIFIED,
+        })}
+      />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'About', url: '/about' },
+        ])}
+      />
+
       <Header />
       
       <main className="flex-grow bg-gray-50">

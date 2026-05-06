@@ -8,17 +8,15 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   canonical?: string;
-  jsonLd?: object;
 }
 
-const SEO = ({ 
-  title, 
-  description, 
-  keywords, 
+const SEO = ({
+  title,
+  description,
+  keywords,
   ogImage = '/placeholder.svg',
   ogType = 'website',
   canonical,
-  jsonLd 
 }: SEOProps) => {
   const fullTitle = title.includes('Sacramento Senior Living Directory')
     ? title
@@ -44,13 +42,6 @@ const SEO = ({
       
       {/* Canonical URL */}
       {canonical && <link rel="canonical" href={canonical} />}
-      
-      {/* JSON-LD Structured Data */}
-      {jsonLd && (
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
-      )}
     </Helmet>
   );
 };

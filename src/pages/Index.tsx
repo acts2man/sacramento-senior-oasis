@@ -12,19 +12,28 @@ import TrustedCareSection from '../components/TrustedCareSection';
 import CareImageShowcase from '../components/CareImageShowcase';
 import { generatePageSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
+import JsonLd from '../components/JsonLd';
+import {
+  buildOrganizationSchema,
+  buildWebsiteSchema,
+  buildBreadcrumbSchema,
+} from '../lib/schema';
 
 const Index = () => {
   const seoData = generatePageSEO('home');
-  
+
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
         canonical={SITE_URL}
       />
-      
+      <JsonLd data={buildOrganizationSchema()} />
+      <JsonLd data={buildWebsiteSchema()} />
+      <JsonLd data={buildBreadcrumbSchema([{ name: 'Home', url: '/' }])} />
+
       <Header />
       <main className="flex-grow">
         <Hero />

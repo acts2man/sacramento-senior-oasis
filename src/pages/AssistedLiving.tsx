@@ -5,8 +5,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import LocationCard from '../components/LocationCard';
-import { getAllLocations, LocationType } from '../data/locations';
+import { getAllLocations, locations, LocationType } from '../data/locations';
 import { SITE_URL } from '../lib/constants';
+import JsonLd from '../components/JsonLd';
+import { buildBreadcrumbSchema, buildItemListSchema } from '../lib/schema';
 
 const AssistedLiving = () => {
   const [assistedLivingCommunities, setAssistedLivingCommunities] = useState<LocationType[]>([]);
@@ -125,6 +127,15 @@ const AssistedLiving = () => {
         description="Browse assisted living communities across the Sacramento metro. Compare amenities, services, and pricing to find the right fit for your loved one."
         keywords="assisted living sacramento, senior care sacramento, assisted living facilities, sacramento senior living, personal care assistance"
         canonical={`${SITE_URL}/assisted-living`}
+      />
+      {/* No structured care_types field on facilities yet, so we list every
+          directory entry. Narrow this once locations.ts gains care_types. */}
+      <JsonLd data={buildItemListSchema(locations, '/assisted-living')} />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Assisted Living', url: '/assisted-living' },
+        ])}
       />
       
       <Header />

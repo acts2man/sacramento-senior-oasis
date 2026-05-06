@@ -121,42 +121,7 @@ export const generateLocationSEO = (location: LocationType) => {
     location.zip
   ].join(', ');
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SeniorCareService",
-    "name": location.name,
-    "description": location.description,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": location.address,
-      "addressLocality": location.city,
-      "addressRegion": "CA",
-      "postalCode": location.zip,
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": location.coordinates.lat,
-      "longitude": location.coordinates.lng
-    },
-    "telephone": location.phone,
-    "email": location.email,
-    "url": location.website,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": location.rating,
-      "bestRating": "5"
-    },
-    "priceRange": `$${location.pricing.starting} - $${location.pricing.average}`,
-    "serviceType": location.services,
-    "amenityFeature": location.amenities.map(amenity => ({
-      "@type": "LocationFeatureSpecification",
-      "name": amenity
-    })),
-    "image": location.images
-  };
-
-  return { title, description, keywords, jsonLd };
+  return { title, description, keywords };
 };
 
 export const generatePageSEO = (pageName: string, customDescription?: string) => {

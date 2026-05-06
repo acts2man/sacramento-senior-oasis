@@ -10,6 +10,8 @@ import SEO from '../components/SEO';
 import { getLocationById, getFeaturedLocations, LocationType } from '../data/locations';
 import { generateLocationSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
+import JsonLd from '../components/JsonLd';
+import { buildBreadcrumbSchema, buildLocalBusinessSchema } from '../lib/schema';
 import { 
   MapPin, 
   Phone, 
@@ -86,16 +88,23 @@ const LocationDetail = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
         ogImage={location.images[0]}
         ogType="place"
         canonical={`${SITE_URL}/${location.id}`}
-        jsonLd={seoData.jsonLd}
       />
-      
+      <JsonLd data={buildLocalBusinessSchema(location)} />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Communities', url: '/locations' },
+          { name: location.name, url: `/${location.id}` },
+        ])}
+      />
+
       <Header />
       
       <main className="flex-grow bg-gray-50">
