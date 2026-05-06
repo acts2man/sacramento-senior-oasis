@@ -79,7 +79,8 @@ export const locations: Facility[] = [
     lat: 38.4088,
     lng: -121.4301,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Abounding Love II is a luxury assisted living community located in Elk Grove. Our facility combines elegant design with practical amenities to create a comfortable and enriching living environment. We pride ourselves on our professional staff who are trained to provide compassionate care tailored to each resident's unique needs. Our culinary team creates delicious and nutritious meals using fresh, local ingredients. With a calendar full of activities and events, residents enjoy an engaging and fulfilling lifestyle.",
     price_range_low: 4800,
@@ -139,8 +140,7 @@ export const locations: Facility[] = [
     lng: -121.4412,
     care_types: [
       "assisted_living",
-      "memory_care",
-      "independent_living"
+      "memory_care"
     ],
     description: "Abounding Love III offers a warm and welcoming community environment. Our facility is designed to promote independence while providing the necessary support for daily living. We offer a range of care options from independent living to memory care, allowing residents to age in place as their needs change. Our dedicated team creates a family atmosphere where every resident feels valued and respected. We emphasize wellness through our fitness programs, nutritious dining options, and social engagement opportunities.",
     price_range_low: 3800,
@@ -202,7 +202,8 @@ export const locations: Facility[] = [
     lat: 38.5152,
     lng: -121.4022,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Abounding Peace Elderly Care is a boutique assisted living community that focuses on personalized care in an intimate setting. Our smaller resident population allows us to provide individualized attention and build meaningful relationships. Located in a charming residential neighborhood, our facility offers a homelike atmosphere with all the necessary support services. We specialize in providing care for residents with specific health needs while encouraging maximum independence. Our dedicated staff members are selected for their compassion and expertise in senior care.",
     price_range_low: 4500,
@@ -236,7 +237,8 @@ export const locations: Facility[] = [
     lat: 38.5399,
     lng: -121.4456,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Abounding Peace Elderly Care II is a modern senior living community designed to promote active and engaged lifestyles for older adults. Our state-of-the-art facility offers a range of living options from independent apartments to assisted living suites. We focus on creating a vibrant community where residents can pursue their interests and form new friendships. Our wellness program encompasses physical fitness, mental stimulation, and social engagement. With a convenient location near shopping, dining, and healthcare facilities, residents maintain their connection to the wider community.",
     price_range_low: 4000,
@@ -275,7 +277,8 @@ export const locations: Facility[] = [
     lat: 38.5113,
     lng: -121.422,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Abounding Peace III Elderly Care is a premier senior living facility in the heart of Elk Grove. Our community is designed to provide a comfortable and supportive environment where seniors can thrive. We offer personalized care plans that adapt to changing needs, ensuring residents receive the right level of assistance while maintaining their dignity and independence. Our professional staff is trained to provide exceptional care while fostering warm relationships with residents and their families.",
     price_range_low: 4300,
@@ -321,6 +324,7 @@ export const locations: Facility[] = [
     lat: 38.48,
     lng: -121.4968,
     care_types: [
+      "assisted_living",
       "memory_care"
     ],
     description: "Golden Legacy Elderly Care provides compassionate memory care in a secure and supportive environment. Our facility is specifically designed to meet the unique needs of residents with Alzheimer's disease and other forms of dementia. We employ evidence-based approaches to memory care, focusing on preserving dignity and maximizing quality of life. Our specially trained staff members understand the challenges of memory impairment and provide patient, respectful care. The facility features secure indoor and outdoor spaces where residents can move freely and safely.",
@@ -379,7 +383,8 @@ export const locations: Facility[] = [
     lat: 38.5574,
     lng: -121.4066,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Golden Heritage Senior Care provides a comfortable and supportive environment for seniors needing assistance with daily living. Our community emphasizes dignity and quality of life through personalized care plans, engaging activities, and a nurturing atmosphere. While we respect our residents' independence, we provide the necessary support to ensure their safety and well-being. Our trained staff is available 24/7 to assist with personal care, medication management, and other daily needs.",
     price_range_low: 4100,
@@ -417,7 +422,8 @@ export const locations: Facility[] = [
     lat: 38.6184,
     lng: -121.4277,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Golden Legacy Elderly Care II offers a specialized approach to senior living with a focus on residents requiring more intensive care. Our facility provides a safe, comfortable environment with comprehensive care services tailored to each resident's unique needs. We maintain a higher staff-to-resident ratio to ensure attentive care for all. Our professional team includes skilled nurses and caregivers who are experienced in managing complex health conditions while maintaining residents' comfort and dignity.",
     price_range_low: 4900,
@@ -475,7 +481,8 @@ export const locations: Facility[] = [
     lat: 38.4792,
     lng: -121.5183,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Golden Legacy Elderly Care III is located in the beautiful Greenhaven neighborhood of Sacramento. Our riverside location provides a serene and peaceful setting for residents. We offer a blend of independent and assisted living options in a resort-style environment. Residents enjoy spacious apartments, gourmet dining, and a robust calendar of activities. Our professional staff provides discreet assistance as needed, allowing residents to maintain their independence while knowing support is always available.",
     price_range_low: 4700,
@@ -526,7 +533,8 @@ export const locations: Facility[] = [
     lat: 38.6184,
     lng: -121.4271,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Bella Villa Elderly Care II provides a European-inspired living experience for seniors seeking assisted living services. Our beautiful facility features Mediterranean architecture, lush gardens, and elegant common areas. We believe in a holistic approach to senior care that addresses physical, emotional, and social wellbeing. Our professional staff is trained to provide personalized care while encouraging residents to pursue their interests and maintain connections with family and friends.",
     price_range_low: 4300,
@@ -584,7 +592,8 @@ export const locations: Facility[] = [
     lat: 38.5125,
     lng: -121.4119,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Love and Comfort offers a family-oriented approach to assisted living in a residential setting. Our cozy home environment provides a comfortable alternative to larger facilities while still offering professional care services. We maintain a small resident population to ensure personalized attention and a strong sense of community. Our compassionate caregivers become like extended family to our residents, providing assistance while respecting their dignity and independence.",
     price_range_low: 3900,
@@ -622,7 +631,8 @@ export const locations: Facility[] = [
     lat: 38.6136,
     lng: -121.5066,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Love and Comfort II continues our tradition of exceptional residential care in a convenient Sacramento location. Our home-like environment offers comfort and security while our professional staff provides personalized care services. We focus on creating a nurturing atmosphere where residents feel valued and respected. Daily activities promote social interaction and mental engagement, while our care services ensure physical well-being. Family involvement is encouraged to maintain important connections.",
     price_range_low: 4000,
@@ -660,7 +670,8 @@ export const locations: Facility[] = [
     lat: 38.5098,
     lng: -121.519,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Love And Serenity II provides a peaceful living environment focused on comfort and tranquility. Our facility is designed to minimize stress and create a serene atmosphere conducive to well-being. We offer specialized programs for residents dealing with anxiety and depression, with an emphasis on mental health alongside physical care. Our staff is trained in gentle approaches to caregiving, and we incorporate relaxation techniques and mindfulness practices into daily activities.",
     price_range_low: 4200,
@@ -698,7 +709,8 @@ export const locations: Facility[] = [
     lat: 38.4796,
     lng: -121.5189,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Love and Serenity III is our premier location in the desirable Greenhaven neighborhood. This upscale facility offers assisted living services in an elegant environment with a focus on active lifestyles. Our spacious campus features beautiful outdoor spaces, walking paths, and comfortable indoor amenities. We encourage residents to remain engaged and independent through our extensive activity program, while providing discreet assistance as needed. Our culinary program features chef-prepared meals that delight the senses.",
     price_range_low: 4800,
@@ -757,7 +769,8 @@ export const locations: Facility[] = [
     lat: 38.4099,
     lng: -121.3846,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Love and Serenity of Elk Grove III provides a nurturing environment for seniors in a convenient Elk Grove location. Our facility is designed to balance independence with appropriate levels of care, allowing residents to enjoy life on their own terms. We take a person-centered approach to caregiving, recognizing each resident's unique needs and preferences. Our dedicated staff builds meaningful relationships with residents, creating a true sense of community. Regular family events strengthen connections between residents and their loved ones.",
     price_range_low: 4100,
@@ -834,7 +847,8 @@ export const locations: Facility[] = [
     lat: 38.4845,
     lng: -121.3297,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Love and Serenity of Vintage Park provides assisted living services in the beautiful Vintage Park neighborhood. Our residential care home offers a comfortable alternative to larger facilities with the same professional care standards. We maintain a low resident-to-caregiver ratio to ensure personalized attention and responsive service. Our experienced staff develops close relationships with residents and their families, creating a supportive environment that feels like home. We emphasize both physical care and emotional well-being in our approach.",
     price_range_low: 4000,
@@ -872,7 +886,8 @@ export const locations: Facility[] = [
     lat: 38.5349,
     lng: -121.4338,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Sacramento Senior Living offers affordable assisted living options without compromising on quality care. Our community focuses on creating a supportive environment where residents receive the assistance they need while maintaining as much independence as possible. We take a holistic approach to senior care, addressing physical, emotional, and social needs through our comprehensive services and engaging activity program. Our central location provides convenient access to medical facilities, shopping, and entertainment.",
     price_range_low: 3700,
@@ -910,7 +925,8 @@ export const locations: Facility[] = [
     lat: 38.5151,
     lng: -121.4055,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Sacramento Senior Living II provides enhanced assisted living services for seniors requiring more comprehensive care. Our facility is designed to accommodate residents with greater physical limitations or cognitive challenges while promoting dignity and quality of life. We maintain a higher staff-to-resident ratio to ensure prompt attention to all needs. Our team includes trained caregivers who specialize in managing complex care requirements with compassion and professionalism. Family involvement is encouraged through regular care conferences and open communication.",
     price_range_low: 4500,
@@ -948,7 +964,8 @@ export const locations: Facility[] = [
     lat: 38.5356,
     lng: -121.4253,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Vita Bella Elderly Care embraces an Italian-inspired approach to senior living, emphasizing family, food, and community. Our warm, welcoming environment encourages social connection and engagement. We believe in 'la dolce vita' (the sweet life) for our residents through quality care, delicious meals, and meaningful activities. Our staff is trained to provide personalized assistance while respecting independence and dignity. The facility features comfortable indoor spaces and beautiful outdoor areas for relaxation and socialization.",
     price_range_low: 4100,
@@ -994,7 +1011,8 @@ export const locations: Facility[] = [
     lat: 38.514,
     lng: -121.4107,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Vita Bella Elderly Care II continues our tradition of exceptional care with a focus on creating a true home environment for our residents. Our intimate setting allows for personalized attention and strong relationships between residents and caregivers. We emphasize quality of life through nutritious Italian-inspired meals, engaging activities, and compassionate care. Our staff is selected not only for their professional qualifications but also for their genuine passion for elder care. We maintain open communication with families to ensure coordinated support for our residents.",
     price_range_low: 4200,
@@ -1040,6 +1058,7 @@ export const locations: Facility[] = [
     lat: 38.5113,
     lng: -121.422,
     care_types: [
+      "assisted_living",
       "memory_care"
     ],
     description: "Vita Bella Elderly Care III specializes in memory care services within a secure, supportive environment. Our facility is designed specifically for residents with Alzheimer's disease, dementia, and other memory impairments. We use evidence-based approaches to memory care that promote dignity and quality of life. Our specially trained staff understands the unique challenges of memory loss and provides patient, compassionate care. The facility features circular pathways, memory cues, and secure outdoor spaces that allow residents to move freely while remaining safe.",
@@ -1086,7 +1105,8 @@ export const locations: Facility[] = [
     lat: 38.6483,
     lng: -121.5066,
     care_types: [
-      "assisted_living"
+      "assisted_living",
+      "memory_care"
     ],
     description: "Villa Natomas Elderly Care offers a luxurious assisted living experience in the desirable Natomas area. Our elegant facility combines upscale amenities with comprehensive care services to create an exceptional senior living environment. We focus on providing a socially active community with numerous opportunities for engagement and connection. Our professional staff delivers personalized care with a hospitality-oriented approach, ensuring residents feel both well-cared for and respected. The convenient location offers easy access to shopping, dining, and entertainment.",
     price_range_low: 4900,
