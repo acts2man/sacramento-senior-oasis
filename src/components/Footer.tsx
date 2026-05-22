@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Heart } from 'lucide-react';
 import { BRAND_NAME } from '../lib/constants';
+import logo from '@/assets/logo.svg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,6 +13,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1: About */}
           <div>
+            <img src={logo} alt={BRAND_NAME} className="h-16 w-auto mb-3 bg-white rounded p-2" />
             <h3 className="text-xl font-bold mb-4">{BRAND_NAME}</h3>
             <p className="text-white/80 mb-4">
               Helping Sacramento seniors and their families find the perfect assisted living communities tailored to their unique needs and preferences.

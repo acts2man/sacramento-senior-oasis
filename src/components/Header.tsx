@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Mail } from 'lucide-react';
 import { BRAND_NAME } from '../lib/constants';
+import logo from '@/assets/logo.svg';
 
 
 const Header = () => {
@@ -19,7 +20,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/lovable-uploads/d8125fe9-ea3c-411a-b5bf-7bfca8e32259.png" 
+              src={logo} 
               alt={BRAND_NAME}
               className="h-12 md:h-16 w-auto"
             />
