@@ -3,18 +3,19 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Search, MapPin, ShieldCheck } from 'lucide-react';
 import { locations } from '../../data/locations';
 import { BRAND_NAME } from '../../lib/constants';
-import scene1 from '../../../public/videos/hero/scene-1-family.mp4.asset.json';
-import scene2 from '../../../public/videos/hero/scene-2-caregiver.mp4.asset.json';
-import scene3 from '../../../public/videos/hero/scene-3-memory.mp4.asset.json';
-import scene4 from '../../../public/videos/hero/scene-4-sacramento.mp4.asset.json';
 import poster1 from '../../assets/hero/scene-1-family.jpg';
 
 const FACILITY_COUNT = locations.length;
 const CITY_COUNT = new Set(locations.map(f => f.city)).size;
 
-// Cinematic 4-scene loop powering the hero background. Order is intentional:
-// family connection → caregiver presence → memory care → Sacramento neighborhood.
-const HERO_CLIPS = [scene1.url, scene2.url, scene3.url, scene4.url];
+// Cinematic 4-scene loop powering the hero background. Files live in /public
+// so they ship with the production build (sandbox-only __l5e URLs don't deploy).
+const HERO_CLIPS = [
+  '/videos/hero/scene-1-family.mp4',
+  '/videos/hero/scene-2-caregiver.mp4',
+  '/videos/hero/scene-3-memory.mp4',
+  '/videos/hero/scene-4-sacramento.mp4',
+];
 
 const CARE_TYPE_OPTIONS = [
   { value: 'assisted_living', label: 'Assisted Living', route: '/assisted-living' },
