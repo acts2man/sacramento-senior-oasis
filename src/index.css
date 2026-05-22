@@ -159,6 +159,59 @@
   .text-gradient {
     @apply bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent;
   }
+
+  /*
+   * Editorial typography for /guides/* and /resources/* article bodies.
+   * Targets descendants so guide pages can use plain semantic HTML (<h2>,
+   * <p>, <ul>, <table>, …) inside a single .prose-guide wrapper without
+   * reapplying classes on every element.
+   */
+  .prose-guide h2 {
+    @apply font-serif text-2xl md:text-3xl font-bold text-neutral-800 mt-12 mb-4 scroll-mt-24;
+  }
+  .prose-guide h3 {
+    @apply font-serif text-xl font-semibold text-neutral-800 mt-8 mb-3;
+  }
+  .prose-guide p {
+    @apply text-neutral-700 leading-relaxed text-lg mb-5;
+  }
+  .prose-guide ul {
+    @apply list-disc pl-6 space-y-2 text-neutral-700 text-lg mb-5;
+  }
+  .prose-guide ol {
+    @apply list-decimal pl-6 space-y-2 text-neutral-700 text-lg mb-5;
+  }
+  .prose-guide a {
+    @apply text-teal-700 underline underline-offset-2 hover:text-teal-800;
+  }
+  .prose-guide strong {
+    @apply text-neutral-800 font-semibold;
+  }
+  .prose-guide blockquote {
+    @apply border-l-4 border-teal-200 bg-sage-50 px-5 py-4 my-6 text-neutral-700 italic rounded-r-lg;
+  }
+  .prose-guide table {
+    @apply w-full border-collapse my-6 text-base;
+  }
+  .prose-guide table thead {
+    @apply bg-teal-50;
+  }
+  .prose-guide table th {
+    @apply text-left font-semibold text-neutral-800 px-4 py-3 border-b border-teal-200;
+  }
+  .prose-guide table td {
+    @apply px-4 py-3 border-b border-neutral-200 text-neutral-700 align-top;
+  }
+  .prose-guide table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  /* Highlighted "key takeaway" / callout cards inside guide bodies. */
+  .prose-guide .guide-callout {
+    @apply bg-sage-50 border border-teal-100 rounded-2xl p-6 my-6;
+  }
+  .prose-guide .guide-callout p:last-child {
+    @apply mb-0;
+  }
 }
 
 @layer utilities {

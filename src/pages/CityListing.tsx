@@ -100,8 +100,8 @@ const nearestCitiesWithListings = (currentSlug: string, max = 4): City[] => {
 const buildFaqEntries = (city: City, mode: ListingMode, count: number, priceLow?: number, priceHigh?: number): FaqEntry[] => {
   const careLabel = MODE_CONFIG[mode].careWordLower;
   const costAnswer = (priceLow && priceHigh)
-    ? `Among the ${count} communities currently listed in ${city.name}, monthly rates run from about ${formatPrice(priceLow)} to ${formatPrice(priceHigh)}. Final pricing depends on care level, room type, and current availability — our placement advisors can confirm what each community is quoting this week.`
-    : `${city.name} ${careLabel} pricing varies by care level and room type. Our placement advisors track current rates across ${city.name} communities and can share what each one is quoting this week — no fee to families.`;
+    ? `Among the ${count} communities currently listed in ${city.name}, monthly rates run from about ${formatPrice(priceLow)} to ${formatPrice(priceHigh)}. Final pricing depends on care level, room type, and current availability — our placement advisors can confirm what each community is quoting this week. For Medi-Cal eligibility, see our guide: Does Medi-Cal pay for assisted living?`
+    : `${city.name} ${careLabel} pricing varies by care level and room type. Our placement advisors track current rates across ${city.name} communities and can share what each one is quoting this week — no fee to families. For Medi-Cal eligibility, see our guide: Does Medi-Cal pay for assisted living?`;
 
   return [
     {
@@ -111,17 +111,17 @@ const buildFaqEntries = (city: City, mode: ListingMode, count: number, priceLow?
     {
       question: `What's the difference between assisted living and memory care?`,
       answer:
-        "Assisted living is for older adults who need help with day-to-day tasks (dressing, medications, meals) but don't have significant cognitive impairment. Memory care is a specialised, secured environment with staff trained in dementia and Alzheimer's care. Many communities offer both side by side; an advisor can help you sort which fits your loved one.",
+        "Assisted living is for older adults who need help with day-to-day tasks (dressing, medications, meals) but don't have significant cognitive impairment. Memory care is a specialised, secured environment with staff trained in dementia and Alzheimer's care. Many communities offer both side by side. For a deeper breakdown, see our guide: Assisted living vs. memory care.",
     },
     {
       question: `What is a Residential Care Facility for the Elderly (RCFE)?`,
       answer:
-        "RCFE is California's licensing category for non-medical assisted living, regulated by the Department of Social Services' Community Care Licensing Division (CDSS / CCLD). Every assisted living and memory care community on this directory is RCFE-licensed; you can verify any license by name on the CCLD facility search.",
+        "RCFE is California's licensing category for non-medical assisted living, regulated by the Department of Social Services' Community Care Licensing Division (CDSS / CCLD). Every assisted living and memory care community on this directory is RCFE-licensed; you can verify any license by name on the CCLD facility search. For more, see our guide: What is an RCFE?",
     },
     {
       question: `Does Medi-Cal cover assisted living in California?`,
       answer:
-        "California's Assisted Living Waiver (ALW) program covers a limited number of slots in participating assisted living communities for Medi-Cal eligible residents. Availability is constrained and not every community participates. Ask an advisor whether ALW slots are open in any specific community.",
+        "Medi-Cal generally does not pay the room and board cost of assisted living, but California's Assisted Living Waiver (ALW) program can cover care services in participating communities for eligible residents. Availability is limited and rules change. See our resource page on Medi-Cal and assisted living for the current picture.",
     },
     {
       question: `How do I tour ${careLabel} communities in ${city.name}?`,
@@ -485,9 +485,11 @@ const CityListing = ({ mode }: CityListingProps) => {
                 Posted monthly rates for {city.name} {careWord.toLowerCase()} communities vary widely depending
                 on care level, room type, and shared vs. private. Our placement advisors track current pricing
                 and can share what each community is quoting this week.{' '}
-                {/* TODO: wire the future /resources/medi-cal-assisted-living guide. */}
                 <Link to="/contact" className="text-teal-700 hover:text-teal-800 font-medium underline-offset-2 hover:underline">
                   Get current pricing
+                </Link>. Cost-constrained?{' '}
+                <Link to="/resources/medi-cal-and-assisted-living" className="text-teal-700 hover:text-teal-800 font-medium underline-offset-2 hover:underline">
+                  See whether Medi-Cal can help
                 </Link>.
               </p>
             )}
@@ -552,6 +554,9 @@ const CityListing = ({ mode }: CityListingProps) => {
             </dl>
           </div>
         </section>
+
+        {/* RELATED GUIDES — internal-link funnel to the editorial guides */}
+        <RelatedGuidesBlock />
 
         {/* NEARBY CITIES */}
         <NearbyCitiesBlock currentSlug={city.slug} mode={mode} />
@@ -647,6 +652,64 @@ const EmptyStateBlock = ({ city }: { city: City }) => {
     </div>
   );
 };
+
+const GUIDE_LINKS: { title: string; blurb: string; to: string }[] = [
+  {
+    title: 'Assisted living vs. memory care',
+    blurb: 'Side-by-side comparison, who needs which, and how to decide.',
+    to: '/guides/assisted-living-vs-memory-care',
+  },
+  {
+    title: 'Board and care vs. assisted living',
+    blurb: 'Small 6-bed homes vs. larger communities — the trade-offs.',
+    to: '/guides/board-and-care-vs-assisted-living',
+  },
+  {
+    title: 'What is an RCFE?',
+    blurb: "California's senior care license explained, plus how to verify any community.",
+    to: '/guides/what-is-an-rcfe',
+  },
+  {
+    title: 'Does Medi-Cal pay for assisted living?',
+    blurb: "What Medi-Cal covers, what the Assisted Living Waiver does, and what doesn't qualify.",
+    to: '/resources/medi-cal-and-assisted-living',
+  },
+];
+
+const RelatedGuidesBlock = () => (
+  <section aria-labelledby="related-guides-heading" className="bg-neutral-50">
+    <div className="container-custom py-12 md:py-16">
+      <h2
+        id="related-guides-heading"
+        className="font-serif text-2xl md:text-3xl font-bold text-neutral-800"
+      >
+        Family guides: how senior care actually works
+      </h2>
+      <p className="mt-3 text-neutral-700 max-w-2xl">
+        Plain-language answers to the questions families ask before touring.
+      </p>
+      <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {GUIDE_LINKS.map(g => (
+          <li key={g.to}>
+            <Link
+              to={g.to}
+              className="block bg-white border border-neutral-200 rounded-xl p-5 hover:border-teal-300 hover:shadow-md transition-all group h-full"
+            >
+              <p className="font-serif text-lg font-semibold text-neutral-800 group-hover:text-teal-700 transition-colors">
+                {g.title}
+              </p>
+              <p className="mt-2 text-sm text-neutral-600 leading-relaxed">{g.blurb}</p>
+              <span className="mt-3 inline-flex items-center text-sm font-medium text-teal-700">
+                Read the guide
+                <ArrowRight size={14} className="ml-1 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
 
 const NearbyCitiesBlock = ({ currentSlug, mode }: { currentSlug: string; mode: ListingMode }) => {
   const cities = nearestCitiesWithListings(currentSlug, 4);
