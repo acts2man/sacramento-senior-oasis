@@ -21,7 +21,7 @@ const ContactSection = () => {
             <span className="block text-senior-blue">Senior Care Experts</span>
           </h2>
           <div className="w-24 h-1 bg-senior-blue rounded-full mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
             Ready to find the perfect senior living community? Our local experts are here to help guide you through your options.
           </p>
         </div>
@@ -40,7 +40,7 @@ const ContactSection = () => {
                     <Mail className="text-senior-blue mr-4" size={24} />
                     <div>
                       <h4 className="font-semibold text-senior-slate">Contact Us</h4>
-                      <a href="/contact" className="text-gray-600 hover:text-senior-blue transition-colors">
+                      <a href="/contact" className="text-neutral-600 hover:text-senior-blue transition-colors">
                         Send a message via our contact form
                       </a>
                     </div>
@@ -50,7 +50,7 @@ const ContactSection = () => {
                     <Mail className="text-senior-blue mr-4" size={24} />
                     <div>
                       <h4 className="font-semibold text-senior-slate">Email Us</h4>
-                      <a href="mailto:care@sacramentoelderlycare.com" className="text-gray-600 hover:text-senior-blue transition-colors">
+                      <a href="mailto:care@sacramentoelderlycare.com" className="text-neutral-600 hover:text-senior-blue transition-colors">
                         care@sacramentoelderlycare.com
                       </a>
                     </div>
@@ -60,7 +60,7 @@ const ContactSection = () => {
                     <MapPin className="text-senior-blue mr-4" size={24} />
                     <div>
                       <h4 className="font-semibold text-senior-slate">Service Area</h4>
-                      <p className="text-gray-600">Sacramento & Surrounding Areas</p>
+                      <p className="text-neutral-600">Sacramento & Surrounding Areas</p>
                     </div>
                   </div>
                   
@@ -68,7 +68,7 @@ const ContactSection = () => {
                     <Clock className="text-senior-blue mr-4" size={24} />
                     <div>
                       <h4 className="font-semibold text-senior-slate">Hours</h4>
-                      <p className="text-gray-600">Mon-Fri: 8AM-8PM PST</p>
+                      <p className="text-neutral-600">Mon-Fri: 8AM-8PM PST</p>
                     </div>
                   </div>
                 </div>

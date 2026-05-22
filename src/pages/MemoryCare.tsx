@@ -134,7 +134,7 @@ const MemoryCare = () => {
             backgroundImage: `url('/lovable-uploads/483f4e3d-f678-44d5-83a1-75f43eec305f.png')`
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-senior-blue/80 via-senior-blue/70 to-purple-900/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-senior-blue/80 via-senior-blue/70 to-teal-900/60"></div>
           
           <div className="container-custom relative z-10 h-full flex items-center">
             <div className="max-w-3xl text-white animate-fade-in">
@@ -170,12 +170,12 @@ const MemoryCare = () => {
                 <h2 className="text-4xl font-bold text-senior-slate mb-6">
                   Finding the Right Memory Care in Sacramento
                 </h2>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
                   Sacramento ElderCare Directory makes it easy to find trusted <strong>memory care in Sacramento</strong>,
                   including homes that specialize in supporting those with Alzheimer's and dementia. Our directory 
                   highlights facilities offering safe environments, trained staff, and compassionate daily routines.
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-neutral-600 leading-relaxed">
                   Whether you're looking in <strong>Elk Grove</strong>, <strong>Midtown</strong>, <strong>Natomas</strong>, 
                   or nearby, we help you explore the best <strong>dementia care Sacramento</strong> has to offer.
                 </p>
@@ -189,7 +189,7 @@ const MemoryCare = () => {
           <div className="container-custom">
             <div className="text-center mb-12 animate-fade-in">
               <h2 className="text-4xl font-bold text-senior-slate mb-4">What Is Memory Care?</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
                 Memory care provides specialized support for individuals with Alzheimer's, dementia, and other cognitive impairments.
               </p>
             </div>
@@ -205,7 +205,7 @@ const MemoryCare = () => {
                     <feature.icon size={32} className="text-senior-blue group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3 className="text-xl font-bold text-senior-slate mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                  <p className="text-neutral-600 leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -220,7 +220,7 @@ const MemoryCare = () => {
                 <h2 className="text-4xl font-bold text-senior-slate mb-4">
                   Featured Memory Care Communities
                 </h2>
-                <p className="text-xl text-gray-600">
+                <p className="text-xl text-neutral-600">
                   Explore top-rated memory care facilities in the Sacramento area
                 </p>
               </div>
@@ -258,7 +258,7 @@ const MemoryCare = () => {
                 <h2 className="text-4xl font-bold text-senior-slate mb-4">
                   How to Choose the Right Memory Care Facility
                 </h2>
-                <p className="text-xl text-gray-600">
+                <p className="text-xl text-neutral-600">
                   Making the right choice requires careful consideration. Here's what to look for when evaluating memory care options.
                 </p>
               </div>
@@ -284,7 +284,7 @@ const MemoryCare = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-senior-slate mb-2">{tip.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{tip.description}</p>
+                      <p className="text-neutral-600 text-sm leading-relaxed">{tip.description}</p>
                     </div>
                   </div>
                 </div>
@@ -298,17 +298,17 @@ const MemoryCare = () => {
           <div className="container-custom">
             <div className="text-center mb-12 animate-fade-in">
               <h2 className="text-4xl font-bold text-senior-slate mb-4">What Families Say</h2>
-              <p className="text-xl text-gray-600">Real experiences from Sacramento families</p>
+              <p className="text-xl text-neutral-600">Real experiences from Sacramento families</p>
             </div>
             
             <div className="max-w-4xl mx-auto">
               <div className="bg-senior-light rounded-2xl p-8 md:p-12 text-center animate-scale-in delay-300">
                 <div className="mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={24} className="inline-block text-amber-400 fill-amber-400 mx-1" />
+                    <Star key={i} size={24} className="inline-block text-coral-500 fill-coral-500 mx-1" />
                   ))}
                 </div>
-                <blockquote className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed italic">
+                <blockquote className="text-xl md:text-2xl text-neutral-700 mb-8 leading-relaxed italic">
                   "{testimonials[currentTestimonial].quote}"
                 </blockquote>
                 <div className="text-senior-blue font-semibold">
@@ -321,7 +321,7 @@ const MemoryCare = () => {
                       key={index}
                       onClick={() => setCurrentTestimonial(index)}
                       className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentTestimonial ? 'bg-senior-blue' : 'bg-gray-300'
+                        index === currentTestimonial ? 'bg-senior-blue' : 'bg-neutral-300'
                       }`}
                       aria-label={`View testimonial ${index + 1}`}
                     />
@@ -344,7 +344,7 @@ const MemoryCare = () => {
               </p>
               <Link 
                 to="/locations?filter=memory-care"
-                className="bg-white text-senior-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg inline-flex items-center group animate-scale-in delay-300"
+                className="bg-white text-senior-blue hover:bg-neutral-100 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg inline-flex items-center group animate-scale-in delay-300"
               >
                 Search Sacramento Memory Care Listings
                 <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />

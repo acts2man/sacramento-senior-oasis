@@ -7,65 +7,97 @@
 
 @layer base {
   :root {
-    --background: 210 33% 99%;
-    --foreground: 222 47% 11%;
+    /* ===========================================================================
+     * Sacramento ElderCare Directory brand palette — defined as HSL triplets so
+     * shadcn's `hsl(var(--token))` Tailwind bindings work unchanged. Hex values
+     * are noted next to each token for the human reader.
+     *
+     * Brand-color reference scales live in tailwind.config.ts (teal-*, coral-*,
+     * neutral-*, sage-*). The variables below are the SEMANTIC tokens shadcn
+     * components consume.
+     * =========================================================================*/
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    /* Surface */
+    --background: 0 0% 100%;            /* #FFFFFF */
+    --foreground: 200 35% 19%;          /* #1F3540  neutral-800 / charcoal */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --card: 0 0% 100%;                  /* #FFFFFF */
+    --card-foreground: 200 35% 19%;     /* #1F3540 */
 
-    --primary: 201 58% 38%;
-    --primary-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;               /* #FFFFFF */
+    --popover-foreground: 200 35% 19%;  /* #1F3540 */
 
-    --secondary: 151 38% 41%;
-    --secondary-foreground: 210 40% 98%;
+    /* Primary = brand teal (dark anchor). Used by shadcn Button variant="default" */
+    --primary: 180 80% 20%;             /* #0A5C5C  teal-700 */
+    --primary-foreground: 0 0% 100%;    /* #FFFFFF */
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    /* Secondary = light teal wash. Used for chips, secondary buttons. */
+    --secondary: 173 27% 94%;           /* #EAF3F2  teal-50 */
+    --secondary-foreground: 180 80% 16%; /* #084A4A  teal-800 */
 
-    --accent: 34 56% 63%;
-    --accent-foreground: 222 47% 11%;
+    /* Muted = neutral wash for subdued surfaces (e.g., form helper backgrounds) */
+    --muted: 180 13% 94%;               /* #EEF2F2  neutral-100 */
+    --muted-foreground: 197 12% 42%;    /* #5E7077  neutral-600 / slate */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    /* shadcn `--accent` is the subtle hover-bg for menu items, dropdowns, etc.
+       We INTENTIONALLY map this to a neutral teal wash, NOT the coral brand
+       accent. Coral is reserved for explicit CTAs (see --brand-coral below). */
+    --accent: 173 27% 94%;              /* #EAF3F2  teal-50 */
+    --accent-foreground: 180 80% 16%;   /* #084A4A  teal-800 */
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 222 47% 11%;
+    --destructive: 8 65% 48%;           /* #C8412B */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --border: 180 11% 88%;              /* #DDE4E4  neutral-200 */
+    --input: 180 11% 88%;               /* #DDE4E4  neutral-200 */
+    --ring: 177 71% 30%;                /* #16847F  teal-500 */
 
     --radius: 0.5rem;
+
+    /* Dedicated brand accent. Pulled into the tailwind theme as `brand-coral`
+       so it's reachable via `bg-brand-coral` / `text-brand-coral` for tight
+       one-off uses. Component-level CTA buttons use the full coral scale
+       (coral-700 by default — passes WCAG AA on white text). */
+    --brand-coral: 14 83% 61%;          /* #EE7048  coral-500 (brand mark) */
   }
 
+  /*
+   * TODO(dark-mode): The site does not currently expose a dark-mode toggle.
+   * The block below is a starting point for when we do, mirroring the light
+   * theme with teal-900 surfaces and high-contrast neutrals — but it has not
+   * been visually verified end-to-end. Don't treat these values as final
+   * until we ship dark mode and audit each component.
+   */
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 198 36% 11%;          /* #122026  neutral-900 */
+    --foreground: 180 23% 97%;          /* #F7FAFA  neutral-50 */
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 180 80% 16%;                /* #084A4A  teal-800 */
+    --card-foreground: 180 23% 97%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 180 80% 16%;
+    --popover-foreground: 180 23% 97%;
 
-    --primary: 201 58% 38%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 177 71% 30%;             /* #16847F  teal-500 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 151 38% 41%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 180 80% 16%;           /* #084A4A  teal-800 */
+    --secondary-foreground: 180 23% 97%;
 
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 193 13% 28%;               /* #3D4C50  neutral-700 */
+    --muted-foreground: 180 7% 62%;     /* #97A4A4  neutral-400 */
 
-    --accent: 34 56% 63%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 180 80% 16%;
+    --accent-foreground: 180 23% 97%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 8 65% 48%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 213 27% 84%;
+    --border: 193 13% 28%;              /* #3D4C50 */
+    --input: 193 13% 28%;
+    --ring: 177 42% 42%;                /* #3E9692  teal-400 */
+
+    --brand-coral: 14 83% 61%;
   }
 }
 
@@ -88,18 +120,30 @@
 }
 
 @layer components {
+  /*
+   * Primary CTA — coral, for the family-facing "Request information",
+   * "Get pricing", and hero CTAs. Uses coral-700 (#B84B2A) so white label
+   * text meets WCAG AA at normal weight (5.15:1). coral-500/600 fail AA.
+   *
+   * The `!` (important) on bg/text is intentional: when `.btn-primary` is
+   * stacked on a shadcn <Button> (which already applies `bg-primary`), the
+   * utilities layer wins over the components layer by Tailwind's emit
+   * order. Marking color as important keeps the semantic CTA color stable
+   * regardless of which element type is wearing the class.
+   */
   .btn-primary {
-    @apply bg-senior-blue hover:bg-senior-blue/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
+    @apply !bg-coral-700 hover:!bg-coral-700/90 !text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
   }
-  
+
+  /* Secondary CTA — teal-700, for "Learn more", "Explore communities" etc. */
   .btn-secondary {
-    @apply bg-senior-blue hover:bg-senior-blue/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
+    @apply !bg-teal-700 hover:!bg-teal-700/90 !text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
   }
-  
+
   .btn-outline {
-    @apply border-2 border-senior-blue text-senior-blue hover:bg-senior-blue hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
+    @apply !border-2 !border-teal-700 !text-teal-700 hover:!bg-teal-700 hover:!text-white !bg-transparent font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
   }
-  
+
   .container-custom {
     @apply px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl;
   }
@@ -113,7 +157,7 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-senior-blue to-senior-blue bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent;
   }
 }
 
@@ -192,19 +236,19 @@
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — neutral track, teal thumb */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100;
+  @apply bg-neutral-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-senior-blue/50 rounded-full;
+  @apply bg-teal-700/50 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-senior-blue;
+  @apply bg-teal-700;
 }

@@ -70,7 +70,7 @@ const Locations = () => {
 
       <Header />
       
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-grow bg-neutral-50">
         <div className="bg-senior-blue text-white py-8">
           <div className="container-custom">
             <h1 className="text-3xl font-bold mb-4">
@@ -118,7 +118,7 @@ const Locations = () => {
               <h2 className="text-xl font-bold text-senior-slate">
                 {filteredLocations.length} Communities Available
               </h2>
-              <p className="text-gray-600 text-sm mt-1">
+              <p className="text-neutral-600 text-sm mt-1">
                 Compare costs, amenities, and care options across Sacramento
               </p>
             </div>
@@ -126,7 +126,7 @@ const Locations = () => {
             <div className="flex space-x-4">
               <button 
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center px-4 py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-50 transition-colors"
+                className="flex items-center px-4 py-2 border border-neutral-300 rounded-md bg-white hover:bg-neutral-50 transition-colors"
               >
                 <SlidersHorizontal size={18} className="mr-2" />
                 Filters
@@ -134,7 +134,7 @@ const Locations = () => {
               
               <div className="relative">
                 <select 
-                  className="appearance-none px-4 py-2 pr-8 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-senior-blue"
+                  className="appearance-none px-4 py-2 pr-8 border border-neutral-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-senior-blue"
                   defaultValue="recommended"
                 >
                   <option value="recommended">Recommended</option>
@@ -143,7 +143,7 @@ const Locations = () => {
                   <option value="rating">Highest Rated</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <Filter size={16} className="text-gray-500" />
+                  <Filter size={16} className="text-neutral-500" />
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ const Locations = () => {
                 <h3 className="text-lg font-bold text-senior-slate">Filter Communities</h3>
                 <button 
                   onClick={() => setShowFilters(false)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-neutral-500 hover:text-neutral-700"
                 >
                   <X size={20} />
                 </button>
@@ -231,7 +231,7 @@ const Locations = () => {
               </div>
               
               <div className="mt-6 flex justify-end space-x-4">
-                <button className="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 transition-colors">
+                <button className="px-4 py-2 border border-neutral-300 rounded text-neutral-700 hover:bg-neutral-50 transition-colors">
                   Clear All
                 </button>
                 <button className="px-4 py-2 bg-senior-blue text-white rounded hover:bg-senior-blue/90 transition-colors">
@@ -249,11 +249,11 @@ const Locations = () => {
             </div>
           ) : (
             <div className="py-12 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-                <MapPin size={32} className="text-gray-400" />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-neutral-100 rounded-full mb-4">
+                <MapPin size={32} className="text-neutral-400" />
               </div>
               <h3 className="text-xl font-bold text-senior-slate mb-2">No Communities Found</h3>
-              <p className="text-gray-600 max-w-md mx-auto">
+              <p className="text-neutral-600 max-w-md mx-auto">
                 We couldn't find any communities matching your search criteria. 
                 Try adjusting your search terms or filters to see more options.
               </p>
@@ -274,7 +274,7 @@ const Locations = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-bold text-senior-slate mb-3">Popular Sacramento Areas</h3>
-                <ul className="space-y-2 text-gray-600">
+                <ul className="space-y-2 text-neutral-600">
                   <li>• <strong>Carmichael</strong> - Established community with excellent medical access</li>
                   <li>• <strong>Elk Grove</strong> - Modern communities with resort-style amenities</li>
                   <li>• <strong>Natomas</strong> - Newer developments with active lifestyle options</li>
@@ -283,7 +283,7 @@ const Locations = () => {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-senior-slate mb-3">Types of Care Available</h3>
-                <ul className="space-y-2 text-gray-600">
+                <ul className="space-y-2 text-neutral-600">
                   <li>• <strong>Memory Care</strong> - Specialized support for Alzheimer's and dementia</li>
                   <li>• <strong>Assisted Living</strong> - Help with daily activities while maintaining independence</li>
                   <li>• <strong>Skilled Nursing</strong> - 24/7 medical care and supervision</li>

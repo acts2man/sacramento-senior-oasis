@@ -46,7 +46,7 @@ const LocationAreas = () => {
             <span className="block text-senior-blue">for Senior Living</span>
           </h2>
           <div className="w-24 h-1 bg-senior-blue rounded-full mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
             Explore senior communities across Sacramento's most sought-after neighborhoods. 
             Each area offers unique advantages for seniors and their families.
           </p>
@@ -76,13 +76,13 @@ const LocationAreas = () => {
                   {area.name}
                 </h3>
                 
-                <p className="text-gray-600 mb-6 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                <p className="text-neutral-600 mb-6 text-sm leading-relaxed group-hover:text-neutral-700 transition-colors duration-300">
                   {area.description}
                 </p>
                 
-                <ul className="text-sm text-gray-600 mb-8 space-y-2">
+                <ul className="text-sm text-neutral-600 mb-8 space-y-2">
                   {area.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex items-center group-hover:text-gray-700 transition-colors duration-300">
+                    <li key={idx} className="flex items-center group-hover:text-neutral-700 transition-colors duration-300">
                       <Star size={14} className="text-senior-blue mr-2 flex-shrink-0" />
                       {highlight}
                     </li>
@@ -117,7 +117,7 @@ const LocationAreas = () => {
               <h3 className="text-3xl font-bold text-senior-slate mb-6 group-hover:text-senior-blue transition-colors duration-300">
                 Looking for Memory Care?
               </h3>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+              <p className="text-lg text-neutral-600 mb-8 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300">
                 Memory care communities provide specialized support for residents with Alzheimer's and dementia. 
                 These facilities offer secure environments with trained staff and programs designed specifically 
                 for memory support needs.

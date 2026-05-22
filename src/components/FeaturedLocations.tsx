@@ -21,7 +21,7 @@ const FeaturedLocations = () => {
               <span className="block text-senior-blue">Communities</span>
             </h2>
             <div className="w-24 h-1 bg-senior-blue rounded-full mb-4"></div>
-            <p className="text-xl text-gray-600">Top-rated senior living options in Sacramento</p>
+            <p className="text-xl text-neutral-600">Top-rated senior living options in Sacramento</p>
           </div>
           <Link 
             to="/locations" 

@@ -26,7 +26,7 @@ const CareTypes = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-senior-slate mb-4">
             Types of Senior Care
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Find the perfect level of care and support for your loved one's unique needs
           </p>
         </div>
@@ -50,7 +50,7 @@ const CareTypes = () => {
                 <h3 className="text-xl font-bold text-senior-slate mb-4 group-hover:text-senior-blue transition-colors duration-300 text-center">
                   {type.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-center group-hover:text-gray-700 transition-colors duration-300">
+                <p className="text-neutral-600 leading-relaxed text-center group-hover:text-neutral-700 transition-colors duration-300">
                   {type.description}
                 </p>
               </div>

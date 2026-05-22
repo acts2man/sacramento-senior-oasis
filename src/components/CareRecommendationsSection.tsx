@@ -114,7 +114,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
             <span className="block text-senior-blue">Recommendations</span>
           </h2>
           <div className="w-24 h-1 bg-senior-blue rounded-full mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
             Connect with our senior care experts to find the perfect community for your loved one's unique needs.
           </p>
         </div>
@@ -135,7 +135,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                     <h3 className="text-2xl font-bold text-senior-slate group-hover:text-senior-blue transition-colors duration-300">
                       Tell Us About Your Needs
                     </h3>
-                    <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-neutral-600 group-hover:text-neutral-700 transition-colors duration-300">
                       Help us match you with the perfect senior care community
                     </p>
                   </div>
@@ -151,7 +151,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                   <input type="hidden" name="facility_of_interest" value={facilityName || ''} />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="group/input">
-                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                      <label htmlFor="name" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                         Full Name *
                       </label>
                       <input
@@ -161,13 +161,13 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
+                        className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300"
                         placeholder="Enter your full name"
                       />
                     </div>
                     
                     <div className="group/input">
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                      <label htmlFor="email" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                         Email Address *
                       </label>
                       <input
@@ -177,7 +177,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
+                        className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -185,7 +185,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="group/input">
-                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                      <label htmlFor="phone" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                         Phone Number *
                       </label>
                       <input
@@ -195,13 +195,13 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
+                        className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300"
                         placeholder="(555) 555-5555"
                       />
                     </div>
                     
                     <div className="group/input">
-                      <label htmlFor="location" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                      <label htmlFor="location" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                         Preferred Location
                       </label>
                       <input
@@ -210,7 +210,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
+                        className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300"
                         placeholder="Sacramento, Carmichael, etc."
                       />
                     </div>
@@ -218,7 +218,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="group/input">
-                      <label htmlFor="careType" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                      <label htmlFor="careType" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                         Type of Care Needed
                       </label>
                       <select
@@ -226,7 +226,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                         name="careType"
                         value={formData.careType}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
+                        className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300"
                       >
                         <option value="">Select care type</option>
                         <option value="independent">Independent Living</option>
@@ -238,7 +238,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                     </div>
                     
                     <div className="group/input">
-                      <label htmlFor="urgency" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                      <label htmlFor="urgency" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                         Timeline
                       </label>
                       <select
@@ -246,7 +246,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                         name="urgency"
                         value={formData.urgency}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
+                        className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300"
                       >
                         <option value="">Select timeline</option>
                         <option value="immediate">Immediate (Within 1 month)</option>
@@ -258,7 +258,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                   </div>
 
                   <div className="group/input">
-                    <label htmlFor="budget" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                    <label htmlFor="budget" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                       Monthly Budget Range (Optional)
                     </label>
                     <select
@@ -266,7 +266,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300"
+                      className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300"
                     >
                       <option value="">Select budget range</option>
                       <option value="under-3000">Under $3,000</option>
@@ -278,7 +278,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                   </div>
 
                   <div className="group/input">
-                    <label htmlFor="additionalInfo" className="block text-sm font-semibold text-gray-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
+                    <label htmlFor="additionalInfo" className="block text-sm font-semibold text-neutral-700 mb-2 group-hover/input:text-senior-blue transition-colors duration-300">
                       Additional Information
                     </label>
                     <textarea
@@ -287,7 +287,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                       value={formData.additionalInfo}
                       onChange={handleChange}
                       rows={4}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-gray-300 resize-none"
+                      className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-senior-blue focus:ring-2 focus:ring-senior-blue/20 transition-all duration-300 hover:border-neutral-300 resize-none"
                       placeholder="Tell us about specific needs, preferences, or questions you have..."
                     ></textarea>
                   </div>
@@ -307,7 +307,7 @@ const CareRecommendationsSection = ({ facilityName }: CareRecommendationsSection
                     )}
                   </button>
 
-                  <p className="text-sm text-gray-500 text-center mt-4">
+                  <p className="text-sm text-neutral-500 text-center mt-4">
                     Your information is confidential and will only be used to provide you with care recommendations.
                   </p>
                 </form>
