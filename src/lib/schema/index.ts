@@ -6,6 +6,7 @@ export {
   buildItemListSchema,
   buildBreadcrumbSchema,
   buildArticleSchema,
+  buildFaqSchema,
 } from './builders';
 
 export type {
@@ -17,4 +18,6 @@ export type {
   ArticleSchema,
   ArticleInput,
   BreadcrumbCrumb,
+  FaqPageSchema,
+  FaqEntry,
 } from './types';

@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MemoryCare from "./pages/MemoryCare";
 import AssistedLiving from "./pages/AssistedLiving";
+import CityListing from "./pages/CityListing";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,9 @@ const App = () => (
             <Route path="/locations" element={<Locations />} />
             <Route path="/memory-care" element={<MemoryCare />} />
             <Route path="/assisted-living" element={<AssistedLiving />} />
+            {/* City × care-type pages — match BEFORE the catch-all /:id route */}
+            <Route path="/assisted-living/:citySlug" element={<CityListing mode="assisted_living" />} />
+            <Route path="/senior-living/:citySlug" element={<CityListing mode="senior_living" />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/:id" element={<LocationDetail />} />
