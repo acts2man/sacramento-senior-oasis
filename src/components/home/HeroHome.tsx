@@ -70,7 +70,7 @@ const HeroHome = () => {
           </div>
 
           <h1 className="mt-6 font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-800 leading-tight">
-            Find Assisted Living, Memory Care &amp; Senior Care in Sacramento
+            Find Assisted Living, Memory Care &amp; Senior Living in Sacramento
             <span className="block mt-3 text-2xl md:text-3xl lg:text-4xl font-normal italic text-coral-700">
               with nothing hidden
             </span>

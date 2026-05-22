@@ -19,7 +19,7 @@ import {
 
 const HOME_TITLE = `Assisted Living, Memory Care & Senior Living in Sacramento | ${BRAND_NAME}`;
 const HOME_DESCRIPTION =
-  'Compare assisted living, memory care, and board & care homes across the Sacramento metro. Real costs, license-verified communities, and free local advisors guiding families.';
+  'Compare assisted living, memory care & senior living across Sacramento. License-verified communities, real costs, and free local advisors for families.';
 const HOME_KEYWORDS =
   'assisted living sacramento, memory care sacramento, board and care homes sacramento, RCFE sacramento, senior living sacramento, residential care for the elderly, sacramento senior care advisor';
 
