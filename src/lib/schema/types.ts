@@ -105,6 +105,26 @@ export interface BreadcrumbCrumb {
   url: string;
 }
 
+export interface FaqEntry {
+  question: string;
+  answer: string;
+}
+
+export interface FaqQuestionSchema extends SchemaThing {
+  '@type': 'Question';
+  name: string;
+  acceptedAnswer: {
+    '@type': 'Answer';
+    text: string;
+  };
+}
+
+export interface FaqPageSchema extends SchemaThing {
+  '@context': 'https://schema.org';
+  '@type': 'FAQPage';
+  mainEntity: FaqQuestionSchema[];
+}
+
 export interface BreadcrumbListSchema extends SchemaThing {
   '@context': 'https://schema.org';
   '@type': 'BreadcrumbList';

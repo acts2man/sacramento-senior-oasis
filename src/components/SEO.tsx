@@ -9,6 +9,14 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   canonical?: string;
+  /**
+   * When false, the brand suffix is NOT auto-appended to the page title.
+   * Used by long-tail SEO pages (city × care-type) where keyword + city + N
+   * already burns through the 60-char title budget and the brand belongs in
+   * the meta description / OG site_name instead. Defaults to true so static
+   * pages keep their existing branding.
+   */
+  appendBrand?: boolean;
 }
 
 const SEO = ({
@@ -18,8 +26,11 @@ const SEO = ({
   ogImage = '/placeholder.svg',
   ogType = 'website',
   canonical,
+  appendBrand = true,
 }: SEOProps) => {
-  const fullTitle = title.includes(BRAND_NAME) ? title : `${title} | ${BRAND_NAME}`;
+  const fullTitle = !appendBrand || title.includes(BRAND_NAME)
+    ? title
+    : `${title} | ${BRAND_NAME}`;
   
   return (
     <Helmet>

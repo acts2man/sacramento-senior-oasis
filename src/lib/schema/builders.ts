@@ -5,6 +5,8 @@ import type {
   ArticleSchema,
   BreadcrumbCrumb,
   BreadcrumbListSchema,
+  FaqEntry,
+  FaqPageSchema,
   ItemListSchema,
   ListItem,
   LocalBusinessSchema,
@@ -207,3 +209,16 @@ export const buildArticleSchema = (article: ArticleInput): ArticleSchema => {
     publisher,
   };
 };
+
+export const buildFaqSchema = (entries: FaqEntry[]): FaqPageSchema => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: entries.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+});

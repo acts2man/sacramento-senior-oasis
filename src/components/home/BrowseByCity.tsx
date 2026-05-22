@@ -2,14 +2,13 @@ import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { locations } from '../../data/locations';
 
-// Tier-1 cities from PROJECT.md §3. Per-city listing routes don't exist yet
-// (e.g. /assisted-living/elk-grove); we link to the keyword-rich Locations
-// page filtered by city via ?search= for now, and mark TODO so a future PR
-// can swap in real /[care-type]/[city-slug]/ routes.
+// Tier-1 cities now linked to the real /assisted-living/:citySlug routes.
+// Cities with at least one community in the directory get the keyword-rich
+// listing page populated; cities without data still get a real route with a
+// graceful empty state, which is far better SEO than a placeholder search URL.
 interface CityCard {
   name: string;
   href: string;
-  todo: boolean;
   count: number;
 }
 
@@ -27,16 +26,11 @@ const TIER_1_CITIES: { name: string; slug: string }[] = [
   { name: 'Fair Oaks', slug: 'fair-oaks' },
 ];
 
-const CITIES: CityCard[] = TIER_1_CITIES.map(({ name }) => {
-  const count = countFor(name);
-  return {
-    name,
-    // TODO: replace with /assisted-living/[city-slug]/ once those routes ship.
-    href: `/locations?search=${encodeURIComponent(name)}`,
-    todo: true,
-    count,
-  };
-});
+const CITIES: CityCard[] = TIER_1_CITIES.map(({ name, slug }) => ({
+  name,
+  href: `/assisted-living/${slug}`,
+  count: countFor(name),
+}));
 
 const BrowseByCity = () => (
   <section aria-labelledby="browse-city-heading" className="bg-sage-50">
