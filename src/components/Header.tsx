@@ -22,7 +22,7 @@ const Header = () => {
             <img 
               src={logo} 
               alt={BRAND_NAME}
-              className="h-12 md:h-16 w-auto"
+              className="h-20 md:h-28 w-auto"
             />
           </Link>
 
