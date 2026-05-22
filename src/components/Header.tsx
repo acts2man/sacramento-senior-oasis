@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container-custom py-4">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
@@ -27,7 +27,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex flex-1 items-center justify-between ml-6 lg:ml-10">
             <Link to="/" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Home
             </Link>
