@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { Search, MapPin, ShieldCheck } from 'lucide-react';
 import { locations } from '../../data/locations';
 import { BRAND_NAME } from '../../lib/constants';
