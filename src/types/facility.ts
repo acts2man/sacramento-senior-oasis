@@ -49,12 +49,20 @@ export interface Facility {
   neighborhood?: string;
   zip: string;
   county: string;
-  lat: number;
-  lng: number;
+  // Geo is optional: the CDSS roster has no lat/lng, and we don't fabricate
+  // coordinates. Map components must guard with Number.isFinite before use.
+  lat?: number;
+  lng?: number;
 
   // Care
   care_types: CareType[];
   description: string;
+  /**
+   * One-sentence factual summary used in list cards and meta-description
+   * fallbacks. Imported facilities get an auto-generated short form; curated
+   * ones may omit and the longer `description` is truncated as needed.
+   */
+  description_short?: string;
 
   // CA Community Care Licensing — populated by the CDSS backfill in the next PR
   license_number?: string;

@@ -31,13 +31,28 @@ export const generateSitemap = () => {
   // listings still render (graceful empty state) and get a lower priority
   // so they don't outrank populated pages.
   const slugsWithData = new Set(locations.map(f => cityNameToSlug(f.city)));
+  const slugsWithBoardAndCare = new Set(
+    locations
+      .filter(f => f.care_types.includes('board_and_care'))
+      .map(f => cityNameToSlug(f.city)),
+  );
   const cityCareTypePages = CITIES.flatMap(city => {
     const populated = slugsWithData.has(city.slug);
     const priority = populated ? '0.85' : '0.5';
-    return [
+    const pages = [
       { url: `assisted-living/${city.slug}`, priority, changefreq: 'weekly' },
       { url: `senior-living/${city.slug}`, priority, changefreq: 'weekly' },
     ];
+    // Board & care homes route — only emit when the city has at least one
+    // small RCFE; emitting empty board-and-care pages would just dilute crawl.
+    if (slugsWithBoardAndCare.has(city.slug)) {
+      pages.push({
+        url: `board-and-care-homes/${city.slug}`,
+        priority: '0.8',
+        changefreq: 'weekly',
+      });
+    }
+    return pages;
   });
 
   // Combine all pages

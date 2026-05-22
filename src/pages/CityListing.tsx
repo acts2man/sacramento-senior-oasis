@@ -32,11 +32,33 @@ import {
   type FaqEntry,
 } from '../lib/schema';
 
-type ListingMode = 'assisted_living' | 'senior_living';
+type ListingMode = 'assisted_living' | 'senior_living' | 'board_and_care';
 
 interface CityListingProps {
   mode: ListingMode;
 }
+
+const MODE_CONFIG: Record<ListingMode, {
+  careWord: string;
+  careWordLower: string;
+  pathBase: string;
+}> = {
+  assisted_living: {
+    careWord: 'Assisted Living',
+    careWordLower: 'assisted living',
+    pathBase: '/assisted-living',
+  },
+  senior_living: {
+    careWord: 'Senior Living',
+    careWordLower: 'senior living',
+    pathBase: '/senior-living',
+  },
+  board_and_care: {
+    careWord: 'Board & Care Homes',
+    careWordLower: 'board & care homes',
+    pathBase: '/board-and-care-homes',
+  },
+};
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', {
@@ -50,9 +72,13 @@ const facilitiesInCity = (citySlug: string): Facility[] =>
 
 const facilitiesForListing = (citySlug: string, mode: ListingMode): Facility[] => {
   const inCity = facilitiesInCity(citySlug);
-  return mode === 'assisted_living'
-    ? inCity.filter(f => f.care_types.includes('assisted_living'))
-    : inCity;
+  if (mode === 'assisted_living') {
+    return inCity.filter(f => f.care_types.includes('assisted_living'));
+  }
+  if (mode === 'board_and_care') {
+    return inCity.filter(f => f.care_types.includes('board_and_care'));
+  }
+  return inCity;
 };
 
 /** Slugs of cities that actually have at least one community of any kind. */
@@ -72,7 +98,7 @@ const nearestCitiesWithListings = (currentSlug: string, max = 4): City[] => {
 };
 
 const buildFaqEntries = (city: City, mode: ListingMode, count: number, priceLow?: number, priceHigh?: number): FaqEntry[] => {
-  const careLabel = mode === 'assisted_living' ? 'assisted living' : 'senior living';
+  const careLabel = MODE_CONFIG[mode].careWordLower;
   const costAnswer = (priceLow && priceHigh)
     ? `Among the ${count} communities currently listed in ${city.name}, monthly rates run from about ${formatPrice(priceLow)} to ${formatPrice(priceHigh)}. Final pricing depends on care level, room type, and current availability — our placement advisors can confirm what each community is quoting this week.`
     : `${city.name} ${careLabel} pricing varies by care level and room type. Our placement advisors track current rates across ${city.name} communities and can share what each one is quoting this week — no fee to families.`;
@@ -116,8 +142,15 @@ const licenseLine = (f: Facility): string => {
   return 'License-verified · CA CCLD';
 };
 
+const isOnProbation = (f: Facility) => f.license_status === 'on_probation';
+
 const CommunityCard = ({ facility }: { facility: Facility }) => {
   const hero = facility.photos?.[0];
+  const probation = isOnProbation(facility);
+  const badgeClasses = probation
+    ? 'bg-amber-50 text-amber-900 border border-amber-300'
+    : 'bg-white/95 backdrop-blur-sm text-teal-800';
+  const iconColor = probation ? 'text-amber-700' : 'text-teal-700';
   return (
     <li>
       <Link
@@ -139,8 +172,8 @@ const CommunityCard = ({ facility }: { facility: Facility }) => {
               className="w-full h-56 bg-gradient-to-br from-sage-100 via-teal-50 to-teal-100"
             />
           )}
-          <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-teal-800 text-xs font-medium rounded-full px-3 py-1.5 shadow-sm">
-            <ShieldCheck size={14} className="text-teal-700" aria-hidden="true" />
+          <div className={`absolute top-3 left-3 inline-flex items-center gap-1.5 ${badgeClasses} text-xs font-medium rounded-full px-3 py-1.5 shadow-sm`}>
+            <ShieldCheck size={14} className={iconColor} aria-hidden="true" />
             {licenseLine(facility)}
           </div>
         </div>
@@ -244,38 +277,47 @@ const CityListing = ({ mode }: CityListingProps) => {
   );
 
   /* SEO */
-  const isAL = mode === 'assisted_living';
-  const careWord = isAL ? 'Assisted Living' : 'Senior Living';
-  const pathBase = isAL ? '/assisted-living' : '/senior-living';
+  const { careWord, careWordLower, pathBase } = MODE_CONFIG[mode];
   const path = `${pathBase}/${city.slug}`;
   const canonical = `${SITE_URL}${path}`;
 
-  const title = isAL
-    ? `Assisted Living in ${city.name}, CA — ${count > 0 ? `${count} Communities & Costs` : 'Communities & Costs'}`
-    : `Senior Living in ${city.name}, CA — Assisted Living & Memory Care`;
+  let title: string;
+  if (mode === 'assisted_living') {
+    title = `Assisted Living in ${city.name}, CA — ${count > 0 ? `${count} Communities & Costs` : 'Communities & Costs'}`;
+  } else if (mode === 'board_and_care') {
+    title = `Board & Care Homes in ${city.name}, CA — ${count > 0 ? `${count} Licensed Small RCFEs` : 'Small Licensed RCFEs'}`;
+  } else {
+    title = `Senior Living in ${city.name}, CA — Assisted Living & Memory Care`;
+  }
 
   // Meta description aims for 150–160 chars. We assemble from data so the
   // count is always honest; the template is sized to stay within budget at
   // typical city/count combinations.
-  const descBody = isAL
-    ? (count > 0
+  let description: string;
+  if (mode === 'assisted_living') {
+    description = count > 0
       ? `Compare ${count} assisted living communities in ${city.name}, CA — real costs, license-verified senior living, and a free local advisor for families.`
-      : `${city.name}, CA assisted living and senior living guide. License-verified communities across the Sacramento metro and a free local advisor for families.`)
-    : (count > 0
+      : `${city.name}, CA assisted living and senior living guide. License-verified communities across the Sacramento metro and a free local advisor for families.`;
+  } else if (mode === 'board_and_care') {
+    description = count > 0
+      ? `Compare ${count} licensed board & care homes (RCFEs, capacity 6 or fewer) in ${city.name}, CA. License-verified small senior care homes with a free advisor.`
+      : `Board & care homes (small RCFEs) in ${city.name}, CA — license-verified residential care for the elderly with a free local advisor for families.`;
+  } else {
+    description = count > 0
       ? `Compare ${count} senior living communities in ${city.name}, CA — assisted living, memory care, and board & care homes, with a free local advisor for families.`
-      : `Senior living in ${city.name}, CA — assisted living, memory care, and board & care guidance from local advisors. No fee for families.`);
-
-  const description = descBody;
+      : `Senior living in ${city.name}, CA — assisted living, memory care, and board & care guidance from local advisors. No fee for families.`;
+  }
 
   const keywords = [
-    `${careWord.toLowerCase()} ${city.name.toLowerCase()}`,
+    `${careWordLower} ${city.name.toLowerCase()}`,
     `senior living ${city.name.toLowerCase()}`,
     `${city.name.toLowerCase()} assisted living`,
+    mode === 'board_and_care' ? `board and care homes ${city.name.toLowerCase()}` : '',
     'memory care sacramento',
     'residential care for the elderly',
     'RCFE',
     'senior care homes',
-  ].join(', ');
+  ].filter(Boolean).join(', ');
 
   const faqEntries = buildFaqEntries(city, mode, count, priceMin, priceMax);
 
@@ -326,19 +368,19 @@ const CityListing = ({ mode }: CityListingProps) => {
                 {count > 0 ? (
                   <>
                     The directory currently lists <strong>{count}</strong>{' '}
-                    {isAL ? 'assisted living ' : ''}communit{count === 1 ? 'y' : 'ies'} in{' '}
+                    {mode === 'assisted_living' ? 'assisted living ' : mode === 'board_and_care' ? 'board & care ' : ''}communit{count === 1 ? 'y' : 'ies'} in{' '}
                     {city.name}{allCareTypes.length > 0 && (
                       <>, with care types covering {allCareTypes.map(careTypeLabel).join(', ')}</>
                     )}.
-                    {' '}{city.description} Compare assisted living, memory care, and
-                    residential care for the elderly (RCFE) homes with real costs and
-                    license-verified data.
+                    {' '}{city.description} {mode === 'board_and_care'
+                      ? 'Board & care homes are small, license-verified residential care facilities for the elderly (RCFEs) with a maximum of 6 residents.'
+                      : 'Compare assisted living, memory care, and residential care for the elderly (RCFE) homes with real costs and license-verified data.'}
                   </>
                 ) : (
                   <>
-                    We're actively adding {isAL ? 'assisted living' : 'senior living'} communities in{' '}
+                    We're actively adding {careWordLower} communities in{' '}
                     {city.name}. {city.description} In the meantime, our placement advisors track
-                    {' '}{city.name} {isAL ? 'assisted living' : 'senior living'} openings across
+                    {' '}{city.name} {careWordLower} openings across
                     the Sacramento metro — no fee for families.
                   </>
                 )}
@@ -609,8 +651,7 @@ const EmptyStateBlock = ({ city }: { city: City }) => {
 const NearbyCitiesBlock = ({ currentSlug, mode }: { currentSlug: string; mode: ListingMode }) => {
   const cities = nearestCitiesWithListings(currentSlug, 4);
   if (cities.length === 0) return null;
-  const careWord = mode === 'assisted_living' ? 'Assisted Living' : 'Senior Living';
-  const basePath = mode === 'assisted_living' ? '/assisted-living' : '/senior-living';
+  const { careWord, pathBase: basePath } = MODE_CONFIG[mode];
   return (
     <section aria-labelledby="nearby-heading" className="bg-white">
       <div className="container-custom py-12 md:py-16">
