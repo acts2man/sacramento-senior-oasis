@@ -44,20 +44,32 @@ const QUICK_CHIPS: ChipLink[] = [
 const HeroHome = () => {
   const [careType, setCareType] = useState<string>('');
   const [locationQuery, setLocationQuery] = useState<string>('');
-  const [clipIndex, setClipIndex] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  // Dual <video> elements ping-pong so the next clip is preloaded and ready
+  // to swap in without ever showing the poster or a freeze frame.
+  const [activeLayer, setActiveLayer] = useState<0 | 1>(0);
+  const [srcA, setSrcA] = useState(HERO_CLIPS[0]);
+  const [srcB, setSrcB] = useState(HERO_CLIPS[1 % HERO_CLIPS.length]);
+  const indexRef = useRef(0);
+  const videoARef = useRef<HTMLVideoElement>(null);
+  const videoBRef = useRef<HTMLVideoElement>(null);
 
-  // When the active clip changes, force the <video> to load the new src.
-  // Autoplay continues seamlessly because `muted` + `playsInline` is set.
-  // Remove the poster after first play so transitions don't flash scene-1.
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.removeAttribute('poster');
-    v.load();
-    const p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(() => { /* autoplay blocked */ });
-  }, [clipIndex]);
+  const handleEnded = (layer: 0 | 1) => {
+    const nextIndex = (indexRef.current + 1) % HERO_CLIPS.length;
+    const afterNextIndex = (nextIndex + 1) % HERO_CLIPS.length;
+    indexRef.current = nextIndex;
+    // Swap active layer; queue the *following* clip into the now-hidden layer
+    if (layer === 0) {
+      setActiveLayer(1);
+      const v = videoBRef.current;
+      if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+      setSrcA(HERO_CLIPS[afterNextIndex]);
+    } else {
+      setActiveLayer(0);
+      const v = videoARef.current;
+      if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+      setSrcB(HERO_CLIPS[afterNextIndex]);
+    }
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -72,20 +84,32 @@ const HeroHome = () => {
 
   return (
     <section className="relative overflow-hidden bg-neutral-900">
-      {/* Cinematic video background */}
+      {/* Cinematic video background — dual-layer crossfade to avoid freeze frames */}
       <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        ref={videoARef}
+        key={srcA}
+        src={srcA}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${activeLayer === 0 ? 'opacity-100' : 'opacity-0'}`}
         autoPlay
         muted
         playsInline
         preload="auto"
         poster={poster1}
-        onEnded={() => setClipIndex(i => (i + 1) % HERO_CLIPS.length)}
+        onEnded={() => handleEnded(0)}
         aria-hidden="true"
-      >
-        <source src={HERO_CLIPS[clipIndex]} type="video/mp4" />
-      </video>
+      />
+      <video
+        ref={videoBRef}
+        key={srcB}
+        src={srcB}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${activeLayer === 1 ? 'opacity-100' : 'opacity-0'}`}
+        muted
+        playsInline
+        preload="auto"
+        onEnded={() => handleEnded(1)}
+        aria-hidden="true"
+      />
+
 
       {/* Legibility overlay — dark gradient bottom-up + subtle teal tint so the
           white hero copy and white search card stay WCAG-AA on any frame */}
