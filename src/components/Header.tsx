@@ -15,14 +15,14 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-4">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
               src={logo} 
               alt={BRAND_NAME}
-              className="h-20 md:h-28 w-auto"
+              className="h-16 md:h-24 w-auto"
             />
           </Link>
 
