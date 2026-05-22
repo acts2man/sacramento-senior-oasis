@@ -49,12 +49,14 @@ const HeroHome = () => {
 
   // When the active clip changes, force the <video> to load the new src.
   // Autoplay continues seamlessly because `muted` + `playsInline` is set.
+  // Remove the poster after first play so transitions don't flash scene-1.
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
+    v.removeAttribute('poster');
     v.load();
     const p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(() => { /* autoplay blocked — poster stays */ });
+    if (p && typeof p.catch === 'function') p.catch(() => { /* autoplay blocked */ });
   }, [clipIndex]);
 
   const handleSubmit = (e: FormEvent) => {
