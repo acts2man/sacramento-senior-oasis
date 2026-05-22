@@ -227,30 +227,201 @@ function extractCuratedSummaries(curatedSource) {
 
 /* ----------------------- description templater ----------------------- */
 
-function buildDescriptions(facility) {
+/**
+ * IDs that an editor has individually reviewed and confirmed against
+ * external research notes (identity, address, name, capacity). For these
+ * records we emit a longer description using rotating templates instead
+ * of the thin one-liner. Every claim in the longer description is still
+ * derived from CDSS/CCLD-verified fields only (name, city, county,
+ * capacity, license year, license status) plus the regulatory definition
+ * of the RCFE license category itself.
+ *
+ * NOT a quality endorsement, NOT amenity data — purely "we have looked
+ * this record in the eye." Add an id here only after that review.
+ */
+const RESEARCH_MATCHED_IDS = new Set([
+  'a-bright-future-antelope',
+  'aandc-elderly-care-antelope',
+  'aegis-senior-residence-antelope',
+  'afable-care-home-antelope',
+  'arjan-care-home-antelope',
+  'blessed-homecare-antelope',
+  'david-family-home-antelope',
+  'family-life-senior-care-antelope',
+  'good-hope-care-home-antelope',
+  'grace-care-home-antelope',
+  'j-and-h-care-homes-antelope',
+  'love-and-care-for-elder-antelope',
+  'love-and-care-for-elder-ii-antelope',
+  'maratha-manor-antelope',
+  'pine-hollow-care-home-antelope',
+  'signature-living-on-story-ridge-way-antelope',
+  'unity-memory-home-care-antelope',
+  'yellowtail-home-care-antelope',
+  'alder-grove-senior-living-ii-auburn',
+  'a-and-c-care-home-carmichael',
+  'a-and-c-care-home-2-carmichael',
+  'a-and-v-comfort-home-care-carmichael',
+  'a-nurses-touch-rcfe-carmichael',
+  'a-1-elderly-care-carmichael',
+  'a1-magnificent-home-carmichael',
+  'abundant-love-and-care-for-the-elderly-carmichael',
+  'aegis-assisted-living-of-carmichael-carmichael',
+  'atria-carmichael-oaks-carmichael',
+  'atria-el-camino-gardens-carmichael',
+  'augustus-elder-care-home-llc-carmichael',
+  'blessed-homecare-3-carmichael',
+  'blue-oasis-senior-home-carmichael',
+  'blueberry-hill-senior-living-inc-carmichael',
+  'care-horizons-llc-carmichael',
+  'carmichael-estates-no-1-carmichael',
+  'carmichael-estates-no-2-carmichael',
+  'carmichael-estates-no-3-carmichael',
+  'carmichael-senior-care-carmichael',
+  'chateau-royale-care-carmichael',
+  'cornelia-s-rcfe-carmichael',
+  'cozy-home-care-carmichael',
+  'cypress-home-care-carmichael',
+]);
+
+// Tiny deterministic hash so each id consistently picks the same template
+// across re-runs (stable diffs).
+function pickIndex(id, modulo) {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) {
+    h = ((h << 5) - h + id.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h) % modulo;
+}
+
+function buildShortDescription(facility) {
+  const { name, city, capacity, license_year } = facility;
+  const shortBcOrAl = capacity <= 6 ? 'board and care home' : 'assisted living community';
+  return `${name} is an RCFE-licensed ${shortBcOrAl} in ${city}, CA${
+    license_year ? `, licensed since ${license_year}` : ''
+  }.`;
+}
+
+function buildThinDescription(facility) {
   const { name, city, capacity, license_year, on_probation } = facility;
   const bcOrAl =
     capacity <= 6
       ? `a board and care home serving up to ${capacity} residents`
       : `an assisted living community with capacity for ${capacity} residents`;
-
   const sinceClause = license_year ? `Licensed since ${license_year}, ` : '';
   const probationClause = on_probation
     ? ` This facility's license is currently on probation with the California Department of Social Services.`
     : '';
-
-  const description =
+  return (
     `${name} is a licensed residential care facility for the elderly (RCFE) in ${city}, CA. ` +
-    `${sinceClause}it is ${bcOrAl}.${probationClause}`;
+    `${sinceClause}it is ${bcOrAl}.${probationClause}`
+  );
+}
 
-  const shortBcOrAl =
-    capacity <= 6
-      ? 'board and care home'
-      : 'assisted living community';
-  const description_short = `${name} is an RCFE-licensed ${shortBcOrAl} in ${city}, CA${
-    license_year ? `, licensed since ${license_year}` : ''
-  }.`;
+/**
+ * Longer description for individually-reviewed records. Every concrete
+ * claim comes from CDSS license data we already hold; the regulatory
+ * framing (what an RCFE license authorizes) is true of all RCFEs by
+ * definition. We never claim amenities, prices, ratings, or that the
+ * operator is good or bad — only what the public licensing record shows.
+ */
+function buildEnrichedDescription(facility) {
+  const { name, city, county, capacity, license_year, on_probation } = facility;
+  const isSmall = capacity <= 6;
+  const sizeNoun = isSmall
+    ? 'small board-and-care-style residential home'
+    : `larger congregate residential community`;
+  const countyClause = county ? `, ${county} County` : '';
+  // Discrete phrases for slotting into different sentence positions.
+  const yearSentenceLed = license_year ? `Licensed by CDSS since ${license_year}, ` : '';
+  const yearTrailing = license_year ? ` (CDSS license issued ${license_year})` : '';
+  const yearAside = license_year ? `, with its CDSS license dating to ${license_year},` : '';
 
+  // Probation overrides template selection — that fact leads.
+  if (on_probation) {
+    return (
+      `${name} is a Residential Care Facility for the Elderly (RCFE) in ${city}${countyClause}, ` +
+      `licensed for up to ${capacity} residents${sinceClause}. ` +
+      `Its license is currently on probation with the California Department of Social Services, ` +
+      `meaning CDSS has imposed monitoring conditions on the operator. We surface that status ` +
+      `because it is part of the public CCLD record. Under the RCFE license category, the home ` +
+      `is authorized to provide non-medical personal care — assistance with activities of daily ` +
+      `living, meal service, medication assistance, and 24-hour supervision for older adults. ` +
+      `Confirm current standing with CDSS before placement.`
+    );
+  }
+
+  const templates = [
+    // 0 — license-led
+    () =>
+      `${name} is a Residential Care Facility for the Elderly (RCFE) in ${city}${countyClause}, ` +
+      `licensed by the California Department of Social Services to serve up to ${capacity} ` +
+      `older adults in a ${isSmall ? 'home-based' : 'community'} setting${yearTrailing}. ` +
+      `RCFE is a non-medical license category: the home is authorized to assist with activities of ` +
+      `daily living, meals, medication, and 24-hour supervision, not to provide skilled nursing. ` +
+      `We list only what the CDSS public roster confirms; amenities and pricing are not published ` +
+      `here unless verified directly with the operator.`,
+
+    // 1 — size-led
+    () =>
+      `${name} operates as a ${sizeNoun} in ${city}${countyClause}, licensed by California's ` +
+      `Community Care Licensing Division as an RCFE for up to ${capacity} residents${yearTrailing}. ` +
+      `California's RCFE program covers non-medical care for older adults — help with bathing, ` +
+      `dressing, mobility, meal service, and medication assistance — under the oversight of the ` +
+      `Department of Social Services. The license is currently in good standing on the public ` +
+      `CCLD roster. Specific amenities, room types, and rates should be confirmed with the operator.`,
+
+    // 2 — capacity-led
+    () =>
+      `With CDSS-authorized capacity for ${capacity} residents, ${name} is an RCFE-licensed ` +
+      `${isSmall ? 'six-bed-class' : 'multi-resident'} senior care home in ${city}${countyClause}` +
+      `${yearTrailing}. ` +
+      `Under California Health and Safety Code §1569, RCFEs may provide assistance with ` +
+      `activities of daily living, meals, medication, and 24-hour supervision, but are not ` +
+      `licensed for skilled nursing services. The public license record shows current status; ` +
+      `Sacramento ElderCare Directory does not publish unverified pricing or amenity claims.`,
+
+    // 3 — locality-led
+    () =>
+      `Located in ${city}${countyClause}, ${name} is one of the area's licensed Residential ` +
+      `Care Facilities for the Elderly (RCFE)${yearAside} with state-authorized capacity for ` +
+      `up to ${capacity} residents. ` +
+      `The RCFE category, regulated by the California Department of Social Services, covers ` +
+      `non-medical residential care — daily living assistance, meal service, medication ` +
+      `assistance, and 24-hour supervision. Specific care features, room availability, and rates ` +
+      `are not published from third-party listings; ask the operator directly.`,
+
+    // 4 — year-led (or program-led if no year)
+    () =>
+      `${yearSentenceLed}${name} ` +
+      `is a Residential Care Facility for the Elderly (RCFE) in ${city}${countyClause} with ` +
+      `capacity for up to ${capacity} residents. ` +
+      `RCFE licensing authorizes a defined scope of non-medical care: help with daily activities, ` +
+      `meal service, medication assistance, and 24-hour supervision for older adults who do not ` +
+      `need skilled nursing. The public CCLD record reflects current standing; we list ` +
+      `verifiable license facts here rather than marketing copy.`,
+
+    // 5 — neutral overview
+    () =>
+      `${name} is an RCFE in ${city}${countyClause}, regulated by the California Department of ` +
+      `Social Services and authorized to care for up to ${capacity} residents${yearTrailing}. ` +
+      `As an RCFE, the home falls under California's non-medical residential care category, ` +
+      `which covers assistance with activities of daily living, meals, medication, and 24-hour ` +
+      `supervision. Skilled medical services are out of scope for this license type. ` +
+      `Pricing, room availability, and specific amenities should be confirmed with the operator ` +
+      `before any decision.`,
+  ];
+
+  const idx = pickIndex(facility.id, templates.length);
+  return templates[idx]();
+}
+
+function buildDescriptions(facility) {
+  const useEnriched = RESEARCH_MATCHED_IDS.has(facility.id);
+  const description = useEnriched
+    ? buildEnrichedDescription(facility)
+    : buildThinDescription(facility);
+  const description_short = buildShortDescription(facility);
   return { description, description_short };
 }
 
@@ -402,8 +573,10 @@ function main() {
 
     const license_year = yearOf(rec.license_effective_date);
     const { description, description_short } = buildDescriptions({
+      id,
       name: rec.facilityName,
       city: rec.city,
+      county: rec.county,
       capacity: rec.capacity,
       license_year,
       on_probation: rec.license_status === 'on_probation',
