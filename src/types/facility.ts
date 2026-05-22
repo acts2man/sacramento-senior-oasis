@@ -3,7 +3,7 @@
  *
  * Why there is no `telephone` field:
  *
- * Sacramento Senior Living Directory is a placement-agency lead funnel.
+ * Sacramento ElderCare Directory is a placement-agency lead funnel.
  * Families never call individual facilities through this site. Every inquiry
  * routes to a single master directory line (see `DIRECTORY_PHONE` in
  * `src/lib/constants.ts`) and the lead form. Our team qualifies the lead

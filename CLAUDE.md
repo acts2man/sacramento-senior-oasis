@@ -1,13 +1,13 @@
-# CLAUDE.md — Sacramento Senior Living Directory
+# CLAUDE.md — Sacramento ElderCare Directory
 
 This file is read by Claude Code at the start of every session. Keep it tight; deeper context lives in `PROJECT.md`.
 
 ## What this project is
 
-Sacramento Senior Living Directory — a free directory helping families find assisted living, memory care, board & care homes (RCFEs), and other senior housing in the Sacramento metro area. Goal: become the most trusted local alternative to A Place for Mom and Caring.com, and the dominant local SEO presence in the Sacramento metro for senior care queries.
+Sacramento ElderCare Directory — a free directory helping families find assisted living, memory care, board & care homes (RCFEs), and other senior housing in the Sacramento metro area. Goal: become the most trusted local alternative to A Place for Mom and Caring.com, and the dominant local SEO presence in the Sacramento metro for senior care queries.
 
 Domain: sacramentoelderlycare.com
-Brand: **Sacramento Senior Living Directory**
+Brand: **Sacramento ElderCare Directory**
 (NOT "Sacramento Senior Care" — that is a different business owned by a partner. Strict separation: never use "Sacramento Senior Care" as the brand name anywhere in the site, meta tags, content, or copy. Listings of facilities owned by Sacramento Senior Care are fine, but the directory itself is a separate brand.)
 
 ## Tech stack
