@@ -105,54 +105,49 @@ const WhatIsAnRcfeGuide = () => (
       resident's own doctor — when needed.
     </p>
     <p>
-      Some RCFEs hold additional <strong>waivers or approvals</strong> from CDSS that let
-      them care for residents with specific needs:
+      Some RCFEs hold additional approvals from CDSS that let them serve residents
+      with specific needs:
     </p>
     <ul>
       <li>
-        <strong>Dementia Care Waiver</strong> — authorizes the facility to accept and
-        retain residents with cognitive impairment. Almost every California memory care
-        community operates under this waiver.
+        <strong>Dementia / Alzheimer's care.</strong> RCFEs that accept or retain
+        residents with Alzheimer's or another dementia must meet additional CDSS care
+        requirements and operate under an approved dementia-specific plan of operation.
+        California's updated dementia-care regulations for RCFEs took effect{' '}
+        <strong>January 1, 2025</strong>, raising training, staffing, and care-plan
+        standards across the state.
       </li>
       <li>
-        <strong>Hospice Waiver</strong> — authorizes the facility to retain a resident
-        who has elected hospice care, so they can remain at the community at end of life
-        rather than transfer to a nursing facility.
+        <strong>Hospice / end-of-life care.</strong> Under specific CDSS conditions and
+        with the required approval, an RCFE may accept or retain a terminally ill
+        resident who has elected hospice, coordinating with a licensed hospice agency so
+        the resident can remain at the community rather than transfer to a nursing
+        facility.
       </li>
       <li>
         <strong>Restricted health condition</strong> approvals — for residents needing
         certain non-skilled procedures that would otherwise be outside RCFE scope.
       </li>
     </ul>
-
-    <h2 id="sizes">RCFEs come in two very different sizes</h2>
     <p>
-      The license category covers buildings that look almost nothing like each other:
+      Each of these is a regulated specialty that requires CDSS approval. If a specific
+      need matters for your family, confirm a given community's approvals directly with
+      CDSS Community Care Licensing before relying on a marketing description.
     </p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Typical size</th>
-          <th>What it feels like</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Board and care home (small RCFE)</td>
-          <td>6 residents (most common); some up to 10</td>
-          <td>A converted single-family house in a residential neighborhood</td>
-        </tr>
-        <tr>
-          <td>Assisted living community (large RCFE)</td>
-          <td>40–150+ residents</td>
-          <td>Apartment-style building with shared dining and amenities</td>
-        </tr>
-      </tbody>
-    </table>
+
+    <h2 id="sizes">RCFEs vary widely in size</h2>
     <p>
-      Both hold the same RCFE license; the experience is very different. For families
-      weighing the trade-offs, see our guide to{' '}
+      The license category covers buildings that look almost nothing like each other.
+      Each RCFE's exact licensed capacity is set by its individual CDSS license — from
+      small <strong>six-resident board and care homes</strong> in a converted
+      single-family house, to large <strong>communities serving a hundred or more
+      residents</strong> in a purpose-built apartment building. Every facility on this
+      directory lists its actual licensed capacity pulled from CDSS data, so you can see
+      the real number rather than rely on a tier estimate.
+    </p>
+    <p>
+      Both ends of the size spectrum hold the same RCFE license; the experience is very
+      different. For families weighing the trade-offs, see our guide to{' '}
       <Link to="/guides/board-and-care-vs-assisted-living">
         board and care vs. assisted living
       </Link>.

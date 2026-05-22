@@ -127,9 +127,12 @@ const AssistedLivingVsMemoryCareGuide = () => (
       </li>
     </ul>
     <p>
-      Many California memory care neighborhoods are licensed under the RCFE category with
-      a <strong>Dementia Care Waiver</strong> from CDSS that authorizes the community to
-      accept residents with cognitive impairment. The Alzheimer's Association maintains a{' '}
+      In California, memory care neighborhoods are licensed under the RCFE category and
+      must meet additional CDSS requirements to accept and retain residents with
+      cognitive impairment — including an approved dementia-specific plan of operation
+      and the training, staffing, and care-plan standards introduced in California's
+      updated RCFE dementia-care regulations effective January 1, 2025. The Alzheimer's
+      Association maintains a{' '}
       <a
         href="https://www.alz.org/help-support/caregiving/care-options"
         target="_blank"
@@ -186,7 +189,7 @@ const AssistedLivingVsMemoryCareGuide = () => (
         <tr>
           <td>California license</td>
           <td>RCFE</td>
-          <td>RCFE, typically with a Dementia Care Waiver</td>
+          <td>RCFE with additional CDSS dementia-care approval and plan of operation</td>
         </tr>
       </tbody>
     </table>

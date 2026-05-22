@@ -9,12 +9,12 @@ const faqEntries: FaqEntry[] = [
   {
     question: 'Does Medi-Cal pay for assisted living in California?',
     answer:
-      "Not directly, in most cases. Medi-Cal does not pay for the room and board portion of assisted living. California's Assisted Living Waiver (ALW) is a separate Medi-Cal program that can cover care services in participating assisted living communities for eligible residents, but participation is limited and rules change. Verify current eligibility and availability with DHCS or a benefits counselor.",
+      "No — Medi-Cal does not pay for the room and board portion of assisted living. The exception is California's Assisted Living Waiver (ALW), a separate Medi-Cal program that can pay for care services (not room and board) in participating RCFEs for people who would otherwise need nursing-facility level of care. The ALW operates in 15 counties including Sacramento, but it is not an entitlement — enrollment slots are limited and there is a significant waitlist.",
   },
   {
     question: 'What is the Assisted Living Waiver (ALW)?',
     answer:
-      "The Assisted Living Waiver is a California Medi-Cal program administered by the Department of Health Care Services (DHCS). It provides care services in participating Residential Care Facilities for the Elderly (RCFEs) and Publicly Subsidized Housing for residents who would otherwise need a nursing home level of care. The resident is still responsible for room and board out of pocket (often funded by SSI or other income).",
+      "The Assisted Living Waiver is a California Medi-Cal Home and Community-Based Services program administered by the Department of Health Care Services (DHCS). It pays for care services in participating Residential Care Facilities for the Elderly (RCFEs) and Publicly Subsidized Housing for residents who would otherwise need nursing-facility level of care. The current waiver term runs March 1, 2024 through February 28, 2029. Participants are responsible for their own room and board, paid from income such as SSI; the contribution amount is set annually by the state.",
   },
   {
     question: 'Will Medicare pay for assisted living?',
@@ -116,9 +116,11 @@ const MediCalAndAssistedLivingGuide = () => (
       >
         California Department of Health Care Services
       </a>{' '}
-      (DHCS). It is designed to let people who would otherwise need nursing home care
-      live in a less institutional setting — typically a participating RCFE — and have
-      Medi-Cal pay for the care portion of that stay.
+      (DHCS). It is designed to let people who would otherwise need nursing facility
+      level of care live in a less institutional setting — a participating Residential
+      Care Facility for the Elderly (RCFE) or Publicly Subsidized Housing — with
+      Medi-Cal paying for the care portion of the stay. The current waiver term runs{' '}
+      <strong>March 1, 2024 through February 28, 2029</strong>.
     </p>
     <p>
       What the ALW does and doesn't pay for:
@@ -130,41 +132,67 @@ const MediCalAndAssistedLivingGuide = () => (
         and other waiver services delivered in the community.
       </li>
       <li>
-        <strong>Does not cover:</strong> room and board. The resident pays that
-        themselves — most often from Supplemental Security Income (SSI) or other
-        income. The state sets a specific room and board contribution amount; check
-        DHCS for the current figure.
+        <strong>Does not cover room and board.</strong> ALW participants pay their own
+        room and board from their income (most often SSI, Social Security, or a pension).
+        The state sets an income-based room-and-board contribution amount that is
+        adjusted annually — confirm the current figure with{' '}
+        <a
+          href="https://www.dhcs.ca.gov/services/ltc/Pages/AssistedLivingWaiver.aspx"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          DHCS
+        </a>{' '}
+        before counting on a number.
       </li>
     </ul>
 
-    <h2 id="who-is-eligible">Who is eligible</h2>
+    <h2 id="where-its-available">Where the ALW is available</h2>
     <p>
-      To qualify for the ALW, a person generally needs to:
+      The ALW operates in <strong>15 California counties</strong>, and{' '}
+      <strong>Sacramento County is one of them</strong> — that's the local hook for
+      families reading this. The full list of participating counties: Alameda, Contra
+      Costa, Fresno, Kern, Los Angeles, Orange, Riverside, Sacramento, San Bernardino,
+      San Diego, San Francisco, San Joaquin, San Mateo, Santa Clara, and Sonoma.
     </p>
+    <p>
+      Within those counties, only specific RCFEs participate, and participation can
+      change. The DHCS site maintains the current list of participating facilities.
+    </p>
+
+    <h2 id="who-is-eligible">Who is eligible</h2>
+    <p>To qualify for the ALW, a person generally needs to:</p>
     <ul>
       <li>
-        Be enrolled in <strong>full-scope Medi-Cal</strong> (not a limited or
-        share-of-cost plan)
-      </li>
-      <li>Be at least 21 years old</li>
-      <li>
-        Have care needs at a <strong>nursing facility level of care</strong> — meaning
-        without the ALW services they would need nursing home placement
+        Be enrolled in <strong>full-scope Medi-Cal with zero share of cost</strong> (not
+        a limited-scope or share-of-cost plan)
       </li>
       <li>
-        Live in (or be ready to move to) a participating ALW facility located in a
-        participating county
+        Require <strong>nursing facility level of care</strong> — meaning without the
+        ALW services they would need placement in a nursing home
       </li>
+      <li>Reside in one of the 15 participating counties (Sacramento included)</li>
+      <li>Live in (or be ready to move into) a facility that participates in the ALW</li>
       <li>Be willing to live in the community setting and have it meet their needs safely</li>
     </ul>
-    <p>
-      The official eligibility criteria, financial limits, and application process are
-      maintained by DHCS. Rules change, so do not rely on any third-party summary
-      (including this one) for final answers — confirm with DHCS or a benefits
-      counselor before making decisions.
-    </p>
-    {/* TODO[verify]: confirm the exact list of ALW-participating counties as of the
-        current year directly with DHCS before publishing county-specific claims. */}
+
+    <div className="guide-callout">
+      <p>
+        <strong>Important: the ALW is not an entitlement.</strong> Enrollment slots are
+        capped and the program runs a significant waitlist — roughly{' '}
+        <strong>18,365 people as of December 2025</strong>. Meeting every eligibility
+        criterion does not guarantee a slot, and wait times can be long. Families who
+        need a placement now should plan for self-pay options in parallel rather than
+        wait on the ALW alone. Confirm current waitlist status with{' '}
+        <a
+          href="https://www.dhcs.ca.gov/services/ltc/Pages/AssistedLivingWaiver.aspx"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          DHCS
+        </a>.
+      </p>
+    </div>
 
     <h2 id="how-to-apply">How families apply</h2>
     <ol>
@@ -238,10 +266,13 @@ const MediCalAndAssistedLivingGuide = () => (
 
     <h2 id="sacramento">How this applies in Sacramento</h2>
     <p>
-      The Sacramento metro spans several counties — Sacramento, Placer, Yolo, El Dorado —
-      and ALW availability historically varies by county and by community. Even within a
-      county that participates, only certain RCFEs accept ALW residents and slots open
-      and close as residents come and go.
+      The Sacramento metro spans several counties — Sacramento, Placer, Yolo, and
+      El Dorado. Of those, <strong>only Sacramento County participates in the ALW</strong>.
+      Families in Placer (Roseville, Rocklin, Lincoln, Auburn), Yolo (Davis, West
+      Sacramento), and El Dorado (El Dorado Hills) counties are not currently in an ALW
+      county, so the program isn't an option for an in-county placement. Within
+      Sacramento County, only specific RCFEs participate, and slots open and close as
+      residents come and go.
     </p>
     <p>
       A few practical notes for Sacramento-area families:
