@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-senior-blue text-white pt-12 pb-6">
-      <div className="container-custom">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1: About */}
           <div>
