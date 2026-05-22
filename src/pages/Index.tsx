@@ -1,53 +1,53 @@
-
-import Hero from '../components/Hero';
-import FeaturedLocations from '../components/FeaturedLocations';
-import CareTypes from '../components/CareTypes';
-import LocationAreas from '../components/LocationAreas';
-import SEOContent from '../components/SEOContent';
-import CareRecommendationsSection from '../components/CareRecommendationsSection';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
-import TrustedCareSection from '../components/TrustedCareSection';
-import CareImageShowcase from '../components/CareImageShowcase';
-import { generatePageSEO } from '../utils/seoUtils';
-import { SITE_URL } from '../lib/constants';
 import JsonLd from '../components/JsonLd';
+import HeroHome from '../components/home/HeroHome';
+import TrustBand from '../components/home/TrustBand';
+import HowItWorks from '../components/home/HowItWorks';
+import FeaturedCommunities, { FEATURED_COMMUNITIES } from '../components/home/FeaturedCommunities';
+import BrowseByCareType from '../components/home/BrowseByCareType';
+import BrowseByCity from '../components/home/BrowseByCity';
+import AdvisorCTA from '../components/home/AdvisorCTA';
+import { BRAND_NAME, SITE_URL } from '../lib/constants';
 import {
   buildOrganizationSchema,
   buildWebsiteSchema,
+  buildItemListSchema,
   buildBreadcrumbSchema,
 } from '../lib/schema';
 
-const Index = () => {
-  const seoData = generatePageSEO('home');
+const HOME_TITLE = `Assisted Living, Memory Care & Senior Living in Sacramento | ${BRAND_NAME}`;
+const HOME_DESCRIPTION =
+  'Compare assisted living, memory care, and board & care homes across the Sacramento metro. Real costs, license-verified communities, and free local advisors guiding families.';
+const HOME_KEYWORDS =
+  'assisted living sacramento, memory care sacramento, board and care homes sacramento, RCFE sacramento, senior living sacramento, residential care for the elderly, sacramento senior care advisor';
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      <SEO
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords}
-        canonical={SITE_URL}
-      />
-      <JsonLd data={buildOrganizationSchema()} />
-      <JsonLd data={buildWebsiteSchema()} />
-      <JsonLd data={buildBreadcrumbSchema([{ name: 'Home', url: '/' }])} />
+const Index = () => (
+  <div className="flex flex-col min-h-screen">
+    <SEO
+      title={HOME_TITLE}
+      description={HOME_DESCRIPTION}
+      keywords={HOME_KEYWORDS}
+      canonical={SITE_URL}
+    />
+    <JsonLd data={buildOrganizationSchema()} />
+    <JsonLd data={buildWebsiteSchema()} />
+    <JsonLd data={buildItemListSchema(FEATURED_COMMUNITIES, '/')} />
+    <JsonLd data={buildBreadcrumbSchema([{ name: 'Home', url: '/' }])} />
 
-      <Header />
-      <main className="flex-grow">
-        <Hero />
-        <TrustedCareSection />
-        <CareImageShowcase />
-        <FeaturedLocations />
-        <CareTypes />
-        <LocationAreas />
-        <SEOContent />
-        <CareRecommendationsSection />
-      </main>
-      <Footer />
-    </div>
-  );
-};
+    <Header />
+    <main className="flex-grow">
+      <HeroHome />
+      <TrustBand />
+      <HowItWorks />
+      <FeaturedCommunities />
+      <BrowseByCareType />
+      <BrowseByCity />
+      <AdvisorCTA />
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Index;
