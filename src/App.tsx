@@ -13,6 +13,10 @@ import Contact from "./pages/Contact";
 import MemoryCare from "./pages/MemoryCare";
 import AssistedLiving from "./pages/AssistedLiving";
 import CityListing from "./pages/CityListing";
+import AssistedLivingVsMemoryCareGuide from "./pages/AssistedLivingVsMemoryCareGuide";
+import WhatIsAnRcfeGuide from "./pages/WhatIsAnRcfeGuide";
+import BoardAndCareVsAssistedLivingGuide from "./pages/BoardAndCareVsAssistedLivingGuide";
+import MediCalAndAssistedLivingGuide from "./pages/MediCalAndAssistedLivingGuide";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +37,11 @@ const App = () => (
             <Route path="/assisted-living/:citySlug" element={<CityListing mode="assisted_living" />} />
             <Route path="/senior-living/:citySlug" element={<CityListing mode="senior_living" />} />
             <Route path="/board-and-care-homes/:citySlug" element={<CityListing mode="board_and_care" />} />
+            {/* Editorial guides and resources — fixed paths matched before the /:id catch-all */}
+            <Route path="/guides/assisted-living-vs-memory-care" element={<AssistedLivingVsMemoryCareGuide />} />
+            <Route path="/guides/what-is-an-rcfe" element={<WhatIsAnRcfeGuide />} />
+            <Route path="/guides/board-and-care-vs-assisted-living" element={<BoardAndCareVsAssistedLivingGuide />} />
+            <Route path="/resources/medi-cal-and-assisted-living" element={<MediCalAndAssistedLivingGuide />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/:id" element={<LocationDetail />} />

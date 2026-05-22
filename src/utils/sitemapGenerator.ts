@@ -55,8 +55,18 @@ export const generateSitemap = () => {
     return pages;
   });
 
+  // Editorial guide and resource pages. Priority 0.7 — these are strong
+  // informational content that funnel internal-link authority into the
+  // city × care-type money pages, not destinations in their own right.
+  const guidePages = [
+    { url: 'guides/assisted-living-vs-memory-care', priority: '0.7', changefreq: 'monthly' },
+    { url: 'guides/what-is-an-rcfe', priority: '0.7', changefreq: 'monthly' },
+    { url: 'guides/board-and-care-vs-assisted-living', priority: '0.7', changefreq: 'monthly' },
+    { url: 'resources/medi-cal-and-assisted-living', priority: '0.7', changefreq: 'monthly' },
+  ];
+
   // Combine all pages
-  const allPages = [...staticPages, ...cityCareTypePages, ...locationPages];
+  const allPages = [...staticPages, ...guidePages, ...cityCareTypePages, ...locationPages];
 
   // Generate XML sitemap
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
