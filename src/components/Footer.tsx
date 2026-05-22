@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Heart } from 'lucide-react';
 import { BRAND_NAME } from '../lib/constants';
-import logo from '@/assets/logo.svg';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
