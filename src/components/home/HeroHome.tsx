@@ -1,16 +1,24 @@
 import { Link } from 'react-router-dom';
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Search, MapPin, ShieldCheck } from 'lucide-react';
 import { locations } from '../../data/locations';
 import { BRAND_NAME } from '../../lib/constants';
+import scene1 from '../../../public/videos/hero/scene-1-family.mp4.asset.json';
+import scene2 from '../../../public/videos/hero/scene-2-caregiver.mp4.asset.json';
+import scene3 from '../../../public/videos/hero/scene-3-memory.mp4.asset.json';
+import scene4 from '../../../public/videos/hero/scene-4-sacramento.mp4.asset.json';
+import poster1 from '../../assets/hero/scene-1-family.jpg';
 
 const FACILITY_COUNT = locations.length;
 const CITY_COUNT = new Set(locations.map(f => f.city)).size;
 
+// Cinematic 4-scene loop powering the hero background. Order is intentional:
+// family connection → caregiver presence → memory care → Sacramento neighborhood.
+const HERO_CLIPS = [scene1.url, scene2.url, scene3.url, scene4.url];
+
 const CARE_TYPE_OPTIONS = [
   { value: 'assisted_living', label: 'Assisted Living', route: '/assisted-living' },
   { value: 'memory_care', label: 'Memory Care', route: '/memory-care' },
-  // TODO: routes for these don't exist yet — fall back to /locations until built.
   { value: 'board_and_care', label: 'Board & Care Home (RCFE)', route: '/locations' },
   { value: 'independent_living', label: 'Independent Living', route: '/locations' },
   { value: 'skilled_nursing', label: 'Skilled Nursing', route: '/locations' },
@@ -23,10 +31,6 @@ interface ChipLink {
   todo?: boolean;
 }
 
-// Quick-filter chips below the search. Where a real route exists we link
-// directly; the rest carry TODO markers in code comments so we can wire
-// them up once /board-and-care, /accepts-medicaid, /pet-friendly, and
-// /spanish-speaking listing pages exist.
 const QUICK_CHIPS: ChipLink[] = [
   { label: 'Assisted Living', href: '/assisted-living' },
   { label: 'Memory Care', href: '/memory-care' },
@@ -39,6 +43,18 @@ const QUICK_CHIPS: ChipLink[] = [
 const HeroHome = () => {
   const [careType, setCareType] = useState<string>('');
   const [locationQuery, setLocationQuery] = useState<string>('');
+  const [clipIndex, setClipIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // When the active clip changes, force the <video> to load the new src.
+  // Autoplay continues seamlessly because `muted` + `playsInline` is set.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.load();
+    const p = v.play();
+    if (p && typeof p.catch === 'function') p.catch(() => { /* autoplay blocked — poster stays */ });
+  }, [clipIndex]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -52,39 +68,59 @@ const HeroHome = () => {
   };
 
   return (
-    <section className="relative bg-sage-50 overflow-hidden">
-      {/* Soft brand-tinted radial glow, kept subtle so copy stays the focus */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[480px] h-[480px] bg-teal-100/40 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -right-40 w-[480px] h-[480px] bg-coral-50/60 rounded-full blur-3xl" />
-      </div>
+    <section className="relative overflow-hidden bg-neutral-900">
+      {/* Cinematic video background */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        poster={poster1}
+        onEnded={() => setClipIndex(i => (i + 1) % HERO_CLIPS.length)}
+        aria-hidden="true"
+      >
+        <source src={HERO_CLIPS[clipIndex]} type="video/mp4" />
+      </video>
+
+      {/* Legibility overlay — dark gradient bottom-up + subtle teal tint so the
+          white hero copy and white search card stay WCAG-AA on any frame */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-neutral-900/70 via-neutral-900/55 to-neutral-900/80"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-teal-900/20 mix-blend-multiply"
+        aria-hidden="true"
+      />
 
       <div className="container-custom relative z-10 py-16 md:py-24 lg:py-28">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Eyebrow trust badge */}
-          <div className="inline-flex items-center gap-2 bg-white border border-teal-200 text-teal-800 rounded-full px-4 py-2 text-sm font-medium shadow-sm">
-            <ShieldCheck size={16} className="text-teal-700" aria-hidden="true" />
+          {/* Eyebrow trust badge — glass on dark */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/25 text-white rounded-full px-4 py-2 text-sm font-medium shadow-sm">
+            <ShieldCheck size={16} className="text-teal-200" aria-hidden="true" />
             <span>
               {FACILITY_COUNT} licensed communities · verified with CA Community Care Licensing
             </span>
           </div>
 
-          <h1 className="mt-6 font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-800 leading-tight">
+          <h1 className="mt-6 font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
             Find Assisted Living, Memory Care &amp; Senior Living in Sacramento
-            <span className="block mt-3 text-2xl md:text-3xl lg:text-4xl font-normal italic text-coral-700">
+            <span className="block mt-3 text-2xl md:text-3xl lg:text-4xl font-normal italic text-coral-300">
               with nothing hidden
             </span>
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl text-neutral-700 leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
             Compare assisted living, memory care, and board &amp; care homes across the Sacramento metro.
             Real costs, real licensing data, and a free local advisor to help your family decide.
           </p>
 
-          {/* Smart search */}
+          {/* Smart search — opaque white card stays readable on any video frame */}
           <form
             onSubmit={handleSubmit}
-            className="mt-10 bg-white rounded-2xl shadow-lg border border-neutral-200 p-3 md:p-4 max-w-3xl mx-auto flex flex-col md:flex-row gap-3"
+            className="mt-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/40 p-3 md:p-4 max-w-3xl mx-auto flex flex-col md:flex-row gap-3"
             role="search"
             aria-label="Find a senior living community"
           >
@@ -126,13 +162,13 @@ const HeroHome = () => {
             </button>
           </form>
 
-          {/* Quick chips */}
+          {/* Quick chips — glass on dark */}
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             {QUICK_CHIPS.map(chip => (
               <Link
                 key={chip.label}
                 to={chip.href}
-                className="bg-white/70 hover:bg-white border border-teal-200 text-teal-800 rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
               >
                 {chip.label}
               </Link>
@@ -142,26 +178,25 @@ const HeroHome = () => {
           {/* Stats row */}
           <dl className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 max-w-3xl mx-auto">
             <div className="text-center">
-              <dt className="text-sm text-neutral-600">Communities</dt>
-              <dd className="font-serif text-2xl md:text-3xl font-bold text-teal-800 mt-1">{FACILITY_COUNT}</dd>
+              <dt className="text-sm text-white/80">Communities</dt>
+              <dd className="font-serif text-2xl md:text-3xl font-bold text-white mt-1 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">{FACILITY_COUNT}</dd>
             </div>
             <div className="text-center">
-              <dt className="text-sm text-neutral-600">Cities &amp; neighborhoods</dt>
-              <dd className="font-serif text-2xl md:text-3xl font-bold text-teal-800 mt-1">{CITY_COUNT}</dd>
+              <dt className="text-sm text-white/80">Cities &amp; neighborhoods</dt>
+              <dd className="font-serif text-2xl md:text-3xl font-bold text-white mt-1 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">{CITY_COUNT}</dd>
             </div>
             <div className="text-center">
-              <dt className="text-sm text-neutral-600">License-verified</dt>
-              <dd className="font-serif text-2xl md:text-3xl font-bold text-teal-800 mt-1">100%</dd>
+              <dt className="text-sm text-white/80">License-verified</dt>
+              <dd className="font-serif text-2xl md:text-3xl font-bold text-white mt-1 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">100%</dd>
             </div>
             <div className="text-center">
-              <dt className="text-sm text-neutral-600">For families</dt>
-              <dd className="font-serif text-2xl md:text-3xl font-bold text-teal-800 mt-1">Free</dd>
+              <dt className="text-sm text-white/80">For families</dt>
+              <dd className="font-serif text-2xl md:text-3xl font-bold text-white mt-1 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">Free</dd>
             </div>
           </dl>
         </div>
       </div>
 
-      {/* Hidden brand-name reference for assistive tech; visible brand lives in the Header */}
       <span className="sr-only">{BRAND_NAME}</span>
     </section>
   );
