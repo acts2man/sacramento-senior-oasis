@@ -32,6 +32,7 @@ const App = () => (
             {/* City × care-type pages — match BEFORE the catch-all /:id route */}
             <Route path="/assisted-living/:citySlug" element={<CityListing mode="assisted_living" />} />
             <Route path="/senior-living/:citySlug" element={<CityListing mode="senior_living" />} />
+            <Route path="/board-and-care-homes/:citySlug" element={<CityListing mode="board_and_care" />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/:id" element={<LocationDetail />} />

@@ -24,6 +24,9 @@ import {
   ArrowLeft,
   ChevronRight,
   Phone,
+  ShieldCheck,
+  AlertTriangle,
+  ExternalLink,
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
@@ -347,16 +350,23 @@ const LocationDetail = () => {
                 </div>
               </div>
 
-              {/* Map */}
-              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h2 className="text-2xl font-bold text-senior-slate mb-4">Location & Directions</h2>
-                <Map
-                  lat={location.lat}
-                  lng={location.lng}
-                  name={location.name}
-                  address={`${location.street_address}, ${location.city}, CA ${location.zip}`}
-                />
-              </div>
+              {/* License panel — CDSS / Community Care Licensing transparency */}
+              {location.license_number && (
+                <LicensePanel facility={location} />
+              )}
+
+              {/* Map — only when we have real geo for this facility */}
+              {Number.isFinite(location.lat) && Number.isFinite(location.lng) && (
+                <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+                  <h2 className="text-2xl font-bold text-senior-slate mb-4">Location & Directions</h2>
+                  <Map
+                    lat={location.lat!}
+                    lng={location.lng!}
+                    name={location.name}
+                    address={`${location.street_address}, ${location.city}, CA ${location.zip}`}
+                  />
+                </div>
+              )}
 
               {/* Similar Communities */}
               {similarLocations.length > 0 && (
@@ -410,6 +420,107 @@ const LocationDetail = () => {
       </main>
 
       <Footer />
+    </div>
+  );
+};
+
+/**
+ * License transparency panel. Shows the CDSS / Community Care Licensing
+ * fields verbatim and links to the public CCLD facility search so families
+ * can verify the record themselves. "On probation" is shown distinctly
+ * rather than hidden — the moat is honesty, not flattering display.
+ */
+const LicensePanel = ({ facility }: { facility: Facility }) => {
+  const isProbation = facility.license_status === 'on_probation';
+  const isCurrent = facility.license_status === 'current';
+  const cldUrl = 'https://www.cdss.ca.gov/inforesources/community-care-licensing/facility-search';
+
+  const dateLabel = facility.license_effective_date
+    ? new Date(facility.license_effective_date + 'T00:00:00').toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : null;
+
+  return (
+    <div className={`rounded-lg shadow-md p-6 mb-6 border ${isProbation ? 'bg-amber-50 border-amber-300' : 'bg-white border-neutral-200'}`}>
+      <div className="flex items-start gap-3 mb-4">
+        {isProbation ? (
+          <AlertTriangle size={22} className="text-amber-700 flex-shrink-0 mt-1" aria-hidden="true" />
+        ) : (
+          <ShieldCheck size={22} className="text-teal-700 flex-shrink-0 mt-1" aria-hidden="true" />
+        )}
+        <div>
+          <h2 className="text-xl font-bold text-senior-slate">
+            {isProbation ? 'License on probation' : 'License-verified'}
+          </h2>
+          <p className="text-sm text-neutral-600 mt-1">
+            CA Department of Social Services — Community Care Licensing Division
+          </p>
+        </div>
+      </div>
+
+      {isProbation && (
+        <p className="text-sm text-amber-900 mb-4 leading-relaxed">
+          This facility's license is currently <strong>on probation</strong> with the
+          California Department of Social Services. Verify the current status on the
+          public CCLD facility search before touring.
+        </p>
+      )}
+
+      <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+        {facility.license_number && (
+          <div>
+            <dt className="text-neutral-500 uppercase tracking-wide text-xs">License #</dt>
+            <dd className="font-semibold text-senior-slate mt-0.5">{facility.license_number}</dd>
+          </div>
+        )}
+        {facility.license_type && (
+          <div>
+            <dt className="text-neutral-500 uppercase tracking-wide text-xs">License type</dt>
+            <dd className="font-semibold text-senior-slate mt-0.5">
+              {facility.license_type === 'RCFE' ? 'RCFE (Residential Care for the Elderly)' : facility.license_type}
+            </dd>
+          </div>
+        )}
+        {facility.license_status && (
+          <div>
+            <dt className="text-neutral-500 uppercase tracking-wide text-xs">Status</dt>
+            <dd className={`font-semibold mt-0.5 ${isProbation ? 'text-amber-800' : isCurrent ? 'text-teal-700' : 'text-senior-slate'}`}>
+              {isProbation ? 'On probation' : isCurrent ? 'Current' : facility.license_status}
+            </dd>
+          </div>
+        )}
+        {dateLabel && (
+          <div>
+            <dt className="text-neutral-500 uppercase tracking-wide text-xs">Licensed since</dt>
+            <dd className="font-semibold text-senior-slate mt-0.5">{dateLabel}</dd>
+          </div>
+        )}
+        {Number.isFinite(facility.capacity) && (
+          <div>
+            <dt className="text-neutral-500 uppercase tracking-wide text-xs">Licensed capacity</dt>
+            <dd className="font-semibold text-senior-slate mt-0.5">{facility.capacity} residents</dd>
+          </div>
+        )}
+        {facility.county && (
+          <div>
+            <dt className="text-neutral-500 uppercase tracking-wide text-xs">County</dt>
+            <dd className="font-semibold text-senior-slate mt-0.5">{facility.county}</dd>
+          </div>
+        )}
+      </dl>
+
+      <a
+        href={cldUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 hover:text-teal-800"
+      >
+        View CCLD record
+        <ExternalLink size={14} aria-hidden="true" />
+      </a>
     </div>
   );
 };
