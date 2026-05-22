@@ -74,7 +74,7 @@ const Locations = () => {
         <div className="bg-senior-blue text-white py-8">
           <div className="container-custom">
             <h1 className="text-3xl font-bold mb-4">
-              Sacramento Senior Living Directory
+              Sacramento ElderCare Directory
             </h1>
             <p className="text-xl text-white/90 mb-6">
               Explore our comprehensive directory of {locations.length} senior living communities across Sacramento. 

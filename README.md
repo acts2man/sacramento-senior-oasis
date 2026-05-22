@@ -1,4 +1,4 @@
-# Sacramento Senior Living Directory
+# Sacramento ElderCare Directory
 
 A free directory helping families find assisted living, memory care, board and care homes (RCFEs), and other senior housing in the Sacramento metro area.
 
@@ -32,4 +32,4 @@ Read [CLAUDE.md](./CLAUDE.md) before contributing — it covers branding rules, 
 
 ## Branding
 
-The directory is **Sacramento Senior Living Directory**. Do **not** use "Sacramento Senior Care" as the brand anywhere — that is a separate business owned by a partner. Listings of facilities owned by Sacramento Senior Care are fine; the directory itself is a separate brand.
+The directory is **Sacramento ElderCare Directory**. Do **not** use "Sacramento Senior Care" as the brand anywhere — that is a separate business owned by a partner. Listings of facilities owned by Sacramento Senior Care are fine; the directory itself is a separate brand.

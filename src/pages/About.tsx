@@ -45,10 +45,10 @@ const About = () => {
         <div className="container-custom py-12">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl font-bold text-senior-slate mb-6">
-              About Sacramento Senior Living Directory
+              About Sacramento ElderCare Directory
             </h1>
             <p className="text-gray-600 text-lg mb-8">
-              Welcome to Sacramento Senior Living Directory, your trusted resource for finding the perfect senior living community in the Sacramento area. We understand that choosing the right care option for yourself or your loved one can be a challenging and emotional process. That's why we're here to provide you with comprehensive information, expert guidance, and personalized support every step of the way.
+              Welcome to Sacramento ElderCare Directory, your trusted resource for finding the perfect senior living community in the Sacramento area. We understand that choosing the right care option for yourself or your loved one can be a challenging and emotional process. That's why we're here to provide you with comprehensive information, expert guidance, and personalized support every step of the way.
             </p>
             
             <section className="mb-8">

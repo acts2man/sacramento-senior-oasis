@@ -1,5 +1,6 @@
 
 import { Helmet } from 'react-helmet-async';
+import { BRAND_NAME } from '../lib/constants';
 
 interface SEOProps {
   title: string;
@@ -18,9 +19,7 @@ const SEO = ({
   ogType = 'website',
   canonical,
 }: SEOProps) => {
-  const fullTitle = title.includes('Sacramento Senior Living Directory')
-    ? title
-    : `${title} | Sacramento Senior Living Directory`;
+  const fullTitle = title.includes(BRAND_NAME) ? title : `${title} | ${BRAND_NAME}`;
   
   return (
     <Helmet>

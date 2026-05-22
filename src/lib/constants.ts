@@ -1,6 +1,17 @@
 export const SITE_URL = 'https://sacramentoelderlycare.com';
 
 /**
+ * Public-facing directory brand. Imported by every component, page, schema
+ * builder, and meta-tag emitter so a future rename is a one-line change here.
+ *
+ * BRAND_NAME_SHORT exists for tight surfaces (e.g., chip labels, ARIA labels)
+ * where the full name doesn't fit. Today both values are identical; keep the
+ * two exports separate so the abstraction is in place when we want one.
+ */
+export const BRAND_NAME = 'Sacramento ElderCare Directory';
+export const BRAND_NAME_SHORT = 'Sacramento ElderCare Directory';
+
+/**
  * Directory's master concierge line. All facility inquiries route here.
  *
  * Set to null until a tracked number is provisioned. When null, UI shows

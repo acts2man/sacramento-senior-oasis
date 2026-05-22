@@ -1,8 +1,9 @@
 
 import type { Facility } from '../types/facility';
 import { careTypeLabel } from '../lib/careTypes';
+import { BRAND_NAME } from '../lib/constants';
 
-const BRAND_SUFFIX = 'Sacramento Senior Living Directory';
+const BRAND_SUFFIX = BRAND_NAME;
 
 // Keyed by `LocationType.id` from `data/locations.ts` — the real source of truth.
 // If a location is added there with no entry here, generateLocationSEO falls
@@ -133,14 +134,14 @@ export const generateLocationSEO = (location: Facility) => {
 
 export const generatePageSEO = (pageName: string, customDescription?: string) => {
   const titles = {
-    home: `${BRAND_SUFFIX} — Find Assisted Living, Memory Care & Board and Care Homes in Sacramento`,
+    home: `${BRAND_SUFFIX} — Assisted Living, Memory Care & Board and Care Homes`,
     locations: `Senior Living Communities in Sacramento, CA - Complete Directory | ${BRAND_SUFFIX}`,
     about: `About ${BRAND_SUFFIX} — Your Trusted Senior Living Guide`,
     contact: `Contact ${BRAND_SUFFIX} — Get Help Finding Senior Housing`
   };
 
   const descriptions = {
-    home: 'Find the perfect senior living community in Sacramento, CA. Compare assisted living, memory care, and independent living options with pricing, amenities, and reviews.',
+    home: `${BRAND_SUFFIX} helps families compare assisted living, memory care, and board and care homes — with free placement advisors guiding the way.`,
     locations: 'Browse our complete directory of senior living communities across Sacramento, CA. Compare assisted living, memory care, and independent living facilities with detailed information.',
     about: `Learn about ${BRAND_SUFFIX}, your trusted resource for finding quality senior living communities throughout the Sacramento area. Expert guidance for families.`,
     contact: `Contact ${BRAND_SUFFIX} for personalized assistance finding the right senior living community. Free consultation and guidance for Sacramento area families.`

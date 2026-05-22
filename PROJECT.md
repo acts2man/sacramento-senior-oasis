@@ -1,4 +1,4 @@
-# PROJECT.md — Sacramento Senior Living Directory
+# PROJECT.md — Sacramento ElderCare Directory
 
 The full strategic brief. Claude Code: refer to this when CLAUDE.md doesn't have enough context.
 
@@ -229,7 +229,7 @@ Phone tracking: every facility page should display a tracked phone number (CallR
 ## 8. Phased build plan
 
 ### Phase 1: Foundation & rebrand (Week 1)
-- Rename brand everywhere ("Sacramento Senior Living Directory")
+- Rename brand everywhere ("Sacramento ElderCare Directory")
 - Fix all default Lovable meta tags, OG tags, favicon
 - Add Google Search Console, GA4, Microsoft Clarity
 - Set up `netlify.toml` with redirects, headers, build settings

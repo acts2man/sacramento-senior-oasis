@@ -1,4 +1,4 @@
-import { SITE_URL } from '../constants';
+import { BRAND_NAME, SITE_URL } from '../constants';
 import type { Facility } from '../../types/facility';
 import type {
   ArticleInput,
@@ -13,9 +13,9 @@ import type {
   WebSiteSchema,
 } from './types';
 
-const ORG_NAME = 'Sacramento Senior Living Directory';
+const ORG_NAME = BRAND_NAME;
 const ORG_DESCRIPTION =
-  'Sacramento Senior Living Directory helps families compare assisted living, memory care, and board and care homes across the Sacramento metro.';
+  `${BRAND_NAME} helps families compare assisted living, memory care, and board and care homes across the Sacramento metro.`;
 // Placeholder until a real brand logo asset exists.
 const ORG_LOGO = `${SITE_URL}/og/default.png`;
 

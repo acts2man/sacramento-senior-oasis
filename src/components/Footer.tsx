@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Heart } from 'lucide-react';
+import { BRAND_NAME } from '../lib/constants';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +12,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1: About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Sacramento Senior Living Directory</h3>
+            <h3 className="text-xl font-bold mb-4">{BRAND_NAME}</h3>
             <p className="text-white/80 mb-4">
               Helping Sacramento seniors and their families find the perfect assisted living communities tailored to their unique needs and preferences.
             </p>
@@ -71,7 +72,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-8 pt-6 text-center text-white/60 text-sm">
           <p className="flex flex-col sm:flex-row justify-center items-center gap-1">
-            <span>&copy; {currentYear} Sacramento Senior Living Directory.</span>
+            <span>&copy; {currentYear} {BRAND_NAME}.</span>
             <span className="hidden sm:inline">|</span>
             <span>Made with <Heart size={14} className="inline text-senior-sand mx-1" /> in Sacramento</span>
           </p>

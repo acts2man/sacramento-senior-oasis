@@ -14,7 +14,7 @@ const TrustedCareSection = () => {
               <span className="block text-senior-blue">in Sacramento</span>
             </h2>
             <div className="w-24 h-1 bg-senior-blue rounded-full"></div>
-            <p className="text-lg text-gray-600 leading-relaxed">Sacramento Senior Living Directory helps families find the right assisted living community across the greater Sacramento area. Whether you're looking for assisted living, memory care, or independent living options, we provide comprehensive information to help you make informed decisions about your loved one's care.</p>
+            <p className="text-lg text-gray-600 leading-relaxed">Sacramento ElderCare Directory helps families find the right assisted living community across the greater Sacramento area. Whether you're looking for assisted living, memory care, or independent living options, we provide comprehensive information to help you make informed decisions about your loved one's care.</p>
             
             <div className="pt-4">
               <div className="inline-flex items-center px-6 py-3 bg-senior-blue text-white rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer hover:bg-senior-blue/90">
