@@ -103,7 +103,7 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
 
       <div className="mb-6">
         <h3 className="text-2xl font-bold text-senior-slate mb-2">Contact Us</h3>
-        <p className="text-gray-600">We're here to help you find the perfect senior living community.</p>
+        <p className="text-neutral-600">We're here to help you find the perfect senior living community.</p>
         {facilityName && (
           <p className="mt-3 text-sm text-senior-blue bg-senior-light px-3 py-2 rounded-md inline-block">
             Inquiring about: <strong>{facilityName}</strong>
@@ -113,7 +113,7 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
 
       <div className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-1">
             Full Name
           </label>
           <input
@@ -123,13 +123,13 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
+            className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
             placeholder="John Doe"
           />
         </div>
         
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1">
             Email Address
           </label>
           <input
@@ -139,13 +139,13 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
+            className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
             placeholder="johndoe@example.com"
           />
         </div>
         
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-1">
             Phone Number
           </label>
           <input
@@ -154,13 +154,13 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
+            className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
             placeholder="(916) 555-1234"
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+          <label className="block text-sm font-medium text-neutral-700 mb-3">
             Is this for you or someone else?
           </label>
           <RadioGroup value={formData.inquiryFor} onValueChange={handleRadioChange}>
@@ -180,7 +180,7 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
         </div>
         
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-1">
             Message
           </label>
           <textarea
@@ -189,7 +189,7 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
             value={formData.message}
             onChange={handleChange}
             rows={4}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
+            className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-senior-blue"
             placeholder="Tell us about your needs or ask any questions..."
           ></textarea>
         </div>
@@ -202,7 +202,7 @@ const ContactForm = ({ facilityName }: ContactFormProps) => {
           {isSubmitting ? 'Sending Message...' : 'Send Message'}
         </button>
         
-        <p className="text-xs text-gray-500 mt-3">
+        <p className="text-xs text-neutral-500 mt-3">
           By submitting this form, you agree to our privacy policy and terms of service.
         </p>
       </div>

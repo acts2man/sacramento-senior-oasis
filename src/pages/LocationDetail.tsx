@@ -58,7 +58,7 @@ const LocationDetail = () => {
           description="The requested senior living community could not be found. Browse our directory of Sacramento area senior living communities."
         />
         <Header />
-        <main className="flex-grow bg-gray-50 py-12">
+        <main className="flex-grow bg-neutral-50 py-12">
           <div className="container-custom text-center">
             <h1 className="text-2xl font-bold mb-4">Location not found</h1>
             <Link to="/locations" className="text-senior-blue hover:underline">
@@ -105,16 +105,16 @@ const LocationDetail = () => {
 
       <Header />
 
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-grow bg-neutral-50">
         {/* Breadcrumb */}
         <div className="bg-white border-b">
           <div className="container-custom py-3">
-            <div className="flex items-center text-sm text-gray-500">
+            <div className="flex items-center text-sm text-neutral-500">
               <Link to="/" className="hover:text-senior-blue">Home</Link>
               <ChevronRight size={12} className="mx-2" />
               <Link to="/locations" className="hover:text-senior-blue">Communities</Link>
               <ChevronRight size={12} className="mx-2" />
-              <span className="text-gray-700 font-medium">{location.name}</span>
+              <span className="text-neutral-700 font-medium">{location.name}</span>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@ const LocationDetail = () => {
             <div className="flex flex-col md:flex-row md:items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold text-senior-slate">{location.name}</h1>
-                <div className="flex items-center mt-2 text-gray-600">
+                <div className="flex items-center mt-2 text-neutral-600">
                   <MapPin size={18} className="mr-1" />
                   <span>{location.street_address}, {location.city}, CA {location.zip}</span>
                 </div>
@@ -216,14 +216,14 @@ const LocationDetail = () => {
                   <div className="flex overflow-x-auto">
                     <button
                       onClick={() => setActiveTab('overview')}
-                      className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'overview' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-gray-600 hover:text-senior-blue'}`}
+                      className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'overview' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-neutral-600 hover:text-senior-blue'}`}
                     >
                       Overview
                     </button>
                     {location.amenities && location.amenities.length > 0 && (
                       <button
                         onClick={() => setActiveTab('amenities')}
-                        className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'amenities' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-gray-600 hover:text-senior-blue'}`}
+                        className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'amenities' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-neutral-600 hover:text-senior-blue'}`}
                       >
                         Amenities
                       </button>
@@ -231,7 +231,7 @@ const LocationDetail = () => {
                     {Number.isFinite(location.price_range_low) && (
                       <button
                         onClick={() => setActiveTab('pricing')}
-                        className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'pricing' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-gray-600 hover:text-senior-blue'}`}
+                        className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'pricing' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-neutral-600 hover:text-senior-blue'}`}
                       >
                         Pricing
                       </button>
@@ -244,7 +244,7 @@ const LocationDetail = () => {
                   {activeTab === 'overview' && (
                     <div>
                       <h2 className="text-2xl font-bold text-senior-slate mb-4">About {location.name}</h2>
-                      <p className="text-gray-600 mb-6">{location.description}</p>
+                      <p className="text-neutral-600 mb-6">{location.description}</p>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         {Number.isFinite(location.price_range_low) && (
@@ -253,11 +253,11 @@ const LocationDetail = () => {
                               <DollarSign size={18} className="mr-2 text-senior-blue" />
                               Pricing Information
                             </h3>
-                            <p className="text-gray-600">
+                            <p className="text-neutral-600">
                               Starting at {formatPrice(location.price_range_low!)} per month
                             </p>
                             {Number.isFinite(location.price_range_high) && (
-                              <p className="text-gray-600">
+                              <p className="text-neutral-600">
                                 Up to {formatPrice(location.price_range_high!)} per month
                               </p>
                             )}
@@ -269,7 +269,7 @@ const LocationDetail = () => {
                             <Award size={18} className="mr-2 text-senior-blue" />
                             Care Types
                           </h3>
-                          <ul className="text-gray-600 space-y-1">
+                          <ul className="text-neutral-600 space-y-1">
                             {careLabels.map(label => (
                               <li key={label}>{label}</li>
                             ))}
@@ -283,7 +283,7 @@ const LocationDetail = () => {
                   {activeTab === 'amenities' && location.amenities && (
                     <div>
                       <h2 className="text-2xl font-bold text-senior-slate mb-4">Amenities</h2>
-                      <p className="text-gray-600 mb-6">
+                      <p className="text-neutral-600 mb-6">
                         {location.name} offers the following amenities to enhance residents' quality of life:
                       </p>
 
@@ -302,7 +302,7 @@ const LocationDetail = () => {
                   {activeTab === 'pricing' && Number.isFinite(location.price_range_low) && (
                     <div>
                       <h2 className="text-2xl font-bold text-senior-slate mb-4">Pricing Information</h2>
-                      <p className="text-gray-600 mb-6">
+                      <p className="text-neutral-600 mb-6">
                         Indicative monthly rates at {location.name}. Final pricing depends on care needs and room type — our
                         advisors can confirm current availability and help you compare with similar communities.
                       </p>
@@ -335,9 +335,9 @@ const LocationDetail = () => {
                         )}
                       </div>
 
-                      <div className="mt-6 p-4 border border-yellow-400/30 bg-yellow-50 rounded-lg">
+                      <div className="mt-6 p-4 border border-teal-200 bg-teal-50 rounded-lg">
                         <h3 className="font-bold text-senior-slate mb-2">Financial Assistance Information</h3>
-                        <p className="text-gray-600">
+                        <p className="text-neutral-600">
                           {location.name} may accept long-term care insurance and VA benefits. Our advisors can walk you through
                           financing options when you request information below.
                         </p>
@@ -379,7 +379,7 @@ const LocationDetail = () => {
                   <h2 className="text-xl font-bold text-senior-slate mb-2">
                     Request information about {location.name}
                   </h2>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-neutral-600 mb-4">
                     Our placement advisors can answer questions, share availability, and arrange a tour at no cost to your family.
                   </p>
                   {DIRECTORY_PHONE && (

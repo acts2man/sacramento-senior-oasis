@@ -35,7 +35,7 @@ const Contact = () => {
 
       <Header />
       
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-grow bg-neutral-50">
         <div className="bg-senior-blue text-white py-12">
           <div className="container-custom">
             <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
@@ -75,7 +75,7 @@ const Contact = () => {
                 
                 <div className="mb-6">
                   <h3 className="text-lg font-bold text-senior-slate mb-2">Address</h3>
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-neutral-600">
                     <MapPin size={20} className="mr-2 text-senior-blue" />
                     <span>1234 Senior Care Lane, Sacramento, CA 95814</span>
                   </div>
@@ -83,7 +83,7 @@ const Contact = () => {
                 
                 <div className="mb-6">
                   <h3 className="text-lg font-bold text-senior-slate mb-2">Email</h3>
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-neutral-600">
                     <Mail size={20} className="mr-2 text-senior-blue" />
                     <a href="mailto:care@sacramentoelderlycare.com" className="hover:text-senior-blue">care@sacramentoelderlycare.com</a>
                   </div>
@@ -91,7 +91,7 @@ const Contact = () => {
                 
                 <div>
                   <h3 className="text-lg font-bold text-senior-slate mb-2">Hours</h3>
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-neutral-600">
                     <Clock size={20} className="mr-2 text-senior-blue" />
                     <span>Monday - Friday: 9am - 5pm</span>
                   </div>

@@ -30,7 +30,7 @@ const SearchBar = ({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className="w-full p-4 pr-12 rounded-l-lg border-0 shadow-md text-gray-900 focus:ring-2 focus:ring-senior-blue focus:outline-none"
+          className="w-full p-4 pr-12 rounded-l-lg border-0 shadow-md text-neutral-900 focus:ring-2 focus:ring-senior-blue focus:outline-none"
           aria-label="Search communities"
         />
         <button

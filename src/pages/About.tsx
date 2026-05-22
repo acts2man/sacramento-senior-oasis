@@ -41,13 +41,13 @@ const About = () => {
 
       <Header />
       
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-grow bg-neutral-50">
         <div className="container-custom py-12">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl font-bold text-senior-slate mb-6">
               About Sacramento ElderCare Directory
             </h1>
-            <p className="text-gray-600 text-lg mb-8">
+            <p className="text-neutral-600 text-lg mb-8">
               Welcome to Sacramento ElderCare Directory, your trusted resource for finding the perfect senior living community in the Sacramento area. We understand that choosing the right care option for yourself or your loved one can be a challenging and emotional process. That's why we're here to provide you with comprehensive information, expert guidance, and personalized support every step of the way.
             </p>
             
@@ -55,7 +55,7 @@ const About = () => {
               <h2 className="text-2xl font-bold text-senior-slate mb-4">
                 Our Mission
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-neutral-600 text-lg">
                 Our mission is to empower seniors and their families to make informed decisions about senior living options. We strive to connect you with communities that offer the highest quality care, enriching activities, and a supportive environment where seniors can thrive.
               </p>
             </section>
@@ -69,7 +69,7 @@ const About = () => {
                   <Heart size={24} className="text-senior-blue mr-3 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-senior-slate mb-1">Comprehensive Directory</h3>
-                    <p className="text-gray-600">
+                    <p className="text-neutral-600">
                       Explore our extensive directory of senior living communities in Sacramento, featuring detailed information on services, amenities, pricing, and more.
                     </p>
                   </div>
@@ -79,7 +79,7 @@ const About = () => {
                   <Users size={24} className="text-senior-blue mr-3 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-senior-slate mb-1">Expert Guidance</h3>
-                    <p className="text-gray-600">
+                    <p className="text-neutral-600">
                       Our team of experienced senior care advisors is here to answer your questions, provide personalized recommendations, and guide you through the selection process.
                     </p>
                   </div>
@@ -89,7 +89,7 @@ const About = () => {
                   <Star size={24} className="text-senior-blue mr-3 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-senior-slate mb-1">Trusted Resources</h3>
-                    <p className="text-gray-600">
+                    <p className="text-neutral-600">
                       Access valuable resources, articles, and tools to help you understand the different types of senior care, navigate financial considerations, and make informed decisions.
                     </p>
                   </div>
@@ -99,7 +99,7 @@ const About = () => {
                   <Shield size={24} className="text-senior-blue mr-3 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-senior-slate mb-1">Commitment to Quality</h3>
-                    <p className="text-gray-600">
+                    <p className="text-neutral-600">
                       We are committed to connecting you with senior living communities that meet the highest standards of care, safety, and resident satisfaction.
                     </p>
                   </div>
@@ -111,7 +111,7 @@ const About = () => {
               <h2 className="text-2xl font-bold text-senior-slate mb-4">
                 Contact Us
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-neutral-600 text-lg">
                 If you have any questions or would like to speak with a senior care advisor, please don't hesitate to contact us. We're here to help!
               </p>
               <a href="/contact" className="btn-primary mt-4 inline-block">

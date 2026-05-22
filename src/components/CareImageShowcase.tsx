@@ -69,7 +69,7 @@ const CareImageShowcase = () => {
                             {image.title}
                           </h3>
                           <div className="w-16 h-1 bg-gradient-to-r from-senior-blue to-senior-orange rounded-full"></div>
-                          <p className="text-lg text-gray-600 leading-relaxed">
+                          <p className="text-lg text-neutral-600 leading-relaxed">
                             {image.description}
                           </p>
                           <div className="flex items-center text-senior-blue font-medium hover:text-senior-orange transition-colors cursor-pointer group">

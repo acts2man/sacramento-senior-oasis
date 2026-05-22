@@ -51,7 +51,7 @@ const LocationCard = ({ location, featured = false, layout = 'card' }: LocationC
               >
                 <Heart
                   size={18}
-                  className={isFavorited ? "fill-senior-blue text-senior-blue" : "text-gray-400"}
+                  className={isFavorited ? "fill-senior-blue text-senior-blue" : "text-neutral-400"}
                 />
               </button>
 
@@ -67,12 +67,12 @@ const LocationCard = ({ location, featured = false, layout = 'card' }: LocationC
                 {location.name}
               </h3>
 
-              <div className="flex items-center text-gray-500">
+              <div className="flex items-center text-neutral-500">
                 <MapPin size={16} className="mr-2 flex-shrink-0 text-senior-blue" />
                 <span className="text-base">{location.city}, CA {location.zip}</span>
               </div>
 
-              <p className="text-gray-600 leading-relaxed text-base line-clamp-3">{location.description}</p>
+              <p className="text-neutral-600 leading-relaxed text-base line-clamp-3">{location.description}</p>
 
               <div className="flex flex-wrap gap-2 mb-4">
                 {careLabels.map(label => (
@@ -83,14 +83,14 @@ const LocationCard = ({ location, featured = false, layout = 'card' }: LocationC
               </div>
 
               {Number.isFinite(location.price_range_low) && (
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                <div className="flex justify-between items-center pt-4 border-t border-neutral-100">
                   <div className="flex items-center text-senior-slate">
                     <div className="bg-senior-light p-2 rounded-lg mr-3">
                       <DollarSign size={18} className="text-senior-blue" />
                     </div>
                     <div>
                       <span className="font-bold text-xl">{formatPrice(location.price_range_low!)}+</span>
-                      <span className="text-sm text-gray-500 block">/ month</span>
+                      <span className="text-sm text-neutral-500 block">/ month</span>
                     </div>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const LocationCard = ({ location, featured = false, layout = 'card' }: LocationC
           >
             <Heart
               size={18}
-              className={isFavorited ? "fill-senior-blue text-senior-blue" : "text-gray-400"}
+              className={isFavorited ? "fill-senior-blue text-senior-blue" : "text-neutral-400"}
             />
           </button>
 
@@ -139,12 +139,12 @@ const LocationCard = ({ location, featured = false, layout = 'card' }: LocationC
             {location.name}
           </h3>
 
-          <div className="flex items-center text-gray-500">
+          <div className="flex items-center text-neutral-500">
             <MapPin size={16} className="mr-2 flex-shrink-0 text-senior-blue" />
             <span className="text-sm">{location.city}, CA {location.zip}</span>
           </div>
 
-          <p className="text-gray-600 line-clamp-2 leading-relaxed">{location.description}</p>
+          <p className="text-neutral-600 line-clamp-2 leading-relaxed">{location.description}</p>
 
           <div className="flex flex-wrap gap-2">
             {careLabels.map(label => (
@@ -155,14 +155,14 @@ const LocationCard = ({ location, featured = false, layout = 'card' }: LocationC
           </div>
 
           {Number.isFinite(location.price_range_low) && (
-            <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+            <div className="flex justify-between items-center pt-4 border-t border-neutral-100">
               <div className="flex items-center text-senior-slate">
                 <div className="bg-senior-light p-2 rounded-lg mr-2">
                   <DollarSign size={16} className="text-senior-blue" />
                 </div>
                 <div>
                   <span className="font-bold text-lg">{formatPrice(location.price_range_low!)}+</span>
-                  <span className="text-xs text-gray-500 block">/ month</span>
+                  <span className="text-xs text-neutral-500 block">/ month</span>
                 </div>
               </div>
             </div>
