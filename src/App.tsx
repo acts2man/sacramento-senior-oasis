@@ -19,6 +19,12 @@ import WhatIsAnRcfeGuide from "./pages/WhatIsAnRcfeGuide";
 import BoardAndCareVsAssistedLivingGuide from "./pages/BoardAndCareVsAssistedLivingGuide";
 import MediCalAndAssistedLivingGuide from "./pages/MediCalAndAssistedLivingGuide";
 import NotFound from "./pages/NotFound";
+import { AuthProvider } from "./contexts/AuthContext";
+import Login from "./pages/admin/Login";
+import AdminLayout from "./pages/admin/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import Leads from "./pages/admin/Leads";
+import ComingSoon from "./pages/admin/ComingSoon";
 
 const queryClient = new QueryClient();
 
