@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import logo from "@/assets/logo.png";
+import loginBg from "@/assets/login-bg.jpg";
 
 export default function Login() {
   const { session, loading: authLoading } = useAuth();
