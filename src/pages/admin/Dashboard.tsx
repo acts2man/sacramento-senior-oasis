@@ -5,7 +5,7 @@ import { locations } from "@/data/locations";
 import { Users, UserPlus, CalendarRange, CheckCircle2, Home, Building2 } from "lucide-react";
 import {
   ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip,
-  BarChart, Bar, CartesianGrid,
+  BarChart, Bar, CartesianGrid, Cell,
 } from "recharts";
 import { format, subDays, startOfDay } from "date-fns";
 import { Loader2 } from "lucide-react";
