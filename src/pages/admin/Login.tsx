@@ -53,10 +53,21 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-900 px-4">
-      <div className="w-full max-w-md">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 relative bg-cover bg-center"
+      style={{ backgroundImage: `url(${loginBg})` }}
+    >
+      <div className="absolute inset-0 bg-teal-900/70" />
+      <div className="absolute top-4 left-4 z-10">
+        <a href="/" className="text-white/90 hover:text-white text-sm font-medium underline-offset-4 hover:underline">
+          ← Back to home
+        </a>
+      </div>
+      <div className="w-full max-w-md relative z-10">
         <div className="flex justify-center mb-8">
-          <img src={logo} alt="Sacramento ElderCare Directory" className="h-14 brightness-0 invert" />
+          <div className="bg-white rounded-lg p-4 shadow-lg">
+            <img src={logo} alt="Sacramento ElderCare Directory" className="h-14 w-auto" />
+          </div>
         </div>
         <div className="bg-teal-800 border border-teal-700 rounded-lg p-8 shadow-xl">
           <h1 className="text-2xl font-serif text-white mb-1">
