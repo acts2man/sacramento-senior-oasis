@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import InquiryForm from '../components/InquiryForm';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import {
@@ -567,11 +568,11 @@ const CityListing = ({ mode }: CityListingProps) => {
         {/* NEARBY CITIES */}
         <NearbyCitiesBlock currentSlug={city.slug} mode={mode} />
 
-        {/* ADVISOR CTA */}
+        {/* ADVISOR CTA + inline inquiry form */}
         <section aria-labelledby="advisor-cta-heading" className="bg-coral-700 text-white">
           <div className="container-custom py-16 md:py-20">
-            <div className="grid md:grid-cols-5 gap-10 items-center">
-              <div className="md:col-span-3">
+            <div className="grid md:grid-cols-2 gap-10 items-start">
+              <div>
                 <p className="text-sm font-semibold tracking-wide text-white/80 uppercase">Talk to a local advisor</p>
                 <h2 id="advisor-cta-heading" className="mt-2 font-serif text-3xl md:text-4xl font-bold leading-tight">
                   {city.name} {careWord.toLowerCase()} is easier with a person on the phone.
@@ -580,29 +581,31 @@ const CityListing = ({ mode }: CityListingProps) => {
                   Free for families. A Sacramento-based advisor calls you back the same day, listens to what your
                   loved one needs, and shortlists {city.name} {careWord.toLowerCase()} communities that actually have availability.
                 </p>
+                <ul className="mt-6 space-y-2 text-white/90 text-sm">
+                  <li>· No fee to families. We're paid by the community when there's a match.</li>
+                  <li>· Every community we recommend is CA-licensed and currently verified.</li>
+                  <li>· Your information is shared only with our advisors — never sold.</li>
+                </ul>
               </div>
-              <div className="md:col-span-2 flex flex-col gap-3">
-                <Link
-                  to="/contact"
-                  className="bg-white text-coral-700 font-semibold rounded-lg px-6 py-4 inline-flex items-center justify-center gap-2 hover:bg-white/95 transition-colors"
-                >
-                  <Mail size={18} aria-hidden="true" />
-                  Request advisor callback
-                  <ArrowRight size={18} aria-hidden="true" />
-                </Link>
-                {DIRECTORY_PHONE && (
-                  <a
-                    href={formatPhoneForTel(DIRECTORY_PHONE)}
-                    className="bg-white/15 text-white font-semibold rounded-lg px-6 py-4 inline-flex items-center justify-center gap-2 hover:bg-white/25 transition-colors border border-white/30"
-                  >
-                    <Phone size={18} aria-hidden="true" />
-                    Call {formatPhoneForDisplay(DIRECTORY_PHONE)}
-                  </a>
-                )}
+              <div className="text-neutral-800">
+                <InquiryForm
+                  city={city.name}
+                  defaultCareType={
+                    mode === 'board_and_care'
+                      ? 'Board & Care Home'
+                      : mode === 'assisted_living'
+                      ? 'Assisted Living'
+                      : undefined
+                  }
+                  heading={`Talk to a ${city.name} advisor`}
+                  subheading="Tell us what you're looking for. We'll follow up today."
+                />
               </div>
             </div>
           </div>
         </section>
+
+
 
       </main>
       <Footer />
