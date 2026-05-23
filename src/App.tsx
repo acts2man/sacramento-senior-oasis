@@ -35,26 +35,35 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/communities" element={<Communities />} />
-            <Route path="/locations" element={<Locations />} />
-            <Route path="/memory-care" element={<MemoryCare />} />
-            <Route path="/assisted-living" element={<AssistedLiving />} />
-            {/* City × care-type pages — match BEFORE the catch-all /:id route */}
-            <Route path="/assisted-living/:citySlug" element={<CityListing mode="assisted_living" />} />
-            <Route path="/senior-living/:citySlug" element={<CityListing mode="senior_living" />} />
-            <Route path="/board-and-care-homes/:citySlug" element={<CityListing mode="board_and_care" />} />
-            {/* Editorial guides and resources — fixed paths matched before the /:id catch-all */}
-            <Route path="/guides/assisted-living-vs-memory-care" element={<AssistedLivingVsMemoryCareGuide />} />
-            <Route path="/guides/what-is-an-rcfe" element={<WhatIsAnRcfeGuide />} />
-            <Route path="/guides/board-and-care-vs-assisted-living" element={<BoardAndCareVsAssistedLivingGuide />} />
-            <Route path="/resources/medi-cal-and-assisted-living" element={<MediCalAndAssistedLivingGuide />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/:id" element={<LocationDetail />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/communities" element={<Communities />} />
+              <Route path="/locations" element={<Locations />} />
+              <Route path="/memory-care" element={<MemoryCare />} />
+              <Route path="/assisted-living" element={<AssistedLiving />} />
+              <Route path="/assisted-living/:citySlug" element={<CityListing mode="assisted_living" />} />
+              <Route path="/senior-living/:citySlug" element={<CityListing mode="senior_living" />} />
+              <Route path="/board-and-care-homes/:citySlug" element={<CityListing mode="board_and_care" />} />
+              <Route path="/guides/assisted-living-vs-memory-care" element={<AssistedLivingVsMemoryCareGuide />} />
+              <Route path="/guides/what-is-an-rcfe" element={<WhatIsAnRcfeGuide />} />
+              <Route path="/guides/board-and-care-vs-assisted-living" element={<BoardAndCareVsAssistedLivingGuide />} />
+              <Route path="/resources/medi-cal-and-assisted-living" element={<MediCalAndAssistedLivingGuide />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="leads" element={<Leads />} />
+                <Route path="communities" element={<ComingSoon title="Communities" />} />
+                <Route path="communications" element={<ComingSoon title="Communications" />} />
+                <Route path="analytics" element={<ComingSoon title="Analytics" />} />
+                <Route path="settings" element={<ComingSoon title="Settings" />} />
+              </Route>
+              <Route path="/:id" element={<LocationDetail />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
