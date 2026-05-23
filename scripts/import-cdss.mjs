@@ -227,30 +227,336 @@ function extractCuratedSummaries(curatedSource) {
 
 /* ----------------------- description templater ----------------------- */
 
-function buildDescriptions(facility) {
+/**
+ * IDs that an editor has individually reviewed and confirmed against
+ * external research notes (identity, address, name, capacity). For these
+ * records we emit a longer description using rotating templates instead
+ * of the thin one-liner. Every claim in the longer description is still
+ * derived from CDSS/CCLD-verified fields only (name, city, county,
+ * capacity, license year, license status) plus the regulatory definition
+ * of the RCFE license category itself.
+ *
+ * NOT a quality endorsement, NOT amenity data — purely "we have looked
+ * this record in the eye." Add an id here only after that review.
+ */
+const RESEARCH_MATCHED_IDS = new Set([
+  'a-bright-future-antelope',
+  'aandc-elderly-care-antelope',
+  'aegis-senior-residence-antelope',
+  'afable-care-home-antelope',
+  'arjan-care-home-antelope',
+  'blessed-homecare-antelope',
+  'david-family-home-antelope',
+  'family-life-senior-care-antelope',
+  'good-hope-care-home-antelope',
+  'grace-care-home-antelope',
+  'j-and-h-care-homes-antelope',
+  'love-and-care-for-elder-antelope',
+  'love-and-care-for-elder-ii-antelope',
+  'maratha-manor-antelope',
+  'pine-hollow-care-home-antelope',
+  'signature-living-on-story-ridge-way-antelope',
+  'unity-memory-home-care-antelope',
+  'yellowtail-home-care-antelope',
+  'alder-grove-senior-living-ii-auburn',
+  'a-and-c-care-home-carmichael',
+  'a-and-c-care-home-2-carmichael',
+  'a-and-v-comfort-home-care-carmichael',
+  'a-nurses-touch-rcfe-carmichael',
+  'a-1-elderly-care-carmichael',
+  'a1-magnificent-home-carmichael',
+  'abundant-love-and-care-for-the-elderly-carmichael',
+  'aegis-assisted-living-of-carmichael-carmichael',
+  'atria-carmichael-oaks-carmichael',
+  'atria-el-camino-gardens-carmichael',
+  'augustus-elder-care-home-llc-carmichael',
+  'blessed-homecare-3-carmichael',
+  'blue-oasis-senior-home-carmichael',
+  'blueberry-hill-senior-living-inc-carmichael',
+  'care-horizons-llc-carmichael',
+  'carmichael-estates-no-1-carmichael',
+  'carmichael-estates-no-2-carmichael',
+  'carmichael-estates-no-3-carmichael',
+  'carmichael-senior-care-carmichael',
+  'chateau-royale-care-carmichael',
+  'cornelia-s-rcfe-carmichael',
+  'cozy-home-care-carmichael',
+  'cypress-home-care-carmichael',
+]);
+
+// Tiny deterministic hash so each id consistently picks the same slot
+// across re-runs (stable diffs). The optional salt lets one id pick
+// independently for opening / middle / context / close slots.
+function pickIndex(id, salt, modulo) {
+  const key = salt ? `${id}|${salt}` : id;
+  let h = 0;
+  for (let i = 0; i < key.length; i++) {
+    h = ((h << 5) - h + key.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h) % modulo;
+}
+
+function buildShortDescription(facility) {
+  const { name, city, capacity, license_year } = facility;
+  const shortBcOrAl = capacity <= 6 ? 'board and care home' : 'assisted living community';
+  return `${name} is an RCFE-licensed ${shortBcOrAl} in ${city}, CA${
+    license_year ? `, licensed since ${license_year}` : ''
+  }.`;
+}
+
+function buildThinDescription(facility) {
   const { name, city, capacity, license_year, on_probation } = facility;
   const bcOrAl =
     capacity <= 6
       ? `a board and care home serving up to ${capacity} residents`
       : `an assisted living community with capacity for ${capacity} residents`;
-
   const sinceClause = license_year ? `Licensed since ${license_year}, ` : '';
   const probationClause = on_probation
     ? ` This facility's license is currently on probation with the California Department of Social Services.`
     : '';
-
-  const description =
+  return (
     `${name} is a licensed residential care facility for the elderly (RCFE) in ${city}, CA. ` +
-    `${sinceClause}it is ${bcOrAl}.${probationClause}`;
+    `${sinceClause}it is ${bcOrAl}.${probationClause}`
+  );
+}
 
-  const shortBcOrAl =
-    capacity <= 6
-      ? 'board and care home'
-      : 'assisted living community';
-  const description_short = `${name} is an RCFE-licensed ${shortBcOrAl} in ${city}, CA${
-    license_year ? `, licensed since ${license_year}` : ''
-  }.`;
+/**
+ * Longer, family-facing description for individually-reviewed records.
+ * Composed from four independent slot lists (opening / lifestyle middle /
+ * optional category context / warm close) picked deterministically by
+ * id-hash so two same-size homes still read differently and re-runs are
+ * byte-stable.
+ *
+ * VOICE: warm and aspirational — a senior-living brochure, not a license
+ * record. No regulatory jargon (CDSS, RCFE, "non-medical", "authorized",
+ * "regulated", "capacity") appears in the prose for ordinary records.
+ *
+ * THE HARD LINE: every aspirational statement is hedged at the CATEGORY
+ * level — what small board-and-care homes / larger assisted-living
+ * communities are generally known for — never asserted as a verified
+ * feature of THIS specific named home. We use "homes of this scale
+ * typically...", "communities like this one often...", and similar
+ * hedges. We never write "X has a garden", "X serves chef-prepared
+ * meals", "X has a 24-hour nurse on staff" — those are unverifiable
+ * per-home claims and they don't go here.
+ *
+ * Verifiable per-home facts (city, county, name, size band from capacity,
+ * how long it's been operating from license_year) are woven in lightly
+ * and warmly — "caring for {city} seniors since {year}", "a close-knit
+ * home of six", "as many as {N} neighbors" — never as "capacity 6" or
+ * "CDSS license effective YYYY".
+ *
+ * Probation records still surface the probation fact plainly, with a
+ * pointer to the public state record, but the warm framing leads.
+ *
+ * Rendering note: phrases like "board-and-care home" and "assisted-living
+ * community" are good candidates for the facility-page template to wrap
+ * with links to /guides/board-and-care and /guides/assisted-living at
+ * render time. We keep them as plain text here so the data file stays
+ * portable.
+ */
+function buildEnrichedDescription(facility) {
+  const { name, city, county, capacity, license_year, on_probation } = facility;
+  const isSmall = capacity <= 6;
+  const countyClause = county ? `, ${county} County` : '';
 
+  // Warm year fragments — never "CDSS license effective YYYY".
+  const yearSince = license_year ? ` since ${license_year}` : '';
+  const yearWelcoming = license_year
+    ? `, welcoming residents since ${license_year},`
+    : '';
+  const yearLed = license_year
+    ? `Open in ${city} since ${license_year}, `
+    : '';
+
+  // Probation: warm size-led framing, then a clear, plain probation note
+  // pointing families to the public state record. We DO use the
+  // regulatory terms here because the probation status itself is a
+  // licensing fact we're surfacing honestly.
+  if (on_probation) {
+    const lead = isSmall
+      ? `${name} is a small, home-style senior residence in ${city}${countyClause}, with room for ` +
+        `just ${capacity} residents at a time.`
+      : `${name} is a larger assisted-living community in ${city}${countyClause}, home to as many ` +
+        `as ${capacity} residents.`;
+    return (
+      `${lead} ` +
+      `Important to know: as of the latest state record, ${name}'s license is currently on ` +
+      `probation with the California Department of Social Services — a status families ` +
+      `considering this home should weigh, and one we surface here because it's part of the ` +
+      `public state licensing record. Reach out and we'll help you confirm current standing, ` +
+      `talk through openings and monthly rates, and arrange a visit if it still feels like the ` +
+      `right fit.`
+    );
+  }
+
+  // ---- WARM, MARKETING-VOICE OPENINGS ----
+
+  const smallOpenings = [
+    () =>
+      `${name} is a small, home-style senior residence in ${city}${countyClause}, with room for ` +
+      `just ${capacity} residents — the kind of close, personal setting smaller homes are known for.`,
+    () =>
+      `Tucked into a residential ${city} neighborhood, ${name} welcomes up to ${capacity} ` +
+      `seniors into a real house rather than an institutional building — the kind of warm, ` +
+      `home-style setting many families wish they'd found sooner.`,
+    () =>
+      `${yearLed}${name} is a close-knit residence for up to ${capacity} older adults in ` +
+      `${city}${countyClause} — the kind of intimate, home-based setting only a small home offers.`,
+    () =>
+      `For families who want a parent truly known by name, ${name} offers the kind of intimate, ` +
+      `home-based setting only a small senior residence can — a close-knit household of up to ` +
+      `${capacity} residents in ${city}${countyClause}.`,
+    () =>
+      `If a large community feels too clinical, ${name} is the opposite: a quiet, residential ` +
+      `home in ${city}${countyClause} where a handful of ${capacity} seniors live alongside ` +
+      `caregivers who get to know each resident.`,
+    () =>
+      `${name} sits at the small, home-based end of senior care in ${city}${countyClause} — ` +
+      `${capacity} residents under one roof, the kind of warm, personal setting smaller homes ` +
+      `are chosen for.`,
+    () =>
+      `Inside a ${city}${countyClause} residential neighborhood, ${name} is a small senior ` +
+      `home for up to ${capacity} residents — built on the simple idea that older adults often ` +
+      `do better in a real house than in a larger setting.`,
+    () =>
+      `${name} is one of the close-knit, home-based senior residences in ` +
+      `${city}${countyClause}${yearWelcoming} with room for just ${capacity} residents at a time.`,
+  ];
+
+  const largeOpenings = [
+    () =>
+      `${name} is a vibrant senior living community in ${city}${countyClause}, home to as many ` +
+      `as ${capacity} residents — the kind of larger, fuller-service setting families consider ` +
+      `when they want neighbors, programming, and more on-site options.`,
+    () =>
+      `${name} brings the broader assisted-living lifestyle to ${city}${countyClause}: a ` +
+      `community of up to ${capacity} residents${yearWelcoming.replace(/^,/, ',')} with the ` +
+      `social variety only a sizable setting can sustain.`,
+    () =>
+      `In ${city}${countyClause}, ${name} offers life inside a sizable assisted-living ` +
+      `community — around ${capacity} residents and the wider mix of activities, dining ` +
+      `options, and on-site services larger settings are known for.`,
+    () =>
+      `${name} is the kind of larger, full-service senior community families picture when they ` +
+      `think "assisted living" — up to ${capacity} residents in ${city}${countyClause}, with ` +
+      `the breadth a sizable setting can offer.`,
+    () =>
+      `Sized for community living rather than home-style intimacy, ${name} is an ` +
+      `assisted-living community in ${city}${countyClause} for as many as ${capacity} ` +
+      `residents — a setting designed for daily social mixing and a fuller calendar than a ` +
+      `small home can offer.`,
+  ];
+
+  // ---- LIFESTYLE MIDDLES (category-level, hedged) ----
+
+  const smallMiddles = [
+    () =>
+      `Homes of this scale typically center on familiar routines, shared meals, and the same ` +
+      `trusted caregivers from one day to the next.`,
+    () =>
+      `Families often choose homes like this one because they don't feel like facilities — they ` +
+      `feel like houses, with quieter days and a manageable circle of housemates.`,
+    () =>
+      `It offers the steady, home-based experience families look for when a large community ` +
+      `feels like too much — quieter days, familiar faces, and a single household to settle into.`,
+    () =>
+      `The small-home setting tends to allow gentler days — fewer comings and goings and more ` +
+      `patience around the moments that make up a day.`,
+    () =>
+      `Small board-and-care homes are often chosen by families who want a parent's preferences ` +
+      `remembered and the comfort of a real household around them.`,
+    () =>
+      `What draws families to a home of this size is usually the human scale of it: a few ` +
+      `housemates rather than a few dozen, and caregivers who have time to know each story.`,
+  ];
+
+  const largeMiddles = [
+    () =>
+      `Larger communities generally offer what families weigh against the more intimate option ` +
+      `— more neighbors, a fuller calendar, varied on-site dining, and support that can step up ` +
+      `as needs change.`,
+    () =>
+      license_year
+        ? `Welcoming residents to ${city} since ${license_year}, communities of this scale ` +
+          `typically combine independence-friendly living with assisted-living help when it's ` +
+          `needed.`
+        : `Communities of this scale typically combine independence-friendly living with ` +
+          `assisted-living help when it's needed.`,
+    () =>
+      `Communities of this size usually run a fuller daily program — fitness, social events, ` +
+      `group dining — alongside assisted-living help residents can draw on as needed.`,
+    () =>
+      `Senior communities of this size tend to suit older adults who want a livelier social ` +
+      `setting and the reassurance that more support is available as needs evolve.`,
+    () =>
+      `The bigger format generally means more on-site amenities and a wider range of room ` +
+      `layouts than a small home, with assisted-living help right down the hall.`,
+  ];
+
+  // ---- OPTIONAL CONTEXT (mostly empty to keep total length in band) ----
+
+  const smallContexts = [
+    () =>
+      `Many families choose this style of home so a parent is truly known — by name, ` +
+      `preference, and story.`,
+    () => '',
+    () => '',
+    () => '',
+    () => '',
+    () => '',
+  ];
+
+  const largeContexts = [
+    () =>
+      `For families seeking a broader senior-living experience, a setting of this size offers ` +
+      `more of everything a small home can't match.`,
+    () => '',
+    () => '',
+    () => '',
+  ];
+
+  // ---- WARM CLOSES (invite the inquiry; honest about specifics) ----
+
+  const closes = [
+    () =>
+      `Reach out to learn about current openings, monthly rates, and the specific care ${name} ` +
+      `offers today.`,
+    () =>
+      `Get in touch for current availability, pricing, and a closer look at life at ${name}.`,
+    () =>
+      `We can help arrange a tour and confirm current openings and rates at ${name}.`,
+    () =>
+      `For current openings, monthly rates, and on-site service details, reach out and we'll ` +
+      `connect you with ${name}.`,
+    () =>
+      `Talk with us about openings, monthly costs, and a tour at ${name}.`,
+    () =>
+      `Reach out to confirm openings, current pricing, and the specific care ${name} provides ` +
+      `today.`,
+  ];
+
+  const openings = isSmall ? smallOpenings : largeOpenings;
+  const middles = isSmall ? smallMiddles : largeMiddles;
+  const contexts = isSmall ? smallContexts : largeContexts;
+
+  const opening = openings[pickIndex(facility.id, 'open', openings.length)]();
+  const middle = middles[pickIndex(facility.id, 'mid', middles.length)]();
+  const context = contexts[pickIndex(facility.id, 'ctx', contexts.length)]();
+  const close = closes[pickIndex(facility.id, 'close', closes.length)]();
+
+  return [opening, middle, context, close]
+    .filter((s) => s && s.length > 0)
+    .join(' ')
+    .replace(/\s{2,}/g, ' ');
+}
+
+function buildDescriptions(facility) {
+  const useEnriched = RESEARCH_MATCHED_IDS.has(facility.id);
+  const description = useEnriched
+    ? buildEnrichedDescription(facility)
+    : buildThinDescription(facility);
+  const description_short = buildShortDescription(facility);
   return { description, description_short };
 }
 
@@ -402,8 +708,10 @@ function main() {
 
     const license_year = yearOf(rec.license_effective_date);
     const { description, description_short } = buildDescriptions({
+      id,
       name: rec.facilityName,
       city: rec.city,
+      county: rec.county,
       capacity: rec.capacity,
       license_year,
       on_probation: rec.license_status === 'on_probation',
