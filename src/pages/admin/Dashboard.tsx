@@ -132,7 +132,7 @@ export default function Dashboard() {
                 <Tooltip contentStyle={{ background: "#063838", border: "1px solid #0A5C5C", borderRadius: 6, color: "#fff" }} />
                 <Bar dataKey="count" radius={[4, 4, 0, 0]}>
                   {statusBreakdown.map((s) => (
-                    <Bar key={s.status} dataKey="count" fill={STATUS_COLORS[s.status]} />
+                    <Cell key={s.status} fill={STATUS_COLORS[s.status]} />
                   ))}
                 </Bar>
               </BarChart>
