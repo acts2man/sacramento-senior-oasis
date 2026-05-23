@@ -418,7 +418,7 @@ const LocationDetail = () => {
         </div>
 
         {/* Care Recommendations Section */}
-        <CareRecommendationsSection facilityName={location.name} />
+        <CareRecommendationsSection facilityName={location.name} facilityId={location.id} />
       </main>
 
       <Footer />
