@@ -1,7 +1,7 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ContactForm from '../components/ContactForm';
+import InquiryForm from '../components/InquiryForm';
 import SEO from '../components/SEO';
 import { generatePageSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
