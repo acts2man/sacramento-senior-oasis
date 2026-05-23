@@ -149,11 +149,20 @@ export const buildLocalBusinessSchema = (facility: Facility): LocalBusinessSchem
     };
   }
 
-  if (
-    Number.isFinite(facility.price_range_low) &&
-    Number.isFinite(facility.price_range_high)
-  ) {
-    schema.priceRange = `$${facility.price_range_low} - $${facility.price_range_high}`;
+  // Emit a priceRange ONLY when the owner has supplied verified room pricing
+  // for this specific facility. The directory does not publish unverified
+  // per-home price figures in user-facing UI, and the JSON-LD must not
+  // disagree with the UI — crawlers see what families see.
+  if (facility.owner_room_pricing && facility.owner_room_pricing.length > 0) {
+    const lows = facility.owner_room_pricing
+      .map(t => t.price_low)
+      .filter((n): n is number => Number.isFinite(n));
+    const highs = facility.owner_room_pricing
+      .map(t => t.price_high ?? t.price_low)
+      .filter((n): n is number => Number.isFinite(n));
+    if (lows.length > 0 && highs.length > 0) {
+      schema.priceRange = `$${Math.min(...lows)} - $${Math.max(...highs)}`;
+    }
   }
 
   return schema;

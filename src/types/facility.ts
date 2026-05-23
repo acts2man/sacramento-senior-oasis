@@ -86,6 +86,32 @@ export interface Facility {
   // Media
   photos?: FacilityPhoto[];
 
+  // ---------------------------------------------------------------
+  // OWNER-SUPPLIED FIELDS — populated when (and only when) a verified
+  // community owner adds their own data via the future owner portal.
+  //
+  // The detail-page UI checks for these and renders them in place of
+  // the honest category-level defaults. The portal does not exist yet;
+  // these fields are wired now so a later owner-data merge is just a
+  // data shape change, not a UI rewrite.
+  //
+  // Whatever shape the eventual portal lands on, the contract here is:
+  //   - presence of the field = "verified by owner"
+  //   - absence = "no verified data, show category default"
+  // The UI must never claim "[Owner says]" content for unverified rows.
+  // ---------------------------------------------------------------
+
+  /** Verified, owner-confirmed amenities for THIS specific home. */
+  owner_amenities?: string[];
+  /** Verified room/care pricing tiers — replaces the regional cost block when set. */
+  owner_room_pricing?: { label: string; price_low?: number; price_high?: number; notes?: string }[];
+  /** Owner-uploaded photos (separate from any directory-curated photos in `photos`). */
+  owner_photos?: FacilityPhoto[];
+  /** Extended owner-written description shown alongside the directory description. */
+  owner_extended_description?: string;
+  /** ISO date of the most recent owner-supplied data refresh, for the "Verified by owner on …" badge. */
+  owner_verified_at?: string;
+
   // Metadata
   date_added?: string;
   date_updated?: string;

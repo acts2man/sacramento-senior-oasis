@@ -8,6 +8,9 @@ import LocationCard from '../components/LocationCard';
 
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
+import TypicalCareServices from '../components/community/TypicalCareServices';
+import CostGuidance from '../components/community/CostGuidance';
+import DisclaimerAndClaim from '../components/community/DisclaimerAndClaim';
 import { getLocationById, getFeaturedLocations } from '../data/locations';
 import type { Facility } from '../types/facility';
 import { generateLocationSEO } from '../utils/seoUtils';
@@ -17,10 +20,7 @@ import { careTypeLabel } from '../lib/careTypes';
 import {
   MapPin,
   Mail,
-  DollarSign,
   Award,
-  Coffee,
-  Bed,
   ArrowLeft,
   ChevronRight,
   Phone,
@@ -36,7 +36,6 @@ const LocationDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [location, setLocation] = useState<Facility | null>(null);
   const [similarLocations, setSimilarLocations] = useState<Facility[]>([]);
-  const [activeTab, setActiveTab] = useState('overview');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
@@ -48,7 +47,6 @@ const LocationDetail = () => {
         setSimilarLocations(featured.slice(0, 3));
       }
     }
-    setActiveTab('overview');
     setActiveImageIndex(0);
     window.scrollTo(0, 0);
   }, [id]);
@@ -75,13 +73,6 @@ const LocationDetail = () => {
   }
 
   const seoData = generateLocationSEO(location);
-
-  const formatPrice = (price: number) =>
-    new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0,
-    }).format(price);
 
   const photos = location.photos || [];
   const heroPhoto = photos[activeImageIndex];
@@ -213,142 +204,46 @@ const LocationDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Location Info */}
             <div className="lg:col-span-2">
-              {/* Tabs */}
-              <div className="bg-white rounded-lg shadow-md mb-6">
-                <div className="border-b">
-                  <div className="flex overflow-x-auto">
-                    <button
-                      onClick={() => setActiveTab('overview')}
-                      className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'overview' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-neutral-600 hover:text-senior-blue'}`}
-                    >
-                      Overview
-                    </button>
-                    {location.amenities && location.amenities.length > 0 && (
-                      <button
-                        onClick={() => setActiveTab('amenities')}
-                        className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'amenities' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-neutral-600 hover:text-senior-blue'}`}
-                      >
-                        Amenities
-                      </button>
-                    )}
-                    {Number.isFinite(location.price_range_low) && (
-                      <button
-                        onClick={() => setActiveTab('pricing')}
-                        className={`py-4 px-6 font-medium whitespace-nowrap ${activeTab === 'pricing' ? 'text-senior-blue border-b-2 border-senior-blue' : 'text-neutral-600 hover:text-senior-blue'}`}
-                      >
-                        Pricing
-                      </button>
-                    )}
+              {/* About — directory-curated description.
+                  When owner_extended_description exists, we render the
+                  owner's supplemental text below the directory description
+                  with a verified-by-owner badge; if not present, the
+                  directory description stands alone. */}
+              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 className="text-2xl font-bold text-senior-slate mb-4">About {location.name}</h2>
+                <p className="text-neutral-700 leading-relaxed">{location.description}</p>
+
+                {location.owner_extended_description && (
+                  <div className="mt-4 p-4 border border-teal-200 bg-teal-50 rounded-lg">
+                    <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-teal-800 uppercase mb-2">
+                      <ShieldCheck size={14} aria-hidden="true" />
+                      Added by the community
+                    </div>
+                    <p className="text-neutral-700 leading-relaxed">
+                      {location.owner_extended_description}
+                    </p>
                   </div>
-                </div>
+                )}
 
-                <div className="p-6">
-                  {/* Overview Tab */}
-                  {activeTab === 'overview' && (
-                    <div>
-                      <h2 className="text-2xl font-bold text-senior-slate mb-4">About {location.name}</h2>
-                      <p className="text-neutral-600 mb-6">{location.description}</p>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        {Number.isFinite(location.price_range_low) && (
-                          <div className="bg-senior-light p-4 rounded-lg">
-                            <h3 className="font-bold text-senior-slate mb-2 flex items-center">
-                              <DollarSign size={18} className="mr-2 text-senior-blue" />
-                              Pricing Information
-                            </h3>
-                            <p className="text-neutral-600">
-                              Starting at {formatPrice(location.price_range_low!)} per month
-                            </p>
-                            {Number.isFinite(location.price_range_high) && (
-                              <p className="text-neutral-600">
-                                Up to {formatPrice(location.price_range_high!)} per month
-                              </p>
-                            )}
-                          </div>
-                        )}
-
-                        <div className="bg-senior-light p-4 rounded-lg">
-                          <h3 className="font-bold text-senior-slate mb-2 flex items-center">
-                            <Award size={18} className="mr-2 text-senior-blue" />
-                            Care Types
-                          </h3>
-                          <ul className="text-neutral-600 space-y-1">
-                            {careLabels.map(label => (
-                              <li key={label}>{label}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Amenities Tab */}
-                  {activeTab === 'amenities' && location.amenities && (
-                    <div>
-                      <h2 className="text-2xl font-bold text-senior-slate mb-4">Amenities</h2>
-                      <p className="text-neutral-600 mb-6">
-                        {location.name} offers the following amenities to enhance residents' quality of life:
-                      </p>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {location.amenities.map((amenity, index) => (
-                          <div key={index} className="flex items-center p-3 bg-senior-light rounded-lg">
-                            <Coffee size={18} className="mr-3 text-senior-blue" />
-                            <span>{amenity}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Pricing Tab */}
-                  {activeTab === 'pricing' && Number.isFinite(location.price_range_low) && (
-                    <div>
-                      <h2 className="text-2xl font-bold text-senior-slate mb-4">Pricing Information</h2>
-                      <p className="text-neutral-600 mb-6">
-                        Indicative monthly rates at {location.name}. Final pricing depends on care needs and room type — our
-                        advisors can confirm current availability and help you compare with similar communities.
-                      </p>
-
-                      <div className="space-y-6">
-                        <div className="bg-senior-light p-5 rounded-lg">
-                          <div className="flex justify-between items-center mb-3">
-                            <h3 className="font-bold text-senior-slate flex items-center">
-                              <Bed size={18} className="mr-2 text-senior-blue" />
-                              Starting from
-                            </h3>
-                            <span className="text-xl font-bold text-senior-blue">
-                              {formatPrice(location.price_range_low!)}+
-                            </span>
-                          </div>
-                        </div>
-
-                        {Number.isFinite(location.price_range_high) && (
-                          <div className="bg-senior-light p-5 rounded-lg">
-                            <div className="flex justify-between items-center mb-3">
-                              <h3 className="font-bold text-senior-slate flex items-center">
-                                <Bed size={18} className="mr-2 text-senior-blue" />
-                                Up to
-                              </h3>
-                              <span className="text-xl font-bold text-senior-blue">
-                                {formatPrice(location.price_range_high!)}
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="mt-6 p-4 border border-teal-200 bg-teal-50 rounded-lg">
-                        <h3 className="font-bold text-senior-slate mb-2">Financial Assistance Information</h3>
-                        <p className="text-neutral-600">
-                          {location.name} may accept long-term care insurance and VA benefits. Our advisors can walk you through
-                          financing options when you request information below.
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                <div className="mt-6 bg-senior-light p-4 rounded-lg">
+                  <h3 className="font-bold text-senior-slate mb-2 flex items-center">
+                    <Award size={18} className="mr-2 text-senior-blue" aria-hidden="true" />
+                    Care Types
+                  </h3>
+                  <ul className="text-neutral-700 space-y-1">
+                    {careLabels.map(label => (
+                      <li key={label}>{label}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
+
+              {/* Care services — category-level RCFE baseline OR owner-verified */}
+              <TypicalCareServices facility={location} />
+
+              {/* Cost guidance — regional reference / qualitative / owner-verified.
+                  NEVER a fabricated per-home price. */}
+              <CostGuidance facility={location} />
 
               {/* License panel — CDSS / Community Care Licensing transparency */}
               {location.license_number && (
@@ -370,7 +265,7 @@ const LocationDetail = () => {
 
               {/* Similar Communities */}
               {similarLocations.length > 0 && (
-                <div className="bg-white rounded-lg shadow-md p-6">
+                <div className="bg-white rounded-lg shadow-md p-6 mb-6">
                   <h2 className="text-2xl font-bold text-senior-slate mb-4">Similar Communities</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {similarLocations.map((similarLocation) => (
@@ -379,6 +274,9 @@ const LocationDetail = () => {
                   </div>
                 </div>
               )}
+
+              {/* Honest-framing disclaimer + owner "claim this listing" CTA */}
+              <DisclaimerAndClaim facility={location} />
             </div>
 
             {/* Right Column - Lead capture */}
