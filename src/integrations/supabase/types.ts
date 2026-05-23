@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      claim_requests: {
+        Row: {
+          community_id: string | null
+          community_name: string
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          internal_notes: string | null
+          message: string | null
+          phone: string
+          role: string
+          source_page: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          community_id?: string | null
+          community_name: string
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          internal_notes?: string | null
+          message?: string | null
+          phone: string
+          role: string
+          source_page?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          community_id?: string | null
+          community_name?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          internal_notes?: string | null
+          message?: string | null
+          phone?: string
+          role?: string
+          source_page?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           assigned_to: string | null
