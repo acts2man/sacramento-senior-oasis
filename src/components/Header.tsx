@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Mail, ChevronDown } from 'lucide-react';
+import { Menu, X, Mail, ChevronDown, Facebook, Instagram, Linkedin, LogIn } from 'lucide-react';
 import { BRAND_NAME } from '../lib/constants';
 import { topCitiesByInventory } from '../lib/cityInventory';
 import CommunitiesNavDropdown from './CommunitiesNavDropdown';
 import logo from '@/assets/logo.png';
 
+const CONTACT_EMAIL = 'care@sacramentoelderlycare.com';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
