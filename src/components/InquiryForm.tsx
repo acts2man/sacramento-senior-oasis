@@ -84,6 +84,7 @@ const InquiryForm = ({
     relationship: '',
     care_type: defaultCareType ?? '',
     move_in_timeline: '',
+    budget_range: '',
     message: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
