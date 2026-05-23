@@ -66,7 +66,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 px-2 mt-2 bg-white rounded-lg shadow-lg animate-fade-in">
+          <nav className="md:hidden py-4 px-2 mt-2 bg-white rounded-lg shadow-lg animate-fade-in max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain">
             <div className="flex flex-col space-y-4">
               <Link to="/" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Home

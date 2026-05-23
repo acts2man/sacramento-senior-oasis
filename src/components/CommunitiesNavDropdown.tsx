@@ -95,8 +95,9 @@ const CommunitiesNavDropdown = () => {
           id={panelId}
           role="menu"
           aria-label="Communities"
-          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[min(48rem,90vw)] bg-white border border-neutral-200 rounded-xl shadow-xl p-6 z-50"
+          className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-[min(48rem,90vw)] z-50"
         >
+        <div className="bg-white border border-neutral-200 rounded-xl shadow-xl p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* By City */}
             <div>
@@ -208,6 +209,7 @@ const CommunitiesNavDropdown = () => {
               </Link>
             </div>
           </div>
+        </div>
         </div>
       )}
     </div>
