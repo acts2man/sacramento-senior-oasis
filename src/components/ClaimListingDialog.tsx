@@ -121,7 +121,7 @@ const ClaimListingDialog = ({
     };
 
     // 1) Save the claim request. This MUST succeed for the submission to count.
-    const { error: insertError } = await supabase
+    const { error: insertError } = await (supabase as any)
       .from('claim_requests')
       .insert(payload);
 
