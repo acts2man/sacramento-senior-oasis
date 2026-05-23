@@ -25,6 +25,7 @@ import { locations } from '../data/locations';
 import type { Facility, CareType } from '../types/facility';
 import { careTypeLabel } from '../lib/careTypes';
 import { CITIES, cityNameToSlug, findCityBySlug, type City } from '../data/cities';
+import { cityCareCounts } from '../lib/cityInventory';
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
@@ -387,6 +388,11 @@ const CityListing = ({ mode }: CityListingProps) => {
               </p>
             </div>
 
+            {/* Cross-links to the other care-type variants for THIS city —
+                keeps the three variants from being orphans of each other
+                and gives families an explicit way to switch view. */}
+            <VariantCrossLinks city={city} currentMode={mode} />
+
             {/* Filters bar (only show when there are listings to filter) */}
             {count > 0 && (
               <div className="mt-8 bg-white border border-neutral-200 rounded-2xl p-4 md:p-5 flex flex-col md:flex-row gap-3 md:items-center">
@@ -603,6 +609,72 @@ const CityListing = ({ mode }: CityListingProps) => {
 
       {/* Brand crumb for assistive tech; visible brand is in the Header */}
       <span className="sr-only">{BRAND_NAME}</span>
+    </div>
+  );
+};
+
+/* ----------------------- variant cross-links ----------------------- */
+
+/**
+ * "Also in {City}" — small link strip pointing to the OTHER care-type
+ * variants of the same city. Solves the orphan-variant problem (the three
+ * variants for the same city share keywords but had nothing linking them
+ * to each other) and gives families a one-click way to broaden or narrow
+ * their view without leaving the city.
+ *
+ * We only render a link to /board-and-care-homes/{slug} when there's
+ * actual small-RCFE inventory in that city — emitting an empty page link
+ * would just look broken.
+ */
+const VariantCrossLinks = ({
+  city,
+  currentMode,
+}: {
+  city: City;
+  currentMode: ListingMode;
+}) => {
+  const counts = cityCareCounts(city.slug);
+
+  const variants: { mode: ListingMode; label: string; path: string; show: boolean }[] = [
+    {
+      mode: 'assisted_living',
+      label: `Assisted Living in ${city.name}`,
+      path: `/assisted-living/${city.slug}`,
+      show: counts.assistedLiving > 0,
+    },
+    {
+      mode: 'senior_living',
+      label: `All Senior Living in ${city.name}`,
+      path: `/senior-living/${city.slug}`,
+      // Senior-living is the combined view — always meaningful when the
+      // city has any RCFE at all, which the assistedLiving count tracks.
+      show: counts.assistedLiving > 0,
+    },
+    {
+      mode: 'board_and_care',
+      label: `Board & Care Homes in ${city.name}`,
+      path: `/board-and-care-homes/${city.slug}`,
+      show: counts.boardAndCare > 0,
+    },
+  ];
+
+  const others = variants.filter(v => v.mode !== currentMode && v.show);
+  if (others.length === 0) return null;
+
+  return (
+    <div className="mt-6 inline-flex flex-wrap items-center gap-2 bg-white/70 border border-teal-100 rounded-lg px-4 py-2.5">
+      <span className="text-xs font-semibold tracking-wide text-teal-700 uppercase">
+        Also in {city.name}:
+      </span>
+      {others.map(v => (
+        <Link
+          key={v.path}
+          to={v.path}
+          className="text-sm text-teal-800 hover:text-teal-900 font-medium underline-offset-2 hover:underline"
+        >
+          {v.label}
+        </Link>
+      ))}
     </div>
   );
 };

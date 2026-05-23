@@ -7,10 +7,13 @@ export const generateSitemap = () => {
   const baseUrl = SITE_URL;
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // Static pages with their priorities and change frequencies
+  // Static pages with their priorities and change frequencies.
+  // /communities is the hub that points to every city page — given its
+  // outsized role in internal linking, it sits at 0.9 alongside /locations.
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'weekly' },
     { url: 'about', priority: '0.8', changefreq: 'monthly' },
+    { url: 'communities', priority: '0.9', changefreq: 'weekly' },
     { url: 'locations', priority: '0.9', changefreq: 'weekly' },
     { url: 'assisted-living', priority: '0.8', changefreq: 'monthly' },
     { url: 'memory-care', priority: '0.8', changefreq: 'monthly' },
