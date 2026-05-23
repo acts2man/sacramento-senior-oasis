@@ -123,6 +123,7 @@ const InquiryForm = ({
       relationship: parsed.data.relationship || null,
       care_type: parsed.data.care_type || null,
       move_in_timeline: parsed.data.move_in_timeline || null,
+      budget_range: parsed.data.budget_range || null,
       message: parsed.data.message || null,
       inquiry_for_community: communityName ?? null,
       inquiry_for_community_id: communityId ?? null,
