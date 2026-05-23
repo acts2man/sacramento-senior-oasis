@@ -14,16 +14,105 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          assigned_to: string | null
+          budget_range: string | null
+          care_type: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          inquiry_for_city: string | null
+          inquiry_for_community: string | null
+          inquiry_for_community_id: string | null
+          internal_notes: string | null
+          message: string | null
+          move_in_timeline: string | null
+          phone: string
+          relationship: string | null
+          source_page: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          budget_range?: string | null
+          care_type?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          inquiry_for_city?: string | null
+          inquiry_for_community?: string | null
+          inquiry_for_community_id?: string | null
+          internal_notes?: string | null
+          message?: string | null
+          move_in_timeline?: string | null
+          phone: string
+          relationship?: string | null
+          source_page?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          budget_range?: string | null
+          care_type?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          inquiry_for_city?: string | null
+          inquiry_for_community?: string | null
+          inquiry_for_community_id?: string | null
+          internal_notes?: string | null
+          message?: string | null
+          move_in_timeline?: string | null
+          phone?: string
+          relationship?: string | null
+          source_page?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +239,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
