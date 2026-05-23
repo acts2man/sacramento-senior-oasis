@@ -102,7 +102,11 @@ const InquiryForm = ({
 
     setSubmitting(true);
 
+    const leadId = crypto.randomUUID();
+    const submittedAt = new Date().toISOString();
+
     const payload = {
+      id: leadId,
       full_name: parsed.data.full_name,
       email: parsed.data.email,
       phone: parsed.data.phone,
@@ -118,11 +122,9 @@ const InquiryForm = ({
     };
 
     // 1) Save the lead. This MUST succeed for the submission to count.
-    const { data: inserted, error: insertError } = await supabase
+    const { error: insertError } = await supabase
       .from('leads')
-      .insert(payload)
-      .select('id, created_at')
-      .single();
+      .insert(payload);
 
     if (insertError) {
       console.error('Lead insert failed:', insertError);
@@ -139,7 +141,7 @@ const InquiryForm = ({
     // 2) Fire-and-handle notification. Email failure must NEVER lose the lead.
     try {
       const { error: fnError } = await supabase.functions.invoke('notify-lead', {
-        body: { ...payload, id: inserted?.id, created_at: inserted?.created_at },
+        body: { ...payload, created_at: submittedAt },
       });
       if (fnError) console.error('notify-lead error (non-fatal):', fnError);
     } catch (err) {
@@ -237,7 +239,7 @@ const InquiryForm = ({
             aria-invalid={!!errors.phone}
             aria-describedby={errors.phone ? 'err-phone' : undefined}
             className={`${inputBase} ${errors.phone ? errInput : ''}`}
-            placeholder="(916) 555-1234"
+            placeholder="Best number to reach you"
           />
           {errors.phone && (
             <p id="err-phone" className="mt-1 text-xs text-rose-600">{errors.phone}</p>
