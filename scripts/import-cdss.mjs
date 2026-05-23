@@ -284,12 +284,14 @@ const RESEARCH_MATCHED_IDS = new Set([
   'cypress-home-care-carmichael',
 ]);
 
-// Tiny deterministic hash so each id consistently picks the same template
-// across re-runs (stable diffs).
-function pickIndex(id, modulo) {
+// Tiny deterministic hash so each id consistently picks the same slot
+// across re-runs (stable diffs). The optional salt lets one id pick
+// independently for opening / middle / context / close slots.
+function pickIndex(id, salt, modulo) {
+  const key = salt ? `${id}|${salt}` : id;
   let h = 0;
-  for (let i = 0; i < id.length; i++) {
-    h = ((h << 5) - h + id.charCodeAt(i)) | 0;
+  for (let i = 0; i < key.length; i++) {
+    h = ((h << 5) - h + key.charCodeAt(i)) | 0;
   }
   return Math.abs(h) % modulo;
 }
@@ -319,101 +321,186 @@ function buildThinDescription(facility) {
 }
 
 /**
- * Longer description for individually-reviewed records. Every concrete
- * claim comes from CDSS license data we already hold; the regulatory
- * framing (what an RCFE license authorizes) is true of all RCFEs by
- * definition. We never claim amenities, prices, ratings, or that the
- * operator is good or bad — only what the public licensing record shows.
+ * Longer description for individually-reviewed records. Composed from four
+ * independent slot lists (opening / license-fact / category-context /
+ * close) picked deterministically by id-hash so two facilities with the
+ * same capacity still read differently and re-runs are byte-stable.
+ *
+ * What the FAMILY sees first is what a home of this size and category is
+ * generally LIKE — a small board-and-care versus a larger community —
+ * because that's the first decision families face. The supporting facts
+ * (RCFE license, CDSS oversight, capacity, year, status) come right after.
+ *
+ * Every concrete claim is derived from CDSS data we already hold. Any
+ * category context (e.g. "small homes tend to feel less institutional")
+ * is true of the license CATEGORY itself, not a claim about this specific
+ * operator. No invented amenities, prices, ratings, neighborhood claims,
+ * or quality judgments.
+ *
+ * Rendering note: the phrases "board-and-care home" and "assisted-living
+ * community" are good candidates for the facility-page template to wrap
+ * with links to /guides/board-and-care and /guides/assisted-living at
+ * render time. We deliberately keep them as plain text here so the data
+ * file stays portable.
  */
 function buildEnrichedDescription(facility) {
   const { name, city, county, capacity, license_year, on_probation } = facility;
   const isSmall = capacity <= 6;
-  const sizeNoun = isSmall
-    ? 'small board-and-care-style residential home'
-    : `larger congregate residential community`;
   const countyClause = county ? `, ${county} County` : '';
-  // Discrete phrases for slotting into different sentence positions.
+  // Year fragments for slotting into different sentence positions.
   const yearSentenceLed = license_year ? `Licensed by CDSS since ${license_year}, ` : '';
-  const yearTrailing = license_year ? ` (CDSS license issued ${license_year})` : '';
-  const yearAside = license_year ? `, with its CDSS license dating to ${license_year},` : '';
+  const yearTrailing = license_year ? ` (CDSS license effective ${license_year})` : '';
+  const yearSince = license_year ? ` since ${license_year}` : '';
 
-  // Probation overrides template selection — that fact leads.
+  // Probation: warm framing still leads, but the probation fact is stated
+  // plainly and early, and the close points families to the public record.
   if (on_probation) {
+    const sizeLead = isSmall
+      ? `${name} is a small residential care home in ${city}${countyClause} licensed for up to ${capacity} residents${yearSince}.`
+      : `${name} is a community-scale assisted-living facility in ${city}${countyClause} licensed for up to ${capacity} residents${yearSince}.`;
     return (
-      `${name} is a Residential Care Facility for the Elderly (RCFE) in ${city}${countyClause}, ` +
-      `licensed for up to ${capacity} residents${sinceClause}. ` +
-      `Its license is currently on probation with the California Department of Social Services, ` +
-      `meaning CDSS has imposed monitoring conditions on the operator. We surface that status ` +
-      `because it is part of the public CCLD record. Under the RCFE license category, the home ` +
-      `is authorized to provide non-medical personal care — assistance with activities of daily ` +
-      `living, meal service, medication assistance, and 24-hour supervision for older adults. ` +
-      `Confirm current standing with CDSS before placement.`
+      `${sizeLead} ` +
+      `Important: this RCFE's license is currently on probation with the California Department ` +
+      `of Social Services, meaning CDSS has imposed monitoring conditions on the operator. ` +
+      `Probation status is part of the public Community Care Licensing record, which families ` +
+      `can review on the CDSS site. Under its RCFE license, the home is authorized to provide ` +
+      `non-medical residential care — daily-living assistance, meals, medication help, and ` +
+      `24-hour supervision — but families considering this community should confirm current ` +
+      `licensing standing, pricing, and available services directly with CDSS and the operator.`
     );
   }
 
-  const templates = [
-    // 0 — license-led
+  // ---- OPENING (family-relevant framing) ----
+  const smallOpenings = [
     () =>
-      `${name} is a Residential Care Facility for the Elderly (RCFE) in ${city}${countyClause}, ` +
-      `licensed by the California Department of Social Services to serve up to ${capacity} ` +
-      `older adults in a ${isSmall ? 'home-based' : 'community'} setting${yearTrailing}. ` +
-      `RCFE is a non-medical license category: the home is authorized to assist with activities of ` +
-      `daily living, meals, medication, and 24-hour supervision, not to provide skilled nursing. ` +
-      `We list only what the CDSS public roster confirms; amenities and pricing are not published ` +
-      `here unless verified directly with the operator.`,
-
-    // 1 — size-led
+      `${name} is a small residential care home in ${city}${countyClause}, with room for just ` +
+      `${capacity} residents at a time — closer in feel to a real household than to a large community.`,
     () =>
-      `${name} operates as a ${sizeNoun} in ${city}${countyClause}, licensed by California's ` +
-      `Community Care Licensing Division as an RCFE for up to ${capacity} residents${yearTrailing}. ` +
-      `California's RCFE program covers non-medical care for older adults — help with bathing, ` +
-      `dressing, mobility, meal service, and medication assistance — under the oversight of the ` +
-      `Department of Social Services. The license is currently in good standing on the public ` +
-      `CCLD roster. Specific amenities, room types, and rates should be confirmed with the operator.`,
-
-    // 2 — capacity-led
+      `In ${city}${countyClause}, ${name} operates as a small board-and-care home licensed for ` +
+      `up to ${capacity} residents: a single house with caregivers on site around the clock.`,
     () =>
-      `With CDSS-authorized capacity for ${capacity} residents, ${name} is an RCFE-licensed ` +
-      `${isSmall ? 'six-bed-class' : 'multi-resident'} senior care home in ${city}${countyClause}` +
-      `${yearTrailing}. ` +
-      `Under California Health and Safety Code §1569, RCFEs may provide assistance with ` +
-      `activities of daily living, meals, medication, and 24-hour supervision, but are not ` +
-      `licensed for skilled nursing services. The public license record shows current status; ` +
-      `Sacramento ElderCare Directory does not publish unverified pricing or amenity claims.`,
-
-    // 3 — locality-led
+      `${name} is one of ${city}'s six-bed-class residential care homes — a single-house setting ` +
+      `where up to ${capacity} older adults live with around-the-clock caregivers.`,
     () =>
-      `Located in ${city}${countyClause}, ${name} is one of the area's licensed Residential ` +
-      `Care Facilities for the Elderly (RCFE)${yearAside} with state-authorized capacity for ` +
-      `up to ${capacity} residents. ` +
-      `The RCFE category, regulated by the California Department of Social Services, covers ` +
-      `non-medical residential care — daily living assistance, meal service, medication ` +
-      `assistance, and 24-hour supervision. Specific care features, room availability, and rates ` +
-      `are not published from third-party listings; ask the operator directly.`,
-
-    // 4 — year-led (or program-led if no year)
+      `Capacity at ${name}, in ${city}${countyClause}, is capped at ${capacity} residents. ` +
+      `That small number is what makes a board-and-care home what it is: a house, not an ` +
+      `institutional building.`,
     () =>
-      `${yearSentenceLed}${name} ` +
-      `is a Residential Care Facility for the Elderly (RCFE) in ${city}${countyClause} with ` +
-      `capacity for up to ${capacity} residents. ` +
-      `RCFE licensing authorizes a defined scope of non-medical care: help with daily activities, ` +
-      `meal service, medication assistance, and 24-hour supervision for older adults who do not ` +
-      `need skilled nursing. The public CCLD record reflects current standing; we list ` +
-      `verifiable license facts here rather than marketing copy.`,
-
-    // 5 — neutral overview
+      `${name} is a residential-style senior care home in ${city}${countyClause} licensed for ` +
+      `just ${capacity} older adults — the size families often choose when they want close, ` +
+      `individualized attention and a quieter daily rhythm.`,
     () =>
-      `${name} is an RCFE in ${city}${countyClause}, regulated by the California Department of ` +
-      `Social Services and authorized to care for up to ${capacity} residents${yearTrailing}. ` +
-      `As an RCFE, the home falls under California's non-medical residential care category, ` +
-      `which covers assistance with activities of daily living, meals, medication, and 24-hour ` +
-      `supervision. Skilled medical services are out of scope for this license type. ` +
-      `Pricing, room availability, and specific amenities should be confirmed with the operator ` +
-      `before any decision.`,
+      `For families looking at a smaller-scale option in ${city}${countyClause}, ${name} is a ` +
+      `board-and-care home licensed for up to ${capacity} residents — a few seniors sharing a ` +
+      `real house with consistent caregivers.`,
+    () =>
+      `${name} sits at the small, home-based end of senior care in ${city}${countyClause}: a ` +
+      `residential RCFE licensed for ${capacity} residents, where daily life looks more like a ` +
+      `household than an institution.`,
   ];
 
-  const idx = pickIndex(facility.id, templates.length);
-  return templates[idx]();
+  const largeOpenings = [
+    () =>
+      `${name} is a larger assisted-living community in ${city}${countyClause}, with ` +
+      `state-authorized capacity for up to ${capacity} residents — bigger and busier than a ` +
+      `small home, with more on-site programming and staff.`,
+    () =>
+      `Sized for ${capacity} residents, ${name} is an assisted-living community in ` +
+      `${city}${countyClause} rather than a small home. Larger RCFEs like this one suit families ` +
+      `who want the social mix of a sizable community.`,
+    () =>
+      `${name} is a community-scale assisted-living facility in ${city}${countyClause}, ` +
+      `licensed for up to ${capacity} residents. The bigger format generally means a fuller ` +
+      `activity calendar and more variety in room layouts than a six-bed home can offer.`,
+    () =>
+      `Built at community scale — up to ${capacity} residents — ${name} sits at the ` +
+      `assisted-living end of the RCFE spectrum in ${city}${countyClause}, with on-site ` +
+      `assisted-living support available as needed.`,
+  ];
+
+  // ---- MIDDLE (the license / CDSS fact, in varied phrasing) ----
+  // Each middle is grammatically intact whether or not we have a license year.
+  const middles = [
+    () =>
+      `It holds an RCFE license from the California Department of Social Services${yearSince}, ` +
+      `authorizing non-medical residential care — daily-living help, meals, medication ` +
+      `assistance, and 24-hour supervision.`,
+    () =>
+      `The home operates under California's RCFE program${yearSince}, regulated by CDSS. ` +
+      `That license covers non-medical personal care — bathing, dressing, meals, medication ` +
+      `assistance — but not skilled nursing.`,
+    () =>
+      `Under its RCFE license${yearTrailing}, CDSS authorizes the operator to provide ` +
+      `daily-living assistance, meals, medication help, and around-the-clock supervision; ` +
+      `skilled nursing falls under a separate license.`,
+    () =>
+      `California's Community Care Licensing Division regulates this RCFE${yearTrailing}: ` +
+      `non-medical care only — daily-living help, meals, medication, and 24-hour supervision, ` +
+      `not skilled nursing.`,
+    () =>
+      (license_year
+        ? `The public CDSS roster shows the RCFE license has been in effect since ${license_year}; `
+        : `The public CDSS roster shows a current RCFE license; `) +
+      `under it, the home may provide daily-living assistance, meals, medication help, and ` +
+      `24-hour supervision.`,
+    () =>
+      `${license_year ? yearSentenceLed : ''}the home is regulated by CDSS as an RCFE — ` +
+      `authorized for non-medical residential care (daily-living help, meals, medication ` +
+      `assistance, 24-hour supervision), not skilled nursing.`,
+  ];
+
+  // ---- OPTIONAL CONTEXT (category-true statements; the empty slots keep total length in band) ----
+  const smallContexts = [
+    () =>
+      `Board-and-care homes can suit seniors who want a quieter, more intimate setting than a ` +
+      `large community.`,
+    () =>
+      `Six-bed RCFEs are the most common shape of licensed senior care in California; many ` +
+      `families choose them because they don't feel institutional.`,
+    () => '', // explicit "skip" slot
+    () => '',
+    () => '',
+  ];
+
+  const largeContexts = [
+    () =>
+      `Larger communities of this kind sit closer to what most families picture as ` +
+      `"assisted living" — more residents, more staff, more on-site programming.`,
+    () => '',
+    () => '',
+  ];
+
+  // ---- CLOSE (honest expectations) ----
+  const closes = [
+    () =>
+      `Pricing, room availability, and current services aren't reliable to lift from third-party ` +
+      `listings — confirm directly with the operator.`,
+    () =>
+      `For current rates, available rooms, and care specifics, contact the community directly; ` +
+      `we don't publish unverified pricing or amenity lists.`,
+    () =>
+      `Services, room types, and rates change over time — call the community to confirm before ` +
+      `scheduling a tour.`,
+    () =>
+      `For pricing, openings, and a current list of on-site services, reach out to the community ` +
+      `directly rather than relying on third-party amenity lists.`,
+    () =>
+      `Rates, openings, and the specific services on offer should be confirmed straight from the ` +
+      `operator.`,
+  ];
+
+  const openings = isSmall ? smallOpenings : largeOpenings;
+  const contexts = isSmall ? smallContexts : largeContexts;
+
+  const opening = openings[pickIndex(facility.id, 'open', openings.length)]();
+  const middle = middles[pickIndex(facility.id, 'mid', middles.length)]();
+  const context = contexts[pickIndex(facility.id, 'ctx', contexts.length)]();
+  const close = closes[pickIndex(facility.id, 'close', closes.length)]();
+
+  return [opening, middle, context, close]
+    .filter((s) => s && s.length > 0)
+    .join(' ')
+    .replace(/\s{2,}/g, ' ');
 }
 
 function buildDescriptions(facility) {
