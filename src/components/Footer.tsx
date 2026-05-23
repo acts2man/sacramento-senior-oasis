@@ -1,18 +1,23 @@
-
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Heart } from 'lucide-react';
 import { BRAND_NAME } from '../lib/constants';
+import { topCitiesByInventory } from '../lib/cityInventory';
 import logo from '@/assets/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  // Top populated cities — derived from data so the order and counts stay
+  // honest as inventory shifts. Footer links are one of the highest-value
+  // internal-linking surfaces, so we link directly to the keyword-rich
+  // /assisted-living/{slug} pages rather than search-style /locations URLs.
+  const popularCities = topCitiesByInventory(10);
 
   return (
     <footer className="bg-teal-800 text-white pt-12 pb-6">
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Column 1: About */}
-          <div>
+          <div className="lg:col-span-1">
             <img src={logo} alt={BRAND_NAME} className="h-auto max-h-28 w-auto max-w-full object-contain mb-3 bg-white rounded p-2" />
             <h3 className="text-xl font-bold mb-4">{BRAND_NAME}</h3>
             <p className="text-white/80 mb-4">
@@ -28,7 +33,10 @@ const Footer = () => {
                 <Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/locations" className="text-white/80 hover:text-white transition-colors">Communities</Link>
+                <Link to="/communities" className="text-white/80 hover:text-white transition-colors">Browse Communities</Link>
+              </li>
+              <li>
+                <Link to="/locations" className="text-white/80 hover:text-white transition-colors">Full Directory</Link>
               </li>
               <li>
                 <Link to="/about" className="text-white/80 hover:text-white transition-colors">About Us</Link>
@@ -50,12 +58,40 @@ const Footer = () => {
                 <Link to="/memory-care" className="text-white/80 hover:text-white transition-colors">Memory Care</Link>
               </li>
               <li>
-                <Link to="/locations" className="text-white/80 hover:text-white transition-colors">All Communities</Link>
+                <Link to="/board-and-care-homes/sacramento" className="text-white/80 hover:text-white transition-colors">Board &amp; Care Homes</Link>
+              </li>
+              <li>
+                <Link to="/senior-living/sacramento" className="text-white/80 hover:text-white transition-colors">Senior Living</Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Contact */}
+          {/* Column 4: Popular Cities */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Popular Cities</h3>
+            <ul className="space-y-2">
+              {popularCities.map(c => (
+                <li key={c.slug}>
+                  <Link
+                    to={`/assisted-living/${c.slug}`}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {c.name}
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
+                <Link
+                  to="/communities"
+                  className="text-white/90 hover:text-white font-medium transition-colors"
+                >
+                  All cities →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Contact */}
           <div>
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
             <ul className="space-y-3">

@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
+import Communities from "./pages/Communities";
 import Locations from "./pages/Locations";
 import LocationDetail from "./pages/LocationDetail";
 import About from "./pages/About";
@@ -30,6 +31,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/communities" element={<Communities />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/memory-care" element={<MemoryCare />} />
             <Route path="/assisted-living" element={<AssistedLiving />} />

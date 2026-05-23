@@ -1,17 +1,22 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Mail } from 'lucide-react';
+import { Menu, X, Mail, ChevronDown } from 'lucide-react';
 import { BRAND_NAME } from '../lib/constants';
+import { topCitiesByInventory } from '../lib/cityInventory';
+import CommunitiesNavDropdown from './CommunitiesNavDropdown';
 import logo from '@/assets/logo.png';
 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mobileCommunitiesOpen, setMobileCommunitiesOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Top cities for the mobile expandable. Same source as desktop dropdown.
+  const mobileCities = topCitiesByInventory(8);
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -19,8 +24,8 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img 
-              src={logo} 
+            <img
+              src={logo}
               alt={BRAND_NAME}
               className="h-16 md:h-24 w-auto"
             />
@@ -34,9 +39,7 @@ const Header = () => {
             <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               About
             </Link>
-            <Link to="/locations" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
-              Communities
-            </Link>
+            <CommunitiesNavDropdown />
             <Link to="/assisted-living" className="text-senior-slate hover:text-senior-blue font-medium transition-colors">
               Assisted Living
             </Link>
@@ -52,8 +55,8 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
-            onClick={toggleMenu} 
+          <button
+            onClick={toggleMenu}
             className="md:hidden text-senior-slate hover:text-senior-blue"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -71,9 +74,97 @@ const Header = () => {
               <Link to="/about" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 About
               </Link>
-              <Link to="/locations" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
-                Communities
-              </Link>
+
+              {/* Mobile Communities — expandable group */}
+              <div>
+                <button
+                  type="button"
+                  aria-expanded={mobileCommunitiesOpen}
+                  aria-controls="mobile-communities-panel"
+                  onClick={() => setMobileCommunitiesOpen(o => !o)}
+                  className="w-full flex items-center justify-between text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1"
+                >
+                  Communities
+                  <ChevronDown
+                    size={18}
+                    aria-hidden="true"
+                    className={`transition-transform ${mobileCommunitiesOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {mobileCommunitiesOpen && (
+                  <div id="mobile-communities-panel" className="mt-2 pl-4 border-l-2 border-teal-100 space-y-3">
+                    <Link
+                      to="/communities"
+                      className="block text-sm text-senior-blue font-semibold hover:underline"
+                      onClick={toggleMenu}
+                    >
+                      Browse all communities →
+                    </Link>
+                    <div>
+                      <p className="text-xs font-semibold tracking-wide text-teal-700 uppercase mt-2 mb-1">
+                        By city
+                      </p>
+                      <ul className="space-y-1.5">
+                        {mobileCities.map(c => (
+                          <li key={c.slug}>
+                            <Link
+                              to={`/assisted-living/${c.slug}`}
+                              className="text-sm text-senior-slate hover:text-senior-blue"
+                              onClick={toggleMenu}
+                            >
+                              {c.name} <span className="text-xs text-neutral-500">({c.count})</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold tracking-wide text-teal-700 uppercase mt-3 mb-1">
+                        By care type
+                      </p>
+                      <ul className="space-y-1.5">
+                        <li>
+                          <Link
+                            to="/assisted-living/sacramento"
+                            className="text-sm text-senior-slate hover:text-senior-blue"
+                            onClick={toggleMenu}
+                          >
+                            Assisted Living
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/memory-care"
+                            className="text-sm text-senior-slate hover:text-senior-blue"
+                            onClick={toggleMenu}
+                          >
+                            Memory Care
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/board-and-care-homes/sacramento"
+                            className="text-sm text-senior-slate hover:text-senior-blue"
+                            onClick={toggleMenu}
+                          >
+                            Board &amp; Care Homes
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/senior-living/sacramento"
+                            className="text-sm text-senior-slate hover:text-senior-blue"
+                            onClick={toggleMenu}
+                          >
+                            Senior Living
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <Link to="/assisted-living" className="text-senior-slate hover:text-senior-blue font-medium transition-colors px-2 py-1" onClick={toggleMenu}>
                 Assisted Living
               </Link>
