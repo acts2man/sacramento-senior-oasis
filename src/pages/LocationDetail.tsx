@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import Map from '../components/Map';
 import InquiryForm from '../components/InquiryForm';
 import LocationCard from '../components/LocationCard';
-import CareRecommendationsSection from '../components/CareRecommendationsSection';
+
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import { getLocationById, getFeaturedLocations } from '../data/locations';
@@ -417,8 +417,6 @@ const LocationDetail = () => {
           </div>
         </div>
 
-        {/* Care Recommendations Section */}
-        <CareRecommendationsSection facilityName={location.name} facilityId={location.id} />
       </main>
 
       <Footer />

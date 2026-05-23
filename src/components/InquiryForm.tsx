@@ -41,6 +41,14 @@ const TIMELINES = [
   '1-3 months',
   'Just researching',
 ] as const;
+const BUDGETS = [
+  'Under $3,000 / mo',
+  '$3,000 – $4,500 / mo',
+  '$4,500 – $6,000 / mo',
+  '$6,000 – $8,000 / mo',
+  '$8,000+ / mo',
+  'Not sure yet',
+] as const;
 
 const schema = z.object({
   full_name: z.string().trim().min(2, 'Please enter your full name').max(120),
@@ -53,6 +61,7 @@ const schema = z.object({
   relationship: z.string().max(60).optional().or(z.literal('')),
   care_type: z.string().max(60).optional().or(z.literal('')),
   move_in_timeline: z.string().max(60).optional().or(z.literal('')),
+  budget_range: z.string().max(60).optional().or(z.literal('')),
   message: z.string().max(2000).optional().or(z.literal('')),
 });
 
@@ -75,6 +84,7 @@ const InquiryForm = ({
     relationship: '',
     care_type: defaultCareType ?? '',
     move_in_timeline: '',
+    budget_range: '',
     message: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -113,6 +123,7 @@ const InquiryForm = ({
       relationship: parsed.data.relationship || null,
       care_type: parsed.data.care_type || null,
       move_in_timeline: parsed.data.move_in_timeline || null,
+      budget_range: parsed.data.budget_range || null,
       message: parsed.data.message || null,
       inquiry_for_community: communityName ?? null,
       inquiry_for_community_id: communityId ?? null,
@@ -301,7 +312,7 @@ const InquiryForm = ({
           </select>
         </div>
 
-        <div className={compact ? '' : 'sm:col-span-2'}>
+        <div>
           <label htmlFor="move_in_timeline" className="block text-sm font-medium text-neutral-700 mb-1">
             Move-in timeline
           </label>
@@ -314,6 +325,23 @@ const InquiryForm = ({
             <option value="">Select…</option>
             {TIMELINES.map((t) => (
               <option key={t} value={t}>{t}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="budget_range" className="block text-sm font-medium text-neutral-700 mb-1">
+            Monthly budget
+          </label>
+          <select
+            id="budget_range"
+            value={form.budget_range}
+            onChange={update('budget_range')}
+            className={inputBase}
+          >
+            <option value="">Select…</option>
+            {BUDGETS.map((b) => (
+              <option key={b} value={b}>{b}</option>
             ))}
           </select>
         </div>
