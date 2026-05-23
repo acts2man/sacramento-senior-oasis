@@ -41,6 +41,14 @@ const TIMELINES = [
   '1-3 months',
   'Just researching',
 ] as const;
+const BUDGETS = [
+  'Under $3,000 / mo',
+  '$3,000 – $4,500 / mo',
+  '$4,500 – $6,000 / mo',
+  '$6,000 – $8,000 / mo',
+  '$8,000+ / mo',
+  'Not sure yet',
+] as const;
 
 const schema = z.object({
   full_name: z.string().trim().min(2, 'Please enter your full name').max(120),
@@ -53,6 +61,7 @@ const schema = z.object({
   relationship: z.string().max(60).optional().or(z.literal('')),
   care_type: z.string().max(60).optional().or(z.literal('')),
   move_in_timeline: z.string().max(60).optional().or(z.literal('')),
+  budget_range: z.string().max(60).optional().or(z.literal('')),
   message: z.string().max(2000).optional().or(z.literal('')),
 });
 
