@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Map from '../components/Map';
-import ContactForm from '../components/ContactForm';
+import InquiryForm from '../components/InquiryForm';
 import LocationCard from '../components/LocationCard';
 import CareRecommendationsSection from '../components/CareRecommendationsSection';
 import SEO from '../components/SEO';
@@ -406,17 +406,19 @@ const LocationDetail = () => {
                   )}
                 </div>
 
-                {/* Lead form (the form already covers the request) */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <ContactForm facilityName={location.name} />
-                </div>
+                {/* Lead form */}
+                <InquiryForm
+                  communityName={location.name}
+                  communityId={location.id}
+                  compact
+                />
               </div>
             </div>
           </div>
         </div>
 
         {/* Care Recommendations Section */}
-        <CareRecommendationsSection facilityName={location.name} />
+        <CareRecommendationsSection facilityName={location.name} facilityId={location.id} />
       </main>
 
       <Footer />

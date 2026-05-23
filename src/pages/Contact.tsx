@@ -1,7 +1,7 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ContactForm from '../components/ContactForm';
+import InquiryForm from '../components/InquiryForm';
 import SEO from '../components/SEO';
 import { generatePageSEO } from '../utils/seoUtils';
 import { SITE_URL } from '../lib/constants';
@@ -62,10 +62,7 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Contact Form */}
             <div>
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold text-senior-slate mb-6">Send us a Message</h2>
-                <ContactForm />
-              </div>
+              <InquiryForm />
             </div>
             
             {/* Contact Information */}
