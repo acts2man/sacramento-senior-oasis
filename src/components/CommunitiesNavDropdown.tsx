@@ -210,6 +210,7 @@ const CommunitiesNavDropdown = () => {
             </div>
           </div>
         </div>
+        </div>
       )}
     </div>
   );
