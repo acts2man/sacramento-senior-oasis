@@ -312,7 +312,7 @@ const InquiryForm = ({
           </select>
         </div>
 
-        <div className={compact ? '' : 'sm:col-span-2'}>
+        <div>
           <label htmlFor="move_in_timeline" className="block text-sm font-medium text-neutral-700 mb-1">
             Move-in timeline
           </label>
@@ -325,6 +325,23 @@ const InquiryForm = ({
             <option value="">Select…</option>
             {TIMELINES.map((t) => (
               <option key={t} value={t}>{t}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="budget_range" className="block text-sm font-medium text-neutral-700 mb-1">
+            Monthly budget
+          </label>
+          <select
+            id="budget_range"
+            value={form.budget_range}
+            onChange={update('budget_range')}
+            className={inputBase}
+          >
+            <option value="">Select…</option>
+            {BUDGETS.map((b) => (
+              <option key={b} value={b}>{b}</option>
             ))}
           </select>
         </div>
