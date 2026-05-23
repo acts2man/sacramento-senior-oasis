@@ -89,7 +89,7 @@ export default function Dashboard() {
           return (
             <div key={t.key} className="bg-teal-900/60 border border-teal-800 rounded-lg p-4 relative overflow-hidden">
               <div className={`absolute top-3 right-3 w-9 h-9 rounded-md ${t.tile} flex items-center justify-center text-white shadow`}>
-                <Icon className="w-4.5 h-4.5" />
+                <Icon className="w-5 h-5" />
               </div>
               <div className="text-xs uppercase tracking-wider text-neutral-400 font-medium">{t.label}</div>
               <div className="text-3xl font-semibold text-white mt-2">
