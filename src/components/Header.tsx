@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Mail, ChevronDown, Facebook, Instagram, Linkedin, LogIn } from 'lucide-react';
-import { BRAND_NAME } from '../lib/constants';
+import { Menu, X, Mail, ChevronDown, Facebook, Instagram, Linkedin, LogIn, Phone } from 'lucide-react';
+import { BRAND_NAME, DIRECTORY_PHONE, formatPhoneForDisplay, formatPhoneForTel } from '../lib/constants';
 import { topCitiesByInventory } from '../lib/cityInventory';
 import CommunitiesNavDropdown from './CommunitiesNavDropdown';
 import logo from '@/assets/logo.png';
@@ -24,14 +24,25 @@ const Header = () => {
       {/* Top utility bar */}
       <div className="bg-teal-700 text-white text-sm">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-2 flex items-center justify-between">
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="flex items-center gap-2 hover:text-coral-200 transition-colors"
-          >
-            <Mail size={14} />
-            <span className="hidden sm:inline">{CONTACT_EMAIL}</span>
-            <span className="sm:hidden">Email us</span>
-          </a>
+          <div className="flex items-center gap-4">
+            {DIRECTORY_PHONE && (
+              <a
+                href={formatPhoneForTel(DIRECTORY_PHONE)}
+                className="flex items-center gap-2 font-semibold hover:text-coral-200 transition-colors"
+              >
+                <Phone size={14} />
+                <span className="hidden sm:inline">Speak to an advisor: {formatPhoneForDisplay(DIRECTORY_PHONE)}</span>
+                <span className="sm:hidden">{formatPhoneForDisplay(DIRECTORY_PHONE)}</span>
+              </a>
+            )}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="hidden md:flex items-center gap-2 hover:text-coral-200 transition-colors"
+            >
+              <Mail size={14} />
+              <span>{CONTACT_EMAIL}</span>
+            </a>
+          </div>
           <div className="flex items-center gap-3">
             <a
               href="https://www.facebook.com/"
