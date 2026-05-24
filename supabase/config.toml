@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.notify-claim]
 verify_jwt = false
+
+[functions.holly-intake]
+verify_jwt = false
