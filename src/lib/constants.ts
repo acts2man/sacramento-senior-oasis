@@ -35,10 +35,10 @@ const onlyDigits = (s: string) => s.replace(/\D+/g, '');
 export function formatPhoneForTel(phone: string): string {
   const digits = onlyDigits(phone);
   if (digits.length === 11 && digits.startsWith('1')) {
-    return `+${digits}`;
+    return `tel:+${digits}`;
   }
   if (digits.length === 10) {
-    return `+1${digits}`;
+    return `tel:+1${digits}`;
   }
   throw new Error(`formatPhoneForTel: expected a 10-digit US number, got "${phone}"`);
 }
