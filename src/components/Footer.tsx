@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Heart } from 'lucide-react';
-import { BRAND_NAME } from '../lib/constants';
+import { Mail, MapPin, Heart, Phone } from 'lucide-react';
+import { BRAND_NAME, DIRECTORY_PHONE, formatPhoneForDisplay, formatPhoneForTel } from '../lib/constants';
 import { topCitiesByInventory } from '../lib/cityInventory';
 import logo from '@/assets/logo.png';
 
@@ -99,6 +99,17 @@ const Footer = () => {
                 <MapPin size={20} className="mr-2 flex-shrink-0 mt-1" />
                 <span className="text-white/80">Serving the Greater Sacramento Metro Area</span>
               </li>
+              {DIRECTORY_PHONE && (
+                <li className="flex items-center">
+                  <Phone size={20} className="mr-2 flex-shrink-0" />
+                  <a
+                    href={formatPhoneForTel(DIRECTORY_PHONE)}
+                    className="text-white font-semibold hover:text-coral-200 transition-colors"
+                  >
+                    {formatPhoneForDisplay(DIRECTORY_PHONE)}
+                  </a>
+                </li>
+              )}
               <li className="flex items-center">
                 <Mail size={20} className="mr-2 flex-shrink-0" />
                 <a href="mailto:care@sacramentoelderlycare.com" className="text-white/80 hover:text-white transition-colors">care@sacramentoelderlycare.com</a>

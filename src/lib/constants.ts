@@ -21,7 +21,7 @@ export const BRAND_NAME_SHORT = 'Sacramento ElderCare Directory';
  * The string format expected here is "(XXX) XXX-XXXX". Use formatPhoneForTel
  * for tel: links and formatPhoneForDisplay for visible UI text.
  */
-export const DIRECTORY_PHONE: string | null = null;
+export const DIRECTORY_PHONE: string | null = '(916) 270-1565';
 
 const onlyDigits = (s: string) => s.replace(/\D+/g, '');
 
