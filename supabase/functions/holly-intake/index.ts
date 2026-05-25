@@ -147,6 +147,13 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
+  // PAUSED: intake emails are temporarily disabled.
+  return new Response(JSON.stringify({ ok: true, paused: true }), {
+    status: 200,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+
+  /*
   try {
     const payload = await req.json().catch(() => ({}));
     const to = Deno.env.get("INTAKE_TO_EMAIL");
@@ -169,4 +176,5 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
+  */
 });
