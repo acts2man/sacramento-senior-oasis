@@ -144,6 +144,16 @@ async function sendEmail(to: string, subject: string, html: string) {
 }
 
 Deno.serve(async (req) => {
+  // PAUSED — do not process emails
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+  return new Response(JSON.stringify({ ok: true, paused: true }), {
+    status: 200,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+
+  /*
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
@@ -169,4 +179,5 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
+  */
 });
