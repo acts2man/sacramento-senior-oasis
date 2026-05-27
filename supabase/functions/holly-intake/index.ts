@@ -158,10 +158,6 @@ Deno.serve(async (req) => {
     return new Response("ok", { headers: corsHeaders });
   }
   try {
-  if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
-  }
-  try {
     const payload = await req.json().catch(() => ({}));
     const to = Deno.env.get("INTAKE_TO_EMAIL");
     if (!to) {
@@ -183,4 +179,5 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
+  */
 });
