@@ -221,6 +221,19 @@ const InquiryForm = ({
       className={`bg-white border border-neutral-200 rounded-2xl shadow-sm ${compact ? 'p-5' : 'p-6 md:p-8'}`}
       aria-label="Inquiry form"
     >
+      {/* Honeypot: hidden from sighted users + screen readers; bots fill it and get silently dropped. */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', top: 'auto', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="website-url-hp">Website (leave blank)</label>
+        <input
+          id="website-url-hp"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
       <h3 className="font-serif text-xl md:text-2xl font-bold text-neutral-800">
         {computedHeading}
       </h3>
