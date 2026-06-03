@@ -87,6 +87,10 @@ const InquiryForm = ({
     budget_range: '',
     message: '',
   });
+  // Honeypot: real users never fill this. Bots auto-fill every input.
+  const [website, setWebsite] = useState('');
+  // Time trap: bots submit forms in milliseconds. Humans take >3s.
+  const [mountedAt] = useState(() => Date.now());
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
