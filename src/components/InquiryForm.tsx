@@ -103,6 +103,19 @@ const InquiryForm = ({
     e.preventDefault();
     setErrors({});
 
+    // Spam guard: honeypot tripped OR form submitted suspiciously fast (<3s).
+    // Fake-succeed so bots don't learn to bypass it.
+    const elapsedMs = Date.now() - mountedAt;
+    if (website.trim() !== '' || elapsedMs < 3000) {
+      console.warn('[InquiryForm] Spam guard triggered', { honeypot: !!website, elapsedMs });
+      setSubmitting(true);
+      setTimeout(() => {
+        setSubmitting(false);
+        setSuccess(true);
+      }, 600);
+      return;
+    }
+
     const parsed = schema.safeParse(form);
     if (!parsed.success) {
       const fieldErrors: Record<string, string> = {};
