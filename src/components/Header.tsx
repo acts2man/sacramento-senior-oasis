@@ -92,7 +92,11 @@ const Header = () => {
             <img
               src={logo}
               alt={BRAND_NAME}
-              className="h-16 md:h-24 w-auto"
+              width={1920}
+              height={395}
+              decoding="async"
+              loading="eager"
+              className="h-16 md:h-24 w-auto object-contain [image-rendering:auto]"
             />
           </Link>
 
