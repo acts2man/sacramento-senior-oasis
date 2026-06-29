@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Column 1: About */}
           <div className="lg:col-span-1">
-            <img src={logo} alt={BRAND_NAME} className="h-auto max-h-28 w-auto max-w-full object-contain mb-3 bg-white rounded p-2" />
+            <img src={logo} alt={BRAND_NAME} className="h-auto max-h-28 w-auto max-w-full object-contain mb-3" />
             <h3 className="text-xl font-bold mb-4">{BRAND_NAME}</h3>
             <p className="text-white/80 mb-4">
               Helping Sacramento seniors and their families find the perfect assisted living communities tailored to their unique needs and preferences.
