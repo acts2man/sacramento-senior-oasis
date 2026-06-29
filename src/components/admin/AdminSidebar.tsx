@@ -25,10 +25,10 @@ function NavBody({ collapsed, onNavigate }: { collapsed: boolean; onNavigate?: (
   return (
     <div className="flex flex-col h-full bg-teal-900 text-neutral-50">
       <div className={cn("flex items-center gap-3 px-5 py-5 border-b border-teal-800", collapsed && "px-3 justify-center")}>
-        <img src={logo} alt="ElderCare" className="h-9 brightness-0 invert shrink-0" />
+        <img src={logo} alt="Assisted Living" className="h-9 brightness-0 invert shrink-0" />
         {!collapsed && (
           <div className="text-xs leading-tight">
-            <div className="font-semibold text-white">ElderCare</div>
+            <div className="font-semibold text-white">Assisted Living</div>
             <div className="text-neutral-400">Admin</div>
           </div>
         )}

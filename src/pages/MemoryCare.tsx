@@ -171,7 +171,7 @@ const MemoryCare = () => {
                   Finding the Right Memory Care in Sacramento
                 </h2>
                 <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
-                  Sacramento ElderCare Directory makes it easy to find trusted <strong>memory care in Sacramento</strong>,
+                  Sacramento Assisted Living Directory makes it easy to find trusted <strong>memory care in Sacramento</strong>,
                   including homes that specialize in supporting those with Alzheimer's and dementia. Our directory 
                   highlights facilities offering safe environments, trained staff, and compassionate daily routines.
                 </p>

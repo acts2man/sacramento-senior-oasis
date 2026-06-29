@@ -66,14 +66,14 @@ export default function Login() {
       <div className="w-full max-w-md relative z-10">
         <div className="flex justify-center mb-8">
           <div className="bg-white rounded-lg p-4 shadow-lg">
-            <img src={logo} alt="Sacramento ElderCare Directory" className="h-14 w-auto" />
+            <img src={logo} alt="Sacramento Assisted Living Directory" className="h-14 w-auto" />
           </div>
         </div>
         <div className="bg-teal-800 border border-teal-700 rounded-lg p-8 shadow-xl">
           <h1 className="text-2xl font-serif text-white mb-1">
             {mode === "signin" ? "Admin sign in" : mode === "signup" ? "Create admin account" : "Reset password"}
           </h1>
-          <p className="text-neutral-300 text-sm mb-6">Sacramento ElderCare Directory back-office</p>
+          <p className="text-neutral-300 text-sm mb-6">Sacramento Assisted Living Directory back-office</p>
 
           <form onSubmit={onSubmit} className="space-y-4">
             <div>

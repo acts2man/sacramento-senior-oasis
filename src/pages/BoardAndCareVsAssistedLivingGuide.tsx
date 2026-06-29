@@ -29,7 +29,7 @@ const faqEntries: FaqEntry[] = [
   {
     question: 'How do I find good board and care homes in the Sacramento area?',
     answer:
-      "Start by looking up RCFE-licensed homes through CDSS, then visit in person. Small homes don't market the way large communities do, so the best ones are often found via local placement advisors who know which homes are well run, which have openings, and which fit a specific care need. Sacramento ElderCare Directory tracks license-verified board and care homes across the metro.",
+      "Start by looking up RCFE-licensed homes through CDSS, then visit in person. Small homes don't market the way large communities do, so the best ones are often found via local placement advisors who know which homes are well run, which have openings, and which fit a specific care need. Sacramento Assisted Living Directory tracks license-verified board and care homes across the metro.",
   },
 ];
 

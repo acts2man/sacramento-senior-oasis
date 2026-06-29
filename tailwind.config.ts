@@ -2,7 +2,7 @@
 import type { Config } from "tailwindcss";
 
 /**
- * ElderCare brand color scales. These are the source of truth for the
+ * Assisted Living brand color scales. These are the source of truth for the
  * `bg-teal-*`, `text-coral-*`, `bg-sage-*`, `text-neutral-*` utilities and
  * for the semantic shadcn tokens declared as HSL triplets in src/index.css.
  *

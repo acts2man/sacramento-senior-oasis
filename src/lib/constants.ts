@@ -8,8 +8,8 @@ export const SITE_URL = 'https://sacramentoelderlycare.com';
  * where the full name doesn't fit. Today both values are identical; keep the
  * two exports separate so the abstraction is in place when we want one.
  */
-export const BRAND_NAME = 'Sacramento ElderCare Directory';
-export const BRAND_NAME_SHORT = 'Sacramento ElderCare Directory';
+export const BRAND_NAME = 'Sacramento Assisted Living Directory';
+export const BRAND_NAME_SHORT = 'Sacramento Assisted Living Directory';
 
 /**
  * Directory's master concierge line. All facility inquiries route here.

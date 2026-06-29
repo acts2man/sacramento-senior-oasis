@@ -16,7 +16,7 @@ const DEFAULT_TEAM_EMAILS = [
 
 const FROM_EMAIL =
   Deno.env.get("LEAD_FROM_EMAIL") ??
-  "Sacramento ElderCare Directory <care@sacramentoelderlycare.com>";
+  "Sacramento Assisted Living Directory <care@sacramentoelderlycare.com>";
 
 const SITE_URL = "https://sacramentoelderlycare.com";
 
@@ -106,10 +106,10 @@ function claimantHtml(c: ClaimPayload): string {
         <li style="margin-bottom:6px;">Family inquiries you receive through the directory are routed through our advisors.</li>
       </ul>
       <p style="margin:0 0 18px;">If anything changes or you'd like to add more detail, simply reply to this email.</p>
-      <a href="${SITE_URL}" style="display:inline-block;background:#0d9488;color:#ffffff;text-decoration:none;font-weight:600;padding:11px 20px;border-radius:8px;font-size:14px;">Back to Sacramento ElderCare Directory</a>
+      <a href="${SITE_URL}" style="display:inline-block;background:#0d9488;color:#ffffff;text-decoration:none;font-weight:600;padding:11px 20px;border-radius:8px;font-size:14px;">Back to Sacramento Assisted Living Directory</a>
     </div>
     <div style="padding:16px 28px;background:#f8fafc;border-top:1px solid #e2e8f0;font-size:12px;color:#64748b;text-align:center;">
-      Sacramento ElderCare Directory · <a href="${SITE_URL}" style="color:#0d9488;text-decoration:none;">sacramentoelderlycare.com</a>
+      Sacramento Assisted Living Directory · <a href="${SITE_URL}" style="color:#0d9488;text-decoration:none;">sacramentoelderlycare.com</a>
     </div>
   </div>
   </body></html>`;
@@ -154,7 +154,7 @@ async function notify(claim: ClaimPayload) {
   });
   const claimantResult = await sendEmail({
     to: [claim.email],
-    subject: "We received your listing claim — Sacramento ElderCare Directory",
+    subject: "We received your listing claim — Sacramento Assisted Living Directory",
     html: claimantHtml(claim),
   });
   return { team: teamResult, claimant: claimantResult };
