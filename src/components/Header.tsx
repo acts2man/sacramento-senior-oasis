@@ -4,7 +4,7 @@ import { Menu, X, Mail, ChevronDown, Facebook, Instagram, Linkedin, LogIn, Phone
 import { BRAND_NAME, DIRECTORY_PHONE, formatPhoneForDisplay, formatPhoneForTel } from '../lib/constants';
 import { topCitiesByInventory } from '../lib/cityInventory';
 import CommunitiesNavDropdown from './CommunitiesNavDropdown';
-import logoAsset from '@/assets/logo-header.png.asset.json';
+import logoAsset from '@/assets/logo-header.svg.asset.json';
 const logo = logoAsset.url;
 
 const CONTACT_EMAIL = 'care@sacramentoelderlycare.com';
