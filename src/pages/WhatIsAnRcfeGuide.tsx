@@ -181,7 +181,7 @@ const WhatIsAnRcfeGuide = () => (
       </li>
     </ol>
     <p>
-      Every facility listed on Sacramento ElderCare Directory shows the CDSS license
+      Every facility listed on Sacramento Assisted Living Directory shows the CDSS license
       number and status on its detail page so you can verify it without leaving the
       site, but it's still worth confirming directly with the state before signing a
       residency agreement.

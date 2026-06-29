@@ -8,7 +8,7 @@
 @layer base {
   :root {
     /* ===========================================================================
-     * Sacramento ElderCare Directory brand palette — defined as HSL triplets so
+     * Sacramento Assisted Living Directory brand palette — defined as HSL triplets so
      * shadcn's `hsl(var(--token))` Tailwind bindings work unchanged. Hex values
      * are noted next to each token for the human reader.
      *
