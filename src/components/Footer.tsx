@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin, Heart, Phone } from 'lucide-react';
 import { BRAND_NAME, DIRECTORY_PHONE, formatPhoneForDisplay, formatPhoneForTel } from '../lib/constants';
 import { topCitiesByInventory } from '../lib/cityInventory';
-import logo from '@/assets/logo.png';
+import logoAsset from '@/assets/logo-footer.png.asset.json';
+const logo = logoAsset.url;
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
