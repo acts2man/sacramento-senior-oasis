@@ -34,6 +34,7 @@ interface LeadPayload {
   relationship?: string | null;
   message?: string | null;
   source_page?: string | null;
+  source_url?: string | null;
   created_at?: string | null;
 }
 
@@ -167,6 +168,71 @@ async function notify(lead: LeadPayload) {
   return { team: teamResult, family: familyResult };
 }
 
+/**
+ * Forward a copy of the lead to our separate placement agency's intake
+ * endpoint. Strictly additive and fault-tolerant: any missing config,
+ * network error, or non-2xx response is logged and swallowed so it can
+ * never break the lead save, the Resend emails, or the family's success
+ * state. Fields map the directory's inquiry shape onto the placement
+ * intake's expected keys.
+ */
+async function forwardToPlacement(l: LeadPayload): Promise<void> {
+  try {
+    const url = Deno.env.get("PLACEMENT_INGEST_URL");
+    const secret = Deno.env.get("INGEST_SECRET");
+    if (!url || !secret) {
+      console.warn(
+        "forwardToPlacement skipped: PLACEMENT_INGEST_URL / INGEST_SECRET not configured"
+      );
+      return;
+    }
+
+    // The community name or page label the inquiry came from.
+    const sourceDetail =
+      l.inquiry_for_community || l.inquiry_for_city || l.source_page || "Directory inquiry";
+    // Full URL of the page the inquiry was submitted on. Prefer the absolute
+    // href threaded from the client; fall back to reconstructing from the site
+    // origin + the stored relative source_page.
+    const sourceUrl =
+      l.source_url || (l.source_page ? `${SITE_URL}${l.source_page}` : SITE_URL);
+
+    const body = {
+      full_name: l.full_name,
+      phone: l.phone,
+      email: l.email,
+      relationship_to_senior: l.relationship ?? null,
+      care_type: l.care_type ?? null,
+      preferred_area: l.inquiry_for_city ?? null,
+      budget_range: l.budget_range ?? null,
+      timeline: l.move_in_timeline ?? null,
+      situation: l.message ?? null,
+      source: "directory",
+      source_detail: sourceDetail,
+      source_url: sourceUrl,
+      external_id: l.id ?? null,
+    };
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-ingest-secret": secret,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      console.error("forwardToPlacement non-2xx", res.status, text);
+      return;
+    }
+    console.log("forwardToPlacement ok", res.status, "external_id", l.id ?? "—");
+  } catch (err) {
+    // Swallow everything — the forward is best-effort and must never surface.
+    console.error("forwardToPlacement failed (non-fatal)", err);
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -180,6 +246,10 @@ Deno.serve(async (req) => {
       });
     }
     const result = await notify(lead);
+    // Additive, best-effort forward to the placement agency intake. Self-
+    // contained try/catch inside — it never throws, so it cannot affect the
+    // response, the emails above, or the client's success state.
+    await forwardToPlacement(lead);
     return new Response(JSON.stringify({ ok: true, result }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },

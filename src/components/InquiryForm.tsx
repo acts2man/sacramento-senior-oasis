@@ -167,9 +167,17 @@ const InquiryForm = ({
     }
 
     // 2) Fire-and-handle notification. Email failure must NEVER lose the lead.
+    // source_url is the full page href (not the relative source_page stored on
+    // the row); it's passed only to the function so notify-lead can forward it
+    // to the placement intake — the insert payload above is left untouched.
     try {
       const { error: fnError } = await supabase.functions.invoke('notify-lead', {
-        body: { ...payload, created_at: submittedAt },
+        body: {
+          ...payload,
+          created_at: submittedAt,
+          source_url:
+            typeof window !== 'undefined' ? window.location.href : null,
+        },
       });
       if (fnError) console.error('notify-lead error (non-fatal):', fnError);
     } catch (err) {
