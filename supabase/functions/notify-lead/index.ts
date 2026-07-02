@@ -176,7 +176,7 @@ async function notify(lead: LeadPayload) {
  * state. Fields map the directory's inquiry shape onto the placement
  * intake's expected keys.
  */
-async function forwardToPlacement(l: LeadPayload): Promise<void> {
+async function forwardToPlacement(l: LeadPayload): Promise<number | null> {
   try {
     const url = Deno.env.get("PLACEMENT_INGEST_URL");
     const secret = Deno.env.get("INGEST_SECRET");
@@ -184,7 +184,7 @@ async function forwardToPlacement(l: LeadPayload): Promise<void> {
       console.warn(
         "forwardToPlacement skipped: PLACEMENT_INGEST_URL / INGEST_SECRET not configured"
       );
-      return;
+      return null;
     }
 
     // The community name or page label the inquiry came from.
@@ -224,16 +224,19 @@ async function forwardToPlacement(l: LeadPayload): Promise<void> {
     if (!res.ok) {
       const text = await res.text().catch(() => "");
       console.error("forwardToPlacement non-2xx", res.status, text);
-      return;
+      return res.status;
     }
     console.log("forwardToPlacement ok", res.status, "external_id", l.id ?? "—");
+    return res.status;
   } catch (err) {
     // Swallow everything — the forward is best-effort and must never surface.
     console.error("forwardToPlacement failed (non-fatal)", err);
+    return null;
   }
 }
 
 Deno.serve(async (req) => {
+  console.log("notify-lead INVOKED", { ts: new Date().toISOString(), hasPlacementUrl: !!Deno.env.get("PLACEMENT_INGEST_URL"), hasIngestSecret: !!Deno.env.get("INGEST_SECRET") });
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
@@ -249,7 +252,9 @@ Deno.serve(async (req) => {
     // Additive, best-effort forward to the placement agency intake. Self-
     // contained try/catch inside — it never throws, so it cannot affect the
     // response, the emails above, or the client's success state.
-    await forwardToPlacement(lead);
+    console.log("notify-lead: about to forward to placement");
+    const status = await forwardToPlacement(lead);
+    console.log("notify-lead: forward finished", { status });
     return new Response(JSON.stringify({ ok: true, result }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
