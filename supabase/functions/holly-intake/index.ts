@@ -3,18 +3,27 @@
 // ElevenLabs does not retry. No JWT required.
 
 import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
+import { createClient } from "npm:@supabase/supabase-js@2";
 
 const FROM_EMAIL = "Holly <holly@sacramentoelderlycare.com>";
 
-// data_collection_results values may be plain strings/numbers OR objects with { value }
-function v(x: unknown): string {
-  if (x === null || x === undefined || x === "") return "—";
+// data_collection_results values may be plain strings/numbers OR objects with { value }.
+// unwrap() returns the underlying scalar — or null when absent/empty — for STORAGE.
+function unwrap(x: unknown): string | number | boolean | null {
+  if (x === null || x === undefined || x === "") return null;
   if (typeof x === "object") {
     const o = x as Record<string, unknown>;
-    if ("value" in o) return v(o.value);
+    if ("value" in o) return unwrap(o.value);
     return JSON.stringify(o);
   }
+  if (typeof x === "number" || typeof x === "boolean") return x;
   return String(x);
+}
+
+// Display helper: same unwrap, but empty -> "—" placeholder for the email.
+function v(x: unknown): string {
+  const u = unwrap(x);
+  return u === null ? "—" : String(u);
 }
 
 const esc = (s: string) =>
@@ -143,6 +152,53 @@ async function sendEmail(to: string, subject: string, html: string) {
   }
 }
 
+// Columns whose values come straight from data_collection_results.
+const VOICE_LEAD_FIELDS = [
+  "caller_name", "caller_relationship", "caller_phone", "preferred_callback_time",
+  "resident_name", "resident_dob", "current_location", "discharge_date", "preferred_area",
+  "care_level", "mobility", "memory_behavior", "medical_flags", "caregiver_burnout",
+  "payer_type", "budget", "veteran", "urgency", "fit_assessment",
+] as const;
+
+// Build the voice_leads row from the same payload the recap email uses. Each
+// field is stored as the UNWRAPPED scalar (null when absent) — never the "—"
+// placeholder, which is display-only.
+function buildVoiceLeadRow(payload: any): Record<string, unknown> {
+  const analysis = payload?.data?.analysis ?? payload?.analysis ?? {};
+  const d = analysis.data_collection_results || {};
+  const transcript = payload?.data?.transcript ?? payload?.transcript ?? [];
+
+  const row: Record<string, unknown> = {};
+  for (const k of VOICE_LEAD_FIELDS) row[k] = unwrap(d[k]);
+
+  const urgencyStr = row.urgency == null ? "" : String(row.urgency);
+
+  row.transcript_summary = unwrap(analysis.transcript_summary);
+  row.transcript = Array.isArray(transcript) ? transcript : null;
+  // Same urgency logic as the recap email.
+  row.is_urgent = urgencyStr.toLowerCase().includes("urgent");
+  row.source = "voice";
+  return row;
+}
+
+// Persist the voice lead to the unified Supabase project (egkijquraggcubnhwfho).
+// Best-effort: any failure is logged and swallowed by the caller so it can
+// never break the recap email or delay the 200 that ElevenLabs needs.
+async function insertVoiceLead(payload: any): Promise<void> {
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!serviceKey) {
+    console.error("SUPABASE_SERVICE_ROLE_KEY not configured — skipping voice_leads insert");
+    return;
+  }
+  const supabase = createClient(
+    "https://egkijquraggcubnhwfho.supabase.co",
+    serviceKey,
+    { auth: { persistSession: false, autoRefreshToken: false } },
+  );
+  const { error } = await supabase.from("voice_leads").insert(buildVoiceLeadRow(payload));
+  if (error) console.error("voice_leads insert failed", error);
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -156,6 +212,14 @@ Deno.serve(async (req) => {
       const { subject, html } = buildEmail(payload);
       // Fire and forget so we return fast — but await briefly to surface obvious errors in logs.
       sendEmail(to, subject, html).catch((e) => console.error("sendEmail failed", e));
+    }
+    // Persist the voice lead to the unified Supabase. Fully fault-tolerant: a DB
+    // failure must never break the recap email above or cause a non-200, or
+    // ElevenLabs will retry the webhook.
+    try {
+      await insertVoiceLead(payload);
+    } catch (e) {
+      console.error("insertVoiceLead failed (non-fatal)", e);
     }
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
