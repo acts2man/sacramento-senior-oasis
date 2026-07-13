@@ -230,6 +230,17 @@ Deno.serve(async (req) => {
   }
   try {
     const payload = await req.json().catch(() => ({}));
+
+    // Extract urgency once for both DB insert + email header.
+    const analysis = payload?.data?.analysis ?? payload?.analysis ?? {};
+    const urgencyVal = v(analysis?.data_collection_results?.urgency);
+
+    // Best-effort insert into the external Supabase leads table so Holly
+    // calls show up in the admin dashboard alongside form submissions.
+    insertLeadToExternal(payload, urgencyVal).catch((e) =>
+      console.error("insertLeadToExternal outer catch", e)
+    );
+
     const to = Deno.env.get("INTAKE_TO_EMAIL");
     if (!to) {
       console.error("INTAKE_TO_EMAIL not configured");
