@@ -6,6 +6,87 @@ import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 
 const FROM_EMAIL = "Holly <holly@sacramentoelderlycare.com>";
 
+// External Supabase (the directory's primary DB — same instance the site's
+// InquiryForm writes to). Hardcoded to match src/integrations/supabase/client.ts.
+const EXTERNAL_SUPABASE_URL = "https://egkijquraggcubnhwfho.supabase.co";
+const EXTERNAL_SUPABASE_ANON_KEY = "sb_publishable_F7Or6jzOKiOBEmIizzzIug_ZQph8u-g";
+
+async function insertLeadToExternal(payload: any, urgencyVal: string): Promise<string | null> {
+  try {
+    const analysis = payload?.data?.analysis ?? payload?.analysis ?? {};
+    const d = analysis.data_collection_results || {};
+    const g = (k: string) => {
+      const x = d[k];
+      if (x === null || x === undefined || x === "") return null;
+      if (typeof x === "object" && x !== null && "value" in x) {
+        const val = (x as any).value;
+        return val === "" || val === null || val === undefined ? null : String(val);
+      }
+      return String(x);
+    };
+
+    const callerName = g("caller_name") || "Unknown caller (Holly)";
+    const callerPhone = g("caller_phone") || "unknown";
+    const callerEmail = g("caller_email") || "holly-intake@sacramentoelderlycare.com";
+    const residentName = g("resident_name");
+    const summary: string = analysis.transcript_summary || "";
+
+    const messageParts = [
+      residentName ? `Loved one: ${residentName}` : null,
+      g("current_location") ? `Current location: ${g("current_location")}` : null,
+      g("discharge_date") ? `Discharge date: ${g("discharge_date")}` : null,
+      g("preferred_area") ? `Preferred area: ${g("preferred_area")}` : null,
+      g("mobility") ? `Mobility: ${g("mobility")}` : null,
+      g("memory_behavior") ? `Memory/behavior: ${g("memory_behavior")}` : null,
+      g("medical_flags") ? `Medical flags: ${g("medical_flags")}` : null,
+      g("caregiver_burnout") ? `Caregiver burnout: ${g("caregiver_burnout")}` : null,
+      g("payer_type") ? `Payer: ${g("payer_type")}` : null,
+      g("veteran") ? `Veteran: ${g("veteran")}` : null,
+      g("fit_assessment") ? `Fit: ${g("fit_assessment")}` : null,
+      g("preferred_callback_time") ? `Best callback: ${g("preferred_callback_time")}` : null,
+      summary ? `\nSummary: ${summary}` : null,
+    ].filter(Boolean);
+
+    const row = {
+      full_name: callerName,
+      email: callerEmail,
+      phone: callerPhone,
+      relationship: g("caller_relationship"),
+      care_type: g("care_level"),
+      move_in_timeline: urgencyVal !== "—" ? urgencyVal : null,
+      budget_range: g("budget"),
+      inquiry_for_city: g("preferred_area"),
+      message: messageParts.join("\n") || null,
+      source_page: "Holly voice intake",
+      status: urgencyVal.toLowerCase().includes("urgent") ? "urgent" : "new",
+    };
+
+    const res = await fetch(`${EXTERNAL_SUPABASE_URL}/rest/v1/leads`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": EXTERNAL_SUPABASE_ANON_KEY,
+        "Authorization": `Bearer ${EXTERNAL_SUPABASE_ANON_KEY}`,
+        "Prefer": "return=representation",
+      },
+      body: JSON.stringify(row),
+    });
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      console.error("insertLeadToExternal non-2xx", res.status, body);
+      return null;
+    }
+    const inserted = await res.json().catch(() => null);
+    const id = Array.isArray(inserted) && inserted[0]?.id ? inserted[0].id : null;
+    console.log("insertLeadToExternal ok", id);
+    return id;
+  } catch (err) {
+    console.error("insertLeadToExternal failed (non-fatal)", err);
+    return null;
+  }
+}
+
 // data_collection_results values may be plain strings/numbers OR objects with { value }
 function v(x: unknown): string {
   if (x === null || x === undefined || x === "") return "—";
@@ -149,6 +230,17 @@ Deno.serve(async (req) => {
   }
   try {
     const payload = await req.json().catch(() => ({}));
+
+    // Extract urgency once for both DB insert + email header.
+    const analysis = payload?.data?.analysis ?? payload?.analysis ?? {};
+    const urgencyVal = v(analysis?.data_collection_results?.urgency);
+
+    // Best-effort insert into the external Supabase leads table so Holly
+    // calls show up in the admin dashboard alongside form submissions.
+    insertLeadToExternal(payload, urgencyVal).catch((e) =>
+      console.error("insertLeadToExternal outer catch", e)
+    );
+
     const to = Deno.env.get("INTAKE_TO_EMAIL");
     if (!to) {
       console.error("INTAKE_TO_EMAIL not configured");
