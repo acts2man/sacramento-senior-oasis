@@ -87,6 +87,7 @@ const LocationDetail = () => {
         ogImage={heroPhoto?.url}
         ogType="place"
         canonical={`${SITE_URL}/${location.id}`}
+        appendBrand={false}
       />
       <JsonLd data={buildLocalBusinessSchema(location)} />
       <JsonLd
