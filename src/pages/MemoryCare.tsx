@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Clock, Heart, Users, Brain, CheckCircle, ArrowRight, Star } from 'lucide-react';
+import { Shield, Clock, Heart, Users, Brain, CheckCircle, ArrowRight, MapPin, BookOpen, ShieldCheck } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -9,10 +9,47 @@ import LocationCard from '../components/LocationCard';
 import { locations } from '../data/locations';
 import type { Facility } from '../types/facility';
 import { SITE_URL } from '../lib/constants';
+import { CITIES, cityNameToSlug } from '../data/cities';
 import JsonLd from '../components/JsonLd';
-import { buildBreadcrumbSchema, buildItemListSchema } from '../lib/schema';
+import { buildBreadcrumbSchema, buildItemListSchema, buildFaqSchema } from '../lib/schema';
 
 const memoryCareFacilities = locations.filter(f => f.care_types.includes('memory_care'));
+
+// Sacramento-metro cities that actually have at least one home offering memory
+// care, most-homes-first. Drives the "by city" internal-link hub — we only link
+// cities that have real listings, never fabricated placeholders.
+const memoryCareByCity = CITIES
+  .map(city => ({
+    city,
+    count: memoryCareFacilities.filter(f => cityNameToSlug(f.city) === city.slug).length,
+  }))
+  .filter(entry => entry.count > 0)
+  .sort((a, b) => b.count - a.count);
+
+// Honest, sourced FAQ content. No fabricated prices or claims; cost answers
+// stay qualitative and route families to our advisors.
+const memoryCareFaqs = [
+  {
+    question: 'What is memory care?',
+    answer:
+      "Memory care is a form of residential senior care designed for people living with Alzheimer's disease or another form of dementia. Homes provide a secure setting, staff trained in dementia care, structured daily routines, and supervision to keep residents safe. The Alzheimer's Association is a good starting point for understanding the different stages of dementia and what to look for.",
+  },
+  {
+    question: 'How is memory care different from assisted living?',
+    answer:
+      'Assisted living supports older adults who need help with day-to-day tasks but are largely independent. Memory care adds a secured environment, higher staffing, and dementia-specific programming. Many Sacramento-area homes offer both, so a resident can stay in place as needs change. Our guide comparing assisted living and memory care walks through the differences in detail.',
+  },
+  {
+    question: 'How much does memory care cost in the Sacramento area?',
+    answer:
+      'Costs vary by home, room type, and level of care, and memory care generally costs more than standard assisted living because of the added supervision and specialized staffing. We do not publish per-home prices we cannot verify — our local advisors can share what each community is quoting right now, at no cost to your family.',
+  },
+  {
+    question: 'Are Sacramento memory care homes licensed?',
+    answer:
+      'Yes. Memory care in California is provided in Residential Care Facilities for the Elderly (RCFEs), licensed by the California Department of Social Services (CDSS). On every listing we surface the public license number, status, and capacity so you can verify a home before you tour.',
+  },
+];
 
 const MemoryCare = () => {
   const [memoryCareCommunities, setMemoryCareCommunities] = useState<Facility[]>([]);
@@ -81,42 +118,18 @@ const MemoryCare = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      quote: "The staff at our chosen memory care facility treats my mother with such dignity and compassion. We couldn't have made a better choice.",
-      author: "Sarah M.",
-      location: "Sacramento, CA"
-    },
-    {
-      quote: "Finding the right memory care home seemed overwhelming, but this resource helped us compare options and find the perfect fit for Dad.",
-      author: "Michael R.",
-      location: "Elk Grove, CA"
-    },
-    {
-      quote: "The peace of mind knowing Mom is safe and engaged in meaningful activities every day is priceless.",
-      author: "Jennifer L.",
-      location: "Natomas, CA"
-    }
-  ];
-
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <>
       <SEO
-        title="Memory Care in Sacramento — Dementia & Alzheimer's Care Communities"
-        description="Compare memory care communities in the Sacramento metro for dementia and Alzheimer's residents. Browse secure facilities, services, and pricing in one place."
-        keywords="memory care sacramento, dementia care sacramento, alzheimer's care, memory care facilities, sacramento senior care"
+        title="Memory Care in the Sacramento Metro — Dementia & Alzheimer's Care"
+        description="Find licensed memory care and dementia care homes across the Sacramento metro, including small RCFE board & care homes. See license details and get free help from a local advisor."
+        keywords="memory care sacramento, dementia care sacramento, alzheimer's care, memory care facilities, rcfe memory care, sacramento metro senior care"
         canonical={`${SITE_URL}/memory-care`}
+        appendBrand={false}
       />
       <JsonLd data={buildItemListSchema(memoryCareFacilities, '/memory-care')} />
+      <JsonLd data={buildFaqSchema(memoryCareFaqs)} />
       <JsonLd
         data={buildBreadcrumbSchema([
           { name: 'Home', url: '/' },
@@ -191,6 +204,17 @@ const MemoryCare = () => {
               <h2 className="text-4xl font-bold text-senior-slate mb-4">What Is Memory Care?</h2>
               <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
                 Memory care provides specialized support for individuals with Alzheimer's, dementia, and other cognitive impairments.
+                In California this care is delivered in licensed Residential Care Facilities for the Elderly (RCFEs). For background on
+                the stages of dementia, the{' '}
+                <a
+                  href="https://www.alz.org/alzheimers-dementia/stages"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-senior-blue underline hover:text-senior-blue/80"
+                >
+                  Alzheimer's Association
+                </a>{' '}
+                is an authoritative starting point.
               </p>
             </div>
             
@@ -250,6 +274,83 @@ const MemoryCare = () => {
           </section>
         )}
 
+        {/* Memory Care by City — internal-link hub */}
+        {memoryCareByCity.length > 0 && (
+          <section className="py-16 bg-white">
+            <div className="container-custom">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-senior-slate mb-4">
+                  Memory Care by Sacramento-Metro City
+                </h2>
+                <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+                  Browse licensed senior care homes — including those offering memory support — in each metro community.
+                  Every listing shows the home's public RCFE license details.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {memoryCareByCity.map(({ city, count }) => (
+                  <Link
+                    key={city.slug}
+                    to={`/senior-living/${city.slug}`}
+                    className="group flex items-center justify-between bg-senior-light rounded-xl px-5 py-4 hover:bg-senior-blue hover:text-white transition-colors"
+                  >
+                    <span className="flex items-center gap-2 font-semibold">
+                      <MapPin size={18} className="text-senior-blue group-hover:text-white" aria-hidden="true" />
+                      {city.name}
+                    </span>
+                    <span className="text-sm text-neutral-500 group-hover:text-white/90">
+                      {count} {count === 1 ? 'home' : 'homes'}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Guides — supporting editorial for decision-stage searchers */}
+        <section className="py-16 bg-senior-light">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-senior-slate mb-4">Understand Your Options</h2>
+              <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+                Clear, plain-language guides to help you compare care types and understand California licensing.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <Link
+                to="/guides/assisted-living-vs-memory-care"
+                className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow flex items-start gap-4"
+              >
+                <BookOpen size={24} className="text-senior-blue flex-shrink-0 mt-1" aria-hidden="true" />
+                <div>
+                  <h3 className="text-lg font-bold text-senior-slate mb-1 group-hover:text-senior-blue">
+                    Assisted Living vs. Memory Care
+                  </h3>
+                  <p className="text-neutral-600 text-sm">
+                    How the two differ, and how to tell which level of care fits your family member.
+                  </p>
+                </div>
+              </Link>
+              <Link
+                to="/guides/what-is-an-rcfe"
+                className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow flex items-start gap-4"
+              >
+                <ShieldCheck size={24} className="text-senior-blue flex-shrink-0 mt-1" aria-hidden="true" />
+                <div>
+                  <h3 className="text-lg font-bold text-senior-slate mb-1 group-hover:text-senior-blue">
+                    What Is an RCFE?
+                  </h3>
+                  <p className="text-neutral-600 text-sm">
+                    How California licenses residential care homes — and what the public record tells you.
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* How to Choose Section */}
         <section className="py-16 bg-senior-light">
           <div className="container-custom">
@@ -293,41 +394,21 @@ const MemoryCare = () => {
           </div>
         </section>
 
-        {/* Testimonials Section */}
+        {/* FAQ Section — honest, sourced answers (mirrored in FAQPage schema) */}
         <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-4xl font-bold text-senior-slate mb-4">What Families Say</h2>
-              <p className="text-xl text-neutral-600">Real experiences from Sacramento families</p>
+              <h2 className="text-4xl font-bold text-senior-slate mb-4">Memory Care Questions, Answered</h2>
+              <p className="text-xl text-neutral-600">Straightforward answers for families navigating a dementia diagnosis</p>
             </div>
-            
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-senior-light rounded-2xl p-8 md:p-12 text-center animate-scale-in delay-300">
-                <div className="mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={24} className="inline-block text-coral-500 fill-coral-500 mx-1" />
-                  ))}
+
+            <div className="max-w-3xl mx-auto space-y-6">
+              {memoryCareFaqs.map((faq) => (
+                <div key={faq.question} className="bg-senior-light rounded-2xl p-6 md:p-8">
+                  <h3 className="text-lg md:text-xl font-bold text-senior-slate mb-3">{faq.question}</h3>
+                  <p className="text-neutral-700 leading-relaxed">{faq.answer}</p>
                 </div>
-                <blockquote className="text-xl md:text-2xl text-neutral-700 mb-8 leading-relaxed italic">
-                  "{testimonials[currentTestimonial].quote}"
-                </blockquote>
-                <div className="text-senior-blue font-semibold">
-                  — {testimonials[currentTestimonial].author}, {testimonials[currentTestimonial].location}
-                </div>
-                
-                <div className="flex justify-center mt-8 space-x-2">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentTestimonial(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentTestimonial ? 'bg-senior-blue' : 'bg-neutral-300'
-                      }`}
-                      aria-label={`View testimonial ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
