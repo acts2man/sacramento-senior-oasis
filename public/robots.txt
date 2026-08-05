@@ -40,3 +40,14 @@ Allow: /
 User-agent: *
 Allow: /
 # Disallow: /locations?*search=
+
+# Discovery on this site depends on the sitemap more than most.
+#
+# The app is client-rendered, so the pre-JS HTML every URL returns contains a
+# single internal link. A crawler's first pass therefore finds almost no link
+# graph to follow, which makes sitemap.xml the primary discovery mechanism
+# rather than a supplement to crawling. Without this directive, Google finds it
+# only if someone submitted it in Search Console.
+#
+# The file is regenerated at build time by the sitemapPlugin in vite.config.ts.
+Sitemap: https://sacramentoelderlycare.com/sitemap.xml
