@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import {
   ChevronRight,
   MapPin,
@@ -76,6 +76,15 @@ const MODE_CONFIG: Record<ListingMode, {
     countNoun: 'board & care homes',
   },
 };
+
+/**
+ * Listings per page.
+ *
+ * 24 divides evenly into the 1/2/3-column grid at every breakpoint, and keeps
+ * page one of the largest city (Sacramento, 212 listings) to a DOM a headless
+ * renderer can take in one pass.
+ */
+const PAGE_SIZE = 24;
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', {
@@ -242,17 +251,19 @@ const CommunityCard = ({ facility }: { facility: Facility }) => {
 /* ---------------------------------- main page -------------------------------- */
 
 const CityListing = ({ mode }: CityListingProps) => {
-  const { citySlug } = useParams<{ citySlug: string }>();
+  const { citySlug, page: pageParam } = useParams<{ citySlug: string; page?: string }>();
   const city = citySlug ? findCityBySlug(citySlug) : undefined;
 
-  if (!city) {
-    // Unknown slug — defer to the catch-all NotFound. Using <Navigate> keeps
-    // the URL intact for the 404 page.
-    return <Navigate to="/404-not-found" replace />;
-  }
-
-  const allInCity = useMemo(() => facilitiesInCity(city.slug), [city.slug]);
-  const filtered = useMemo(() => facilitiesForListing(city.slug, mode), [city.slug, mode]);
+  // NOTE: every hook below runs unconditionally, and the unknown-slug bail-out
+  // sits AFTER them. It used to sit above, which meant this component called a
+  // different number of hooks depending on whether the slug resolved —
+  // React throws "Rendered fewer hooks than expected" on a client-side
+  // navigation from a valid city page to an unknown slug. Keep new hooks above
+  // the bail-out and guard on `city` inside them.
+  const filtered = useMemo(
+    () => (city ? facilitiesForListing(city.slug, mode) : []),
+    [city, mode],
+  );
 
   // Filters: care-type subset + sort
   const [careFilter, setCareFilter] = useState<CareType | 'all'>('all');
@@ -271,6 +282,34 @@ const CityListing = ({ mode }: CityListingProps) => {
     });
     return list;
   }, [filtered, careFilter, sortBy]);
+
+  /* Pagination.
+     Sacramento listed 212 cards on one URL, producing a ~636 KB DOM with a
+     0.8% text-to-markup ratio and tripping crawlers' "more than 1500 nodes"
+     warning. That is the page shape most likely to strain a prerender
+     function, and no amount of copy fixes a ratio dominated by markup.
+     Paging to PAGE_SIZE cuts page one to roughly a fifth of that. */
+  const totalPages = Math.max(1, Math.ceil(visible.length / PAGE_SIZE));
+  const requestedPage = Number(pageParam ?? '1');
+  const pageIsValid =
+    Number.isInteger(requestedPage) && requestedPage >= 1 && requestedPage <= totalPages;
+  const page = pageIsValid ? requestedPage : 1;
+  const pageItems = visible.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const navigate = useNavigate();
+
+  if (!city) {
+    // Unknown slug — defer to the catch-all NotFound. Using <Navigate> keeps
+    // the URL intact for the 404 page.
+    return <Navigate to="/404-not-found" replace />;
+  }
+
+  // Filters are client-side state, so a filtered set can be shorter than the
+  // page the URL asks for. Send the reader back to page one rather than
+  // stranding them on an empty page.
+  const resetToFirstPage = () => {
+    if (pageParam) navigate(`${MODE_CONFIG[mode].pathBase}/${city.slug}`);
+  };
 
   // Aggregate price data (only used if at least 2 communities have prices)
   const priceLows = filtered.map(f => f.price_range_low).filter((n): n is number => Number.isFinite(n));
@@ -291,10 +330,26 @@ const CityListing = ({ mode }: CityListingProps) => {
   // actually choose between.
   const smallHomeCount = filtered.filter(f => Number.isFinite(f.capacity) && f.capacity! <= 6).length;
 
+  // /page/1 and out-of-range pages both collapse to the bare city URL rather
+  // than rendering. /page/1 would otherwise be a second URL serving identical
+  // content to the page that carries the city's ranking intent, and an
+  // out-of-range page would be an empty listing returning 200.
+  if (pageParam && (!pageIsValid || requestedPage === 1)) {
+    return <Navigate to={`${MODE_CONFIG[mode].pathBase}/${city.slug}`} replace />;
+  }
+
   /* SEO */
   const { careWord, careWordLower, pathBase, countNoun } = MODE_CONFIG[mode];
-  const path = `${pathBase}/${city.slug}`;
+  const basePath = `${pathBase}/${city.slug}`;
+  // Page one lives at the bare city URL, never at /page/1 — one canonical
+  // home for the term, no self-competing duplicate. Pages 2+ are ordinary
+  // indexable URLs with their own self-referencing canonical, which is
+  // Google's current guidance for paginated sequences (rel=next/prev has
+  // been unused since 2019). Their titles carry the page number so they are
+  // not near-duplicates of page one.
+  const path = page > 1 ? `${basePath}/page/${page}` : basePath;
   const canonical = `${SITE_URL}${path}`;
+  const pageSuffix = totalPages > 1 && page > 1 ? ` — Page ${page} of ${totalPages}` : '';
 
   let title: string;
   if (mode === 'assisted_living') {
@@ -303,9 +358,13 @@ const CityListing = ({ mode }: CityListingProps) => {
     // searches a month across the site use it, including "assisted living
     // facilities in sacramento" (1,300/mo, KD 4) which currently lands on the
     // homepage at position 28. "Communities" survives in the H2 and body copy.
-    title = `Assisted Living in ${city.name}, CA — ${count > 0 ? `Compare ${count} Facilities & Costs` : 'Facilities & Costs'}`;
+    title = page > 1
+      ? `Assisted Living in ${city.name}, CA${pageSuffix}`
+      : `Assisted Living in ${city.name}, CA — ${count > 0 ? `Compare ${count} Facilities & Costs` : 'Facilities & Costs'}`;
   } else {
-    title = `Board & Care Homes in ${city.name}, CA — ${count > 0 ? `${count} Licensed Small RCFEs` : 'Small Licensed RCFEs'}`;
+    title = page > 1
+      ? `Board & Care Homes in ${city.name}, CA${pageSuffix}`
+      : `Board & Care Homes in ${city.name}, CA — ${count > 0 ? `${count} Licensed Small RCFEs` : 'Small Licensed RCFEs'}`;
   }
 
   // Meta description aims for 150–160 chars. We assemble from data so the
@@ -320,6 +379,13 @@ const CityListing = ({ mode }: CityListingProps) => {
     description = count > 0
       ? `Compare ${count} licensed board & care homes (RCFEs, capacity 6 or fewer) in ${city.name}, CA. License-verified small senior care homes with a free advisor.`
       : `Board & care homes (small RCFEs) in ${city.name}, CA — license-verified residential care for the elderly with a free local advisor for families.`;
+  }
+
+  if (page > 1) {
+    // Pages 2+ get their own description so they are not duplicates of page
+    // one in the SERP. They carry no unique search intent — they exist to
+    // hold inventory and to be crawled.
+    description = `${countNoun.charAt(0).toUpperCase()}${countNoun.slice(1)} in ${city.name}, CA — page ${page} of ${totalPages}, listings ${(page - 1) * PAGE_SIZE + 1}–${Math.min(page * PAGE_SIZE, visible.length)} of ${visible.length}.`;
   }
 
   const keywords = Array.from(new Set([
@@ -352,8 +418,13 @@ const CityListing = ({ mode }: CityListingProps) => {
         appendBrand={false}
       />
       <JsonLd data={buildBreadcrumbSchema(breadcrumbs)} />
-      <JsonLd data={buildItemListSchema(filtered, path)} />
-      <JsonLd data={buildFaqSchema(faqEntries)} />
+      {/* ItemList describes the listings actually on THIS page. Emitting the
+          full city on every page would tell a crawler each page carries all
+          212 items, which is not what it can see. */}
+      <JsonLd data={buildItemListSchema(pageItems, path)} />
+      {/* FAQPage only on page one — repeating the same five questions across
+          every page of a sequence is duplicate structured data. */}
+      {page === 1 && <JsonLd data={buildFaqSchema(faqEntries)} />}
 
       <Header />
       <main className="flex-grow">
@@ -430,7 +501,7 @@ const CityListing = ({ mode }: CityListingProps) => {
               <div className="mt-8 bg-white border border-neutral-200 rounded-2xl p-4 md:p-5 flex flex-col md:flex-row gap-3 md:items-center">
                 <div className="flex items-center gap-2 text-neutral-700 text-sm font-medium md:mr-4">
                   <Building2 size={16} className="text-teal-700" aria-hidden="true" />
-                  {visible.length} of {count} showing
+                  Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, visible.length)} of {visible.length}
                 </div>
                 <div className="flex-1 flex flex-col sm:flex-row gap-3">
                   <div className="flex-1">
@@ -438,7 +509,7 @@ const CityListing = ({ mode }: CityListingProps) => {
                     <select
                       id="care-filter"
                       value={careFilter}
-                      onChange={(e) => setCareFilter(e.target.value as CareType | 'all')}
+                      onChange={(e) => { setCareFilter(e.target.value as CareType | 'all'); resetToFirstPage(); }}
                       className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-neutral-800 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
                     >
                       <option value="all">All care types</option>
@@ -452,7 +523,7 @@ const CityListing = ({ mode }: CityListingProps) => {
                     <select
                       id="sort"
                       value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value as 'name' | 'price-low')}
+                      onChange={(e) => { setSortBy(e.target.value as 'name' | 'price-low'); resetToFirstPage(); }}
                       className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-neutral-800 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
                     >
                       <option value="name">Sort: Name (A-Z)</option>
@@ -474,15 +545,18 @@ const CityListing = ({ mode }: CityListingProps) => {
                   {careWord} communities in {city.name}
                 </h2>
                 {visible.length > 0 ? (
-                  <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {visible.map(f => <CommunityCard key={f.id} facility={f} />)}
-                  </ul>
+                  <>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {pageItems.map(f => <CommunityCard key={f.id} facility={f} />)}
+                    </ul>
+                    <Pagination page={page} totalPages={totalPages} basePath={basePath} />
+                  </>
                 ) : (
                   <p className="text-neutral-700">
                     No communities match those filters. <button
                       type="button"
                       className="text-teal-700 hover:text-teal-800 font-medium underline-offset-2 hover:underline"
-                      onClick={() => { setCareFilter('all'); setSortBy('name'); }}
+                      onClick={() => { setCareFilter('all'); setSortBy('name'); resetToFirstPage(); }}
                     >Clear filters</button>.
                   </p>
                 )}
@@ -932,6 +1006,85 @@ const NearbyCitiesBlock = ({ currentSlug, mode }: { currentSlug: string; mode: L
         </ul>
       </div>
     </section>
+  );
+};
+
+/* ----------------------------- pagination ----------------------------- */
+
+/**
+ * Numbered pagination for the listing grid.
+ *
+ * Real <Link>s, not buttons: the sequence has to be crawlable, and page one
+ * is the only page carrying the city's ranking intent. Page one is always the
+ * bare city URL — /page/1 is never linked and redirects away — so there is
+ * exactly one canonical home for the term.
+ *
+ * Long sequences are elided (1 … 4 5 6 … 9) so a 212-listing city does not
+ * put nine links in front of the reader, but first and last are always
+ * reachable in one click.
+ */
+const Pagination = ({
+  page,
+  totalPages,
+  basePath,
+}: {
+  page: number;
+  totalPages: number;
+  basePath: string;
+}) => {
+  if (totalPages <= 1) return null;
+
+  const href = (n: number) => (n === 1 ? basePath : `${basePath}/page/${n}`);
+
+  const numbers: (number | 'gap')[] = [];
+  for (let n = 1; n <= totalPages; n++) {
+    if (n === 1 || n === totalPages || Math.abs(n - page) <= 1) {
+      numbers.push(n);
+    } else if (numbers[numbers.length - 1] !== 'gap') {
+      numbers.push('gap');
+    }
+  }
+
+  const linkClasses =
+    'inline-flex items-center justify-center min-w-10 h-10 px-3 rounded-lg border text-sm font-medium transition-colors';
+
+  return (
+    <nav aria-label="Pagination" className="mt-10 flex flex-wrap items-center justify-center gap-2">
+      {page > 1 && (
+        <Link to={href(page - 1)} rel="prev" className={`${linkClasses} border-neutral-200 text-neutral-700 hover:border-teal-300 hover:text-teal-800`}>
+          Previous
+        </Link>
+      )}
+
+      {numbers.map((n, i) =>
+        n === 'gap' ? (
+          <span key={`gap-${i}`} aria-hidden="true" className="px-1 text-neutral-400">…</span>
+        ) : n === page ? (
+          <span
+            key={n}
+            aria-current="page"
+            className={`${linkClasses} border-teal-700 bg-teal-700 text-white`}
+          >
+            {n}
+          </span>
+        ) : (
+          <Link
+            key={n}
+            to={href(n)}
+            aria-label={`Page ${n}`}
+            className={`${linkClasses} border-neutral-200 text-neutral-700 hover:border-teal-300 hover:text-teal-800`}
+          >
+            {n}
+          </Link>
+        ),
+      )}
+
+      {page < totalPages && (
+        <Link to={href(page + 1)} rel="next" className={`${linkClasses} border-neutral-200 text-neutral-700 hover:border-teal-300 hover:text-teal-800`}>
+          Next
+        </Link>
+      )}
+    </nav>
   );
 };
 

@@ -62,8 +62,10 @@ const App = () => (
               <Route path="/memory-care" element={<MemoryCare />} />
               <Route path="/assisted-living" element={<AssistedLiving />} />
               <Route path="/assisted-living/:citySlug" element={<CityListing mode="assisted_living" />} />
+              <Route path="/assisted-living/:citySlug/page/:page" element={<CityListing mode="assisted_living" />} />
               <Route path="/senior-living/:citySlug" element={<SeniorLivingRedirect />} />
               <Route path="/board-and-care-homes/:citySlug" element={<CityListing mode="board_and_care" />} />
+              <Route path="/board-and-care-homes/:citySlug/page/:page" element={<CityListing mode="board_and_care" />} />
               <Route path="/guides/assisted-living-vs-memory-care" element={<AssistedLivingVsMemoryCareGuide />} />
               <Route path="/guides/what-is-an-rcfe" element={<WhatIsAnRcfeGuide />} />
               <Route path="/guides/board-and-care-vs-assisted-living" element={<BoardAndCareVsAssistedLivingGuide />} />
