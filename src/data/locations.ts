@@ -18,11 +18,18 @@
 import type { Facility } from '../types/facility';
 import { CURATED_FACILITIES } from './curated';
 import { IMPORTED_FACILITIES, LICENSE_ENRICHMENT } from './imported.generated';
+import { LICENSE_CORRECTIONS } from './licenseCorrections';
 
-const enrichedCurated: Facility[] = CURATED_FACILITIES.map((f) => {
-  const extra = LICENSE_ENRICHMENT[f.id];
-  return extra ? { ...f, ...extra } : f;
-});
+// LICENSE_CORRECTIONS is applied LAST and deliberately overrides the generated
+// enrichment. The importer's matcher assigned two curated records another
+// facility's licence number; both wrong numbers carried a CURRENT status that
+// masked an ON PROBATION licence at the real address. See licenseCorrections.ts
+// for the mechanism and for how to retire the file.
+const enrichedCurated: Facility[] = CURATED_FACILITIES.map((f) => ({
+  ...f,
+  ...LICENSE_ENRICHMENT[f.id],
+  ...LICENSE_CORRECTIONS[f.id],
+}));
 
 export const locations: Facility[] = [...enrichedCurated, ...IMPORTED_FACILITIES];
 
