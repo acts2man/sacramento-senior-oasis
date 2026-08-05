@@ -56,16 +56,24 @@ const MODE_CONFIG: Record<ListingMode, {
   careWord: string;
   careWordLower: string;
   pathBase: string;
+  /**
+   * Plural noun phrase for counting listings, e.g. "95 {countNoun} listed".
+   * Separate from careWordLower because that string already ends in "homes"
+   * for board & care — "board & care homes facilities listed" is not English.
+   */
+  countNoun: string;
 }> = {
   assisted_living: {
     careWord: 'Assisted Living',
     careWordLower: 'assisted living',
     pathBase: '/assisted-living',
+    countNoun: 'assisted living facilities',
   },
   board_and_care: {
     careWord: 'Board & Care Homes',
     careWordLower: 'board & care homes',
     pathBase: '/board-and-care-homes',
+    countNoun: 'board & care homes',
   },
 };
 
@@ -278,9 +286,13 @@ const CityListing = ({ mode }: CityListingProps) => {
   // CDSS/CCLD-verified subset. Reported honestly rather than rounded up to
   // `count` — a handful of records carry a non-current licence status.
   const licensedCount = filtered.filter(f => f.license_status === 'current').length;
+  // CDSS-reported licensed capacity. Six is the statutory line between a small
+  // board & care home and a larger RCFE, and it is the distinction families
+  // actually choose between.
+  const smallHomeCount = filtered.filter(f => Number.isFinite(f.capacity) && f.capacity! <= 6).length;
 
   /* SEO */
-  const { careWord, careWordLower, pathBase } = MODE_CONFIG[mode];
+  const { careWord, careWordLower, pathBase, countNoun } = MODE_CONFIG[mode];
   const path = `${pathBase}/${city.slug}`;
   const canonical = `${SITE_URL}${path}`;
 
@@ -400,9 +412,9 @@ const CityListing = ({ mode }: CityListingProps) => {
             {count > 0 && (
               <ComparisonSnapshot
                 count={count}
-                careWordLower={careWordLower}
+                countNoun={countNoun}
                 licensedCount={licensedCount}
-                careTypes={allCareTypes}
+                smallHomeCount={smallHomeCount}
                 priceMin={priceMin}
                 priceMax={priceMax}
               />
@@ -644,9 +656,24 @@ const CityListing = ({ mode }: CityListingProps) => {
 
 /**
  * Four-figure summary that answers the comparison question a city-level
- * searcher is actually asking — how many are there, how many are licensed,
- * what kinds of care, and what does it cost — above the fold and before the
- * card grid.
+ * searcher is actually asking, above the fold and before the card grid.
+ *
+ * EVERY TILE MUST BE EVIDENCED BY A CDSS FIELD. That constraint is why the
+ * care-type tile was removed in Aug 2026 and replaced with the capacity
+ * distribution.
+ *
+ * The site's care-type taxonomy is derived from bed count, not from
+ * licensing — scripts/import-cdss.mjs assigns `board_and_care` when capacity
+ * is 6 or fewer and `assisted_living` to everything, and never assigns
+ * `memory_care` at all. The source CCLD roster has no dementia field to
+ * derive it from. So all 24 `memory_care` tags in the dataset are hand-set on
+ * the 24 curated records, and a "3 care types" tile on a 95-facility page was
+ * resting on 3 of them. Not a false claim, but far too soft for a page whose
+ * entire pitch is license-verified data.
+ *
+ * Licensed capacity IS a real CDSS field on every imported record, and it is
+ * the more useful comparison axis for RCFEs anyway — the practical choice
+ * families make is between a six-resident house and a large community.
  *
  * The price tile only appears when at least two listed communities publish
  * rates (`hasPriceData` upstream). Most small RCFEs quote by phone, and the
@@ -654,21 +681,21 @@ const CityListing = ({ mode }: CityListingProps) => {
  */
 const ComparisonSnapshot = ({
   count,
-  careWordLower,
+  countNoun,
   licensedCount,
-  careTypes,
+  smallHomeCount,
   priceMin,
   priceMax,
 }: {
   count: number;
-  careWordLower: string;
+  countNoun: string;
   licensedCount: number;
-  careTypes: CareType[];
+  smallHomeCount: number;
   priceMin?: number;
   priceMax?: number;
 }) => {
   const tiles: { value: string; label: string }[] = [
-    { value: String(count), label: `${careWordLower} ${count === 1 ? 'facility' : 'facilities'} listed` },
+    { value: String(count), label: `${countNoun} listed` },
   ];
 
   if (licensedCount > 0) {
@@ -678,10 +705,13 @@ const ComparisonSnapshot = ({
     });
   }
 
-  if (careTypes.length > 0) {
+  // Only shown when it actually discriminates. On the board & care view every
+  // listing is six residents or fewer by definition, so the tile would just
+  // restate the page.
+  if (smallHomeCount > 0 && smallHomeCount < count) {
     tiles.push({
-      value: String(careTypes.length),
-      label: `care ${careTypes.length === 1 ? 'type' : 'types'}: ${careTypes.map(careTypeLabel).join(' · ')}`,
+      value: String(smallHomeCount),
+      label: 'six-resident homes',
     });
   }
 
