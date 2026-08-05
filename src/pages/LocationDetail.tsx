@@ -13,7 +13,7 @@ import CostGuidance from '../components/community/CostGuidance';
 import DisclaimerAndClaim from '../components/community/DisclaimerAndClaim';
 import { getLocationById, getFeaturedLocations } from '../data/locations';
 import type { Facility } from '../types/facility';
-import { generateLocationSEO } from '../utils/seoUtils';
+import { generateLocationSEO, CITY_ROLLUP_LINKS } from '../utils/seoUtils';
 import { DIRECTORY_PHONE, SITE_URL, formatPhoneForDisplay, formatPhoneForTel } from '../lib/constants';
 import { buildBreadcrumbSchema, buildLocalBusinessSchema } from '../lib/schema';
 import { careTypeLabel } from '../lib/careTypes';
@@ -73,6 +73,9 @@ const LocationDetail = () => {
   }
 
   const seoData = generateLocationSEO(location);
+  // Present only for communities explicitly opted in to city-level
+  // de-optimisation. Undefined for every other community page.
+  const rollup = CITY_ROLLUP_LINKS[location.id];
 
   const photos = location.photos || [];
   const heroPhoto = photos[activeImageIndex];
@@ -87,6 +90,7 @@ const LocationDetail = () => {
         ogImage={heroPhoto?.url}
         ogType="place"
         canonical={`${SITE_URL}/${location.id}`}
+        appendBrand={seoData.appendBrand}
       />
       <JsonLd data={buildLocalBusinessSchema(location)} />
       <JsonLd
@@ -146,6 +150,34 @@ const LocationDetail = () => {
             </div>
           </div>
         </div>
+
+        {/* City roll-up link. Rendered directly beneath the header block and
+            above the gallery so it is visible without scrolling — the whole
+            point is that families searching city-wide, and crawlers reading
+            this page, are handed the city page immediately. Only communities
+            listed in CITY_ROLLUP_LINKS render this. */}
+        {rollup && (
+          <div className="bg-white border-b border-neutral-200">
+            <div className="container-custom py-4">
+              <Link
+                to={rollup.to}
+                className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 bg-senior-light border border-senior-blue/20 rounded-lg px-5 py-4 hover:border-senior-blue/50 transition-colors"
+              >
+                <span className="text-neutral-700">
+                  Looking at options across the city?
+                </span>
+                <span className="inline-flex items-center font-semibold text-senior-blue group-hover:underline underline-offset-2">
+                  {rollup.label}
+                  <ChevronRight
+                    size={16}
+                    className="ml-1 group-hover:translate-x-0.5 transition-transform"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* Photo Gallery */}
         {heroPhoto && (

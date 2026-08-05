@@ -186,9 +186,15 @@ const CommunityCard = ({ facility }: { facility: Facility }) => {
           </h3>
           <div className="flex items-center gap-2 text-neutral-600">
             <MapPin size={14} className="text-teal-700 flex-shrink-0" aria-hidden="true" />
+            {/* Licensed capacity is appended as text inside the existing line
+                rather than as its own element. It is the most useful
+                comparison axis for RCFEs (most are six-bed homes) and it is
+                present on every imported record — but this markup repeats up
+                to 212 times per page, so it must not add nodes. */}
             <span className="text-sm">
               {facility.neighborhood ? `${facility.neighborhood}, ` : ''}
               {facility.city}, CA {facility.zip}
+              {Number.isFinite(facility.capacity) && ` · ${facility.capacity} beds`}
             </span>
           </div>
 
@@ -277,6 +283,9 @@ const CityListing = ({ mode }: CityListingProps) => {
   const allCareTypes = Array.from(
     new Set(filtered.flatMap(f => f.care_types)),
   );
+  // CDSS/CCLD-verified subset. Reported honestly rather than rounded up to
+  // `count` — a handful of records carry a non-current licence status.
+  const licensedCount = filtered.filter(f => f.license_status === 'current').length;
 
   /* SEO */
   const { careWord, careWordLower, pathBase } = MODE_CONFIG[mode];
@@ -285,7 +294,12 @@ const CityListing = ({ mode }: CityListingProps) => {
 
   let title: string;
   if (mode === 'assisted_living') {
-    title = `Assisted Living in ${city.name}, CA — ${count > 0 ? `${count} Communities & Costs` : 'Communities & Costs'}`;
+    // "Facilities", not "Communities". The word appeared nowhere on this
+    // template, and it carries real volume: 17 ranking keywords / 6,090
+    // searches a month across the site use it, including "assisted living
+    // facilities in sacramento" (1,300/mo, KD 4) which currently lands on the
+    // homepage at position 28. "Communities" survives in the H2 and body copy.
+    title = `Assisted Living in ${city.name}, CA — ${count > 0 ? `Compare ${count} Facilities & Costs` : 'Facilities & Costs'}`;
   } else if (mode === 'board_and_care') {
     title = `Board & Care Homes in ${city.name}, CA — ${count > 0 ? `${count} Licensed Small RCFEs` : 'Small Licensed RCFEs'}`;
   } else {
@@ -310,16 +324,19 @@ const CityListing = ({ mode }: CityListingProps) => {
       : `Senior living in ${city.name}, CA — assisted living, memory care, and board & care guidance from local advisors. No fee for families.`;
   }
 
-  const keywords = [
+  // De-duplicated: in senior_living mode `${careWordLower} ${city}` and
+  // `senior living ${city}` produced the identical string twice.
+  const keywords = Array.from(new Set([
     `${careWordLower} ${city.name.toLowerCase()}`,
     `senior living ${city.name.toLowerCase()}`,
     `${city.name.toLowerCase()} assisted living`,
+    mode === 'assisted_living' ? `assisted living facilities ${city.name.toLowerCase()}` : '',
     mode === 'board_and_care' ? `board and care homes ${city.name.toLowerCase()}` : '',
     'memory care sacramento',
     'residential care for the elderly',
     'RCFE',
     'senior care homes',
-  ].filter(Boolean).join(', ');
+  ].filter(Boolean))).join(', ');
 
   const faqEntries = buildFaqEntries(city, mode, count, priceMin, priceMax);
 
@@ -369,14 +386,15 @@ const CityListing = ({ mode }: CityListingProps) => {
               <p className="mt-5 text-lg text-neutral-700 leading-relaxed">
                 {count > 0 ? (
                   <>
-                    The directory currently lists <strong>{count}</strong>{' '}
-                    {mode === 'assisted_living' ? 'assisted living ' : mode === 'board_and_care' ? 'board & care ' : ''}communit{count === 1 ? 'y' : 'ies'} in{' '}
-                    {city.name}{allCareTypes.length > 0 && (
-                      <>, with care types covering {allCareTypes.map(careTypeLabel).join(', ')}</>
+                    The directory lists <strong>{count}</strong>{' '}
+                    {mode === 'assisted_living' ? 'license-verified assisted living facilities' : mode === 'board_and_care' ? 'board & care homes' : 'senior living communities'} in{' '}
+                    {city.name}, CA — from six-resident board & care homes to larger senior living
+                    communities{allCareTypes.length > 0 && (
+                      <>, covering {allCareTypes.map(careTypeLabel).join(', ')}</>
                     )}.
                     {' '}{city.description} {mode === 'board_and_care'
                       ? 'Board & care homes are small, license-verified residential care facilities for the elderly (RCFEs) with a maximum of 6 residents.'
-                      : 'Compare assisted living, memory care, and residential care for the elderly (RCFE) homes with real costs and license-verified data.'}
+                      : 'Compare monthly costs, licensed capacity, care type, and current CA Community Care Licensing status side by side.'}
                   </>
                 ) : (
                   <>
@@ -388,6 +406,23 @@ const CityListing = ({ mode }: CityListingProps) => {
                 )}
               </p>
             </div>
+
+            {/* At-a-glance comparison figures. Every value is computed from the
+                live listing set, so none of it can drift from the cards below.
+                Kept to four short text tiles on purpose: this template already
+                renders a ~636 KB DOM on the larger cities (212 unpaginated
+                cards on /assisted-living/sacramento), and the fix for that is
+                pagination or prerendering, not more markup here. */}
+            {count > 0 && (
+              <ComparisonSnapshot
+                count={count}
+                careWordLower={careWordLower}
+                licensedCount={licensedCount}
+                careTypes={allCareTypes}
+                priceMin={priceMin}
+                priceMax={priceMax}
+              />
+            )}
 
             {/* Cross-links to the other care-type variants for THIS city —
                 keeps the three variants from being orphans of each other
@@ -470,11 +505,16 @@ const CityListing = ({ mode }: CityListingProps) => {
             </h2>
             {hasPriceData ? (
               <>
+                {/* Wording matters here: on a page listing 95 or 212
+                    communities, "based on N communities" reads as though the
+                    page only knows about N. It is the number that PUBLISH a
+                    rate that is small, not the inventory. */}
                 <p className="mt-4 text-lg text-neutral-700 leading-relaxed max-w-3xl">
-                  Based on {priceLows.length} communities listed in {city.name}, monthly rates currently run from{' '}
-                  <strong>{formatPrice(priceMin!)}</strong> to <strong>{formatPrice(priceMax!)}</strong>.
-                  Pricing varies with care level, room type, and any add-on services — ask an advisor what each
-                  community is quoting this week.
+                  {priceLows.length} of the {count} {careWord.toLowerCase()} communities listed in {city.name}{' '}
+                  publish their monthly rates; those run from <strong>{formatPrice(priceMin!)}</strong> to{' '}
+                  <strong>{formatPrice(priceMax!)}</strong>. Most smaller board & care homes quote by phone
+                  instead. Pricing varies with care level, room type, and any add-on services — ask an advisor
+                  what each community is quoting this week.
                 </p>
                 <div className="mt-6 inline-flex items-stretch border border-neutral-200 rounded-lg overflow-hidden bg-white">
                   <div className="px-5 py-4 border-r border-neutral-200">
@@ -613,6 +653,76 @@ const CityListing = ({ mode }: CityListingProps) => {
       {/* Brand crumb for assistive tech; visible brand is in the Header */}
       <span className="sr-only">{BRAND_NAME}</span>
     </div>
+  );
+};
+
+/* ----------------------- comparison snapshot ----------------------- */
+
+/**
+ * Four-figure summary that answers the comparison question a city-level
+ * searcher is actually asking — how many are there, how many are licensed,
+ * what kinds of care, and what does it cost — above the fold and before the
+ * card grid.
+ *
+ * The price tile only appears when at least two listed communities publish
+ * rates (`hasPriceData` upstream). Most small RCFEs quote by phone, and the
+ * directory does not invent figures.
+ */
+const ComparisonSnapshot = ({
+  count,
+  careWordLower,
+  licensedCount,
+  careTypes,
+  priceMin,
+  priceMax,
+}: {
+  count: number;
+  careWordLower: string;
+  licensedCount: number;
+  careTypes: CareType[];
+  priceMin?: number;
+  priceMax?: number;
+}) => {
+  const tiles: { value: string; label: string }[] = [
+    { value: String(count), label: `${careWordLower} ${count === 1 ? 'facility' : 'facilities'} listed` },
+  ];
+
+  if (licensedCount > 0) {
+    tiles.push({
+      value: String(licensedCount),
+      label: 'with a current CA license',
+    });
+  }
+
+  if (careTypes.length > 0) {
+    tiles.push({
+      value: String(careTypes.length),
+      label: `care ${careTypes.length === 1 ? 'type' : 'types'}: ${careTypes.map(careTypeLabel).join(' · ')}`,
+    });
+  }
+
+  if (priceMin !== undefined && priceMax !== undefined) {
+    tiles.push({
+      value: `${formatPrice(priceMin)}–${formatPrice(priceMax)}`,
+      label: 'published monthly range',
+    });
+  }
+
+  return (
+    <dl className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3">
+      {tiles.map(t => (
+        // flex-col-reverse renders the value above its label while keeping the
+        // required dt-then-dd order in the DOM, so the figure is not announced
+        // twice by a screen reader.
+        <div
+          key={t.label}
+          className="flex flex-col-reverse bg-white border border-teal-100 rounded-xl px-4 py-3"
+        >
+          <dt className="mt-1 text-sm text-neutral-600 leading-snug">{t.label}</dt>
+          <dd className="font-serif text-2xl font-bold text-teal-800">{t.value}</dd>
+        </div>
+      ))}
+    </dl>
   );
 };
 
