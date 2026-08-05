@@ -35,7 +35,18 @@ import {
   type FaqEntry,
 } from '../lib/schema';
 
-type ListingMode = 'assisted_living' | 'senior_living' | 'board_and_care';
+/**
+ * `senior_living` was removed here in Aug 2026. It rendered an identical list
+ * to `assisted_living` in every city — the mode returned the whole city
+ * unfiltered, but all 765 facilities in the dataset carry the
+ * `assisted_living` care tag, so the set difference was always zero. The 23
+ * /senior-living/:city URLs are now 301'd in public/_redirects.
+ *
+ * If a genuine independent-living or 55+ tag ever lands in the data, a
+ * separate mode may be justified again — but only once the two views would
+ * actually list different communities.
+ */
+type ListingMode = 'assisted_living' | 'board_and_care';
 
 interface CityListingProps {
   mode: ListingMode;
@@ -50,11 +61,6 @@ const MODE_CONFIG: Record<ListingMode, {
     careWord: 'Assisted Living',
     careWordLower: 'assisted living',
     pathBase: '/assisted-living',
-  },
-  senior_living: {
-    careWord: 'Senior Living',
-    careWordLower: 'senior living',
-    pathBase: '/senior-living',
   },
   board_and_care: {
     careWord: 'Board & Care Homes',
@@ -75,13 +81,8 @@ const facilitiesInCity = (citySlug: string): Facility[] =>
 
 const facilitiesForListing = (citySlug: string, mode: ListingMode): Facility[] => {
   const inCity = facilitiesInCity(citySlug);
-  if (mode === 'assisted_living') {
-    return inCity.filter(f => f.care_types.includes('assisted_living'));
-  }
-  if (mode === 'board_and_care') {
-    return inCity.filter(f => f.care_types.includes('board_and_care'));
-  }
-  return inCity;
+  const tag: CareType = mode === 'board_and_care' ? 'board_and_care' : 'assisted_living';
+  return inCity.filter(f => f.care_types.includes(tag));
 };
 
 /** Slugs of cities that actually have at least one community of any kind. */
@@ -291,10 +292,8 @@ const CityListing = ({ mode }: CityListingProps) => {
     // facilities in sacramento" (1,300/mo, KD 4) which currently lands on the
     // homepage at position 28. "Communities" survives in the H2 and body copy.
     title = `Assisted Living in ${city.name}, CA — ${count > 0 ? `Compare ${count} Facilities & Costs` : 'Facilities & Costs'}`;
-  } else if (mode === 'board_and_care') {
-    title = `Board & Care Homes in ${city.name}, CA — ${count > 0 ? `${count} Licensed Small RCFEs` : 'Small Licensed RCFEs'}`;
   } else {
-    title = `Senior Living in ${city.name}, CA — Assisted Living & Memory Care`;
+    title = `Board & Care Homes in ${city.name}, CA — ${count > 0 ? `${count} Licensed Small RCFEs` : 'Small Licensed RCFEs'}`;
   }
 
   // Meta description aims for 150–160 chars. We assemble from data so the
@@ -305,18 +304,12 @@ const CityListing = ({ mode }: CityListingProps) => {
     description = count > 0
       ? `Compare ${count} assisted living communities in ${city.name}, CA — real costs, license-verified senior living, and a free local advisor for families.`
       : `${city.name}, CA assisted living and senior living guide. License-verified communities across the Sacramento metro and a free local advisor for families.`;
-  } else if (mode === 'board_and_care') {
+  } else {
     description = count > 0
       ? `Compare ${count} licensed board & care homes (RCFEs, capacity 6 or fewer) in ${city.name}, CA. License-verified small senior care homes with a free advisor.`
       : `Board & care homes (small RCFEs) in ${city.name}, CA — license-verified residential care for the elderly with a free local advisor for families.`;
-  } else {
-    description = count > 0
-      ? `Compare ${count} senior living communities in ${city.name}, CA — assisted living, memory care, and board & care homes, with a free local advisor for families.`
-      : `Senior living in ${city.name}, CA — assisted living, memory care, and board & care guidance from local advisors. No fee for families.`;
   }
 
-  // De-duplicated: in senior_living mode `${careWordLower} ${city}` and
-  // `senior living ${city}` produced the identical string twice.
   const keywords = Array.from(new Set([
     `${careWordLower} ${city.name.toLowerCase()}`,
     `senior living ${city.name.toLowerCase()}`,
@@ -378,7 +371,7 @@ const CityListing = ({ mode }: CityListingProps) => {
                 {count > 0 ? (
                   <>
                     The directory lists <strong>{count}</strong>{' '}
-                    {mode === 'assisted_living' ? 'license-verified assisted living facilities' : mode === 'board_and_care' ? 'board & care homes' : 'senior living communities'} in{' '}
+                    {mode === 'assisted_living' ? 'license-verified assisted living facilities' : 'board & care homes'} in{' '}
                     {city.name}, CA — from six-resident board & care homes to larger senior living
                     communities{allCareTypes.length > 0 && (
                       <>, covering {allCareTypes.map(careTypeLabel).join(', ')}</>
@@ -744,14 +737,6 @@ const VariantCrossLinks = ({
       mode: 'assisted_living',
       label: `Assisted Living in ${city.name}`,
       path: `/assisted-living/${city.slug}`,
-      show: counts.assistedLiving > 0,
-    },
-    {
-      mode: 'senior_living',
-      label: `All Senior Living in ${city.name}`,
-      path: `/senior-living/${city.slug}`,
-      // Senior-living is the combined view — always meaningful when the
-      // city has any RCFE at all, which the assistedLiving count tracks.
       show: counts.assistedLiving > 0,
     },
     {

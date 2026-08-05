@@ -99,7 +99,7 @@ const Communities = () => {
             <p className="mt-3 text-neutral-700 max-w-2xl">
               Each care type runs the same Sacramento-first city coverage; start with the type that fits your situation.
             </p>
-            <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <li>
                 <Link
                   to="/assisted-living"
@@ -139,20 +139,6 @@ const Communities = () => {
                   </p>
                   <p className="mt-1 text-sm text-neutral-600">
                     Small, license-verified residential homes (6 residents or fewer).
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/senior-living/sacramento"
-                  className="block h-full bg-sage-50 border border-teal-100 rounded-xl p-5 hover:border-teal-300 hover:shadow-md transition-all group"
-                >
-                  <Building2 size={18} className="text-teal-700" aria-hidden="true" />
-                  <p className="mt-2 font-serif text-lg font-semibold text-neutral-800 group-hover:text-teal-700 transition-colors">
-                    Senior Living
-                  </p>
-                  <p className="mt-1 text-sm text-neutral-600">
-                    All care types together — assisted living, memory care, and board &amp; care.
                   </p>
                 </Link>
               </li>

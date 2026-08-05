@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import Communities from "./pages/Communities";
@@ -28,6 +28,25 @@ import ComingSoon from "./pages/admin/ComingSoon";
 
 const queryClient = new QueryClient();
 
+/**
+ * /senior-living/:citySlug -> /assisted-living/:citySlug
+ *
+ * The canonical redirect is the 301 in public/_redirects; that is what search
+ * engines see and what consolidates the ranking signal. This client-side route
+ * is a safety net for the cases Netlify never sees:
+ *
+ *   - in-app <Link> navigation, which React Router handles without a request
+ *   - `vite dev` and `vite preview`, which do not read _redirects
+ *
+ * Every internal link to /senior-living/ was removed in the same change, so
+ * this should be unreachable in practice. It costs a few lines to guarantee a
+ * stale link can never render a duplicate page.
+ */
+const SeniorLivingRedirect = () => {
+  const { citySlug } = useParams<{ citySlug: string }>();
+  return <Navigate to={`/assisted-living/${citySlug}`} replace />;
+};
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -43,7 +62,7 @@ const App = () => (
               <Route path="/memory-care" element={<MemoryCare />} />
               <Route path="/assisted-living" element={<AssistedLiving />} />
               <Route path="/assisted-living/:citySlug" element={<CityListing mode="assisted_living" />} />
-              <Route path="/senior-living/:citySlug" element={<CityListing mode="senior_living" />} />
+              <Route path="/senior-living/:citySlug" element={<SeniorLivingRedirect />} />
               <Route path="/board-and-care-homes/:citySlug" element={<CityListing mode="board_and_care" />} />
               <Route path="/guides/assisted-living-vs-memory-care" element={<AssistedLivingVsMemoryCareGuide />} />
               <Route path="/guides/what-is-an-rcfe" element={<WhatIsAnRcfeGuide />} />

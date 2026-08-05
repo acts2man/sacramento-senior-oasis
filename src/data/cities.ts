@@ -1,8 +1,8 @@
 /**
  * Tier-1 Sacramento-metro city records used by the City × Care-Type listing
  * template. Read-only; the dynamic /assisted-living/:citySlug and
- * /senior-living/:citySlug routes look up cities here to decide whether a
- * given slug is recognized vs. should fall through to the 404 route.
+ * /board-and-care-homes/:citySlug routes look up cities here to decide whether
+ * a given slug is recognized vs. should fall through to the 404 route.
  *
  * `nearbyHospitals` is intentionally conservative — only well-known major
  * medical centers physically located in the named city are listed by name.

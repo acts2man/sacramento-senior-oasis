@@ -1,1 +1,22 @@
+# Netlify evaluates these top to bottom and stops at the first match, so every
+# real redirect must sit above the SPA catch-all at the bottom.
+
+# /senior-living/:city -> /assisted-living/:city  (301, permanent)
+#
+# The two templates rendered an identical list of communities in every city.
+# `facilitiesForListing` filtered on the `assisted_living` care tag for the
+# assisted-living view and returned the whole city for the senior-living view —
+# but all 765 facilities in the dataset carry `assisted_living`, and none carry
+# `independent_living`, so the set difference was zero everywhere. Two URLs, the
+# same page, splitting the same city-level demand.
+#
+# Of the 23 /senior-living/:city pages, exactly one ranked for anything at all.
+# The other 22 were duplicate weight with no upside.
+#
+# The splat also covers city slugs that do not exist, which land on the 404 the
+# assisted-living route already serves for an unknown slug. That is the right
+# outcome — better than 301ing to a page that also does not exist.
+/senior-living/*  /assisted-living/:splat  301
+
+# SPA fallback. Must stay last.
 /* /index.html 200
