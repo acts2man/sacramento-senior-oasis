@@ -254,14 +254,16 @@ const CityListing = ({ mode }: CityListingProps) => {
   const { citySlug, page: pageParam } = useParams<{ citySlug: string; page?: string }>();
   const city = citySlug ? findCityBySlug(citySlug) : undefined;
 
-  if (!city) {
-    // Unknown slug — defer to the catch-all NotFound. Using <Navigate> keeps
-    // the URL intact for the 404 page.
-    return <Navigate to="/404-not-found" replace />;
-  }
-
-  const allInCity = useMemo(() => facilitiesInCity(city.slug), [city.slug]);
-  const filtered = useMemo(() => facilitiesForListing(city.slug, mode), [city.slug, mode]);
+  // NOTE: every hook below runs unconditionally, and the unknown-slug bail-out
+  // sits AFTER them. It used to sit above, which meant this component called a
+  // different number of hooks depending on whether the slug resolved —
+  // React throws "Rendered fewer hooks than expected" on a client-side
+  // navigation from a valid city page to an unknown slug. Keep new hooks above
+  // the bail-out and guard on `city` inside them.
+  const filtered = useMemo(
+    () => (city ? facilitiesForListing(city.slug, mode) : []),
+    [city, mode],
+  );
 
   // Filters: care-type subset + sort
   const [careFilter, setCareFilter] = useState<CareType | 'all'>('all');
@@ -295,11 +297,18 @@ const CityListing = ({ mode }: CityListingProps) => {
   const pageItems = visible.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const navigate = useNavigate();
+
+  if (!city) {
+    // Unknown slug — defer to the catch-all NotFound. Using <Navigate> keeps
+    // the URL intact for the 404 page.
+    return <Navigate to="/404-not-found" replace />;
+  }
+
   // Filters are client-side state, so a filtered set can be shorter than the
   // page the URL asks for. Send the reader back to page one rather than
   // stranding them on an empty page.
   const resetToFirstPage = () => {
-    if (pageParam) navigate(`${pathBase}/${city.slug}`);
+    if (pageParam) navigate(`${MODE_CONFIG[mode].pathBase}/${city.slug}`);
   };
 
   // Aggregate price data (only used if at least 2 communities have prices)
