@@ -4,11 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- SPA shell for EVERY route (public/_redirects sends /* to index.html).
+         Never add a canonical link or a meta description here: both used to
+         live in this file and both broke every URL on the site. Per-page head
+         tags belong in src/components/SEO.tsx — see the note at its top.
+         (Tag syntax deliberately not spelled out above; crawlers that scan
+         raw HTML with regexes read example markup inside comments as real.) -->
     <title>Sacramento Assisted Living Directory — Assisted Living, Memory Care &amp; Board and Care Homes</title>
-    <meta name="description" content="Sacramento Assisted Living Directory helps families compare assisted living, memory care, and board and care homes — with free placement advisors guiding the way.">
     <meta name="theme-color" content="#1f3a5f" />
 
-    <link rel="canonical" href="https://sacramentoelderlycare.com/" />
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png" />
 
