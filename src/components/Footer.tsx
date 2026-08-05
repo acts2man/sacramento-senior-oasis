@@ -61,9 +61,6 @@ const Footer = () => {
               <li>
                 <Link to="/board-and-care-homes/sacramento" className="text-white/80 hover:text-white transition-colors">Board &amp; Care Homes</Link>
               </li>
-              <li>
-                <Link to="/senior-living/sacramento" className="text-white/80 hover:text-white transition-colors">Senior Living</Link>
-              </li>
             </ul>
           </div>
 

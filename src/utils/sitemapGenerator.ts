@@ -28,11 +28,16 @@ export const generateSitemap = () => {
     changefreq: 'monthly',
   }));
 
-  // City × care-type pages. Every Tier-1 city gets an assisted-living and a
-  // senior-living page; cities with at least one community get higher
-  // priority because they have unique indexable inventory. Cities with no
-  // listings still render (graceful empty state) and get a lower priority
-  // so they don't outrank populated pages.
+  // City × care-type pages. Every Tier-1 city gets an assisted-living page;
+  // cities with at least one community get higher priority because they have
+  // unique indexable inventory. Cities with no listings still render
+  // (graceful empty state) and get a lower priority so they don't outrank
+  // populated pages.
+  //
+  // /senior-living/:city is deliberately NOT emitted — those URLs are 301'd to
+  // their assisted-living equivalent (see public/_redirects). A sitemap must
+  // only list canonical, indexable URLs; listing a redirect wastes crawl
+  // budget and contradicts the redirect.
   const slugsWithData = new Set(locations.map(f => cityNameToSlug(f.city)));
   const slugsWithBoardAndCare = new Set(
     locations
@@ -44,7 +49,6 @@ export const generateSitemap = () => {
     const priority = populated ? '0.85' : '0.5';
     const pages = [
       { url: `assisted-living/${city.slug}`, priority, changefreq: 'weekly' },
-      { url: `senior-living/${city.slug}`, priority, changefreq: 'weekly' },
     ];
     // Board & care homes route — only emit when the city has at least one
     // small RCFE; emitting empty board-and-care pages would just dilute crawl.

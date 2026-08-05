@@ -159,16 +159,6 @@ const CommunitiesNavDropdown = () => {
                     Board &amp; Care Homes
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/senior-living/sacramento"
-                    role="menuitem"
-                    onClick={() => setOpen(false)}
-                    className="text-sm font-medium text-senior-slate hover:text-senior-blue transition-colors"
-                  >
-                    Senior Living
-                  </Link>
-                </li>
               </ul>
             </div>
 

@@ -218,15 +218,6 @@ const Header = () => {
                             Board &amp; Care Homes
                           </Link>
                         </li>
-                        <li>
-                          <Link
-                            to="/senior-living/sacramento"
-                            className="text-sm text-senior-slate hover:text-senior-blue"
-                            onClick={toggleMenu}
-                          >
-                            Senior Living
-                          </Link>
-                        </li>
                       </ul>
                     </div>
                   </div>
