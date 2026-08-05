@@ -256,13 +256,50 @@ Netlify also publishes a checker at <https://do-you-need-prerender.netlify.app/>
 
 ---
 
-## 7. Recommended order
+## 7. Hard dependency: the licence matcher must be correct first
 
-1. `.nvmrc` pinning Node 20 — **done**, `chore/pin-node-20`.
+**No bulk community-page build may start until the CCLD matcher is correct and
+the licence gate is in place.** A blocking prerequisite, not a sequencing
+preference.
+
+The strategy for this directory is a page per licensed community — roughly 133
+of them — differentiated on printing the CA RCFE licence number, which A Place
+for Mom, Caring.com and Seniorly do not do. That differentiator is worth having
+only if the numbers are right.
+
+An August 2026 audit of the 24 curated records found:
+
+- **2 carrying another facility's licence number.** Both wrong numbers reported
+  a `CURRENT` status that masked an `ON PROBATION` licence at the real address —
+  a green verified shield on homes families were being invited to tour.
+- **5 rendering "License-verified" with no licence data at all**, one featured
+  on the homepage and absent from the CCLD roster entirely.
+
+That is 7 of 24 — roughly a **29% wrong-or-unevidenced rate on the site's most
+sensitive claim**, concentrated by construction in the hand-curated records
+that are also the site's best-performing pages. Scaling that matcher to 133
+pages multiplies the defect across the whole site.
+
+Both prerequisites now exist:
+
+- `scripts/import-cdss.mjs` requires street-address agreement and scores names
+  with Jaccard. Covered by `npm run test:matcher`.
+- `vite.config.ts` fails the build on any licence claim the roster cannot
+  substantiate — see `src/utils/licenseAudit.ts`.
+
+Keep both green before any bulk build. Prerendering makes every one of those
+pages more legible to crawlers and AI agents, which raises the cost of a wrong
+claim rather than lowering it.
+
+## 8. Recommended order
+
+0. Licence matcher + build gate (§7) — **done**, merged. Blocking prerequisite
+   for any bulk community-page build.
+1. `.nvmrc` pinning Node 20 — **done**, merged (#26).
 2. Enable the Netlify Prerender extension. Disable the legacy built-in feature
    first if it is switched on. Verify with §6.
 3. OG fix, steps 2 and 3 of §4, as its own branch. Blocked on step 2 above.
-4. City-page pagination — **done**, `feat/city-page-pagination`.
+4. City-page pagination — **done**, merged (#29).
 
 ---
 
