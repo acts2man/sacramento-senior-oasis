@@ -27,6 +27,7 @@ import type { Facility, CareType } from '../types/facility';
 import { careTypeLabel } from '../lib/careTypes';
 import { CITIES, cityNameToSlug, findCityBySlug, type City } from '../data/cities';
 import { cityCareCounts } from '../lib/cityInventory';
+import { licenseBadge, licenseBadgeClasses } from '../lib/licenseBadge';
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
@@ -134,25 +135,11 @@ const buildFaqEntries = (city: City, mode: ListingMode, count: number, priceLow?
 
 /* ----------------------------- card sub-component ---------------------------- */
 
-const licenseLine = (f: Facility): string => {
-  if (f.license_status === 'current') {
-    return f.license_number ? `License #${f.license_number} · Current` : 'License current · CA CCLD';
-  }
-  if (f.license_status === 'on_probation') return 'License on probation · CA CCLD';
-  if (f.license_status === 'closed') return 'License closed · CA CCLD';
-  if (f.license_status === 'pending') return 'License pending · CA CCLD';
-  return 'License-verified · CA CCLD';
-};
-
-const isOnProbation = (f: Facility) => f.license_status === 'on_probation';
 
 const CommunityCard = ({ facility }: { facility: Facility }) => {
   const hero = facility.photos?.[0];
-  const probation = isOnProbation(facility);
-  const badgeClasses = probation
-    ? 'bg-amber-50 text-amber-900 border border-amber-300'
-    : 'bg-white/95 backdrop-blur-sm text-teal-800';
-  const iconColor = probation ? 'text-amber-700' : 'text-teal-700';
+  const badge = licenseBadge(facility);
+  const badgeStyle = badge ? licenseBadgeClasses(badge.tone) : null;
   return (
     <li>
       <Link
@@ -174,10 +161,14 @@ const CommunityCard = ({ facility }: { facility: Facility }) => {
               className="w-full h-56 bg-gradient-to-br from-sage-100 via-teal-50 to-teal-100"
             />
           )}
-          <div className={`absolute top-3 left-3 inline-flex items-center gap-1.5 ${badgeClasses} text-xs font-medium rounded-full px-3 py-1.5 shadow-sm`}>
-            <ShieldCheck size={14} className={iconColor} aria-hidden="true" />
-            {licenseLine(facility)}
-          </div>
+          {/* No licence status, no badge. Not a grey badge, not "unverified" —
+              nothing. See src/lib/licenseBadge.ts. */}
+          {badge && badgeStyle && (
+            <div className={`absolute top-3 left-3 inline-flex items-center gap-1.5 ${badgeStyle.pill} text-xs font-medium rounded-full px-3 py-1.5 shadow-sm`}>
+              <ShieldCheck size={14} className={badgeStyle.icon} aria-hidden="true" />
+              {badge.text}
+            </div>
+          )}
         </div>
 
         <div className="p-6 flex flex-col flex-1 gap-3">
