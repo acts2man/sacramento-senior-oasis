@@ -50,6 +50,22 @@ interface SEOProps {
    * pages keep their existing branding.
    */
   appendBrand?: boolean;
+  /**
+   * Emit `<meta name="robots" content="noindex,follow">`.
+   *
+   * "follow" is deliberate: the page stays out of the index but its links keep
+   * passing equity, which matters for surfaces like on-site search results that
+   * link to many real pages.
+   *
+   * Callers that set this should also pass a SELF-referencing canonical rather
+   * than pointing at a cleaner URL. Google treats noindex plus a canonical to a
+   * different URL as contradictory, and can end up applying the noindex to the
+   * canonical target — the opposite of what you want.
+   *
+   * Defaults to false, so no robots meta is emitted at all and indexable pages
+   * are unaffected.
+   */
+  noindex?: boolean;
 }
 
 const SEO = ({
@@ -60,6 +76,7 @@ const SEO = ({
   ogType = 'website',
   canonical,
   appendBrand = true,
+  noindex = false,
 }: SEOProps) => {
   const fullTitle = !appendBrand || title.includes(BRAND_NAME)
     ? title
@@ -70,6 +87,7 @@ const SEO = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
+      {noindex && <meta name="robots" content="noindex,follow" />}
       
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />

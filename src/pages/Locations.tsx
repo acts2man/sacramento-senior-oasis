@@ -46,9 +46,34 @@ const Locations = () => {
   };
 
   const seoData = generatePageSEO('locations');
-  const dynamicDescription = searchQuery 
+  const dynamicDescription = searchQuery
     ? `${filteredLocations.length} senior living communities found for "${searchQuery}" in Sacramento, CA. Compare pricing, amenities, and care services.`
     : seoData.description;
+
+  /**
+   * On-site search results are noindexed.
+   *
+   * `/locations?search=elk%20grove` had been indexed and was ranking for
+   * city-level Elk Grove queries, competing with /assisted-living/elk-grove and
+   * splitting the signal a third way. Parameterised search URLs also multiply
+   * without bound — one was indexed, and nothing stopped the rest following.
+   *
+   * Deliberately NOT redirected or removed: on-site search is a feature
+   * families use. It simply does not belong in Google's index.
+   *
+   * We key off the raw query string rather than `searchQuery` state because
+   * state is populated by an effect — on the first render after navigation it
+   * is still empty, and a crawler that snapshots early would otherwise see an
+   * indexable page. The URL is correct immediately.
+   *
+   * The canonical is self-referencing while a query string is present. Pointing
+   * it at the clean /locations would contradict the noindex and risk Google
+   * applying the noindex to /locations itself.
+   */
+  const hasQueryString = location.search.length > 1;
+  const canonical = hasQueryString
+    ? `${SITE_URL}/locations${location.search}`
+    : `${SITE_URL}/locations`;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -56,7 +81,8 @@ const Locations = () => {
         title={searchQuery ? `${searchQuery} Senior Living Communities in Sacramento` : seoData.title}
         description={dynamicDescription}
         keywords={seoData.keywords}
-        canonical={`${SITE_URL}/locations`}
+        canonical={canonical}
+        noindex={hasQueryString}
       />
       {/* ItemList reflects the full directory, not the filtered view, so
           search-result variants don't ship a different schema to crawlers. */}

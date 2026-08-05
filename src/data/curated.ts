@@ -786,7 +786,12 @@ export const CURATED_FACILITIES: Facility[] = [
       "assisted_living",
       "memory_care"
     ],
-    description: "Love and Serenity of Elk Grove III provides a nurturing environment for seniors in a convenient Elk Grove location. Our facility is designed to balance independence with appropriate levels of care, allowing residents to enjoy life on their own terms. We take a person-centered approach to caregiving, recognizing each resident's unique needs and preferences. Our dedicated staff builds meaningful relationships with residents, creating a true sense of community. Regular family events strengthen connections between residents and their loved ones.",
+    // Opening paragraph deliberately carries no city-level category phrasing —
+    // it feeds both the visible "About" section and the JSON-LD description.
+    // See CITY_ROLLUP_LINKS in src/utils/seoUtils.ts for the full rationale.
+    // The address block under the H1 still states the city; that is the honest
+    // signal and it stays.
+    description: "Love and Serenity of Elk Grove III is a six-resident licensed care home on Mazatlan Way. The home is designed to balance independence with the right level of daily support, so residents can live on their own terms. Care is person-centered — the staff work from each resident's own needs, preferences and routines rather than a fixed program. Caregivers stay with the home long enough to know residents well, and regular family events keep loved ones part of daily life.",
     price_range_low: 4100,
     price_range_high: 4900,
     amenities: [

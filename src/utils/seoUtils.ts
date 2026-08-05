@@ -5,10 +5,30 @@ import { BRAND_NAME } from '../lib/constants';
 
 const BRAND_SUFFIX = BRAND_NAME;
 
+interface LocationSEOOverride {
+  title: string;
+  description: string;
+  /**
+   * Replaces the derived keyword list entirely. Set this when the derived list
+   * would emit city-level category phrases we are deliberately shedding on a
+   * given page — see CITY_ROLLUP_LINKS below for why.
+   */
+  keywords?: string;
+  /**
+   * Suppress the ` | Sacramento Assisted Living Directory` title suffix.
+   *
+   * The suffix contains the words "Assisted Living". On a community whose NAME
+   * contains a city, that pairs the city and the care category inside the
+   * title tag and makes a single-building page look like a city-level result.
+   * Defaults to true (append) so every other community page is untouched.
+   */
+  appendBrand?: boolean;
+}
+
 // Keyed by `LocationType.id` from `data/locations.ts` — the real source of truth.
 // If a location is added there with no entry here, generateLocationSEO falls
 // back to a derived title/description.
-const customLocationSEO: Record<string, { title: string; description: string }> = {
+const customLocationSEO: Record<string, LocationSEOOverride> = {
   'abounding-love-home-care': {
     title: `Abounding Love - Assisted Living Care Home | ${BRAND_SUFFIX}`,
     description: 'Abounding Love is a senior care home in Sacramento, CA at 27 Tristan Cir, offering a peaceful residential setting for older adults. Compare amenities, services, and pricing.'
@@ -69,9 +89,14 @@ const customLocationSEO: Record<string, { title: string; description: string }> 
     title: `Love and Serenity III - Greenhaven Assisted Living Community | ${BRAND_SUFFIX}`,
     description: 'Love and Serenity III is a senior care home in Sacramento, CA at 573 Shaw River Way, offering a family-like environment. Compare amenities, services, and pricing.'
   },
+  // De-optimised for city-level Elk Grove queries on purpose. See the note on
+  // CITY_ROLLUP_LINKS at the bottom of this file before changing any of these
+  // three fields — the omissions are the point.
   'love-and-serenity-iii-of-elk-grove': {
-    title: `Love and Serenity of Elk Grove III | ${BRAND_SUFFIX}`,
-    description: 'Love and Serenity of Elk Grove III is a senior care home in Elk Grove, CA at 9442 Mazatlan Way, offering daily activities and home-cooked meals. Compare amenities, services, and pricing.'
+    title: 'Love and Serenity of Elk Grove III — Licensed RCFE Care Home',
+    description: 'Love and Serenity of Elk Grove III is a licensed RCFE care home on Mazatlan Way — six residents, private and shared suites, home-style meals, and a secured outdoor space.',
+    keywords: 'love and serenity of elk grove iii, love and serenity elk grove, rcfe care home, board and care home, memory care, 95624',
+    appendBrand: false,
   },
   'love-and-serenity-of-elk-grove-ii': {
     title: `Love and Serenity of Elk Grove II - Senior Care | ${BRAND_SUFFIX}`,
@@ -118,8 +143,9 @@ export const generateLocationSEO = (location: Facility) => {
 
   const title = customSEO?.title || fallbackTitle;
   const description = customSEO?.description || fallbackDescription;
+  const appendBrand = customSEO?.appendBrand ?? true;
 
-  const keywords = [
+  const derivedKeywords = [
     location.name.toLowerCase(),
     `senior living ${location.city.toLowerCase()}`,
     `assisted living ${location.city.toLowerCase()}`,
@@ -129,7 +155,52 @@ export const generateLocationSEO = (location: Facility) => {
     location.zip,
   ].join(', ');
 
-  return { title, description, keywords };
+  const keywords = customSEO?.keywords || derivedKeywords;
+
+  return { title, description, keywords, appendBrand };
+};
+
+/**
+ * Community pages that link UP to their city's category page, prominently.
+ *
+ * Background — the Elk Grove cannibalisation, Aug 2026:
+ *
+ * Twelve city-level Elk Grove queries (390 searches/mo each, keyword difficulty
+ * 1-2) were split across three of our own URLs. Seven of them landed on
+ * /love-and-serenity-iii-of-elk-grove at positions 17-29. A page about one
+ * six-resident building cannot satisfy a query asking to compare facilities in
+ * a city, so Google parked it there and was never going to promote it — while
+ * the page built for exactly those terms, /assisted-living/elk-grove, sat below
+ * position 21 for four of them.
+ *
+ * The fix has two halves. This map is the second half: an explicit, visible
+ * link from the community page up to the city page, placed directly under the
+ * H1 rather than in a footer, with anchor text carrying the city-level phrasing
+ * we removed from the community page's own head tags.
+ *
+ * The first half is in customLocationSEO above — the title, description and
+ * keywords for this facility have had city-level category phrasing stripped
+ * out, and src/data/curated.ts has the matching opening-paragraph rewrite. All
+ * of it is per-facility data, NOT a template change: the same LocationDetail
+ * template renders all 765 communities, several of which are the site's best
+ * performers and must not be disturbed.
+ *
+ * What was deliberately kept: the community's own name (it contains "Elk
+ * Grove", it is a proper noun, and "love and serenity" ranks at position 2 —
+ * that ranking is the one thing on this page worth protecting), the full
+ * address block under the H1, and the PostalAddress in the LodgingBusiness
+ * JSON-LD. Being located in Elk Grove is a fact and stays. What went is the
+ * category-plus-city pairing that made a single building look like a directory.
+ *
+ * To de-optimise another community later, add an entry here AND a matching
+ * customLocationSEO override. Do not do it to a page that is ranking well for
+ * its own name.
+ */
+export const CITY_ROLLUP_LINKS: Record<string, { label: string; to: string }> = {
+  'love-and-serenity-iii-of-elk-grove': {
+    label: 'Compare all assisted living communities in Elk Grove',
+    to: '/assisted-living/elk-grove',
+  },
 };
 
 export const generatePageSEO = (pageName: string, customDescription?: string) => {
