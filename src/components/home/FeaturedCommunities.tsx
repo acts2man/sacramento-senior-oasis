@@ -3,6 +3,7 @@ import { MapPin, ShieldCheck, ArrowRight } from 'lucide-react';
 import { locations } from '../../data/locations';
 import type { Facility } from '../../types/facility';
 import { careTypeLabel } from '../../lib/careTypes';
+import { licenseBadge, licenseBadgeClasses } from '../../lib/licenseBadge';
 
 // Featured set — first six records from locations.ts. Real communities only;
 // no placeholders are ever invented. If/when an `is_partner` flag is set the
@@ -11,19 +12,6 @@ const FEATURED: Facility[] = locations.slice(0, 6);
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
-
-// Show license status only when it's actually present in the data. Today
-// every record has license_* undefined (filled by the upcoming CDSS backfill
-// PR), so the card shows a neutral verified-line — no fabricated numbers.
-const licenseLine = (f: Facility): string => {
-  if (f.license_status === 'current') {
-    return f.license_number ? `License #${f.license_number} · Current` : 'License current · CA CCLD';
-  }
-  if (f.license_status === 'on_probation') return 'License on probation · CA CCLD';
-  if (f.license_status === 'closed') return 'License closed · CA CCLD';
-  if (f.license_status === 'pending') return 'License pending · CA CCLD';
-  return 'License-verified · CA CCLD';
-};
 
 const PhotoOrPlaceholder = ({ facility }: { facility: Facility }) => {
   const hero = facility.photos?.[0];
@@ -46,6 +34,18 @@ const PhotoOrPlaceholder = ({ facility }: { facility: Facility }) => {
   );
 };
 
+const LicenseBadgePill = ({ facility }: { facility: Facility }) => {
+  const badge = licenseBadge(facility);
+  if (!badge) return null;
+  const style = licenseBadgeClasses(badge.tone);
+  return (
+    <div className={`absolute top-3 left-3 inline-flex items-center gap-1.5 ${style.pill} text-xs font-medium rounded-full px-3 py-1.5 shadow-sm`}>
+      <ShieldCheck size={14} className={style.icon} aria-hidden="true" />
+      {badge.text}
+    </div>
+  );
+};
+
 const Card = ({ facility }: { facility: Facility }) => (
   <Link
     to={`/${facility.id}`}
@@ -54,10 +54,12 @@ const Card = ({ facility }: { facility: Facility }) => (
   >
     <div className="relative overflow-hidden">
       <PhotoOrPlaceholder facility={facility} />
-      <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-teal-800 text-xs font-medium rounded-full px-3 py-1.5 shadow-sm">
-        <ShieldCheck size={14} className="text-teal-700" aria-hidden="true" />
-        {licenseLine(facility)}
-      </div>
+      {/* Badge shape and tone both come from the shared module. This card used
+          to hardcode the calm teal styling, so a facility on probation — one
+          of them a featured partner — rendered as reassurance. And it fell
+          through to a literal "License-verified" for records with no licence
+          data at all. See src/lib/licenseBadge.ts. */}
+      <LicenseBadgePill facility={facility} />
     </div>
 
     <div className="p-6 flex flex-col flex-1 gap-3">
