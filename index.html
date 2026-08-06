@@ -10,7 +10,17 @@
          tags belong in src/components/SEO.tsx — see the note at its top.
          (Tag syntax deliberately not spelled out above; crawlers that scan
          raw HTML with regexes read example markup inside comments as real.) -->
-    <title>Sacramento Assisted Living Directory — Assisted Living, Memory Care &amp; Board and Care Homes</title>
+    <!-- Keep this byte-identical to HOME_TITLE in src/pages/Index.tsx.
+         This tag is what Googlebot's first pass and every social crawler read;
+         Helmet swaps in the per-page title only after hydration. When the two
+         disagreed, the homepage had one title pre-JS and a different one
+         post-JS, and neither displayed reliably.
+
+         Lovable's "Update site info for publish" panel rewrites this tag and
+         has silently corrupted it before — commit ed663f7 shipped the brand as
+         "Sacramento Assisted Living Directo". If a publish changes this line,
+         restore it and re-check Index.tsx still matches. -->
+    <title>Assisted Living in Sacramento | Sacramento Assisted Living Directory</title>
     <meta name="theme-color" content="#1f3a5f" />
 
     <link rel="icon" type="image/png" href="/favicon.png">
