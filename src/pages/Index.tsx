@@ -17,7 +17,23 @@ import {
   buildBreadcrumbSchema,
 } from '../lib/schema';
 
-const HOME_TITLE = `Assisted Living, Memory Care & Senior Living in Sacramento | ${BRAND_NAME}`;
+/**
+ * Homepage title. Must stay byte-identical to the <title> in index.html — the
+ * SPA shell serves that one to Googlebot's first pass and to every social
+ * crawler, and Helmet swaps in this one after hydration. Two different titles
+ * for one URL is a signal Google has to reconcile, and it resolved it by
+ * showing neither reliably.
+ *
+ * Front-loaded on purpose. The previous version ran to 97 characters and
+ * Google truncates display around 60, so "Assisted Living in Sacramento" is
+ * the part that actually shows; the brand suffix is for the tab and for
+ * disambiguation, not for the SERP. "assisted living facilities in sacramento"
+ * is 1,300 searches/month at difficulty 4 and sat at position 28.
+ *
+ * SEO.tsx will not append the brand a second time — it skips the suffix when
+ * the title already contains BRAND_NAME, which this one does.
+ */
+const HOME_TITLE = `Assisted Living in Sacramento | ${BRAND_NAME}`;
 const HOME_DESCRIPTION =
   'Compare assisted living, memory care & senior living across Sacramento. License-verified communities, real costs, and free local advisors for families.';
 const HOME_KEYWORDS =
